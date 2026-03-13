@@ -57,6 +57,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <head>
+        {/* Google tag (gtag.js) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-MDP27W7853"
           strategy="afterInteractive"
@@ -67,18 +68,6 @@ export default async function LocaleLayout({
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'G-MDP27W7853');
-          `}
-        </Script>
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-17971424682"
-          strategy="afterInteractive"
-        />
-        <Script id="google-ads" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'AW-17971424682');
           `}
         </Script>
       </head>
