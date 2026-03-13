@@ -500,10 +500,10 @@ const RequestFormSection = () => {
             {t("title")}
           </h2>
           <div
-            style={{ width: "80%", height: "520px", marginLeft: "auto", marginRight: "auto" }}
-            data-fillout-id="ixaH3FnMAbus"
+            style={{ width: "100%", height: "520px" }}
+            data-fillout-id="jRu4Weceruus"
             data-fillout-embed-type="standard"
-            data-fillout-inherit-parameters=""
+            data-fillout-inherit-parameters
             data-fillout-domain="form.latenode.com"
           />
         </div>
