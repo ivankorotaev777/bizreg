@@ -493,14 +493,14 @@ const RequestFormSection = () => {
   }, [locale]);
 
   return (
-    <section id="request-form" ref={sectionRef} className="pt-[30px] pb-5 lg:pt-[38px] lg:pb-7 bg-background scroll-mt-24">
+    <section id="request-form" ref={sectionRef} className="pt-16 pb-5 lg:pt-20 lg:pb-7 bg-background scroll-mt-28">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-semibold mb-8 text-center text-foreground">
             {t("title")}
           </h2>
           <div
-            style={{ width: "100%", height: "520px" }}
+            style={{ width: "80%", height: "520px", marginLeft: "auto", marginRight: "auto" }}
             data-fillout-id="jRu4Weceruus"
             data-fillout-embed-type="standard"
             data-fillout-inherit-parameters
