@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 33% 99%;
+    --foreground: 220 60% 9%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 220 60% 9%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 60% 9%;
+    
+    --primary: 171 100% 33%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 220 33% 96%;
+    --secondary-foreground: 220 50% 19%;
+    
+    --muted: 220 33% 96%;
+    --muted-foreground: 220 40% 57%;
+    
+    --accent: 171 60% 94%;
+    --accent-foreground: 171 100% 22%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 220 20% 90%;
+    --input: 220 20% 90%;
+    --ring: 171 100% 33%;
+    
+    --radius: 0.625rem;
+  }
+
+  .dark {
+    --background: 220 50% 4%;
+    --foreground: 220 33% 96%;
+    
+    --card: 220 60% 9%;
+    --card-foreground: 220 33% 96%;
+    
+    --popover: 220 60% 9%;
+    --popover-foreground: 220 33% 96%;
+    
+    --primary: 171 100% 33%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 220 50% 19%;
+    --secondary-foreground: 220 33% 96%;
+    
+    --muted: 220 50% 19%;
+    --muted-foreground: 220 40% 57%;
+    
+    --accent: 220 50% 19%;
+    --accent-foreground: 171 80% 60%;
+    
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 220 50% 23%;
+    --input: 220 50% 23%;
+    --ring: 171 100% 33%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-muted;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-border rounded;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted-foreground;
+}
+
+/* Gradient text utility */
+.text-gradient {
+  @apply bg-gradient-to-r from-brand-500 to-navy-500 bg-clip-text text-transparent;
+}
+
+/* Gradient background */
+.bg-gradient-brand {
+  @apply bg-gradient-to-r from-brand-500 to-brand-600;
+}
+
+/* Animation utilities */
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
