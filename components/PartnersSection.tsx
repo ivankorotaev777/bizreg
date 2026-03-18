@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 
 const PARTNERS = [
   { image: "/Ivan.png", nameKey: "name1", roleKey: "role1", descKey: "desc1" },
-  { image: "/Yaroslav%202.png", nameKey: "name2", roleKey: "role2", descKey: "desc2" },
+  { image: "/Yaroslav%202.png?v=2", nameKey: "name2", roleKey: "role2", descKey: "desc2" },
   { image: "/Karima.png", nameKey: "name3", roleKey: "role3", descKey: "desc3" },
 ] as const;
 
