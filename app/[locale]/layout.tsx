@@ -55,28 +55,26 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
-      <head>
-        {/* Google tag (gtag.js) */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-MDP27W7853"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-MDP27W7853');
-          `}
-        </Script>
-      </head>
-      <body className={`${onest.variable} antialiased`}>
+    <>
+      {/* Google tag (gtag.js) */}
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-MDP27W7853"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-MDP27W7853');
+        `}
+      </Script>
+      <div className={`${onest.variable} antialiased`}>
         <NextIntlClientProvider messages={messages}>
           <Header />
           {children}
         </NextIntlClientProvider>
-      </body>
-    </html>
+      </div>
+    </>
   );
 }

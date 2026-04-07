@@ -20,7 +20,9 @@ export function Header() {
     { name: t("home"), href: "/" },
     { name: t("about"), href: "/about" },
     { name: t("payment"), href: "/payment" },
+    { name: t("priceListFull"), href: "/price_list_full" },
     { name: t("guarantees"), href: "/guarantees" },
+    { name: t("clients"), href: "/clients" },
     { name: t("contacts"), href: "/contacts" },
   ];
 
