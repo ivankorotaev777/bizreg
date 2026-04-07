@@ -473,14 +473,19 @@ const RequestFormSection = () => {
           <h2 className="text-3xl sm:text-4xl font-semibold mb-8 text-center text-foreground">
             {t("title")}
           </h2>
-          <iframe
-            src="https://form.latenode.com/t/jRu4Weceruus"
-            width="100%"
-            height="640"
-            className="w-full rounded-xl border border-border bg-white"
-            style={{ maxWidth: "900px", marginLeft: "auto", marginRight: "auto", display: "block" }}
-            title="Request form"
-          />
+          <div
+            className="rounded-xl border border-border bg-white overflow-hidden"
+            style={{ maxWidth: "900px", marginLeft: "auto", marginRight: "auto", height: "512px" }}
+          >
+            <iframe
+              src="https://form.latenode.com/t/jRu4Weceruus"
+              width="100%"
+              height="100%"
+              className="w-full border-0 bg-white"
+              style={{ marginTop: "1.4cm", height: "calc(100% + 1.4cm)", display: "block" }}
+              title="Request form"
+            />
+          </div>
         </div>
       </div>
     </section>

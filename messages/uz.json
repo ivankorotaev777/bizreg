@@ -335,5 +335,176 @@
     "telegramButton": "Telegramga yozish",
     "mapTitle": "Biz xaritada",
     "mapAddress": "Toshkent sh., Shayxontohur tumani, Jangoh massivi, 37"
+  },
+  "priceListFullPage": {
+    "title": "To'liq narxlar",
+    "description": "BizReg asosiy xizmatlari uchun amaldagi narxlar.",
+    "registration": {
+      "title": "MChJ ro'yxatdan o'tkazish",
+      "package1": {
+        "name": "Paket 1",
+        "price": "5 000 000",
+        "period": "so'm + QQS",
+        "items": [
+          "Bitta ta'sischi — jismoniy shaxs",
+          "Asosiy hujjatlar paketini tayyorlash",
+          "MChJ ro'yxatdan o'tkazishni kuzatish",
+          "Ta'sischi qarorini tayyorlash",
+          "Davlat organlariga hujjat topshirish",
+          "Ro'yxatga olish hujjatlarini olish"
+        ]
+      },
+      "package2": {
+        "name": "Paket 2",
+        "price": "12 000 000",
+        "period": "so'm + QQS",
+        "items": [
+          "Ta'sischi — yuridik shaxs",
+          "Kengaytirilgan hujjatlar tayyorlash",
+          "Korporativ tuzilma bo'yicha hamrohlik",
+          "Ta'sischilar kelishuvlarini tayyorlash",
+          "Boshqaruv tuzilmasini kelishtirish",
+          "Ro'yxatdan o'tish yakunigacha hamrohlik"
+        ]
+      },
+      "package3": {
+        "name": "Paket 3",
+        "price": "20 000 000",
+        "period": "so'm + QQS",
+        "items": [
+          "Murakkab korporativ tuzilma",
+          "Bir nechta yuridik shaxs",
+          "Xalqaro ta'sischilar ishtiroki",
+          "Egalik tuzilmasi bo'yicha risk tahlili",
+          "Kengaytirilgan hujjatlar paketi",
+          "Individual loyiha hamrohligi"
+        ]
+      }
+    },
+    "accounting": {
+      "title": "Buxgalteriya hamrohligi",
+      "package1": {
+        "name": "Paket 1",
+        "price": "2 500 000",
+        "period": "so'm + QQS",
+        "items": [
+          "Asosiy buxgalteriya hisobi",
+          "Majburiy hisobotlarni topshirish",
+          "Joriy savollar bo'yicha maslahatlar",
+          "Birlamchi hujjatlarni yuritish",
+          "Soliq to'lovlari muddatini nazorat qilish",
+          "Oylik hisobot holati bo'yicha ma'lumot"
+        ]
+      },
+      "package2": {
+        "name": "Paket 2",
+        "price": "4 500 000",
+        "period": "so'm + QQS",
+        "items": [
+          "Paket 1 dagi hamma xizmatlar",
+          "Kengaytirilgan soliq hisobi",
+          "Bank operatsiyalari bo'yicha yordam",
+          "Ish haqi va xodimlar soliqlarini hisoblash",
+          "To'lov topshiriqlarini tayyorlash",
+          "Kontragentlar bilan solishtirma dalolatnoma"
+        ]
+      },
+      "package3": {
+        "name": "Paket 3",
+        "price": "7 000 000",
+        "period": "so'm + QQS",
+        "items": [
+          "Paket 2 dagi hamma xizmatlar",
+          "Murakkab va katta hajmdagi hisob",
+          "Ustuvor hamrohlik",
+          "Boshqaruv hisobotlarini tayyorlash",
+          "Tekshiruvlar va so'rovlarda hamrohlik",
+          "Shaxsiy buxgalter aloqada"
+        ]
+      }
+    },
+    "legalAddress": {
+      "title": "Yuridik manzil",
+      "start": {
+        "name": "Start",
+        "price": "990 000",
+        "period": "so'm/oy + QQS",
+        "items": [
+          "MChJ / YaTT uchun kadastr manzili",
+          "Didox va e-ijara da ro'yxatdan o'tish",
+          "Qonunchilik talablariga moslik",
+          "Manzildan foydalanish bo'yicha bazaviy maslahat",
+          "Ro'yxatga olish ma'lumotlarini tekshirish",
+          "Ishga tushirish bosqichida hamrohlik"
+        ]
+      },
+      "standard": {
+        "name": "Standart",
+        "price": "1 300 000",
+        "period": "so'm/oy + QQS",
+        "items": [
+          "Start paketidagi hamma xizmatlar",
+          "10:00-20:00 oralig'ida maxsus vakil",
+          "Pochtani qabul qilish/yuborish — oyiga 10 tagacha",
+          "Bank uchun manzilni tasdiqlashda yordam",
+          "Kontragentlar bilan aloqa bo'yicha yordam",
+          "Kiruvchi pochtani ustuvor qayta ishlash"
+        ]
+      },
+      "business": {
+        "name": "Biznes",
+        "price": "2 600 000",
+        "period": "so'm/oy QQSsiz",
+        "items": [
+          "Standart paketidagi hamma xizmatlar",
+          "QQS hisobi uchun 18 m2 maydon",
+          "QQS bilan ishlovchi firmalar uchun mos",
+          "Soliq talablari bo'yicha kengaytirilgan yordam",
+          "Hujjat aylanishi ustidan qo'shimcha nazorat",
+          "Murakkab holatlar bo'yicha shaxsiy hamrohlik"
+        ]
+      }
+    }
+  },
+  "clientsPage": {
+    "badge": "BizReg mijozlar profili",
+    "title": "Bizning mijozlar",
+    "subtitle": "Biz ishlaydigan kompaniya turlari va ishga tushirish hamda o'sish bosqichida hal qiladigan vazifalar bo'yicha to'liq ko'rinish.",
+    "intro": {
+      "title": "Qanday kompaniyalar bilan ishlaymiz",
+      "p1": "BizReg mijozlarni barcha bosqichlarda qo'llab-quvvatlaydi: yangi kompaniyani ishga tushirishdan barqaror o'sish va masshtablashgacha. Biz mahalliy tadbirkorlar hamda O'zbekiston bozoriga kirayotgan xalqaro jamoalar bilan ishlaymiz.",
+      "p2": "Ko'pincha IT-kompaniyalar, savdo biznesi, servis va konsalting loyihalari, e-commerce brendlar, agentliklar, ta'lim platformalari, shuningdek ishlab chiqarish va logistika kompaniyalari murojaat qiladi.",
+      "p3": "Biznes hajmidan qat'i nazar, biz aniq va qonuniy tizimni qurishga yordam beramiz: MChJ/YaTT ro'yxatdan o'tkazish, yuridik manzil, soliq hisobiga qo'yish, hisobot, kundalik moliyaviy jarayonlar hamrohligi va qonunchilik bo'yicha maslahatlar."
+    },
+    "segmentsTitle": "Biz ishlaydigan kompaniya turlari",
+    "segments": {
+      "it": { "title": "IT va Digital", "desc": "Startaplar, SaaS, autsorsing, mahsulot jamoalari." },
+      "trade": { "title": "Savdo va E-commerce", "desc": "Ulgurji, chakana, marketplace, import va distribyutsiya." },
+      "services": { "title": "Xizmatlar va konsalting", "desc": "Agentliklar, yuridik va biznes-konsultantlar, servis kompaniyalari." },
+      "production": { "title": "Ishlab chiqarish va logistika", "desc": "Faol operatsion va ta'minot zanjiriga ega kompaniyalar." },
+      "education": { "title": "Ta'lim va EdTech", "desc": "Ta'lim loyihalari, onlayn maktablar va o'quv markazlari." },
+      "international": { "title": "Xalqaro biznes", "desc": "Mahalliy yuridik tuzilma orqali O'zbekiston bozoriga kirayotgan jamoalar." }
+    },
+    "requestsTitle": "Ko'p uchraydigan so'rovlar",
+    "keyRequests": [
+      "Toshkentda yangi kompaniyani qisqa muddatda ishga tushirish",
+      "Aniq biznes modelga mos soliq sxemasini tanlash",
+      "Kechikish va jarimalarsiz barqaror buxgalteriya",
+      "Shaffof moliyaviy jarayonlar va muntazam boshqaruv hisobotlari"
+    ],
+    "resultsTitle": "Mijoz natijalari",
+    "resultCards": [
+      { "value": "1-2", "label": "kunda ro'yxatdan o'tishni ishga tushirish" },
+      { "value": "100%", "label": "jarayon bosqichlari shaffof" },
+      { "value": "15 min", "label": "o'rtacha javob vaqti" },
+      { "value": "0", "label": "hujjat va hisobotdagi tartibsizlik" }
+    ],
+    "workflowTitle": "Qanday ishlaymiz",
+    "workSteps": [
+      "Biznes modelini tahlil qilamiz va eng maqbul ro'yxatga olish formatini tanlaymiz",
+      "Hujjatlarni tayyorlaymiz, yuridik manzil va soliq hisobiga qo'yishda yordam beramiz",
+      "Buxgalteriya konturini ishga tushiramiz va kundalik operatsiyalarni kuzatamiz",
+      "Hisobot, soliqlar, maslahatlar va risk nazorati bilan o'sishni qo'llab-quvvatlaymiz"
+    ]
   }
 }

@@ -335,5 +335,176 @@
     "telegramButton": "Write on Telegram",
     "mapTitle": "We are on the map",
     "mapAddress": "Tashkent, Shaykhantakhur district, Djangokh massif, 37"
+  },
+  "priceListFullPage": {
+    "title": "Full price list",
+    "description": "Current prices for BizReg core services.",
+    "registration": {
+      "title": "LLC registration",
+      "package1": {
+        "name": "Package 1",
+        "price": "5,000,000",
+        "period": "UZS + VAT",
+        "items": [
+          "One founder - individual",
+          "Preparation of basic document package",
+          "LLC registration support",
+          "Preparation of founder decision",
+          "Submission to state authorities",
+          "Collection of registration documents"
+        ]
+      },
+      "package2": {
+        "name": "Package 2",
+        "price": "12,000,000",
+        "period": "UZS + VAT",
+        "items": [
+          "Founder - legal entity",
+          "Extended document preparation",
+          "Corporate structure support",
+          "Preparation of founder agreements",
+          "Management structure alignment",
+          "Support until registration completion"
+        ]
+      },
+      "package3": {
+        "name": "Package 3",
+        "price": "20,000,000",
+        "period": "UZS + VAT",
+        "items": [
+          "Complex corporate structure",
+          "Several legal entities",
+          "International founders involved",
+          "Ownership risk assessment",
+          "Expanded document package",
+          "Individual project support"
+        ]
+      }
+    },
+    "accounting": {
+      "title": "Accounting support",
+      "package1": {
+        "name": "Package 1",
+        "price": "2,500,000",
+        "period": "UZS + VAT",
+        "items": [
+          "Basic bookkeeping",
+          "Mandatory reports filing",
+          "Current issue consultations",
+          "Primary documentation handling",
+          "Tax payment deadline control",
+          "Monthly accounting status report"
+        ]
+      },
+      "package2": {
+        "name": "Package 2",
+        "price": "4,500,000",
+        "period": "UZS + VAT",
+        "items": [
+          "Everything in Package 1",
+          "Extended tax accounting",
+          "Bank operations support",
+          "Payroll and staff tax calculations",
+          "Payment order preparation",
+          "Counterparty reconciliations"
+        ]
+      },
+      "package3": {
+        "name": "Package 3",
+        "price": "7,000,000",
+        "period": "UZS + VAT",
+        "items": [
+          "Everything in Package 2",
+          "Complex accounting and high volume",
+          "Priority support",
+          "Management reporting",
+          "Audit and inquiry support",
+          "Dedicated accountant"
+        ]
+      }
+    },
+    "legalAddress": {
+      "title": "Legal address",
+      "start": {
+        "name": "Start",
+        "price": "990,000",
+        "period": "UZS/month + VAT",
+        "items": [
+          "Cadastral address for LLC / sole proprietor",
+          "Registration in Didox and e-ijara",
+          "Compliance with legal requirements",
+          "Basic guidance on address use",
+          "Registration data accuracy check",
+          "Support at launch stage"
+        ]
+      },
+      "standard": {
+        "name": "Standard",
+        "price": "1,300,000",
+        "period": "UZS/month + VAT",
+        "items": [
+          "Everything in Start package",
+          "Dedicated representative 10:00-20:00",
+          "Mail receiving/forwarding - up to 10 items/month",
+          "Help with bank address confirmation",
+          "Counterparty communication support",
+          "Priority incoming mail handling"
+        ]
+      },
+      "business": {
+        "name": "Business",
+        "price": "2,600,000",
+        "period": "UZS/month excl. VAT",
+        "items": [
+          "Everything in Standard package",
+          "18 m2 area for VAT registration",
+          "Suitable for VAT companies",
+          "Extended tax requirements support",
+          "Additional document flow control",
+          "Personal support for complex cases"
+        ]
+      }
+    }
+  },
+  "clientsPage": {
+    "badge": "BizReg client profile",
+    "title": "Our clients",
+    "subtitle": "A complete overview of company types we work with and tasks we solve at launch and growth stages.",
+    "intro": {
+      "title": "What companies we work with",
+      "p1": "BizReg supports clients at every stage: from launching a new company to stable growth and scaling. We work with both local entrepreneurs and international teams entering the Uzbekistan market.",
+      "p2": "Most often we work with IT companies, trade businesses, service and consulting projects, e-commerce brands, agencies, education platforms, as well as manufacturing and logistics companies.",
+      "p3": "Regardless of business size, we help build a clear and legal setup: LLC/SP registration, legal address, tax registration, reporting, ongoing finance process support, and law-change consulting."
+    },
+    "segmentsTitle": "Company types we work with",
+    "segments": {
+      "it": { "title": "IT and Digital", "desc": "Startups, SaaS, outsourcing, product teams." },
+      "trade": { "title": "Trade and E-commerce", "desc": "Wholesale, retail, marketplaces, import and distribution." },
+      "services": { "title": "Services and Consulting", "desc": "Agencies, legal and business consultants, service companies." },
+      "production": { "title": "Manufacturing and Logistics", "desc": "Companies with active operations and supply chains." },
+      "education": { "title": "Education and EdTech", "desc": "Education projects, online schools and training centers." },
+      "international": { "title": "International business", "desc": "Teams entering Uzbekistan through a local legal structure." }
+    },
+    "requestsTitle": "Typical client requests",
+    "keyRequests": [
+      "Launch a new company in Tashkent quickly",
+      "Choose the right tax model for a specific business model",
+      "Stable accounting without delays and fines",
+      "Transparent financial processes and regular management reporting"
+    ],
+    "resultsTitle": "Client outcomes",
+    "resultCards": [
+      { "value": "1-2", "label": "days to launch registration" },
+      { "value": "100%", "label": "transparent work stages" },
+      { "value": "15 min", "label": "average response time" },
+      { "value": "0", "label": "paperwork and reporting chaos" }
+    ],
+    "workflowTitle": "How we work",
+    "workSteps": [
+      "Analyze business model and choose the best registration format",
+      "Prepare documents, help with legal address and tax registration",
+      "Set up accounting process and support daily operations",
+      "Support growth with reporting, taxes, consulting and risk control"
+    ]
   }
 }
