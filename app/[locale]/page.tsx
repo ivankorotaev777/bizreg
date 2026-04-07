@@ -1,7 +1,6 @@
 "use client";
 
-import { useTranslations, useLocale } from "next-intl";
-import { useEffect, useRef } from "react";
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { PartnersSection } from "@/components/PartnersSection";
 import { Button } from "@/components/ui/button";
@@ -466,45 +465,21 @@ const Pricing = () => {
 
 const RequestFormSection = () => {
   const t = useTranslations("requestForm");
-  const locale = useLocale();
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const scriptId = "fillout-embed-script";
-    const existing = document.getElementById(scriptId);
-    if (existing) existing.remove();
-
-    const script = document.createElement("script");
-    script.id = scriptId;
-    script.src = "https://server.fillout.com/embed/v1/";
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      const s = document.getElementById(scriptId);
-      if (s) s.remove();
-    };
-  }, [locale]);
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && window.location.hash === "#request-form" && sectionRef.current) {
-      sectionRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }, [locale]);
 
   return (
-    <section id="request-form" ref={sectionRef} className="pt-16 pb-5 lg:pt-20 lg:pb-7 bg-background scroll-mt-28">
+    <section id="request-form" className="pt-16 pb-5 lg:pt-20 lg:pb-7 bg-background scroll-mt-28">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-semibold mb-8 text-center text-foreground">
             {t("title")}
           </h2>
-          <div
-            style={{ width: "80%", height: "520px", marginLeft: "auto", marginRight: "auto" }}
-            data-fillout-id="jRu4Weceruus"
-            data-fillout-embed-type="standard"
-            data-fillout-inherit-parameters
-            data-fillout-domain="form.latenode.com"
+          <iframe
+            src="https://form.latenode.com/t/jRu4Weceruus"
+            width="100%"
+            height="640"
+            className="w-full rounded-xl border border-border bg-white"
+            style={{ maxWidth: "900px", marginLeft: "auto", marginRight: "auto", display: "block" }}
+            title="Request form"
           />
         </div>
       </div>
