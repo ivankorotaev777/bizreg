@@ -182,14 +182,14 @@
   "about": {
     "badge": "Kompaniya haqida",
     "title": "BizReg",
-    "titleSuffix": "— Toshkentda biznes ro'yxatdan o'tish va buxgalteriya",
+    "titleSuffix": "— Toshkentda biznesni ro'yxatdan o'tkazishda yordam va buxgalteriya",
     "description": "Toshkentda MChJ va YaTT ro'yxatdan o'tishda va buxgalteriya hisobida yordam beramiz. O'zbekiston va boshqa mamlakatlardan tadbirkorlar va kompaniyalar bilan ishlash tajribasi.",
     "stat1": "yil bozorda",
     "stat2": "mijoz",
     "stat3": "hujjat",
     "stat4": "sifat",
     "whoTitle": "Biz kimmiz?",
-    "whoDesc1": "<b>BizReg</b> — Toshkentda biznes ro'yxatdan o'tish va buxgalteriya xizmati.",
+    "whoDesc1": "<b>BizReg</b> — Toshkentda biznesni ro'yxatdan o'tkazishda yordam va buxgalteriya xizmati.",
     "whoDesc2": "MChJ va YaTT ro'yxatdan o'tish uchun hujjatlarni tayyorlaymiz, soliq hisobiga qo'yishda yordam beramiz va kichik va o'rta biznes uchun buxgalteriya olib boramiz.",
     "whoDesc3": "Jamoamiz — O'zbekiston qonunini biladigan va jarimalarsiz ishlashga yordam beradigan huquqshunoslar va buxgalterlar.",
     "missionTitle": "Bizning missiyamiz",
@@ -240,7 +240,7 @@
     "requisitesAddress": "Manzil",
     "requisitesAddressValue": "Toshkent sh., Shayxontohur tumani, Jangoh massivi, 37",
     "requisitesExperience": "Tajriba",
-    "requisitesExperienceValue": "Toshkentda biznes ro'yxatdan o'tish va buxgalteriya"
+    "requisitesExperienceValue": "Toshkentda biznesni ro'yxatdan o'tkazishda yordam va buxgalteriya"
   },
   "payment": {
     "badge": "To'lov",

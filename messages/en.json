@@ -173,7 +173,7 @@
     "title": "Have questions?",
     "description": "Write to us on Telegram — we'll respond within 15 minutes and find the right package for your needs.",
     "button": "Write on Telegram",
-    "tagline": "<b>BizReg</b> — business registration and accounting in Tashkent. Fast. Transparent."
+    "tagline": "<b>BizReg</b> — assistance with business registration and accounting in Tashkent. Fast. Transparent."
   },
   "footer": {
     "copyright": "© 2026 BizReg. Business registration and accounting in Tashkent.",
@@ -182,14 +182,14 @@
   "about": {
     "badge": "About",
     "title": "BizReg",
-    "titleSuffix": "— business registration and accounting in Tashkent",
+    "titleSuffix": "— assistance with business registration and accounting in Tashkent",
     "description": "We help register LLC and sole proprietorship in Tashkent and provide accounting. Experience working with entrepreneurs and companies from Uzbekistan and abroad.",
     "stat1": "years in market",
     "stat2": "clients",
     "stat3": "documents",
     "stat4": "quality",
     "whoTitle": "Who are we?",
-    "whoDesc1": "<b>BizReg</b> is a business registration and accounting service in Tashkent.",
+    "whoDesc1": "<b>BizReg</b> is a service for assistance with business registration and accounting in Tashkent.",
     "whoDesc2": "We prepare documents for LLC and sole proprietorship registration, help with tax registration, and provide bookkeeping for small and medium business.",
     "whoDesc3": "Our team includes lawyers and accountants who know Uzbekistan law and help you stay compliant and avoid fines.",
     "missionTitle": "Our mission",
@@ -240,7 +240,7 @@
     "requisitesAddress": "Address",
     "requisitesAddressValue": "Tashkent, Shaykhantakhur district, Djangokh massif, 37",
     "requisitesExperience": "Experience",
-    "requisitesExperienceValue": "Business registration and accounting in Tashkent"
+    "requisitesExperienceValue": "Assistance with business registration and accounting in Tashkent"
   },
   "payment": {
     "badge": "Payment",
