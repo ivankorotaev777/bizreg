@@ -131,3 +131,42 @@ html {
     transform: translateY(0);
   }
 }
+
+@keyframes white-blue-cycle {
+  0%,
+  45% {
+    background-color: #ffffff;
+    color: #1f1f1f;
+  }
+  55%,
+  100% {
+    background-color: #dbeafe;
+    color: #0f172a;
+  }
+}
+
+.animate-white-blue-cycle {
+  animation: white-blue-cycle 2s infinite alternate ease-in-out;
+}
+
+@keyframes retro-blink {
+  0%,
+  45% {
+    opacity: 1;
+    text-shadow: 0 0 0 #000;
+  }
+  50%,
+  55% {
+    opacity: 0.35;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.85);
+  }
+  60%,
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 0 #000;
+  }
+}
+
+.animate-retro-blink {
+  animation: retro-blink 1.1s infinite steps(2, end);
+}
