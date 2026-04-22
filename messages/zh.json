@@ -128,7 +128,7 @@
     "standardPriceVat": "不含增值税*",
     "standardPriceNote": "990,000 苏姆起，不含增值税*",
     "standardFootnote": "* 价格说明：个体户一般计税 — 990,000 苏姆不含增值税；有限责任公司一般计税 — 1,300,000 苏姆不含增值税；有限责任公司增值税纳税人 — 2,600,000 苏姆不含增值税。",
-    "standardInclude1": "有限责任公司/个体户地籍地址",
+    "standardInclude1": "有限责任公司/个体户法定地址",
     "standardInclude2": "Didox 与 e-ijara 登记",
     "standardInclude3": "符合法律要求",
     "standardOooNote": "仅限有限责任公司套餐",
@@ -431,7 +431,7 @@
         "price": "990 000",
         "period": "苏姆/月 + 增值税",
         "items": [
-          "有限责任公司/个体户地籍地址",
+          "有限责任公司/个体户法定地址",
           "Didox 与 e-ijara 注册",
           "符合法律要求",
           "地址使用基础咨询",

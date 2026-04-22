@@ -128,7 +128,7 @@
     "standardPriceVat": "QQS-siz*",
     "standardPriceNote": "990 000 so'mdan QQS-siz*",
     "standardFootnote": "* Narx: YaTT umumiy soliq tizimida — 990 000 so'm QQS-siz; MChJ umumiy soliq tizimida — 1 300 000 so'm QQS-siz; MChJ QQS bilan — 2 600 000 so'm QQS-siz.",
-    "standardInclude1": "MChJ / YaTT uchun kadastr manzili",
+    "standardInclude1": "MChJ / YaTT uchun yuridik manzil",
     "standardInclude2": "Didox va e-ijara da ro'yxatdan o'tish",
     "standardInclude3": "Qonun talablariga muvofiqlik",
     "standardOooNote": "Faqat MChJ tariflarida mavjud",
@@ -431,7 +431,7 @@
         "price": "990 000",
         "period": "so'm/oy + QQS",
         "items": [
-          "MChJ / YaTT uchun kadastr manzili",
+          "MChJ / YaTT uchun yuridik manzil",
           "Didox va e-ijara da ro'yxatdan o'tish",
           "Qonunchilik talablariga moslik",
           "Manzildan foydalanish bo'yicha bazaviy maslahat",

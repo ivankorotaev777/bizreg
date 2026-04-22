@@ -128,7 +128,7 @@
     "standardPriceVat": "excl. VAT*",
     "standardPriceNote": "from 990,000 UZS excl. VAT*",
     "standardFootnote": "* Price shown: sole proprietor on general tax system — 990,000 UZS excl. VAT; LLC on general tax system — 1,300,000 UZS excl. VAT; LLC with VAT — 2,600,000 UZS excl. VAT.",
-    "standardInclude1": "Cadastral address for LLC / sole proprietor",
+    "standardInclude1": "Legal address for LLC / sole proprietor",
     "standardInclude2": "Registration in Didox and e-ijara",
     "standardInclude3": "Compliance with legal requirements",
     "standardOooNote": "Available only on LLC tariffs",
@@ -431,7 +431,7 @@
         "price": "990,000",
         "period": "UZS/month + VAT",
         "items": [
-          "Cadastral address for LLC / sole proprietor",
+          "Legal address for LLC / sole proprietor",
           "Registration in Didox and e-ijara",
           "Compliance with legal requirements",
           "Basic guidance on address use",
