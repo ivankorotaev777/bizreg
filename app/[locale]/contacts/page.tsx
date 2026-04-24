@@ -67,7 +67,7 @@ export default function ContactsPage() {
                         href="/#request-form"
                         className="text-xl font-medium text-foreground hover:text-brand-500 transition-colors"
                       >
-                        @Ivan_Korotaev
+                        @bizreg_uradres_bot
                       </Link>
                       <p className="text-sm text-muted-foreground mt-1">
                         {t("telegramHint")}
