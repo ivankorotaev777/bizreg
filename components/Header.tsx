@@ -18,7 +18,7 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const queryString = searchParams.toString();
-  const requestFormHref = `/${queryString ? `?${queryString}` : ""}#request-form`;
+  const requestFormHref = `/${locale}${queryString ? `?${queryString}` : ""}#request-form`;
 
   const navigation = [
     { name: t("home"), href: "/" },

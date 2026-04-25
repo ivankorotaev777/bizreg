@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import { Badge } from "@/components/ui/badge";
@@ -9,10 +9,11 @@ import { Button } from "@/components/ui/button";
 import { MapPin, Phone, Send, Clock, Building2 } from "lucide-react";
 
 export default function ContactsPage() {
+  const locale = useLocale();
   const t = useTranslations("contacts");
   const searchParams = useSearchParams();
   const queryString = searchParams.toString();
-  const requestFormHref = `/${queryString ? `?${queryString}` : ""}#request-form`;
+  const requestFormHref = `/${locale}${queryString ? `?${queryString}` : ""}#request-form`;
 
   return (
     <main className="pt-20 pb-12">

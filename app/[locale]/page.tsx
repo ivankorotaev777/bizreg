@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import { PartnersSection } from "@/components/PartnersSection";
@@ -546,9 +546,10 @@ const Footer = () => {
 };
 
 export default function Home() {
+  const locale = useLocale();
   const searchParams = useSearchParams();
   const queryString = searchParams.toString();
-  const requestFormHref = `/${queryString ? `?${queryString}` : ""}#request-form`;
+  const requestFormHref = `/${locale}${queryString ? `?${queryString}` : ""}#request-form`;
 
   return (
     <main className="min-h-screen">
