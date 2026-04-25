@@ -63,10 +63,10 @@ const Hero = ({ requestFormHref }: { requestFormHref: string }) => {
           
           <div className="flex flex-col sm:flex-row gap-2 justify-center items-center">
             <Button size="default" className="px-6 py-2.5 rounded-full bg-gradient-brand hover:opacity-90 transition-all shadow-md shadow-brand-500/20 min-w-[200px] sm:min-w-0" asChild>
-              <Link href={requestFormHref} className="inline-flex items-center justify-center gap-2">
+              <a href={requestFormHref} className="inline-flex items-center justify-center gap-2">
                 <span className="whitespace-nowrap">{t("cta")}</span>
                 <ArrowRight className="ml-2 w-4 h-4 flex-shrink-0" />
-              </Link>
+              </a>
             </Button>
           </div>
           
@@ -187,9 +187,9 @@ const Benefits = ({ requestFormHref }: { requestFormHref: string }) => {
                   {t(item.highlightKey)}
                 </div>
                 <Button variant="outline" size="sm" className="w-full" asChild>
-                  <Link href={requestFormHref}>
+                  <a href={requestFormHref}>
                     {tForm("title")}
-                  </Link>
+                  </a>
                 </Button>
               </CardContent>
             </Card>
@@ -370,9 +370,9 @@ const Pricing = ({ requestFormHref }: { requestFormHref: string }) => {
             </CardContent>
             <CardFooter className="pt-0">
               <Button variant="outline" className="w-full" asChild>
-                <Link href={requestFormHref}>
+                <a href={requestFormHref}>
                   {t("cta")}
-                </Link>
+                </a>
               </Button>
             </CardFooter>
           </Card>
@@ -404,9 +404,9 @@ const Pricing = ({ requestFormHref }: { requestFormHref: string }) => {
             </CardContent>
             <CardFooter className="pt-0">
               <Button variant="outline" className="w-full" asChild>
-                <Link href={requestFormHref}>
+                <a href={requestFormHref}>
                   {t("cta")}
-                </Link>
+                </a>
               </Button>
             </CardFooter>
           </Card>
@@ -439,9 +439,9 @@ const Pricing = ({ requestFormHref }: { requestFormHref: string }) => {
             </CardContent>
             <CardFooter className="pt-0">
               <Button variant="outline" className="w-full" asChild>
-                <Link href={requestFormHref}>
+                <a href={requestFormHref}>
                   {t("cta")}
-                </Link>
+                </a>
               </Button>
             </CardFooter>
           </Card>

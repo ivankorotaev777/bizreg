@@ -109,10 +109,10 @@ export function Header() {
               +998 90 347 86 92
             </a>
             <Button size="sm" className="bg-gradient-brand" asChild>
-              <Link href={requestFormHref}>
+              <a href={requestFormHref}>
                 <Send className="w-4 h-4 mr-2" />
                 {t("write")}
-              </Link>
+              </a>
             </Button>
           </div>
 
@@ -186,10 +186,10 @@ export function Header() {
                 +998 90 347 86 92
               </a>
               <Button size="sm" className="bg-gradient-brand w-fit" asChild>
-                <Link href={requestFormHref}>
+                <a href={requestFormHref}>
                   <Send className="w-4 h-4 mr-2" />
                   {t("write")}
-                </Link>
+                </a>
               </Button>
             </div>
           </div>

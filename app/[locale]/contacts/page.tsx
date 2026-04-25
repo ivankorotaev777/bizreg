@@ -68,12 +68,12 @@ export default function ContactsPage() {
                     </div>
                     <div>
                       <p className="text-sm text-muted-foreground mb-1">{t("telegramLabel")}</p>
-                      <Link
+                      <a
                         href={requestFormHref}
                         className="text-xl font-medium text-foreground hover:text-brand-500 transition-colors"
                       >
                         @bizreg_uradres_bot
-                      </Link>
+                      </a>
                       <p className="text-sm text-muted-foreground mt-1">
                         {t("telegramHint")}
                       </p>
@@ -140,10 +140,10 @@ export default function ContactsPage() {
                     </a>
                   </Button>
                   <Button size="lg" variant="outline" asChild>
-                    <Link href={requestFormHref}>
+                    <a href={requestFormHref}>
                       <Send className="w-5 h-5 mr-2" />
                       {t("telegramButton")}
-                    </Link>
+                    </a>
                   </Button>
                 </div>
               </div>
