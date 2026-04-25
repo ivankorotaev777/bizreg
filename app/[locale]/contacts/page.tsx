@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { useSearchParams } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -9,6 +10,9 @@ import { MapPin, Phone, Send, Clock, Building2 } from "lucide-react";
 
 export default function ContactsPage() {
   const t = useTranslations("contacts");
+  const searchParams = useSearchParams();
+  const queryString = searchParams.toString();
+  const requestFormHref = `/${queryString ? `?${queryString}` : ""}#request-form`;
 
   return (
     <main className="pt-20 pb-12">
@@ -64,7 +68,7 @@ export default function ContactsPage() {
                     <div>
                       <p className="text-sm text-muted-foreground mb-1">{t("telegramLabel")}</p>
                       <Link
-                        href="/#request-form"
+                        href={requestFormHref}
                         className="text-xl font-medium text-foreground hover:text-brand-500 transition-colors"
                       >
                         @bizreg_uradres_bot
@@ -135,7 +139,7 @@ export default function ContactsPage() {
                     </a>
                   </Button>
                   <Button size="lg" variant="outline" asChild>
-                    <Link href="/#request-form">
+                    <Link href={requestFormHref}>
                       <Send className="w-5 h-5 mr-2" />
                       {t("telegramButton")}
                     </Link>

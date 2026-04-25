@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { useSearchParams } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import { PartnersSection } from "@/components/PartnersSection";
 import { Button } from "@/components/ui/button";
@@ -26,7 +27,7 @@ import {
   Building
 } from "lucide-react";
 
-const Hero = () => {
+const Hero = ({ requestFormHref }: { requestFormHref: string }) => {
   const t = useTranslations("hero");
   
   return (
@@ -62,7 +63,7 @@ const Hero = () => {
           
           <div className="flex flex-col sm:flex-row gap-2 justify-center items-center">
             <Button size="default" className="px-6 py-2.5 rounded-full bg-gradient-brand hover:opacity-90 transition-all shadow-md shadow-brand-500/20 min-w-[200px] sm:min-w-0" asChild>
-              <Link href="/#request-form" className="inline-flex items-center justify-center gap-2">
+              <Link href={requestFormHref} className="inline-flex items-center justify-center gap-2">
                 <span className="whitespace-nowrap">{t("cta")}</span>
                 <ArrowRight className="ml-2 w-4 h-4 flex-shrink-0" />
               </Link>
@@ -146,7 +147,7 @@ const PainPoints = () => {
   );
 };
 
-const Benefits = () => {
+const Benefits = ({ requestFormHref }: { requestFormHref: string }) => {
   const t = useTranslations("benefits");
   const tForm = useTranslations("requestForm");
   
@@ -186,7 +187,7 @@ const Benefits = () => {
                   {t(item.highlightKey)}
                 </div>
                 <Button variant="outline" size="sm" className="w-full" asChild>
-                  <Link href="/#request-form">
+                  <Link href={requestFormHref}>
                     {tForm("title")}
                   </Link>
                 </Button>
@@ -311,7 +312,7 @@ const Product = () => {
   );
 };
 
-const Pricing = () => {
+const Pricing = ({ requestFormHref }: { requestFormHref: string }) => {
   const t = useTranslations("pricing");
   
   return (
@@ -369,7 +370,7 @@ const Pricing = () => {
             </CardContent>
             <CardFooter className="pt-0">
               <Button variant="outline" className="w-full" asChild>
-                <Link href="/#request-form">
+                <Link href={requestFormHref}>
                   {t("cta")}
                 </Link>
               </Button>
@@ -403,7 +404,7 @@ const Pricing = () => {
             </CardContent>
             <CardFooter className="pt-0">
               <Button variant="outline" className="w-full" asChild>
-                <Link href="/#request-form">
+                <Link href={requestFormHref}>
                   {t("cta")}
                 </Link>
               </Button>
@@ -438,7 +439,7 @@ const Pricing = () => {
             </CardContent>
             <CardFooter className="pt-0">
               <Button variant="outline" className="w-full" asChild>
-                <Link href="/#request-form">
+                <Link href={requestFormHref}>
                   {t("cta")}
                 </Link>
               </Button>
@@ -545,15 +546,19 @@ const Footer = () => {
 };
 
 export default function Home() {
+  const searchParams = useSearchParams();
+  const queryString = searchParams.toString();
+  const requestFormHref = `/${queryString ? `?${queryString}` : ""}#request-form`;
+
   return (
     <main className="min-h-screen">
-      <Hero />
+      <Hero requestFormHref={requestFormHref} />
       <PartnersSection />
       <PainPoints />
-      <Benefits />
+      <Benefits requestFormHref={requestFormHref} />
       <Testimonials />
       <Product />
-      <Pricing />
+      <Pricing requestFormHref={requestFormHref} />
       <RequestFormSection />
       <CTA />
       <Footer />

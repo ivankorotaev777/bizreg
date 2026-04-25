@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
@@ -13,8 +14,11 @@ export function Header() {
   const locale = useLocale() as Locale;
   const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langMenuOpen, setLangMenuOpen] = useState(false);
+  const queryString = searchParams.toString();
+  const requestFormHref = `/${queryString ? `?${queryString}` : ""}#request-form`;
 
   const navigation = [
     { name: t("home"), href: "/" },
@@ -105,7 +109,7 @@ export function Header() {
               +998 90 347 86 92
             </a>
             <Button size="sm" className="bg-gradient-brand" asChild>
-              <Link href="/#request-form">
+              <Link href={requestFormHref}>
                 <Send className="w-4 h-4 mr-2" />
                 {t("write")}
               </Link>
@@ -182,7 +186,7 @@ export function Header() {
                 +998 90 347 86 92
               </a>
               <Button size="sm" className="bg-gradient-brand w-fit" asChild>
-                <Link href="/#request-form">
+                <Link href={requestFormHref}>
                   <Send className="w-4 h-4 mr-2" />
                   {t("write")}
                 </Link>
