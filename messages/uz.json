@@ -8,14 +8,14 @@
     "guarantees": "Kafolatlar",
     "clients": "Mijozlarimiz",
     "contacts": "Aloqa",
-    "write": "Ariza qoldirish"
+    "write": "Konsultatsiyaga yozilish"
   },
   "hero": {
     "badge": "O'zbekistonda biznes ro'yxatdan o'tish va buxgalteriya bo'yicha yordam",
-    "title1": "O'zbekistonda biznes ochishga yordam beramiz",
-    "title2": "va buxgalteriya hisobini yuritamiz",
-    "description": "Toshkentda MChJ va YaTT ro'yxatdan o'tish, soliq hisobiga qo'yish, buxgalteriya xizmati. Hammasi kalitga — tez va shaffof.",
-    "cta": "Ariza qoldirish",
+    "title1": "O‘zbekistonda biznesni ishga tushirish va yuritish bo‘yicha konsalting xizmatlari.",
+    "title2": "",
+    "description": "Biznesni ishga tushirish bo‘yicha yordam, kompaniya tuzilmasini rejalash, yuridik manzil yechimlari va doimiy buxgalteriya qo‘llovi.",
+    "cta": "Konsultatsiyaga yozilish",
     "telegram": "Telegramga yozish",
     "feature1": "MChJ va YaTT ro'yxatdan o'tish",
     "feature2": "Buxgalteriya va hisobot",
@@ -86,12 +86,12 @@
     "badge": "Xizmat haqida",
     "title": "BizReg nima",
     "titleHighlight": "BizReg",
-    "description1": "<b>BizReg</b> — Toshkentda biznes ro'yxatdan o'tish va buxgalteriya hisobi xizmati. MChJ, YaTT, soliq hisobiga qo'yish, hisobot.",
-    "description2": "Kompaniya yoki YaTT ni tez va to'g'ri ro'yxatdan o'tkazishda yordam beramiz, keyin buxgalteriya va hisobotni o'zimiz qilamiz — siz biznesga e'tibor qaratasiz.",
+    "description1": "<b>BizReg</b> — Toshkentda biznesni ishga tushirish va buxgalteriya qo‘llovi bo‘yicha xususiy konsalting xizmati.",
+    "description2": "Biz ta’sischilarga biznesni ishga tushirish bo‘yicha amaliy yo‘l-yo‘riq beramiz, keyin esa buxgalteriya va hisobot jarayonlarida qo‘llab-quvvatlaymiz.",
     "locationsTitle": "Toshkentda ishlaymiz",
     "locationsDesc": "O'zbekiston bo'ylab kompaniyalar uchun ro'yxatdan o'tish va qo'llab-quvvatlash",
-    "feature1": "Toshkentda MChJ va YaTT ro'yxatdan o'tish",
-    "feature2": "Soliq va fondlarda ro'yxatdan o'tish",
+    "feature1": "Kichik biznesni ishga tushirish qo‘llovi",
+    "feature2": "Soliqqa tayyorgarlik va compliance sozlash",
     "feature3": "Buxgalteriya hisobi",
     "feature4": "Hisobotni vaqtida topshirish",
     "feature5": "Soliq va qonuniy maslahatlar",
@@ -102,11 +102,11 @@
     "title": "Mos paketni tanlang",
     "description": "Ro'yxatdan o'tish va buxgalteriya uchun shaffof narxlar. Uzoq muddatli hamkorlikda chegirmalar.",
     "popular": "Mashhur",
-    "startTitle": "Kompaniya ro'yxatdan o'tishi",
+    "startTitle": "Kompaniyani ishga tushirish bo‘yicha konsalting",
     "startPrice": "5 000 000",
     "startPeriod": "so'm",
     "startVat": "QQS-siz",
-    "startDesc": "Kompaniyani kalitga ro'yxatdan o'tish",
+    "startDesc": "Biznesni ishga tushirishni to‘liq qo‘llab-quvvatlash",
     "startFeature1": "Mulk tuzilishi va faoliyat turlari bo'yicha maslahat",
     "startFeature2": "Tashkilotchi hujjatlari to'plamini tayyorlash",
     "startFeature3": "Asoschining qarori yoki kompaniya tuzish bo'yicha protokolni tayyorlash",
@@ -121,7 +121,7 @@
     "startFeature12": "Bank hisobini ochishda yordam",
     "startNo1": "",
     "startNo2": "",
-    "standardTitle": "Yuridik manzil",
+    "standardTitle": "Yuridik manzil va ofis yechimlari",
     "standardPriceFrom": "dan",
     "standardPriceNum": "990 000",
     "standardPricePeriod": "so'm",
@@ -140,7 +140,7 @@
     "standardFeature1": "YaTT: 990 000 so'm",
     "standardFeature2": "Umumiy tizim: 1 300 000 so'm",
     "standardFeature3": "QQS: 2 600 000 so'm",
-    "businessTitle": "Buxgalteriya hisobi",
+    "businessTitle": "Doimiy buxgalteriya va hisobot qo‘llovi",
     "businessPrice": "2 500 000 dan",
     "businessVat": "QQS-siz",
     "businessDesc": "YaTT va MChJ uchun buxgalteriya hisobi va hisobot",
@@ -156,13 +156,13 @@
     "businessFeature10": "Kontragentlar bilan hisob-kitoblarni tekshirish",
     "businessFeature11": "Buxgalteriya va soliq hisobi bo'yicha maslahatlar",
     "businessFeature12": "Soliq va hisob xavflarini kamaytirishda yordam",
-    "cta": "Ariza qoldirish",
+    "cta": "Konsultatsiyaga yozilish",
     "discount1": "Olti oy va yillik to'lovda chegirma",
     "discount2": "Referal dasturi: mijoz keltiring — 10% chegirma",
     "area": ""
   },
   "requestForm": {
-    "title": "Ariza qoldirish"
+    "title": "Konsultatsiya so‘rash"
   },
   "thankYou": {
     "title": "Arizani to'ldirganingiz uchun rahmat!",
@@ -171,27 +171,27 @@
     "backHome": "Bosh sahifaga"
   },
   "cta": {
-    "title": "Savollar qoldimi?",
+    "title": "O‘zbekistonda biznesni ishga tushirish bo‘yicha maslahatchi bilan gaplashing",
     "description": "Telegramga yozing — 15 daqiqa ichida javob beramiz va vazifangizga mos paket tanlashga yordam beramiz.",
-    "button": "Telegramga yozish",
+    "button": "Konsultatsiyaga yozilish",
     "tagline": "<b>BizReg</b> — Toshkentda biznes ro'yxatdan o'tish va buxgalteriya. Tez. Shaffof."
   },
   "footer": {
     "copyright": "© 2026 BizReg. Toshkentda biznes ro'yxatdan o'tish va buxgalteriya.",
-    "company": "Xizmat «Ustores» MChJ tomonidan ko'rsatiladi, O'zbekiston Respublikasi, Toshkent"
+    "company": "BizReg — mustaqil xususiy konsalting kompaniyasi. Biz davlat organi emasmiz va rasmiy davlat xizmatlarini ko‘rsatmaymiz."
   },
   "about": {
     "badge": "Kompaniya haqida",
     "title": "BizReg",
     "titleSuffix": "— Toshkentda biznesni ro'yxatdan o'tkazishda yordam va buxgalteriya",
-    "description": "Toshkentda MChJ va YaTT ro'yxatdan o'tishda va buxgalteriya hisobida yordam beramiz. O'zbekiston va boshqa mamlakatlardan tadbirkorlar va kompaniyalar bilan ishlash tajribasi.",
+    "description": "Biz xalqaro ta’sischilar va mahalliy tadbirkorlarga O‘zbekistonda biznesni yo‘lga qo‘yish va rivojlantirishda xususiy konsalting va qo‘llab-quvvatlash xizmatlari orqali yordam beramiz.",
     "stat1": "yil bozorda",
     "stat2": "mijoz",
     "stat3": "hujjat",
     "stat4": "sifat",
     "whoTitle": "Biz kimmiz?",
-    "whoDesc1": "<b>BizReg</b> — Toshkentda biznesni ro'yxatdan o'tkazishda yordam va buxgalteriya xizmati.",
-    "whoDesc2": "MChJ va YaTT ro'yxatdan o'tish uchun hujjatlarni tayyorlaymiz, soliq hisobiga qo'yishda yordam beramiz va kichik va o'rta biznes uchun buxgalteriya olib boramiz.",
+    "whoDesc1": "<b>BizReg</b> — O‘zbekistonda biznesni ishga tushirish va yuritish bo‘yicha xususiy konsalting kompaniyasi.",
+    "whoDesc2": "Biz kompaniyani ishga tushirish konsaltingi, ma’muriy onboarding bo‘yicha yo‘l-yo‘riq, mahalliy hujjatlar bo‘yicha yordam va buxgalteriya qo‘llovini taqdim etamiz.",
     "whoDesc3": "Jamoamiz — O'zbekiston qonunini biladigan va jarimalarsiz ishlashga yordam beradigan huquqshunoslar va buxgalterlar.",
     "missionTitle": "Bizning missiyamiz",
     "missionDesc1": "Toshkentda biznes ochish va yuritishni oddiy va bashorat qilinadigan qilish. Ro'yxatdan o'tish va hisob — ortiqcha stresssiz.",
@@ -204,22 +204,22 @@
     "value3Title": "Tezlik",
     "value3Desc": "1-2 kunda rasmiylashtirish, javoblar — 15 daqiqa ichida.",
     "offerTitle": "Biz nima taklif qilamiz",
-    "offer1Title": "MChJ va YaTT ro'yxatdan o'tish",
+    "offer1Title": "Kompaniyani ishga tushirish bo‘yicha konsalting",
     "offer1Desc": "Hujjatlarni tayyorlash va davlat organlarida ro'yxatdan o'tish kalitga.",
-    "offer2Title": "Soliq hisobiga qo'yish",
+    "offer2Title": "Soliqqa tayyorgarlik va compliance sozlash",
     "offer2Desc": "Soliq organi va byudjetdan tashqari fondlarda ro'yxatdan o'tish.",
-    "offer3Title": "Buxgalteriya hisobi",
+    "offer3Title": "Doimiy buxgalteriya va hisobot qo‘llovi",
     "offer3Desc": "Buxgalteriya hisobi va hisobotni vaqtida topshirish.",
-    "offer4Title": "Maslahatlar",
+    "offer4Title": "Ma’muriy onboarding bo‘yicha yo‘l-yo‘riq",
     "offer4Desc": "Soliqlar va qonun o'zgarishlari bo'yicha maslahatlar.",
-    "offer5Title": "Litsenziyalarda yordam",
+    "offer5Title": "Mahalliy hujjatlar bo‘yicha yo‘l-yo‘riq",
     "offer5Desc": "Litsenziyalar va ruxsatnomalar olishda yordam.",
-    "offer6Title": "Buxgalteriya hamrohlik",
+    "offer6Title": "Yuridik manzil va ofis yechimlari",
     "offer6Desc": "Kichik va o'rta biznes uchun to'liq buxgalteriya xizmati.",
     "whyTitle": "Nega bizni tanlashadi?",
-    "why1": "O'zbekistonda ro'yxatdan o'tish va buxgalteriya tajribasi",
-    "why2": "Shaffof narxlar va muddatlar",
-    "why3": "Huquqshunoslar va buxgalterlar jamoasi",
+    "why1": "Biz tadbirkorlarga O‘zbekiston bozoriga amaliy mahalliy tajriba, tezkor aloqa va ishonchli uzoq muddatli qo‘llov bilan kirishga yordam beramiz.",
+    "why2": "Aniq yo‘l-yo‘riq, shaffof jarayon va tajribali mahalliy qo‘llab-quvvatlash.",
+    "why3": "Biznesni ishga tushirish va operatsion faoliyat uchun mustaqil konsalting yordami.",
     "why4": "Individual yondashuv",
     "why5": "Ro'yxatdan o'tish 1–2 ish kunida",
     "why6": "Aloqada qo'llab-quvvatlash",
@@ -283,13 +283,13 @@
     "title": "Sizning xavfsizligingiz — bizning ustuvorligimiz",
     "description": "Muddatlarning o'tishini, shartlarning shaffofligini va ma'lumotlarning maxfiyligini kafolatlaymiz.",
     "whatTitle": "Biz nimaga kafolat beramiz",
-    "what1Title": "Rasmiy shartnoma",
+    "what1Title": "Xizmat ko‘rsatish shartnomasi",
     "what1Desc": "Xizmatlar ko'rsatish bo'yicha shartnoma tuzamiz. So'rov bo'yicha rus va ingliz tillarida.",
-    "what2Title": "Muddatlar",
+    "what2Title": "Muddat bo‘yicha majburiyat",
     "what2Desc": "MChJ/YaTT ro'yxatdan o'tish — kelishilgan muddatlarda, hisobot — belgilangan sanalarda.",
     "what3Title": "Maxfiylik",
     "what3Desc": "Mijoz ma'lumotlarini uchinchi shaxslarga bermaymiz.",
-    "what4Title": "Qonunchilikka muvofiqlik",
+    "what4Title": "Compliance-ga yo‘naltirilgan yondashuv",
     "what4Desc": "O'zbekiston qonunchiligi doirasida ishlaymiz.",
     "what5Title": "Xatolarni tuzatish",
     "what5Desc": "Bizning aybimizdagi xatolarni o'z hisobimizga tuzatamiz.",
@@ -300,7 +300,7 @@
     "us1": "Qat'iy tariflar va muddatlar",
     "us2": "Ro'yxatdan o'tish va buxgalteriya bir joyda",
     "us3": "Tajribali jamoamiz",
-    "us4": "Rasmiy shartnoma",
+    "us4": "Xizmat ko‘rsatish shartnomasi",
     "us5": "Aloqada qo'llab-quvvatlash",
     "us6": "Toshkent va O'zbekiston bo'ylab ishlaymiz",
     "othersTitle": "Bir martalik ijrochilar",
@@ -317,7 +317,7 @@
   "contacts": {
     "badge": "Aloqa",
     "title": "Biz bilan bog'laning",
-    "description": "Ro'yxatdan o'tish va buxgalteriya bo'yicha savollarga javob beramiz. Odatda 15 daqiqa ichida.",
+    "description": "Biz biznesni ishga tushirish konsaltingi va buxgalteriya qo‘llovi bo‘yicha savollarga javob beramiz. Odatda 15 daqiqa ichida.",
     "infoTitle": "Aloqa ma'lumotlari",
     "phoneLabel": "Telefon",
     "phoneHint": "Qo'ng'iroq qilish uchun bosing",
@@ -479,12 +479,30 @@
     },
     "segmentsTitle": "Biz ishlaydigan kompaniya turlari",
     "segments": {
-      "it": { "title": "IT va Digital", "desc": "Startaplar, SaaS, autsorsing, mahsulot jamoalari." },
-      "trade": { "title": "Savdo va E-commerce", "desc": "Ulgurji, chakana, marketplace, import va distribyutsiya." },
-      "services": { "title": "Xizmatlar va konsalting", "desc": "Agentliklar, yuridik va biznes-konsultantlar, servis kompaniyalari." },
-      "production": { "title": "Ishlab chiqarish va logistika", "desc": "Faol operatsion va ta'minot zanjiriga ega kompaniyalar." },
-      "education": { "title": "Ta'lim va EdTech", "desc": "Ta'lim loyihalari, onlayn maktablar va o'quv markazlari." },
-      "international": { "title": "Xalqaro biznes", "desc": "Mahalliy yuridik tuzilma orqali O'zbekiston bozoriga kirayotgan jamoalar." }
+      "it": {
+        "title": "IT va Digital",
+        "desc": "Startaplar, SaaS, autsorsing, mahsulot jamoalari."
+      },
+      "trade": {
+        "title": "Savdo va E-commerce",
+        "desc": "Ulgurji, chakana, marketplace, import va distribyutsiya."
+      },
+      "services": {
+        "title": "Xizmatlar va konsalting",
+        "desc": "Agentliklar, yuridik va biznes-konsultantlar, servis kompaniyalari."
+      },
+      "production": {
+        "title": "Ishlab chiqarish va logistika",
+        "desc": "Faol operatsion va ta'minot zanjiriga ega kompaniyalar."
+      },
+      "education": {
+        "title": "Ta'lim va EdTech",
+        "desc": "Ta'lim loyihalari, onlayn maktablar va o'quv markazlari."
+      },
+      "international": {
+        "title": "Xalqaro biznes",
+        "desc": "Mahalliy yuridik tuzilma orqali O'zbekiston bozoriga kirayotgan jamoalar."
+      }
     },
     "requestsTitle": "Ko'p uchraydigan so'rovlar",
     "keyRequests": [
@@ -495,17 +513,29 @@
     ],
     "resultsTitle": "Mijoz natijalari",
     "resultCards": [
-      { "value": "1-2", "label": "kunda ro'yxatdan o'tishni ishga tushirish" },
-      { "value": "100%", "label": "jarayon bosqichlari shaffof" },
-      { "value": "15 min", "label": "o'rtacha javob vaqti" },
-      { "value": "0", "label": "hujjat va hisobotdagi tartibsizlik" }
+      {
+        "value": "1-2",
+        "label": "kunda ro'yxatdan o'tishni ishga tushirish"
+      },
+      {
+        "value": "100%",
+        "label": "jarayon bosqichlari shaffof"
+      },
+      {
+        "value": "15 min",
+        "label": "o'rtacha javob vaqti"
+      },
+      {
+        "value": "0",
+        "label": "hujjat va hisobotdagi tartibsizlik"
+      }
     ],
     "workflowTitle": "Qanday ishlaymiz",
     "workSteps": [
-      "Biznes modelini tahlil qilamiz va eng maqbul ro'yxatga olish formatini tanlaymiz",
-      "Hujjatlarni tayyorlaymiz, yuridik manzil va soliq hisobiga qo'yishda yordam beramiz",
-      "Buxgalteriya konturini ishga tushiramiz va kundalik operatsiyalarni kuzatamiz",
-      "Hisobot, soliqlar, maslahatlar va risk nazorati bilan o'sishni qo'llab-quvvatlaymiz"
+      "Konsultatsiyaga yoziling",
+      "Biz biznesni ishga tushirish yo‘l xaritasini tayyorlaymiz",
+      "Hujjatlar va sozlash bosqichlarida yordam beramiz",
+      "Siz biznesni doimiy qo‘llov bilan boshlaysiz"
     ]
   }
 }

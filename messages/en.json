@@ -8,16 +8,16 @@
     "guarantees": "Guarantees",
     "clients": "Our clients",
     "contacts": "Contacts",
-    "write": "Submit request"
+    "write": "Schedule Consultation"
   },
   "hero": {
     "badge": "Assistance with business registration and accounting in Uzbekistan",
-    "title1": "We help you start a business in Uzbekistan",
-    "title2": "and handle your accounting",
-    "description": "LLC and sole proprietorship registration in Tashkent, tax registration, accounting support. All under one roof — fast and transparent.",
-    "cta": "Submit request",
+    "title1": "Consulting services for launching and running businesses in Uzbekistan.",
+    "title2": "",
+    "description": "Business setup support, company structuring, registered address solutions, and ongoing accounting services.",
+    "cta": "Book Consultation",
     "telegram": "Write on Telegram",
-    "feature1": "LLC and sole proprietorship registration",
+    "feature1": "Business setup support",
     "feature2": "Accounting and reporting",
     "feature3": "Support 10:00–20:00"
   },
@@ -37,7 +37,7 @@
   "painPoints": {
     "badge": "Sound familiar?",
     "title": "Do you recognize yourself?",
-    "description": "You want to start a business in Uzbekistan but don't know where to begin. Registration, taxes, reporting — it all seems complicated and time-consuming.",
+    "description": "You want to launch a business in Uzbekistan but do not know where to begin. Documentation, taxes, and reporting can seem complicated and time-consuming.",
     "item1Title": "Document confusion",
     "item1Desc": "Unclear which documents are needed for LLC or sole proprietorship, how to fill forms, where to apply",
     "item2Title": "Rejections and delays",
@@ -56,28 +56,28 @@
     "badge": "Solution",
     "title": "Three things you get",
     "titleHighlight": "with BizReg",
-    "item1Title": "Registration in 1–2 days",
-    "item1Desc": "We help prepare documents and complete LLC or sole proprietorship registration without the runaround.",
-    "item1Highlight": "Turnkey registration",
+    "item1Title": "Get expert guidance to launch your business in Uzbekistan quickly and efficiently.",
+    "item1Desc": "We help prepare documentation and provide practical setup guidance without the runaround.",
+    "item1Highlight": "End-to-end setup support",
     "item2Title": "Accounting and reporting",
     "item2Desc": "Bookkeeping and on-time filing. You run the business — we handle the books.",
     "item2Highlight": "No fines or late filings",
-    "item3Title": "Legal and physical address",
-    "item3Desc": "We provide the right location for your company — both a legal address for registration and premises for your office.",
-    "item3Highlight": "Legal address and office under one roof"
+    "item3Title": "Registered address and office solutions",
+    "item3Desc": "We provide suitable address and office solutions aligned with your business setup needs.",
+    "item3Highlight": "Address and office solutions under one roof"
   },
   "testimonials": {
     "badge": "Reviews",
     "title": "What our clients say",
-    "quote1": "We registered an LLC in Tashkent — BizReg did everything in two days. Documents prepared, went to the tax office together. Highly recommend.",
+    "quote1": "We launched an LLC in Tashkent — BizReg guided us through every step in two days. Documents were prepared clearly and quickly. Highly recommend.",
     "name1": "Asel Nurlanova",
     "role1": "Director of logistics company",
     "location1": "Almaty",
-    "quote2": "We were looking for outsourced accounting — they also helped with registration and now do our books. Fair prices, quick responses.",
+    "quote2": "We were looking for outsourced accounting — they also helped us launch and now handle our books. Fair prices, quick responses.",
     "name2": "Mikhail Sokolov",
     "role2": "IT startup founder",
     "location2": "Moscow",
-    "quote3": "Sole proprietorship registration and tax sign-up — all done remotely. Very clear and no extra hassle.",
+    "quote3": "Business setup and tax onboarding — all done remotely. Very clear and no extra hassle.",
     "name3": "Faisal Al-Rashedi",
     "role3": "Operations Director",
     "location3": "Dubai"
@@ -86,42 +86,42 @@
     "badge": "About the service",
     "title": "What is",
     "titleHighlight": "BizReg",
-    "description1": "<b>BizReg</b> is a business registration and accounting service in Tashkent. LLC, sole proprietorship, tax registration, reporting.",
-    "description2": "We help you register a company or sole proprietorship quickly and correctly, then handle bookkeeping and filing — so you can focus on business.",
+    "description1": "<b>BizReg</b> is a private consulting service in Tashkent for business setup and accounting support.",
+    "description2": "We help founders launch business operations with practical setup guidance, then handle bookkeeping and reporting — so you can focus on growth.",
     "locationsTitle": "We work in Tashkent",
     "locationsDesc": "Registration and support for companies across Uzbekistan",
-    "feature1": "LLC and sole proprietorship registration in Tashkent",
-    "feature2": "Tax and fund registration",
+    "feature1": "Small Business Launch Support",
+    "feature2": "Tax readiness and compliance setup",
     "feature3": "Bookkeeping",
     "feature4": "On-time reporting",
     "feature5": "Tax and legal consultations",
-    "feature6": "Support in Russian and Uzbek"
+    "feature6": "Support in English and Uzbek"
   },
   "pricing": {
     "badge": "Pricing",
     "title": "Choose the right package",
     "description": "Transparent prices for registration and accounting. Discounts for long-term cooperation.",
     "popular": "Popular",
-    "startTitle": "Company registration",
+    "startTitle": "Company Setup Consulting",
     "startPrice": "5,000,000",
     "startPeriod": "UZS",
     "startVat": "excl. VAT",
-    "startDesc": "Turnkey company registration",
+    "startDesc": "End-to-End Business Launch Support",
     "startFeature1": "Consultation on ownership structure and types of activity",
     "startFeature2": "Preparation of founding documents package",
     "startFeature3": "Preparation of founder's decision or incorporation protocol",
     "startFeature4": "Preparation of company charter",
-    "startFeature5": "Company registration with state bodies of Uzbekistan",
-    "startFeature6": "Obtaining certificate of state registration",
-    "startFeature7": "Tax registration",
+    "startFeature5": "Support with required submissions",
+    "startFeature6": "Guidance through required completion documents",
+    "startFeature7": "Tax readiness and compliance onboarding",
     "startFeature8": "Obtaining company TIN",
     "startFeature9": "Assignment of activity codes",
-    "startFeature10": "Preparation of documents for legal address",
+    "startFeature10": "Preparation of documents for registered address solution",
     "startFeature11": "Assistance with seal production if needed",
     "startFeature12": "Support with opening a bank account",
     "startNo1": "",
     "startNo2": "",
-    "standardTitle": "Legal address",
+    "standardTitle": "Registered Address & Office Solutions",
     "standardPriceFrom": "from",
     "standardPriceNum": "990,000",
     "standardPricePeriod": "UZS",
@@ -140,7 +140,7 @@
     "standardFeature1": "Sole proprietor: 990,000 UZS",
     "standardFeature2": "General system: 1,300,000 UZS",
     "standardFeature3": "VAT: 2,600,000 UZS",
-    "businessTitle": "Accounting",
+    "businessTitle": "Ongoing Accounting & Reporting Support",
     "businessPrice": "from 2,500,000",
     "businessVat": "excl. VAT",
     "businessDesc": "Bookkeeping and reporting for sole proprietors and LLCs",
@@ -156,13 +156,13 @@
     "businessFeature10": "Reconciliation of settlements with counterparties",
     "businessFeature11": "Consultations on accounting and tax matters",
     "businessFeature12": "Assistance in reducing tax and accounting risks",
-    "cta": "Submit request",
+    "cta": "Book Consultation",
     "discount1": "Discount for 6-month and annual payment",
     "discount2": "Referral program: bring a client — get 10% off",
     "area": ""
   },
   "requestForm": {
-    "title": "Submit request"
+    "title": "Request Consultation"
   },
   "thankYou": {
     "title": "Thank you for filling out the form!",
@@ -171,27 +171,27 @@
     "backHome": "Back to home"
   },
   "cta": {
-    "title": "Have questions?",
+    "title": "Talk to an advisor about launching your business in Uzbekistan",
     "description": "Write to us on Telegram — we'll respond within 15 minutes and find the right package for your needs.",
-    "button": "Write on Telegram",
+    "button": "Schedule Consultation",
     "tagline": "<b>BizReg</b> — assistance with business registration and accounting in Tashkent. Fast. Transparent."
   },
   "footer": {
-    "copyright": "© 2026 BizReg. Business registration and accounting in Tashkent.",
-    "company": "Service provided by LLC \"Ustores\", Republic of Uzbekistan, Tashkent"
+    "copyright": "© 2026 BizReg. Private business setup consulting and accounting support in Tashkent.",
+    "company": "BizReg is an independent private consulting company. We are not a government agency and do not provide official state services."
   },
   "about": {
     "badge": "About",
     "title": "BizReg",
-    "titleSuffix": "— assistance with business registration and accounting in Tashkent",
-    "description": "We help register LLC and sole proprietorship in Tashkent and provide accounting. Experience working with entrepreneurs and companies from Uzbekistan and abroad.",
+    "titleSuffix": "— private business setup consulting and accounting support in Tashkent",
+    "description": "We help international founders and local entrepreneurs establish and grow businesses in Uzbekistan through private consulting and support services.",
     "stat1": "years in market",
     "stat2": "clients",
     "stat3": "documents",
     "stat4": "quality",
     "whoTitle": "Who are we?",
-    "whoDesc1": "<b>BizReg</b> is a service for assistance with business registration and accounting in Tashkent.",
-    "whoDesc2": "We prepare documents for LLC and sole proprietorship registration, help with tax registration, and provide bookkeeping for small and medium business.",
+    "whoDesc1": "<b>BizReg</b> is a private consulting firm supporting business launch and operations in Uzbekistan.",
+    "whoDesc2": "We provide company setup consulting, administrative onboarding guidance, local documentation support, and accounting services for SMEs and founders.",
     "whoDesc3": "Our team includes lawyers and accountants who know Uzbekistan law and help you stay compliant and avoid fines.",
     "missionTitle": "Our mission",
     "missionDesc1": "To make starting and running a business in Tashkent simple and predictable. Registration and accounting — without the stress.",
@@ -204,24 +204,24 @@
     "value3Title": "Speed",
     "value3Desc": "Registration in 1–2 days, responses within 15 minutes.",
     "offerTitle": "What we offer",
-    "offer1Title": "LLC and sole proprietorship registration",
-    "offer1Desc": "Document preparation and registration with authorities turnkey.",
-    "offer2Title": "Tax registration",
-    "offer2Desc": "Registration with tax authority and extra-budgetary funds.",
-    "offer3Title": "Bookkeeping",
-    "offer3Desc": "Accounting and on-time reporting.",
-    "offer4Title": "Consultations",
-    "offer4Desc": "Consultations on taxes and legal changes.",
-    "offer5Title": "Licensing assistance",
-    "offer5Desc": "Help with licenses and permits.",
-    "offer6Title": "Accounting support",
-    "offer6Desc": "Full accounting support for small and medium business.",
+    "offer1Title": "Company Setup Consulting",
+    "offer1Desc": "Private advisory support for planning and launching your business structure.",
+    "offer2Title": "Tax Readiness & Compliance Setup",
+    "offer2Desc": "Support with onboarding steps for compliant accounting and tax workflows.",
+    "offer3Title": "Ongoing Accounting & Reporting Support",
+    "offer3Desc": "Accounting operations and reporting support for stable business operations.",
+    "offer4Title": "Administrative Onboarding Guidance",
+    "offer4Desc": "Practical guidance for required setup steps, forms, and process coordination.",
+    "offer5Title": "Local Documentation Guidance",
+    "offer5Desc": "Support with local document preparation and submission readiness.",
+    "offer6Title": "Registered Address & Office Solutions",
+    "offer6Desc": "Address and office solutions aligned with business setup needs.",
     "whyTitle": "Why choose us?",
-    "why1": "Experience in registration and accounting in Uzbekistan",
-    "why2": "Transparent prices and deadlines",
-    "why3": "Team of lawyers and accountants",
+    "why1": "We help entrepreneurs enter the Uzbekistan market with practical local expertise, responsive communication, and reliable long-term support.",
+    "why2": "Clear guidance, transparent process, and experienced local support.",
+    "why3": "Independent consulting support for business launch and operations.",
     "why4": "Individual approach",
-    "why5": "Registration in 1–2 business days",
+    "why5": "Fast launch planning and practical onboarding support",
     "why6": "Support on hand",
     "why7": "No fines or late filings",
     "why8": "Support in Russian and English",
@@ -241,7 +241,7 @@
     "requisitesAddress": "Address",
     "requisitesAddressValue": "Tashkent, Shaykhantakhur district, Djangokh massif, 37",
     "requisitesExperience": "Experience",
-    "requisitesExperienceValue": "Assistance with business registration and accounting in Tashkent"
+    "requisitesExperienceValue": "Private business setup consulting and accounting support in Tashkent"
   },
   "payment": {
     "badge": "Payment",
@@ -283,13 +283,13 @@
     "title": "Your safety is our priority",
     "description": "We guarantee deadlines, transparent terms, and data confidentiality.",
     "whatTitle": "What we guarantee",
-    "what1Title": "Official contract",
+    "what1Title": "Service contract",
     "what1Desc": "We sign a service agreement. Contract in Russian and English on request.",
-    "what2Title": "Deadlines",
+    "what2Title": "Timeline commitment",
     "what2Desc": "LLC/sole proprietorship registration — as agreed; reporting — by due dates.",
     "what3Title": "Confidentiality",
     "what3Desc": "We do not share client data with third parties.",
-    "what4Title": "Legal compliance",
+    "what4Title": "Compliance-first approach",
     "what4Desc": "We work within Uzbekistan law.",
     "what5Title": "Error correction",
     "what5Desc": "We fix our mistakes at our expense.",
@@ -300,7 +300,7 @@
     "us1": "Fixed rates and deadlines",
     "us2": "Registration and accounting in one place",
     "us3": "Experienced team",
-    "us4": "Official contract",
+    "us4": "Service agreement",
     "us5": "Support on hand",
     "us6": "We work in Tashkent and across Uzbekistan",
     "othersTitle": "One-off providers",
@@ -317,7 +317,7 @@
   "contacts": {
     "badge": "Contacts",
     "title": "Contact us",
-    "description": "We'll answer questions on registration and accounting. Usually within 15 minutes.",
+    "description": "We'll answer questions on business setup consulting and accounting support. Usually within 15 minutes.",
     "infoTitle": "Contact information",
     "phoneLabel": "Phone",
     "phoneHint": "Click to call",
@@ -341,18 +341,18 @@
     "title": "Full price list",
     "description": "Current prices for BizReg core services.",
     "registration": {
-      "title": "LLC registration",
+      "title": "LLC setup support",
       "package1": {
         "name": "Package 1",
         "price": "5,000,000",
         "period": "UZS + VAT",
         "items": [
           "One founder - individual",
-          "Preparation of basic document package",
-          "LLC registration support",
+          "Preparation of core document package",
+          "LLC setup support",
           "Preparation of founder decision",
-          "Submission to state authorities",
-          "Collection of registration documents"
+          "Support with required submissions",
+          "Support with final document package"
         ]
       },
       "package2": {
@@ -475,37 +475,83 @@
       "title": "What companies we work with",
       "p1": "BizReg supports clients at every stage: from launching a new company to stable growth and scaling. We work with both local entrepreneurs and international teams entering the Uzbekistan market.",
       "p2": "Most often we work with IT companies, trade businesses, service and consulting projects, e-commerce brands, agencies, education platforms, as well as manufacturing and logistics companies.",
-      "p3": "Regardless of business size, we help build a clear and legal setup: LLC/SP registration, legal address, tax registration, reporting, ongoing finance process support, and law-change consulting."
+      "p3": "Regardless of business size, we help build a clear and compliant setup: company structure planning, registered address solutions, accounting onboarding, ongoing finance process support, and practical consulting."
     },
     "segmentsTitle": "Company types we work with",
     "segments": {
-      "it": { "title": "IT and Digital", "desc": "Startups, SaaS, outsourcing, product teams." },
-      "trade": { "title": "Trade and E-commerce", "desc": "Wholesale, retail, marketplaces, import and distribution." },
-      "services": { "title": "Services and Consulting", "desc": "Agencies, legal and business consultants, service companies." },
-      "production": { "title": "Manufacturing and Logistics", "desc": "Companies with active operations and supply chains." },
-      "education": { "title": "Education and EdTech", "desc": "Education projects, online schools and training centers." },
-      "international": { "title": "International business", "desc": "Teams entering Uzbekistan through a local legal structure." }
+      "it": {
+        "title": "IT and Digital",
+        "desc": "Startups, SaaS, outsourcing, product teams."
+      },
+      "trade": {
+        "title": "Trade and E-commerce",
+        "desc": "Wholesale, retail, marketplaces, import and distribution."
+      },
+      "services": {
+        "title": "Services and Consulting",
+        "desc": "Agencies, legal and business consultants, service companies."
+      },
+      "production": {
+        "title": "Manufacturing and Logistics",
+        "desc": "Companies with active operations and supply chains."
+      },
+      "education": {
+        "title": "Education and EdTech",
+        "desc": "Education projects, online schools and training centers."
+      },
+      "international": {
+        "title": "International business",
+        "desc": "Teams entering Uzbekistan through a local legal structure."
+      }
     },
     "requestsTitle": "Typical client requests",
     "keyRequests": [
-      "Launch a new company in Tashkent quickly",
+      "Launch a new business in Tashkent quickly",
       "Choose the right tax model for a specific business model",
       "Stable accounting without delays and fines",
       "Transparent financial processes and regular management reporting"
     ],
     "resultsTitle": "Client outcomes",
     "resultCards": [
-      { "value": "1-2", "label": "days to launch registration" },
-      { "value": "100%", "label": "transparent work stages" },
-      { "value": "15 min", "label": "average response time" },
-      { "value": "0", "label": "paperwork and reporting chaos" }
+      {
+        "value": "1-2",
+        "label": "days to begin setup with expert guidance"
+      },
+      {
+        "value": "100%",
+        "label": "transparent work stages"
+      },
+      {
+        "value": "15 min",
+        "label": "average response time"
+      },
+      {
+        "value": "0",
+        "label": "paperwork and reporting chaos"
+      }
     ],
     "workflowTitle": "How we work",
     "workSteps": [
-      "Analyze business model and choose the best registration format",
-      "Prepare documents, help with legal address and tax registration",
-      "Set up accounting process and support daily operations",
-      "Support growth with reporting, taxes, consulting and risk control"
+      "Book a consultation",
+      "We prepare your business launch roadmap",
+      "We assist with documentation and setup steps",
+      "You start operating with ongoing support"
+    ]
+  },
+  "googleAdsSafe": {
+    "headlines": [
+      "Business Setup in Uzbekistan",
+      "Launch a Company with Expert Support",
+      "Private Consulting for Founders",
+      "Start Business in Uzbekistan",
+      "Accounting & Setup Support",
+      "Enter Uzbekistan Market Faster"
+    ],
+    "descriptions": [
+      "Private consulting for entrepreneurs entering Uzbekistan.",
+      "Launch your business with legal and accounting support.",
+      "Independent advisors for company setup and operations.",
+      "Fast, practical support for founders and SMEs."
     ]
   }
 }

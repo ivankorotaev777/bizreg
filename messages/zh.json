@@ -8,14 +8,14 @@
     "guarantees": "保证",
     "clients": "我们的客户",
     "contacts": "联系方式",
-    "write": "提交申请"
+    "write": "预约咨询"
   },
   "hero": {
     "badge": "协助办理乌兹别克斯坦公司注册与记账",
-    "title1": "我们帮助您在乌兹别克斯坦开展业务",
-    "title2": "并提供会计记账服务",
-    "description": "塔什干有限责任公司与个体户注册、税务登记、会计服务。一站式办理，快速透明。",
-    "cta": "提交申请",
+    "title1": "在乌兹别克斯坦开展和运营业务的咨询服务。",
+    "title2": "",
+    "description": "企业落地支持、公司架构规划、法定地址解决方案，以及持续的会计支持服务。",
+    "cta": "预约咨询",
     "telegram": "通过Telegram联系",
     "feature1": "有限责任公司与个体户注册",
     "feature2": "记账与报税",
@@ -86,12 +86,12 @@
     "badge": "关于服务",
     "title": "什么是",
     "titleHighlight": "BizReg",
-    "description1": "<b>BizReg</b>是塔什干公司注册与会计服务。有限责任公司、个体户、税务登记、报税。",
-    "description2": "与典型的「批量注册地址」不同，每位客户都获得有实体代表在场的<b>独立场所</b>——场地内进行真实的商业活动。",
+    "description1": "<b>BizReg</b> 是塔什干一家专注于业务启动与会计支持的私人咨询服务。",
+    "description2": "我们为创始人提供业务启动的实操指导，并在后续会计与申报环节持续支持。",
     "locationsTitle": "塔什干全市50+地点",
     "locationsDesc": "位于高档区域的底层和地下室",
-    "feature1": "用于注册有限责任公司/个体经营者的官方地籍地址",
-    "feature2": "在Didox和e-ijara（Ijara Soliq）注册",
+    "feature1": "小微企业启动支持",
+    "feature2": "税务准备与合规搭建",
     "feature3": "符合乌兹别克斯坦所有立法要求",
     "feature4": "快速办理——1-2个工作日",
     "feature5": "邮件接收和转发（标准和商务套餐）",
@@ -102,11 +102,11 @@
     "title": "选择合适的套餐",
     "description": "注册与记账价格透明。长期合作享折扣。",
     "popular": "热门",
-    "startTitle": "公司注册",
+    "startTitle": "公司落地咨询服务",
     "startPrice": "5,000,000",
     "startPeriod": "苏姆",
     "startVat": "不含增值税",
-    "startDesc": "公司注册一站式服务",
+    "startDesc": "端到端业务启动支持",
     "startFeature1": "股权结构与经营范围的咨询",
     "startFeature2": "筹备整套设立文件",
     "startFeature3": "筹备股东决定或公司设立会议纪要",
@@ -121,7 +121,7 @@
     "startFeature12": "协助开立银行账户",
     "startNo1": "",
     "startNo2": "",
-    "standardTitle": "法定地址",
+    "standardTitle": "法定地址与办公场地解决方案",
     "standardPriceFrom": "起",
     "standardPriceNum": "990,000",
     "standardPricePeriod": "苏姆",
@@ -140,7 +140,7 @@
     "standardFeature1": "个体户：990,000 苏姆",
     "standardFeature2": "一般制度：1,300,000 苏姆",
     "standardFeature3": "增值税：2,600,000 苏姆",
-    "businessTitle": "会计服务",
+    "businessTitle": "持续会计与申报支持",
     "businessPrice": "2,500,000 起",
     "businessVat": "不含增值税",
     "businessDesc": "个体户与有限责任公司记账与报税",
@@ -156,13 +156,13 @@
     "businessFeature10": "与往来方对账",
     "businessFeature11": "会计与税务咨询",
     "businessFeature12": "协助降低税务与核算风险",
-    "cta": "提交申请",
+    "cta": "预约咨询",
     "discount1": "半年/年付享折扣",
     "discount2": "推荐计划：带来客户——获得10%折扣",
     "area": ""
   },
   "requestForm": {
-    "title": "提交申请"
+    "title": "申请咨询"
   },
   "thankYou": {
     "title": "感谢您填写表单！",
@@ -171,27 +171,27 @@
     "backHome": "返回首页"
   },
   "cta": {
-    "title": "还有疑问？",
+    "title": "与顾问沟通您在乌兹别克斯坦的业务启动计划",
     "description": "通过Telegram联系我们——15分钟内回复，帮您找到适合您任务的地址。",
-    "button": "通过Telegram联系",
+    "button": "预约咨询",
     "tagline": "<b>BizReg</b> — 塔什干公司注册与记账。快速。透明。"
   },
   "footer": {
     "copyright": "© 2026 BizReg。塔什干公司注册与记账。",
-    "company": "服务由Ustores有限责任公司提供，乌兹别克斯坦共和国，塔什干市，沙伊汗塔胡尔区，江戈赫居民区，37号"
+    "company": "BizReg 是一家独立的私人咨询公司。我们不是政府机构，也不提供官方政府服务。"
   },
   "about": {
     "badge": "关于公司",
     "title": "BizReg",
     "titleSuffix": "——塔什干公司注册与记账",
-    "description": "我们是一家拥有10年以上市场经验的法律公司。我们帮助外国公司和非居民在1-2天内在塔什干合法注册业务。",
+    "description": "我们通过私人咨询与支持服务，帮助国际创始人和本地企业家在乌兹别克斯坦建立并发展业务。",
     "stat1": "年市场经验",
     "stat2": "个地点",
     "stat3": "位客户",
     "stat4": "合法性",
     "whoTitle": "我们是谁？",
-    "whoDesc1": "<b>Ustores</b>是一家专业法律公司，专注于为塔什干企业提供法定地址租赁服务。",
-    "whoDesc2": "在<b>10多年的工作</b>中，我们帮助了来自俄罗斯、哈萨克斯坦、阿联酋、欧洲和其他国家的数百家公司成功进入乌兹别克斯坦市场。",
+    "whoDesc1": "<b>BizReg</b> 是一家提供在乌兹别克斯坦业务启动与运营支持的私人咨询公司。",
+    "whoDesc2": "我们提供公司启动咨询、行政 onboarding 指导、本地文件准备指导以及会计支持。",
     "whoDesc3": "我们的团队由经验丰富的律师和企业注册专家组成，他们了解乌兹别克斯坦立法的所有细微之处。",
     "missionTitle": "我们的使命",
     "missionDesc1": "我们相信，企业注册应该简单、快速、透明。我们的使命是消除官僚主义障碍，帮助企业家专注于发展业务。",
@@ -204,22 +204,22 @@
     "value3Title": "速度",
     "value3Desc": "1-2天内办理，15分钟内回复。",
     "offerTitle": "我们提供什么",
-    "offer1Title": "法定地址",
+    "offer1Title": "公司落地咨询服务",
     "offer1Desc": "用于注册有限责任公司或个体经营者的官方地籍地址。",
-    "offer2Title": "实体代表",
+    "offer2Title": "税务准备与合规搭建",
     "offer2Desc": "每个地址都有代表从10:00到20:00在场。",
-    "offer3Title": "系统注册",
+    "offer3Title": "持续会计与申报支持",
     "offer3Desc": "Didox和e-ijara完整注册包含在价格中。",
-    "offer4Title": "法律支持",
+    "offer4Title": "行政 onboarding 指导",
     "offer4Desc": "注册和税务咨询。",
-    "offer5Title": "银行开户协助",
+    "offer5Title": "本地文件准备指导",
     "offer5Desc": "协助开设银行账户。",
-    "offer6Title": "会计支持",
+    "offer6Title": "法定地址与办公场地解决方案",
     "offer6Desc": "会计和报告服务。",
     "whyTitle": "为什么选择我们？",
-    "why1": "10年以上成功市场经验",
-    "why2": "塔什干全市50+自有地点",
-    "why3": "专业律师团队",
+    "why1": "我们以务实的本地经验、快速沟通和可靠的长期支持，帮助企业家更高效进入乌兹别克斯坦市场。",
+    "why2": "清晰指导、透明流程与有经验的本地支持。",
+    "why3": "为业务启动与运营提供独立咨询支持。",
     "why4": "为每位客户提供个性化服务",
     "why5": "快速办理——1-2个工作日",
     "why6": "每个地址都有实体代表",
@@ -283,13 +283,13 @@
     "title": "您的安全是我们的首要任务",
     "description": "我们保证服务的合法性、透明性和可靠性。我们正式运营，对每位客户负责。",
     "whatTitle": "我们保证什么",
-    "what1Title": "正式合同",
+    "what1Title": "服务协议",
     "what1Desc": "我们签署正式租赁协议。合同提供俄语和英语版本。",
-    "what2Title": "真实地址",
+    "what2Title": "时效承诺",
     "what2Desc": "所有地址都是真实场所。没有虚拟或虚假地址。",
     "what3Title": "实体存在",
     "what3Desc": "每个地址从10:00到20:00都有代表在场。",
-    "what4Title": "法律合规",
+    "what4Title": "以合规为核心的方法",
     "what4Desc": "服务完全符合乌兹别克斯坦立法。",
     "what5Title": "拒绝保护",
     "what5Desc": "地址通过银行和税务机关检查。",
@@ -300,7 +300,7 @@
     "us1": "每位客户独立场所",
     "us2": "地址有实体代表",
     "us3": "场地内进行真实商业活动",
-    "us4": "正式租赁协议",
+    "us4": "服务协议",
     "us5": "包含Didox和e-ijara注册",
     "us6": "塔什干高档区域",
     "othersTitle": "批量注册地址",
@@ -317,7 +317,7 @@
   "contacts": {
     "badge": "联系方式",
     "title": "联系我们",
-    "description": "我们会回答所有问题，帮您找到合适的地址。通常15分钟内回复。",
+    "description": "我们会解答关于业务启动咨询和会计支持的问题。通常 15 分钟内回复。",
     "infoTitle": "联系信息",
     "phoneLabel": "电话",
     "phoneHint": "点击拨打",
@@ -479,12 +479,30 @@
     },
     "segmentsTitle": "我们服务的公司类型",
     "segments": {
-      "it": { "title": "IT 与数字业务", "desc": "初创、SaaS、外包、产品团队。" },
-      "trade": { "title": "贸易与电商", "desc": "批发、零售、平台业务、进口与分销。" },
-      "services": { "title": "服务与咨询", "desc": "代理机构、法律/商业顾问、服务型企业。" },
-      "production": { "title": "制造与物流", "desc": "有实际运营和供应链的公司。" },
-      "education": { "title": "教育与 EdTech", "desc": "教育项目、在线学校和培训中心。" },
-      "international": { "title": "国际业务", "desc": "通过本地法律结构进入乌兹别克斯坦的团队。" }
+      "it": {
+        "title": "IT 与数字业务",
+        "desc": "初创、SaaS、外包、产品团队。"
+      },
+      "trade": {
+        "title": "贸易与电商",
+        "desc": "批发、零售、平台业务、进口与分销。"
+      },
+      "services": {
+        "title": "服务与咨询",
+        "desc": "代理机构、法律/商业顾问、服务型企业。"
+      },
+      "production": {
+        "title": "制造与物流",
+        "desc": "有实际运营和供应链的公司。"
+      },
+      "education": {
+        "title": "教育与 EdTech",
+        "desc": "教育项目、在线学校和培训中心。"
+      },
+      "international": {
+        "title": "国际业务",
+        "desc": "通过本地法律结构进入乌兹别克斯坦的团队。"
+      }
     },
     "requestsTitle": "客户最常见需求",
     "keyRequests": [
@@ -495,17 +513,29 @@
     ],
     "resultsTitle": "客户获得的结果",
     "resultCards": [
-      { "value": "1-2", "label": "天启动注册流程" },
-      { "value": "100%", "label": "流程透明可追踪" },
-      { "value": "15 分钟", "label": "平均响应时间" },
-      { "value": "0", "label": "文档与报表混乱" }
+      {
+        "value": "1-2",
+        "label": "天启动注册流程"
+      },
+      {
+        "value": "100%",
+        "label": "流程透明可追踪"
+      },
+      {
+        "value": "15 分钟",
+        "label": "平均响应时间"
+      },
+      {
+        "value": "0",
+        "label": "文档与报表混乱"
+      }
     ],
     "workflowTitle": "我们如何工作",
     "workSteps": [
-      "分析业务模型并确定最优注册方案",
-      "准备文件，协助法定地址与税务登记",
-      "搭建会计流程并支持日常运营",
-      "通过报表、税务、咨询与风控支持增长"
+      "预约咨询",
+      "我们准备业务启动路线图",
+      "我们协助完成文件与搭建步骤",
+      "您在持续支持下开始运营"
     ]
   }
 }

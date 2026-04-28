@@ -14,27 +14,42 @@ const onest = Onest({
   weight: ["400", "500", "600", "700"],
 });
 
-export const metadata: Metadata = {
-  title: "BizReg — Помощь в регистрации бизнеса в Ташкенте и ведение бухучёта",
-  description: "Помощь в регистрации ООО и ИП в Ташкенте, постановка на учёт, бухгалтерское сопровождение. Быстро, прозрачно, под ключ.",
-  keywords: "регистрация бизнеса Ташкент, открыть ООО Узбекистан, бухучёт Ташкент, регистрация ИП, бухгалтерские услуги",
-  authors: [{ name: "BizReg" }],
-  openGraph: {
-    title: "BizReg — Помощь в регистрации бизнеса в Ташкенте и ведение бухучёта",
-    description: "Регистрация ООО и ИП, бухгалтерское сопровождение в Ташкенте. Под ключ.",
-    type: "website",
-    locale: "ru_RU",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "BizReg — Регистрация бизнеса в Ташкенте",
-    description: "Регистрация бизнеса и ведение бухучёта в Ташкенте.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  const isEnglishLocale = locale === "en";
+  const title = isEnglishLocale
+    ? "Business Setup Consulting in Uzbekistan | BizReg"
+    : "BizReg — Помощь в регистрации бизнеса в Ташкенте и ведение бухучёта";
+  const description = isEnglishLocale
+    ? "Private consulting for business launch in Uzbekistan. Company setup support, registered address solutions, and accounting services."
+    : "Помощь в регистрации ООО и ИП в Ташкенте, постановка на учёт, бухгалтерское сопровождение. Быстро, прозрачно, под ключ.";
+
+  return {
+    title,
+    description,
+    keywords:
+      "регистрация бизнеса Ташкент, открыть ООО Узбекистан, бухучёт Ташкент, регистрация ИП, бухгалтерские услуги",
+    authors: [{ name: "BizReg" }],
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      locale: isEnglishLocale ? "en_US" : "ru_RU",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+  };
+}
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
