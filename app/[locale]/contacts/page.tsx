@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -11,8 +11,12 @@ import { MapPin, Phone, Send, Clock, Building2 } from "lucide-react";
 export default function ContactsPage() {
   const locale = useLocale();
   const t = useTranslations("contacts");
-  const searchParams = useSearchParams();
-  const queryString = searchParams.toString();
+  const [queryString, setQueryString] = useState("");
+
+  useEffect(() => {
+    setQueryString(window.location.search.replace(/^\?/, ""));
+  }, []);
+
   const requestFormHref = `/${locale}${queryString ? `?${queryString}` : ""}#request-form`;
 
   return (

@@ -1,8 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
@@ -14,10 +13,14 @@ export function Header() {
   const locale = useLocale() as Locale;
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langMenuOpen, setLangMenuOpen] = useState(false);
-  const queryString = searchParams.toString();
+  const [queryString, setQueryString] = useState("");
+
+  useEffect(() => {
+    setQueryString(window.location.search.replace(/^\?/, ""));
+  }, []);
+
   const requestFormHref = `/${locale}${queryString ? `?${queryString}` : ""}#request-form`;
 
   const navigation = [

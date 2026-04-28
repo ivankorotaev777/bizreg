@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { PartnersSection } from "@/components/PartnersSection";
 import { Button } from "@/components/ui/button";
@@ -547,8 +547,12 @@ const Footer = () => {
 
 export default function Home() {
   const locale = useLocale();
-  const searchParams = useSearchParams();
-  const queryString = searchParams.toString();
+  const [queryString, setQueryString] = useState("");
+
+  useEffect(() => {
+    setQueryString(window.location.search.replace(/^\?/, ""));
+  }, []);
+
   const requestFormHref = `/${locale}${queryString ? `?${queryString}` : ""}#request-form`;
 
   return (
