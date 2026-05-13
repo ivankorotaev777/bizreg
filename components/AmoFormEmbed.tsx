@@ -1,6 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { memo, useLayoutEffect, useRef } from "react";
+
+const FORM_ID = "1709718";
+const SCRIPT_ID = `amoforms_script_${FORM_ID}`;
+const IFRAME_ID = `amoforms_iframe_${FORM_ID}`;
 
 const INIT_SCRIPT =
   '!function(a,m,o,c,r,m){a[o+c]=a[o+c]||{setMeta:function(p){this.params=(this.params||[]).concat([p])}},a[o+r]=a[o+r]||function(f){a[o+r].f=(a[o+r].f||[]).concat([f])},a[o+r]({id:"1709718",hash:"20293788a180fcf9d29b726dcd055be9",locale:"ru"}),a[o+m]=a[o+m]||function(f,k){a[o+m].f=(a[o+m].f||[]).concat([[f,k]])}}(window,0,"amo_forms_","params","load","loaded");';
@@ -12,19 +16,34 @@ type AmoFormEmbedProps = {
   className?: string;
 };
 
+function clearAmoHost(root: HTMLElement) {
+  while (root.firstChild) {
+    root.removeChild(root.firstChild);
+  }
+}
+
+/** Remove stale Amo nodes left after SPA navigation or interrupted loads (duplicate ids break amoforms.js). */
+function removeStaleAmoDom() {
+  document.getElementById(SCRIPT_ID)?.remove();
+  document.getElementById(IFRAME_ID)?.remove();
+  document.getElementById("amoforms_action_btn")?.remove();
+  document.getElementById(`amoforms_overlay_${FORM_ID}`)?.remove();
+}
+
 /**
  * AmoCRM expects its two script tags in the DOM next to where the form should appear.
- * next/script with afterInteractive hoists scripts away from the React subtree, so the
- * styled wrapper stayed empty. We inject both scripts inside this container instead.
+ * Non-React children (iframe) must not be reconciled away: memo comparator always returns true
+ * so this component never re-renders after mount unless `key` changes.
  */
-export function AmoFormEmbed({ className }: AmoFormEmbedProps) {
+function AmoFormEmbedInner({ className }: AmoFormEmbedProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const root = containerRef.current;
     if (!root) return;
 
-    if (root.querySelector('script[data-bizreg-amo="1"]')) return;
+    removeStaleAmoDom();
+    clearAmoHost(root);
 
     const init = document.createElement("script");
     init.type = "text/javascript";
@@ -32,7 +51,7 @@ export function AmoFormEmbed({ className }: AmoFormEmbedProps) {
     init.textContent = INIT_SCRIPT;
 
     const loader = document.createElement("script");
-    loader.id = "amoforms_script_1709718";
+    loader.id = SCRIPT_ID;
     loader.async = true;
     loader.charset = "utf-8";
     loader.setAttribute("data-bizreg-amo", "1");
@@ -42,9 +61,12 @@ export function AmoFormEmbed({ className }: AmoFormEmbedProps) {
     root.appendChild(loader);
 
     return () => {
-      root.querySelectorAll('script[data-bizreg-amo="1"]').forEach((el) => el.remove());
+      clearAmoHost(root);
+      document.getElementById(`amoforms_overlay_${FORM_ID}`)?.remove();
     };
   }, []);
 
   return <div ref={containerRef} className={className} />;
 }
+
+export const AmoFormEmbed = memo(AmoFormEmbedInner, () => true);
