@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Script from "next/script";
 import { IBM_Plex_Sans, Press_Start_2P, Silkscreen } from "next/font/google";
 import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
@@ -934,13 +935,19 @@ export default function ItParkLandingClient() {
             </div>
           </div>
 
-          <div id="form" className="mt-8 rounded-none border-4 border-black bg-white overflow-hidden min-h-[500px] shadow-[8px_8px_0_0_#000]">
-            <iframe
-              src="https://form.latenode.com/t/ixaH3FnMAbus"
-              width="100%"
-              height="500"
-              className="w-full border-0 bg-white"
-              title="IT Park request form"
+          <div
+            id="form"
+            className="mt-8 rounded-none border-4 border-black bg-white overflow-hidden min-h-[500px] shadow-[8px_8px_0_0_#000] p-4 sm:p-6"
+          >
+            <Script id="amo-forms-init" strategy="afterInteractive">
+              {`!function(a,m,o,c,r,m){a[o+c]=a[o+c]||{setMeta:function(p){this.params=(this.params||[]).concat([p])}},a[o+r]=a[o+r]||function(f){a[o+r].f=(a[o+r].f||[]).concat([f])},a[o+r]({id:"1709718",hash:"20293788a180fcf9d29b726dcd055be9",locale:"ru"}),a[o+m]=a[o+m]||function(f,k){a[o+m].f=(a[o+m].f||[]).concat([[f,k]])}}(window,0,"amo_forms_","params","load","loaded");`}
+            </Script>
+            <Script
+              id="amoforms_script_1709718"
+              src="https://forms.amocrm.ru/forms/assets/js/amoforms.js?1778664682"
+              strategy="afterInteractive"
+              async
+              charSet="utf-8"
             />
           </div>
 

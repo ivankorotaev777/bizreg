@@ -1,6 +1,7 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
+import Script from "next/script";
 import { useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { PartnersSection } from "@/components/PartnersSection";
@@ -475,16 +476,17 @@ const RequestFormSection = () => {
             {t("title")}
           </h2>
           <div
-            className="rounded-xl border border-border bg-white overflow-hidden"
-            style={{ maxWidth: "900px", marginLeft: "auto", marginRight: "auto", height: "512px" }}
+            className="rounded-xl border border-border bg-white overflow-hidden min-h-[512px] max-w-[900px] mx-auto p-4 sm:p-6"
           >
-            <iframe
-              src="https://form.latenode.com/t/jRu4Weceruus"
-              width="100%"
-              height="100%"
-              className="w-full border-0 bg-white"
-              style={{ marginTop: "1.4cm", height: "calc(100% + 1.4cm)", display: "block" }}
-              title="Request form"
+            <Script id="amo-forms-init" strategy="afterInteractive">
+              {`!function(a,m,o,c,r,m){a[o+c]=a[o+c]||{setMeta:function(p){this.params=(this.params||[]).concat([p])}},a[o+r]=a[o+r]||function(f){a[o+r].f=(a[o+r].f||[]).concat([f])},a[o+r]({id:"1709718",hash:"20293788a180fcf9d29b726dcd055be9",locale:"ru"}),a[o+m]=a[o+m]||function(f,k){a[o+m].f=(a[o+m].f||[]).concat([[f,k]])}}(window,0,"amo_forms_","params","load","loaded");`}
+            </Script>
+            <Script
+              id="amoforms_script_1709718"
+              src="https://forms.amocrm.ru/forms/assets/js/amoforms.js?1778664682"
+              strategy="afterInteractive"
+              async
+              charSet="utf-8"
             />
           </div>
         </div>
