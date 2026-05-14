@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { IBM_Plex_Sans, Press_Start_2P, Silkscreen } from "next/font/google";
 import { useLocale, useTranslations } from "next-intl";
-import { AmoFormEmbed } from "@/components/AmoFormEmbed";
+import { ItParkAmoFormClient } from "@/components/itpark/ItParkAmoFormClient";
 import { Link } from "@/i18n/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -936,19 +936,16 @@ export default function ItParkLandingClient() {
             </div>
           </div>
 
-          <div
-            id="form"
-            className={`mt-8 max-w-3xl mx-auto scroll-mt-28 ${ibmPlexSans.className} antialiased`}
-          >
-            <h2 className="text-3xl sm:text-4xl font-semibold mb-8 text-center text-foreground">
-              {tForm("title")}
-            </h2>
-            <div className="rounded-xl border border-border bg-white overflow-hidden min-h-[512px] max-w-[900px] mx-auto p-4 sm:p-6">
-              <AmoFormEmbed
-                formId="1709750"
-                formHash="a0b6ea516a49be01cd0092acb0ac2dce"
-                amoScriptVersion="1778751047"
-              />
+          <div id="form" className="mt-8 scroll-mt-28">
+            <div className="container mx-auto px-4">
+              <div className={`max-w-3xl mx-auto ${ibmPlexSans.className} antialiased`}>
+                <h2 className="text-3xl sm:text-4xl font-semibold mb-8 text-center text-foreground">
+                  {tForm("title")}
+                </h2>
+                <div className="rounded-xl border border-border bg-white overflow-hidden min-h-[512px] max-w-[900px] w-full mx-auto p-4 sm:p-6">
+                  <ItParkAmoFormClient />
+                </div>
+              </div>
             </div>
           </div>
 

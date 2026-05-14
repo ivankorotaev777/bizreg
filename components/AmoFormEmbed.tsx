@@ -38,6 +38,19 @@ function removeStaleAmoDomForKnownForms() {
   document.getElementById("amoforms_action_btn")?.remove();
 }
 
+/** Amo keeps queues on `window`; a second form on SPA (e.g. home → IT Park) fails without this. */
+function resetAmoWindowState() {
+  if (typeof window === "undefined") return;
+  const w = window as unknown as Record<string, unknown>;
+  for (const key of ["amo_forms_params", "amo_forms_load", "amo_forms_loaded"] as const) {
+    try {
+      delete w[key];
+    } catch {
+      /* non-configurable in exotic environments */
+    }
+  }
+}
+
 /**
  * AmoCRM expects its two script tags in the DOM next to where the form should appear.
  * Non-React children (iframe) must not be reconciled away: memo skips re-renders when embed config is unchanged.
@@ -54,6 +67,7 @@ function AmoFormEmbedInner({
     const root = containerRef.current;
     if (!root) return;
 
+    resetAmoWindowState();
     removeStaleAmoDomForKnownForms();
     clearAmoHost(root);
 
