@@ -3,7 +3,7 @@
 import { memo, useLayoutEffect, useRef } from "react";
 
 /** All form ids used on the site — clear stale DOM on SPA navigation (Amo uses global ids). */
-const AMO_FORM_IDS = ["1709718", "1709794"] as const;
+const AMO_FORM_IDS = ["1709718", "1709750", "1709794"] as const;
 
 const DEFAULT_FORM_ID = "1709718";
 const DEFAULT_FORM_HASH = "20293788a180fcf9d29b726dcd055be9";

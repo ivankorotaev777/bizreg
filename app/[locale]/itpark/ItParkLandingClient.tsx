@@ -940,14 +940,14 @@ export default function ItParkLandingClient() {
             id="form"
             className={`mt-8 max-w-3xl mx-auto scroll-mt-28 ${ibmPlexSans.className} antialiased`}
           >
-            <h2 className="text-3xl sm:text-4xl font-semibold mb-8 text-center text-black">
+            <h2 className="text-3xl sm:text-4xl font-semibold mb-8 text-center text-foreground">
               {tForm("title")}
             </h2>
-            <div className="rounded-xl border border-border bg-white min-h-[512px] max-w-[900px] mx-auto p-4 sm:p-6">
+            <div className="rounded-xl border border-border bg-white overflow-hidden min-h-[512px] max-w-[900px] mx-auto p-4 sm:p-6">
               <AmoFormEmbed
-                formId="1709794"
-                formHash="439d4bd7e83b262200b687bd7273ad9b"
-                amoScriptVersion="1778672052"
+                formId="1709750"
+                formHash="a0b6ea516a49be01cd0092acb0ac2dce"
+                amoScriptVersion="1778751047"
               />
             </div>
           </div>
