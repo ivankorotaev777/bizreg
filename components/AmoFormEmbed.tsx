@@ -1,6 +1,7 @@
 "use client";
 
 import { memo, useLayoutEffect, useRef } from "react";
+import { cn } from "@/lib/utils";
 
 /** All form ids used on the site — clear stale DOM on SPA navigation (Amo uses global ids). */
 const AMO_FORM_IDS = ["1709718", "1709750", "1709794"] as const;
@@ -92,7 +93,13 @@ function AmoFormEmbedInner({
     };
   }, [formId, formHash, amoScriptVersion]);
 
-  return <div ref={containerRef} className={className} />;
+  return (
+    <div
+      ref={containerRef}
+      data-bizreg-amo-host
+      className={cn("amo-form-host w-full flex flex-col items-center", className)}
+    />
+  );
 }
 
 function propsEqual(a: AmoFormEmbedProps, b: AmoFormEmbedProps) {

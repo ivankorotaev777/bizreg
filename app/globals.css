@@ -170,3 +170,20 @@ html {
 .animate-retro-blink {
   animation: retro-blink 1.1s infinite steps(2, end);
 }
+
+/* Center AmoCRM inline form (iframe is injected after our scripts) */
+.amo-form-host,
+[data-bizreg-amo-host] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.amo-form-host iframe[id^="amoforms_iframe_"],
+[data-bizreg-amo-host] iframe[id^="amoforms_iframe_"] {
+  display: block;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  max-width: 100%;
+}
