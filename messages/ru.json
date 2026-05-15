@@ -165,10 +165,10 @@
     "title": "Оставить заявку"
   },
   "thankYou": {
-    "title": "Спасибо за заполнение формы!",
-    "description": "Напишите нам в Телеграм",
-    "telegram": "Написать в Telegram",
-    "backHome": "На главную"
+    "title": "Спасибо за заполнение формы! / Thank you for submitting the form",
+    "description": "Напишите нам в Телеграм / Send us a message in Telegram",
+    "telegram": "Написать в Telegram / Write on Telegram",
+    "backHome": "На главную / To the main page"
   },
   "cta": {
     "title": "Остались вопросы?",
