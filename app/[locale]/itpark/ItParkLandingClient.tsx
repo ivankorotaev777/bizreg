@@ -942,9 +942,7 @@ export default function ItParkLandingClient() {
                 <h2 className="text-3xl sm:text-4xl font-semibold mb-8 text-center text-foreground">
                   {tForm("title")}
                 </h2>
-                <div className="rounded-xl border border-border bg-white overflow-hidden min-h-[512px] max-w-[900px] w-full mx-auto p-4 sm:p-6">
-                  <ItParkAmoFormClient />
-                </div>
+                <ItParkAmoFormClient />
               </div>
             </div>
           </div>

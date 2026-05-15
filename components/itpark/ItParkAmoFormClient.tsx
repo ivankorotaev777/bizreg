@@ -4,15 +4,7 @@ import dynamic from "next/dynamic";
 
 const AmoFormEmbed = dynamic(
   () => import("@/components/AmoFormEmbed").then((m) => m.AmoFormEmbed),
-  {
-    ssr: false,
-    loading: () => (
-      <div
-        className="min-h-[512px] w-full rounded-lg bg-muted/20 animate-pulse"
-        aria-hidden
-      />
-    ),
-  }
+  { ssr: false }
 );
 
 /** IT Park only: client-only load avoids hydration / SPA conflicts with Amo globals. */
