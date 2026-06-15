@@ -66,6 +66,17 @@ for (const [img, slugs] of Object.entries(imgUsage)) {
   if (slugs.size > 1) err("ФОТО", `повтор изображения ${img} в разных статьях: ${[...slugs].join(", ")} — каждое фото уникально для своей статьи`);
 }
 
+// --- разные акцентные темы у разных статей (чтобы дизайн отличался) ---
+const accentBySlug = {};
+for (const p of posts) accentBySlug[p.slug] = p.fm.accent || "teal(default)";
+const accentUsage = {};
+for (const [slug, acc] of Object.entries(accentBySlug)) (accentUsage[acc] ??= []).push(slug);
+for (const [acc, slugs] of Object.entries(accentUsage)) {
+  if (slugs.length > 1) {
+    warn("ДИЗАЙН", `одинаковый accent "${acc}" у статей: ${slugs.join(", ")} — задай разные accent для разного дизайна`);
+  }
+}
+
 // --- кросс-проверки: дубли title/description в пределах локали ---
 const seenTitle = {}, seenDesc = {};
 for (const p of posts) {

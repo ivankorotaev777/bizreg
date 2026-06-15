@@ -31,7 +31,7 @@ export const mdxComponents = {
   li: (p: { children?: ReactNode }) => <li className="leading-7" {...p} />,
   a: (p: { children?: ReactNode; href?: string }) => (
     <a
-      className="font-medium text-blue-600 underline underline-offset-2 hover:text-blue-700"
+      className="font-medium text-[var(--a-600)] underline underline-offset-2 hover:text-[var(--a-700)]"
       target={p.href?.startsWith("http") ? "_blank" : undefined}
       rel={p.href?.startsWith("http") ? "noopener noreferrer" : undefined}
       {...p}

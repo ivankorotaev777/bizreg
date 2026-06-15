@@ -4,6 +4,7 @@ import { Link } from "@/i18n/navigation";
 import type { Post } from "@/lib/blog";
 import { getAuthor, pick } from "@/lib/authors";
 import { getToc, readingTime } from "@/lib/blog";
+import { accentVars } from "./accents";
 
 type Labels = {
   home: string; blog: string; updated: string; sources: string; cta: string;
@@ -55,7 +56,7 @@ export function ArticleLayout({ post, children }: { post: Post; children: ReactN
   const rt = readingTime(post.content);
 
   return (
-    <article className="pb-16">
+    <article className="pb-16" style={accentVars(post.accent)}>
       {post.image ? (
         /* фото-герой на всю ширину */
         <header className="relative flex min-h-[440px] items-end overflow-hidden sm:min-h-[520px]">
@@ -84,12 +85,12 @@ export function ArticleLayout({ post, children }: { post: Post; children: ReactN
           </div>
         </header>
       ) : (
-        <header className="bg-gradient-to-b from-brand-50 to-background pt-24 pb-10">
+        <header className="bg-gradient-to-b from-[var(--a-50)] to-background pt-24 pb-10">
           <div className="mx-auto max-w-3xl px-4">
             <nav className="mb-5 text-sm text-slate-500">
-              <Link href="/" className="hover:text-brand-600">{t.home}</Link>
+              <Link href="/" className="hover:text-[var(--a-600)]">{t.home}</Link>
               <span className="mx-2">/</span>
-              <Link href="/blog" className="hover:text-brand-600">{t.blog}</Link>
+              <Link href="/blog" className="hover:text-[var(--a-600)]">{t.blog}</Link>
             </nav>
             <h1 className="text-3xl font-bold leading-tight text-slate-900 sm:text-4xl lg:text-[2.75rem] lg:leading-tight">
               {post.title}
@@ -136,8 +137,8 @@ export function ArticleLayout({ post, children }: { post: Post; children: ReactN
             <ol className="space-y-2 text-sm">
               {toc.map((item, i) => (
                 <li key={item.id}>
-                  <a href={`#${item.id}`} className="flex gap-2 text-slate-700 hover:text-brand-600">
-                    <span className="text-brand-400">{i + 1}.</span> {item.text}
+                  <a href={`#${item.id}`} className="flex gap-2 text-slate-700 hover:text-[var(--a-600)]">
+                    <span className="text-[var(--a-400)]">{i + 1}.</span> {item.text}
                   </a>
                 </li>
               ))}
@@ -159,7 +160,7 @@ export function ArticleLayout({ post, children }: { post: Post; children: ReactN
               {post.sources.map((s) => (
                 <li key={s.url}>
                   <a href={s.url} target="_blank" rel="noopener noreferrer"
-                     className="text-brand-600 underline underline-offset-2">
+                     className="text-[var(--a-600)] underline underline-offset-2">
                     {s.title}
                   </a>
                 </li>
@@ -181,21 +182,21 @@ export function ArticleLayout({ post, children }: { post: Post; children: ReactN
             />
             <div>
               <p className="font-semibold text-slate-900">{authorName}</p>
-              <p className="text-sm text-brand-700">{authorRole}</p>
+              <p className="text-sm text-[var(--a-700)]">{authorRole}</p>
               <p className="mt-1 text-sm leading-6 text-slate-600">{authorCreds}</p>
             </div>
           </div>
           <p className="mt-4 text-sm leading-6 text-slate-600">{t.about}</p>
-          <p className="mt-3 text-sm font-medium text-brand-700">{t.contact}</p>
+          <p className="mt-3 text-sm font-medium text-[var(--a-700)]">{t.contact}</p>
         </section>
 
         {/* CTA на профильную money-страницу */}
         {post.ctaPath && (
-          <div className="mt-12 rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 p-8 text-center text-white">
+          <div className="mt-12 rounded-2xl bg-gradient-to-br from-[var(--a-500)] to-[var(--a-700)] p-8 text-center text-white">
             <p className="text-xl font-semibold">{post.ctaLabel ?? t.cta}</p>
             <Link
               href={post.ctaPath}
-              className="mt-4 inline-block rounded-lg bg-white px-6 py-3 font-semibold text-brand-700 transition hover:bg-brand-50"
+              className="mt-4 inline-block rounded-lg bg-white px-6 py-3 font-semibold text-[var(--a-700)] transition hover:bg-[var(--a-50)]"
             >
               {t.cta} →
             </Link>
@@ -203,7 +204,7 @@ export function ArticleLayout({ post, children }: { post: Post; children: ReactN
         )}
 
         <div className="mt-10 text-center">
-          <Link href="/blog" className="text-sm font-medium text-brand-600 hover:text-brand-700">
+          <Link href="/blog" className="text-sm font-medium text-[var(--a-600)] hover:text-[var(--a-700)]">
             ← {t.allPosts}
           </Link>
         </div>

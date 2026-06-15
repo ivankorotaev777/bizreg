@@ -1,4 +1,5 @@
 // Визуальные блоки для статей блога (используются прямо в MDX).
+// Акцентные цвета берутся из CSS-переменных --a-* (тема статьи, см. accents.ts).
 import type { ReactNode } from "react";
 import Image from "next/image";
 import {
@@ -12,56 +13,25 @@ const ICONS = {
   shield: ShieldCheck, rocket: Rocket, globe: Globe, scale: Scale,
 } as const;
 
-/* Inline-CTA — кнопка-ссылка для вставки прямо по тексту (не только внизу) */
-export function InlineCta({ href, children }: { href: string; children?: ReactNode }) {
-  return (
-    <span className="my-5 flex justify-center">
-      <Link href={href} className="inline-flex items-center gap-2 rounded-lg bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-600">
-        <Send className="h-4 w-4" /> {children} <ArrowRight className="h-4 w-4" />
-      </Link>
-    </span>
-  );
-}
-
-/* Иконочные карточки «что получаете» */
-export function IconGrid({ children }: { children?: ReactNode }) {
-  return <div className="my-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{children}</div>;
-}
-export function Feature({
-  icon, title, children,
-}: { icon?: keyof typeof ICONS; title: string; children?: ReactNode }) {
-  const Icon = (icon && ICONS[icon]) || Rocket;
-  return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-brand-200 hover:shadow-md">
-      <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-        <Icon className="h-5 w-5" />
-      </div>
-      <p className="font-semibold text-slate-900">{title}</p>
-      <p className="mt-1 text-sm leading-6 text-slate-600">{children}</p>
-    </div>
-  );
-}
-
 /* Вводный абзац — крупный лид */
 export function Lead({ children }: { children?: ReactNode }) {
   return <p className="mb-8 text-xl leading-8 text-slate-700">{children}</p>;
 }
 
-/* Callout: info | tip | warning | note */
-const CALLOUT = {
-  info: { icon: Info, ring: "border-blue-200", bg: "bg-blue-50", ic: "text-blue-600" },
-  tip: { icon: Lightbulb, ring: "border-brand-200", bg: "bg-brand-50", ic: "text-brand-600" },
-  warning: { icon: AlertTriangle, ring: "border-amber-200", bg: "bg-amber-50", ic: "text-amber-600" },
-  note: { icon: Info, ring: "border-slate-200", bg: "bg-slate-50", ic: "text-slate-500" },
-} as const;
-
+/* Callout: info | tip | warning | note (tip = акцент темы) */
 export function Callout({
   type = "info", title, children,
-}: { type?: keyof typeof CALLOUT; title?: string; children?: ReactNode }) {
-  const c = CALLOUT[type] ?? CALLOUT.info;
-  const Icon = c.icon;
+}: { type?: "info" | "tip" | "warning" | "note"; title?: string; children?: ReactNode }) {
+  const map = {
+    info: { Icon: Info, cls: "border-blue-200 bg-blue-50", ic: "text-blue-600" },
+    tip: { Icon: Lightbulb, cls: "border-[var(--a-200)] bg-[var(--a-50)]", ic: "text-[var(--a-600)]" },
+    warning: { Icon: AlertTriangle, cls: "border-amber-200 bg-amber-50", ic: "text-amber-600" },
+    note: { Icon: Info, cls: "border-slate-200 bg-slate-50", ic: "text-slate-500" },
+  } as const;
+  const c = map[type] ?? map.info;
+  const Icon = c.Icon;
   return (
-    <div className={`my-6 flex gap-3 rounded-xl border ${c.ring} ${c.bg} p-4 sm:p-5`}>
+    <div className={`my-6 flex gap-3 rounded-xl border ${c.cls} p-4 sm:p-5`}>
       <Icon className={`mt-0.5 h-5 w-5 shrink-0 ${c.ic}`} />
       <div className="text-slate-700">
         {title && <p className="mb-1 font-semibold text-slate-900">{title}</p>}
@@ -78,7 +48,7 @@ export function StatGrid({ children }: { children?: ReactNode }) {
 export function Stat({ value, label }: { value: string; label: string }) {
   return (
     <div className="rounded-2xl border border-slate-200 bg-white p-5 text-center shadow-sm">
-      <div className="text-3xl font-bold text-brand-600">{value}</div>
+      <div className="text-3xl font-bold text-[var(--a-600)]">{value}</div>
       <div className="mt-1 text-sm text-slate-500">{label}</div>
     </div>
   );
@@ -91,7 +61,7 @@ export function Steps({ children }: { children?: ReactNode }) {
 export function Step({ n, title, children }: { n: number; title: string; children?: ReactNode }) {
   return (
     <li className="relative flex gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-500 text-lg font-bold text-white">
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--a-500)] text-lg font-bold text-white">
         {n}
       </div>
       <div>
@@ -110,10 +80,10 @@ export function CompareCard({
   title, badge, children, highlight,
 }: { title: string; badge?: string; children?: ReactNode; highlight?: boolean }) {
   return (
-    <div className={`rounded-2xl border p-6 ${highlight ? "border-brand-300 bg-brand-50/40 ring-1 ring-brand-200" : "border-slate-200 bg-white"}`}>
+    <div className={`rounded-2xl border p-6 ${highlight ? "border-[var(--a-300)] bg-[var(--a-50)] ring-1 ring-[var(--a-200)]" : "border-slate-200 bg-white"}`}>
       <div className="flex items-center justify-between">
         <h3 className="text-lg font-semibold text-slate-900">{title}</h3>
-        {badge && <span className="rounded-full bg-brand-100 px-2.5 py-0.5 text-xs font-medium text-brand-700">{badge}</span>}
+        {badge && <span className="rounded-full bg-[var(--a-100)] px-2.5 py-0.5 text-xs font-medium text-[var(--a-700)]">{badge}</span>}
       </div>
       <div className="mt-3 space-y-2 text-slate-600">{children}</div>
     </div>
@@ -123,11 +93,11 @@ export function CompareCard({
 /* Ключевые выводы (children = markdown-список) */
 export function KeyTakeaways({ title = "Главное", children }: { title?: string; children?: ReactNode }) {
   return (
-    <div className="my-8 rounded-2xl border border-brand-200 bg-brand-50/50 p-6">
-      <p className="mb-2 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-brand-700">
+    <div className="my-8 rounded-2xl border border-[var(--a-200)] bg-[var(--a-50)] p-6">
+      <p className="mb-2 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-[var(--a-700)]">
         <CheckCircle2 className="h-4 w-4" /> {title}
       </p>
-      <div className="text-slate-700 [&_li]:marker:text-brand-500">{children}</div>
+      <div className="text-slate-700 [&_li]:marker:text-[var(--a-500)]">{children}</div>
     </div>
   );
 }
@@ -166,25 +136,55 @@ export function Figure({ src, alt, caption, width = 1200, height = 675 }: {
   );
 }
 
-/* Inline CTA */
+/* Inline-CTA — кнопка-ссылка для вставки прямо по тексту */
+export function InlineCta({ href, children }: { href: string; children?: ReactNode }) {
+  return (
+    <span className="my-5 flex justify-center">
+      <Link href={href} className="inline-flex items-center gap-2 rounded-lg bg-[var(--a-500)] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[var(--a-600)]">
+        <Send className="h-4 w-4" /> {children} <ArrowRight className="h-4 w-4" />
+      </Link>
+    </span>
+  );
+}
+
+/* Иконочные карточки «что получаете» */
+export function IconGrid({ children }: { children?: ReactNode }) {
+  return <div className="my-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{children}</div>;
+}
+export function Feature({
+  icon, title, children,
+}: { icon?: keyof typeof ICONS; title: string; children?: ReactNode }) {
+  const Icon = (icon && ICONS[icon]) || Rocket;
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-[var(--a-200)] hover:shadow-md">
+      <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--a-50)] text-[var(--a-600)]">
+        <Icon className="h-5 w-5" />
+      </div>
+      <p className="font-semibold text-slate-900">{title}</p>
+      <p className="mt-1 text-sm leading-6 text-slate-600">{children}</p>
+    </div>
+  );
+}
+
+/* CTA-блок */
 export function CtaBox({ href, title, label }: { href: string; title: string; label: string }) {
   return (
-    <div className="my-10 flex flex-col items-center gap-4 rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 p-8 text-center text-white">
+    <div className="my-10 flex flex-col items-center gap-4 rounded-2xl bg-gradient-to-br from-[var(--a-500)] to-[var(--a-700)] p-8 text-center text-white">
       <p className="text-xl font-semibold">{title}</p>
-      <Link href={href} className="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 font-semibold text-brand-700 transition hover:bg-brand-50">
+      <Link href={href} className="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 font-semibold text-[var(--a-700)] transition hover:bg-[var(--a-50)]">
         {label} <ArrowRight className="h-4 w-4" />
       </Link>
     </div>
   );
 }
 
-/* FAQ-элемент (без JS, на <details>); используется по одному в MDX */
+/* FAQ-элемент (без JS, на <details>) */
 export function Faq({ q, children }: { q: string; children?: ReactNode }) {
   return (
     <details className="group my-3 overflow-hidden rounded-xl border border-slate-200">
       <summary className="flex cursor-pointer list-none items-center justify-between gap-3 p-4 font-medium text-slate-900 hover:bg-slate-50">
         {q}
-        <span className="text-xl leading-none text-brand-500 transition group-open:rotate-45">+</span>
+        <span className="text-xl leading-none text-[var(--a-500)] transition group-open:rotate-45">+</span>
       </summary>
       <div className="px-4 pb-4 leading-7 text-slate-600">{children}</div>
     </details>

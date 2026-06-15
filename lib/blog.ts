@@ -17,6 +17,8 @@ export interface PostFrontmatter {
   author?: string;        // E-E-A-T: автор (по умолчанию «Эксперты BizReg»)
   authorRole?: string;    // должность/экспертиза
   reviewedBy?: string;    // кто проверил факты (опционально)
+  accent?: string;        // акцентная тема статьи: teal|indigo|amber|emerald|violet|rose|sky
+  heroStyle?: string;     // стиль hero (резерв под варианты)
   ctaPath?: string;   // путь на профильную money-страницу
   ctaLabel?: string;
   faq?: { q: string; a: string }[];
