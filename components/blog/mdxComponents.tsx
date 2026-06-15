@@ -2,13 +2,16 @@
 import type { ReactNode } from "react";
 import {
   Lead, Callout, StatGrid, Stat, Steps, Step, CompareGrid, CompareCard,
-  KeyTakeaways, ProsCons, Pros, Cons, Figure, CtaBox, Faq,
+  KeyTakeaways, ProsCons, Pros, Cons, Figure, CtaBox, Faq, InlineCta,
+  IconGrid, Feature,
 } from "./blocks";
+import { HeroArt } from "./HeroArt";
 
 export const mdxComponents = {
   // визуальные блоки, доступные в MDX
   Lead, Callout, StatGrid, Stat, Steps, Step, CompareGrid, CompareCard,
-  KeyTakeaways, ProsCons, Pros, Cons, Figure, CtaBox, Faq,
+  KeyTakeaways, ProsCons, Pros, Cons, Figure, CtaBox, Faq, InlineCta,
+  IconGrid, Feature, HeroArt,
 
   h2: (p: { children?: ReactNode }) => (
     <h2 className="mt-10 mb-4 text-2xl font-semibold text-slate-900 scroll-mt-24" {...p} />

@@ -3,8 +3,44 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import {
   Info, Lightbulb, AlertTriangle, CheckCircle2, XCircle, ArrowRight,
+  Building2, FileText, Landmark, Wallet, ShieldCheck, Rocket, Globe, Scale, Send,
 } from "lucide-react";
 import { Link } from "@/i18n/navigation";
+
+const ICONS = {
+  building: Building2, doc: FileText, bank: Landmark, wallet: Wallet,
+  shield: ShieldCheck, rocket: Rocket, globe: Globe, scale: Scale,
+} as const;
+
+/* Inline-CTA — кнопка-ссылка для вставки прямо по тексту (не только внизу) */
+export function InlineCta({ href, children }: { href: string; children?: ReactNode }) {
+  return (
+    <span className="my-5 flex justify-center">
+      <Link href={href} className="inline-flex items-center gap-2 rounded-lg bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-600">
+        <Send className="h-4 w-4" /> {children} <ArrowRight className="h-4 w-4" />
+      </Link>
+    </span>
+  );
+}
+
+/* Иконочные карточки «что получаете» */
+export function IconGrid({ children }: { children?: ReactNode }) {
+  return <div className="my-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{children}</div>;
+}
+export function Feature({
+  icon, title, children,
+}: { icon?: keyof typeof ICONS; title: string; children?: ReactNode }) {
+  const Icon = (icon && ICONS[icon]) || Rocket;
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-brand-200 hover:shadow-md">
+      <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+        <Icon className="h-5 w-5" />
+      </div>
+      <p className="font-semibold text-slate-900">{title}</p>
+      <p className="mt-1 text-sm leading-6 text-slate-600">{children}</p>
+    </div>
+  );
+}
 
 /* Вводный абзац — крупный лид */
 export function Lead({ children }: { children?: ReactNode }) {
