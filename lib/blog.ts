@@ -13,6 +13,9 @@ export interface PostFrontmatter {
   datePublished: string; // YYYY-MM-DD
   dateModified?: string;
   cluster?: string;
+  author?: string;        // E-E-A-T: автор (по умолчанию «Эксперты BizReg»)
+  authorRole?: string;    // должность/экспертиза
+  reviewedBy?: string;    // кто проверил факты (опционально)
   ctaPath?: string;   // путь на профильную money-страницу
   ctaLabel?: string;
   faq?: { q: string; a: string }[];

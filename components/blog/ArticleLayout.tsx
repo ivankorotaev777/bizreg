@@ -3,11 +3,35 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import type { Post } from "@/lib/blog";
 
-type Labels = { home: string; blog: string; updated: string; sources: string; cta: string };
+type Labels = {
+  home: string; blog: string; updated: string; sources: string; cta: string;
+  author: string; role: string; reviewed: string; aboutTitle: string; about: string; contact: string;
+};
 const L: Record<string, Labels> = {
-  ru: { home: "Главная", blog: "Блог", updated: "Актуально на", sources: "Источники", cta: "Получить консультацию" },
-  en: { home: "Home", blog: "Blog", updated: "Last updated", sources: "Sources", cta: "Get a consultation" },
-  zh: { home: "首页", blog: "博客", updated: "更新于", sources: "来源", cta: "获取咨询" },
+  ru: {
+    home: "Главная", blog: "Блог", updated: "Актуально на", sources: "Источники", cta: "Получить консультацию",
+    author: "Эксперты BizReg", role: "Регистрация бизнеса и бухгалтерия в Узбекистане",
+    reviewed: "Факты сверены по первоисточникам (lex.uz, soliq.uz)",
+    aboutTitle: "Кто мы и почему нам можно доверять",
+    about: "BizReg (ООО «Ustores», Ташкент) помогает иностранцам открывать компании в Узбекистане под ключ — регистрация, юридический адрес, счёт и бухгалтерия. Более 1000 регистраций за 15 лет работы.",
+    contact: "Консультация на русском и английском · +998 90 347 86 92",
+  },
+  en: {
+    home: "Home", blog: "Blog", updated: "Last updated", sources: "Sources", cta: "Get a consultation",
+    author: "BizReg Experts", role: "Company registration & accounting in Uzbekistan",
+    reviewed: "Facts verified against primary sources (lex.uz, soliq.uz)",
+    aboutTitle: "Who we are and why you can trust us",
+    about: "BizReg (Ustores LLC, Tashkent) helps foreigners set up companies in Uzbekistan turnkey — registration, legal address, bank account and accounting. 1000+ registrations over 15 years.",
+    contact: "Consultation in Russian and English · +998 90 347 86 92",
+  },
+  zh: {
+    home: "首页", blog: "博客", updated: "更新于", sources: "来源", cta: "获取咨询",
+    author: "BizReg 专家", role: "乌兹别克斯坦公司注册与会计",
+    reviewed: "事实依据官方来源核对 (lex.uz, soliq.uz)",
+    aboutTitle: "关于我们",
+    about: "BizReg（Ustores 有限公司，塔什干）帮助外国人在乌兹别克斯坦一站式注册公司——注册、法律地址、银行账户与会计。15 年内完成 1000+ 注册。",
+    contact: "提供俄语和英语咨询 · +998 90 347 86 92",
+  },
 };
 
 function labels(locale: string) {
@@ -66,7 +90,24 @@ export function ArticleLayout({ post, children }: { post: Post; children: ReactN
         </header>
       )}
 
-      <div className="mx-auto mt-10 max-w-3xl px-4">{children}</div>
+      {/* byline (E-E-A-T) */}
+      <div className="mx-auto mt-8 max-w-3xl px-4">
+        <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-4">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-500 text-sm font-bold text-white">
+            BR
+          </div>
+          <div className="min-w-0 text-sm">
+            <p className="font-semibold text-slate-900">{post.author ?? t.author}</p>
+            <p className="text-slate-500">{post.authorRole ?? t.role}</p>
+          </div>
+          <div className="ml-auto hidden text-right text-xs text-slate-400 sm:block">
+            <p>{t.updated} {date}</p>
+            <p className="mt-0.5 text-emerald-600">✓ {post.reviewedBy ?? t.reviewed}</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="mx-auto mt-8 max-w-3xl px-4">{children}</div>
 
       <div className="mx-auto max-w-3xl px-4">
         {/* источники */}
@@ -87,6 +128,18 @@ export function ArticleLayout({ post, children }: { post: Post; children: ReactN
             </ul>
           </section>
         )}
+
+        {/* блок доверия об авторе/компании (E-E-A-T) */}
+        <section className="mt-12 flex gap-4 rounded-2xl border border-slate-200 bg-white p-6">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-500 text-base font-bold text-white">
+            BR
+          </div>
+          <div>
+            <h2 className="font-semibold text-slate-900">{t.aboutTitle}</h2>
+            <p className="mt-2 text-sm leading-6 text-slate-600">{t.about}</p>
+            <p className="mt-3 text-sm font-medium text-brand-700">{t.contact}</p>
+          </div>
+        </section>
 
         {/* CTA на профильную money-страницу */}
         {post.ctaPath && (
