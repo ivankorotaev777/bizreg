@@ -76,7 +76,7 @@ export function ArticleLayout({ post, children }: { post: Post; children: ReactN
         if (style === "split" && post.image) {
           return (
             <header className="grid items-stretch lg:grid-cols-2">
-              <div className="bg-gradient-to-br from-[var(--a-600)] to-[var(--a-700)] px-6 py-12 pt-28 text-white sm:px-10 lg:py-16">
+              <div className="bg-gradient-to-br from-[var(--a-600)] to-[var(--a-700)] px-6 py-12 pt-36 text-white sm:px-10 lg:py-16">
                 <div className="mx-auto max-w-xl lg:ml-auto lg:mr-0">
                   {crumbW}
                   <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:leading-[1.15]">{post.title}</h1>
@@ -94,7 +94,7 @@ export function ArticleLayout({ post, children }: { post: Post; children: ReactN
         // АКЦЕНТ: цветная плашка-градиент без большого фото
         if (style === "accent" || !post.image) {
           return (
-            <header className="bg-gradient-to-br from-[var(--a-500)] to-[var(--a-700)] pt-28 pb-12 text-white">
+            <header className="bg-gradient-to-br from-[var(--a-500)] to-[var(--a-700)] pt-36 pb-12 text-white">
               <div className="mx-auto max-w-3xl px-4">
                 {crumbW}
                 <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:text-[2.9rem] lg:leading-[1.1]">{post.title}</h1>
@@ -110,7 +110,7 @@ export function ArticleLayout({ post, children }: { post: Post; children: ReactN
           <header className="relative flex min-h-[440px] items-end overflow-hidden sm:min-h-[520px]">
             <Image src={post.image!} alt={post.imageAlt ?? post.title} fill priority sizes="100vw" className="object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/55 to-slate-900/25" />
-            <div className="relative mx-auto w-full max-w-3xl px-4 pb-10 pt-28 text-white">
+            <div className="relative mx-auto w-full max-w-3xl px-4 pb-10 pt-36 text-white">
               {crumbW}
               <h1 className="text-3xl font-bold leading-tight drop-shadow-sm sm:text-4xl lg:text-[2.9rem] lg:leading-[1.1]">{post.title}</h1>
               <p className="mt-4 max-w-2xl text-lg text-white/85">{post.description}</p>

@@ -40,6 +40,22 @@ const KNOWN_SLUGS = new Set(Object.keys(bySlug));
 
 console.log(`\n🔍 Полный аудит блога: ${files.length} файлов, ${KNOWN_SLUGS.size} статей\n`);
 
+// --- инварианты шаблона: верхний блок виден под хедером + сплошная подложка меню ---
+const layoutPath = path.join(ROOT, "components", "blog", "ArticleLayout.tsx");
+if (fs.existsSync(layoutPath)) {
+  const lay = fs.readFileSync(layoutPath, "utf-8");
+  if (!/\bpt-(3[2-9]|4\d)\b/.test(lay)) {
+    err("ШАБЛОН", "мало верхнего отступа hero (нужно pt-32+) — верхний блок может перекрываться фикс-хедером");
+  }
+}
+const headerPath = path.join(ROOT, "components", "Header.tsx");
+if (fs.existsSync(headerPath)) {
+  const hdr = fs.readFileSync(headerPath, "utf-8");
+  if (/bg-white\/\d/.test(hdr)) {
+    err("ШАБЛОН", "подложка меню полупрозрачная (bg-white/NN) — лого плохо читается на тёмном hero; используй сплошной bg-white, как на главной");
+  }
+}
+
 function checkInternalLink(F, href) {
   if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) return;
   if (/^https?:\/\//.test(href)) return; // внешняя

@@ -100,4 +100,6 @@ canonical, hreflang (ru/en/x-default), OG/Twitter image, Article+Person+FAQ+Brea
 - [ ] ≥5 FAQ в теле, 2–3 inline-CTA
 - [ ] факты из Tier-1 + источники + даты
 - [ ] правильный автор по теме
+- [ ] **верхний блок (hero) виден полностью**, не перекрыт фикс-хедером (top-padding pt-32+)
+- [ ] **подложка меню сплошная** (как на главной), лого читается на любом hero
 - [ ] `npm run audit:blog` = 0 ERROR
