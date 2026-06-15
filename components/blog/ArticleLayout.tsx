@@ -76,7 +76,7 @@ export function ArticleLayout({ post, children }: { post: Post; children: ReactN
         if (style === "split" && post.image) {
           return (
             <header className="grid items-stretch lg:grid-cols-2">
-              <div className="bg-gradient-to-br from-[var(--a-600)] to-[var(--a-700)] px-6 py-12 pt-36 text-white sm:px-10 lg:py-16">
+              <div className="bg-gradient-to-br from-[var(--a-600)] to-[var(--a-700)] px-6 pb-12 pt-36 text-white sm:px-10 lg:pb-16">
                 <div className="mx-auto max-w-xl lg:ml-auto lg:mr-0">
                   {crumbW}
                   <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:leading-[1.15]">{post.title}</h1>

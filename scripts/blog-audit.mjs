@@ -47,6 +47,9 @@ if (fs.existsSync(layoutPath)) {
   if (!/\bpt-(3[2-9]|4\d)\b/.test(lay)) {
     err("ШАБЛОН", "мало верхнего отступа hero (нужно pt-32+) — верхний блок может перекрываться фикс-хедером");
   }
+  if (/\b(sm|md|lg|xl):py-\d/.test(lay)) {
+    err("ШАБЛОН", "в hero есть адаптивный py- (sm/lg:py-*), который перекрывает верхний pt-* и прячет заголовок под хедер — используй pb-* для низа");
+  }
 }
 const headerPath = path.join(ROOT, "components", "Header.tsx");
 if (fs.existsSync(headerPath)) {
