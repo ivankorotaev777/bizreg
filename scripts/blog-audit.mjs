@@ -54,6 +54,18 @@ function checkInternalLink(F, href) {
   err(F, `битая внутренняя ссылка (нет такого маршрута): ${href}`);
 }
 
+// --- кросс-проверка: одно фото не должно использоваться в разных статьях ---
+const imgUsage = {}; // image -> Set(slug)
+for (const p of posts) {
+  const imgs = new Set();
+  if (p.fm.image) imgs.add(p.fm.image);
+  for (const m of p.content.matchAll(/<Figure\b[^>]*\bsrc="([^"]+)"/g)) imgs.add(m[1]);
+  for (const img of imgs) (imgUsage[img] ??= new Set()).add(p.slug);
+}
+for (const [img, slugs] of Object.entries(imgUsage)) {
+  if (slugs.size > 1) err("ФОТО", `повтор изображения ${img} в разных статьях: ${[...slugs].join(", ")} — каждое фото уникально для своей статьи`);
+}
+
 // --- кросс-проверки: дубли title/description в пределах локали ---
 const seenTitle = {}, seenDesc = {};
 for (const p of posts) {
@@ -117,7 +129,7 @@ for (const { slug, locale, fm, content } of posts) {
   const h2 = (content.match(/^##\s+/gm) || []).length;
   if (h2 < 3) warn(F, `мало разделов h2 (${h2})`);
   const words = content.replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
-  if (words < 500) warn(F, `мало текста (~${words} слов, желательно 500+)`);
+  if (words < 1200) warn(F, `мало текста (~${words} слов, цель — лонгрид 1200+)`);
   if (!/<Lead>/.test(content)) warn(F, "нет вводного <Lead>");
   if (!/<(Faq|FaqList)\b/.test(content)) warn(F, "нет FAQ-блока в теле статьи");
 
