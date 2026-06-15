@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import type { Post } from "@/lib/blog";
+import { getAuthor, pick } from "@/lib/authors";
 
 type Labels = {
   home: string; blog: string; updated: string; sources: string; cta: string;
@@ -41,6 +42,10 @@ function labels(locale: string) {
 export function ArticleLayout({ post, children }: { post: Post; children: ReactNode }) {
   const t = labels(post.locale);
   const date = post.factsCheckedOn ?? post.dateModified ?? post.datePublished;
+  const author = getAuthor(post.author);
+  const authorName = pick(author.name, post.locale);
+  const authorRole = pick(author.role, post.locale);
+  const authorCreds = pick(author.credentials, post.locale);
 
   return (
     <article className="pb-16">
@@ -92,15 +97,20 @@ export function ArticleLayout({ post, children }: { post: Post; children: ReactN
 
       {/* byline (E-E-A-T) */}
       <div className="mx-auto mt-8 max-w-3xl px-4">
-        <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-4">
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-500 text-sm font-bold text-white">
-            BR
-          </div>
+        <div className="flex items-center gap-4 rounded-xl border border-slate-200 bg-white p-4">
+          <Image
+            src={author.photo}
+            alt={authorName}
+            width={56}
+            height={56}
+            className="h-14 w-14 shrink-0 rounded-full object-cover"
+          />
           <div className="min-w-0 text-sm">
-            <p className="font-semibold text-slate-900">{post.author ?? t.author}</p>
-            <p className="text-slate-500">{post.authorRole ?? t.role}</p>
+            <p className="font-semibold text-slate-900">{authorName}</p>
+            <p className="text-slate-500">{authorRole}</p>
+            <p className="mt-0.5 text-xs text-slate-400">{authorCreds}</p>
           </div>
-          <div className="ml-auto hidden text-right text-xs text-slate-400 sm:block">
+          <div className="ml-auto hidden shrink-0 text-right text-xs text-slate-400 sm:block">
             <p>{t.updated} {date}</p>
             <p className="mt-0.5 text-emerald-600">✓ {post.reviewedBy ?? t.reviewed}</p>
           </div>
@@ -130,15 +140,24 @@ export function ArticleLayout({ post, children }: { post: Post; children: ReactN
         )}
 
         {/* блок доверия об авторе/компании (E-E-A-T) */}
-        <section className="mt-12 flex gap-4 rounded-2xl border border-slate-200 bg-white p-6">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-500 text-base font-bold text-white">
-            BR
+        <section className="mt-12 rounded-2xl border border-slate-200 bg-white p-6">
+          <h2 className="mb-4 font-semibold text-slate-900">{t.aboutTitle}</h2>
+          <div className="flex gap-4">
+            <Image
+              src={author.photo}
+              alt={authorName}
+              width={72}
+              height={72}
+              className="h-[72px] w-[72px] shrink-0 rounded-full object-cover"
+            />
+            <div>
+              <p className="font-semibold text-slate-900">{authorName}</p>
+              <p className="text-sm text-brand-700">{authorRole}</p>
+              <p className="mt-1 text-sm leading-6 text-slate-600">{authorCreds}</p>
+            </div>
           </div>
-          <div>
-            <h2 className="font-semibold text-slate-900">{t.aboutTitle}</h2>
-            <p className="mt-2 text-sm leading-6 text-slate-600">{t.about}</p>
-            <p className="mt-3 text-sm font-medium text-brand-700">{t.contact}</p>
-          </div>
+          <p className="mt-4 text-sm leading-6 text-slate-600">{t.about}</p>
+          <p className="mt-3 text-sm font-medium text-brand-700">{t.contact}</p>
         </section>
 
         {/* CTA на профильную money-страницу */}

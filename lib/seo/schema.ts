@@ -62,6 +62,8 @@ export function articleSchema(opts: {
   datePublished: string;
   dateModified?: string;
   locale: string;
+  authorName?: string;
+  authorJobTitle?: string;
 }) {
   return {
     "@context": "https://schema.org",
@@ -72,7 +74,14 @@ export function articleSchema(opts: {
     mainEntityOfPage: opts.url,
     datePublished: opts.datePublished,
     dateModified: opts.dateModified ?? opts.datePublished,
-    author: { "@type": "Organization", name: SITE.name, url: SITE.url },
+    author: opts.authorName
+      ? {
+          "@type": "Person",
+          name: opts.authorName,
+          ...(opts.authorJobTitle ? { jobTitle: opts.authorJobTitle } : {}),
+          worksFor: { "@type": "Organization", name: SITE.name, url: SITE.url },
+        }
+      : { "@type": "Organization", name: SITE.name, url: SITE.url },
     publisher: {
       "@type": "Organization",
       name: SITE.name,

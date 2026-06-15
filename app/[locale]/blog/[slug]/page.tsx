@@ -10,6 +10,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { articleSchema, breadcrumbSchema, faqSchema } from "@/lib/seo/schema";
 import { localizedUrl } from "@/lib/seo/site";
+import { getAuthor, pick } from "@/lib/authors";
 
 export const dynamicParams = false;
 
@@ -44,6 +45,7 @@ export default async function BlogPostPage({
   if (!post) notFound();
 
   const url = localizedUrl(locale, `/blog/${slug}`);
+  const author = getAuthor(post.author);
   const schema: object[] = [
     articleSchema({
       headline: post.title,
@@ -52,6 +54,8 @@ export default async function BlogPostPage({
       datePublished: post.datePublished,
       dateModified: post.dateModified ?? post.factsCheckedOn,
       locale,
+      authorName: pick(author.name, locale),
+      authorJobTitle: pick(author.role, locale),
     }),
     breadcrumbSchema(
       [
