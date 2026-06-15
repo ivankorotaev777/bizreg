@@ -14,9 +14,11 @@
     "@radix-ui/react-slot": "^1.1.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "gray-matter": "^4.0.3",
     "lucide-react": "^0.469.0",
     "next": "14.2.18",
     "next-intl": "^4.8.3",
+    "next-mdx-remote": "^6.0.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "tailwind-merge": "^2.6.0"
