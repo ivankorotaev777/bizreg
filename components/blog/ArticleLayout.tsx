@@ -18,7 +18,7 @@ export function ArticleLayout({ post, children }: { post: Post; children: ReactN
   const date = post.factsCheckedOn ?? post.dateModified ?? post.datePublished;
 
   return (
-    <article className="mx-auto max-w-3xl px-4 py-10 sm:py-14">
+    <article className="mx-auto max-w-3xl px-4 pt-28 pb-16">
       {/* breadcrumb */}
       <nav className="mb-6 text-sm text-slate-500">
         <Link href="/" className="hover:text-slate-700">{t.home}</Link>

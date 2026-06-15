@@ -40,27 +40,38 @@ export default async function BlogIndexPage({
   const posts = getAllPostMeta(locale);
 
   return (
-    <main className="mx-auto max-w-3xl px-4 py-10 sm:py-14">
-      <h1 className="text-3xl font-bold text-slate-900 sm:text-4xl">{tt.title}</h1>
-      <p className="mt-3 text-lg text-slate-600">{tt.desc}</p>
+    <main className="pt-20 pb-16">
+      <section className="bg-gradient-to-b from-brand-50 to-background py-12 sm:py-16">
+        <div className="container mx-auto max-w-3xl px-4 text-center">
+          <h1 className="text-3xl font-semibold text-slate-900 sm:text-4xl lg:text-5xl">
+            {tt.title}
+          </h1>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600">{tt.desc}</p>
+        </div>
+      </section>
 
-      {posts.length === 0 ? (
-        <p className="mt-10 text-slate-500">{tt.empty}</p>
-      ) : (
-        <ul className="mt-10 space-y-6">
-          {posts.map((p) => (
-            <li key={p.slug} className="rounded-xl border border-slate-200 p-5 transition hover:border-slate-300 hover:shadow-sm">
-              <Link href={`/blog/${p.slug}`} className="block">
-                <h2 className="text-xl font-semibold text-slate-900">{p.title}</h2>
-                <p className="mt-2 text-slate-600">{p.description}</p>
-                <span className="mt-3 inline-block text-sm font-medium text-blue-600">
-                  {locale === "ru" ? "Читать →" : locale === "zh" ? "阅读 →" : "Read →"}
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
+      <div className="container mx-auto max-w-3xl px-4">
+        {posts.length === 0 ? (
+          <p className="mt-10 text-slate-500">{tt.empty}</p>
+        ) : (
+          <ul className="-mt-6 space-y-6">
+            {posts.map((p) => (
+              <li
+                key={p.slug}
+                className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-brand-200 hover:shadow-md"
+              >
+                <Link href={`/blog/${p.slug}`} className="block">
+                  <h2 className="text-xl font-semibold text-slate-900">{p.title}</h2>
+                  <p className="mt-2 text-slate-600">{p.description}</p>
+                  <span className="mt-4 inline-block text-sm font-medium text-brand-600">
+                    {locale === "ru" ? "Читать →" : locale === "zh" ? "阅读 →" : "Read →"}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </main>
   );
 }
