@@ -18,55 +18,60 @@ export function ArticleLayout({ post, children }: { post: Post; children: ReactN
   const date = post.factsCheckedOn ?? post.dateModified ?? post.datePublished;
 
   return (
-    <article className="mx-auto max-w-3xl px-4 pt-28 pb-16">
-      {/* breadcrumb */}
-      <nav className="mb-6 text-sm text-slate-500">
-        <Link href="/" className="hover:text-slate-700">{t.home}</Link>
-        <span className="mx-2">/</span>
-        <Link href="/blog" className="hover:text-slate-700">{t.blog}</Link>
-      </nav>
-
-      <h1 className="text-3xl font-bold leading-tight text-slate-900 sm:text-4xl">
-        {post.title}
-      </h1>
-      <p className="mt-3 text-lg text-slate-600">{post.description}</p>
-      <p className="mt-4 text-sm text-slate-400">
-        {t.updated} {date}
-      </p>
-
-      <div className="mt-8">{children}</div>
-
-      {/* источники */}
-      {post.sources && post.sources.length > 0 && (
-        <section className="mt-12 rounded-xl border border-slate-200 bg-slate-50 p-5">
-          <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-500">
-            {t.sources}
-          </h2>
-          <ul className="space-y-1 text-sm">
-            {post.sources.map((s) => (
-              <li key={s.url}>
-                <a href={s.url} target="_blank" rel="noopener noreferrer"
-                   className="text-blue-600 underline underline-offset-2">
-                  {s.title}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      {/* CTA на профильную money-страницу */}
-      {post.ctaPath && (
-        <div className="mt-12 rounded-2xl bg-blue-600 p-6 text-center text-white sm:p-8">
-          <p className="text-lg font-semibold">{post.ctaLabel ?? t.cta}</p>
-          <Link
-            href={post.ctaPath}
-            className="mt-4 inline-block rounded-lg bg-white px-6 py-3 font-semibold text-blue-700 transition hover:bg-blue-50"
-          >
-            {t.cta} →
-          </Link>
+    <article className="pb-16">
+      {/* hero */}
+      <header className="bg-gradient-to-b from-brand-50 to-background pt-24 pb-10">
+        <div className="mx-auto max-w-3xl px-4">
+          <nav className="mb-5 text-sm text-slate-500">
+            <Link href="/" className="hover:text-brand-600">{t.home}</Link>
+            <span className="mx-2">/</span>
+            <Link href="/blog" className="hover:text-brand-600">{t.blog}</Link>
+          </nav>
+          <h1 className="text-3xl font-bold leading-tight text-slate-900 sm:text-4xl lg:text-[2.75rem] lg:leading-tight">
+            {post.title}
+          </h1>
+          <p className="mt-4 text-lg text-slate-600">{post.description}</p>
+          <p className="mt-5 inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1 text-sm text-slate-500 ring-1 ring-slate-200">
+            {t.updated} {date}
+          </p>
         </div>
-      )}
+      </header>
+
+      <div className="mx-auto mt-8 max-w-3xl px-4">{children}</div>
+
+      <div className="mx-auto max-w-3xl px-4">
+        {/* источники */}
+        {post.sources && post.sources.length > 0 && (
+          <section className="mt-12 rounded-xl border border-slate-200 bg-slate-50 p-5">
+            <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-500">
+              {t.sources}
+            </h2>
+            <ul className="space-y-1 text-sm">
+              {post.sources.map((s) => (
+                <li key={s.url}>
+                  <a href={s.url} target="_blank" rel="noopener noreferrer"
+                     className="text-brand-600 underline underline-offset-2">
+                    {s.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {/* CTA на профильную money-страницу */}
+        {post.ctaPath && (
+          <div className="mt-12 rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 p-8 text-center text-white">
+            <p className="text-xl font-semibold">{post.ctaLabel ?? t.cta}</p>
+            <Link
+              href={post.ctaPath}
+              className="mt-4 inline-block rounded-lg bg-white px-6 py-3 font-semibold text-brand-700 transition hover:bg-brand-50"
+            >
+              {t.cta} →
+            </Link>
+          </div>
+        )}
+      </div>
     </article>
   );
 }

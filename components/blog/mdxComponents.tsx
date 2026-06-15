@@ -1,7 +1,15 @@
 // Стилизация MDX-элементов под типографику сайта (без @tailwindcss/typography).
 import type { ReactNode } from "react";
+import {
+  Lead, Callout, StatGrid, Stat, Steps, Step, CompareGrid, CompareCard,
+  KeyTakeaways, ProsCons, Pros, Cons, Figure, CtaBox, Faq,
+} from "./blocks";
 
 export const mdxComponents = {
+  // визуальные блоки, доступные в MDX
+  Lead, Callout, StatGrid, Stat, Steps, Step, CompareGrid, CompareCard,
+  KeyTakeaways, ProsCons, Pros, Cons, Figure, CtaBox, Faq,
+
   h2: (p: { children?: ReactNode }) => (
     <h2 className="mt-10 mb-4 text-2xl font-semibold text-slate-900 scroll-mt-24" {...p} />
   ),
