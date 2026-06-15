@@ -2,6 +2,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
+import GithubSlugger from "github-slugger";
 
 const BLOG_DIR = path.join(process.cwd(), "content", "blog");
 
@@ -81,4 +82,30 @@ export function getAllPostParams(): { slug: string; locale: string }[] {
 /** Локали, в которых существует статья (для hreflang). */
 export function getPostLocales(slug: string): string[] {
   return getAllPostParams().filter((p) => p.slug === slug).map((p) => p.locale);
+}
+
+export interface TocItem { id: string; text: string; }
+
+/** Оглавление по h2 в MDX (id совпадают с rehype-slug). */
+export function getToc(content: string): TocItem[] {
+  const slugger = new GithubSlugger();
+  const items: TocItem[] = [];
+  let inFence = false;
+  for (const line of content.split("\n")) {
+    if (line.trim().startsWith("```")) { inFence = !inFence; continue; }
+    if (inFence) continue;
+    const m = /^##\s+(.+?)\s*$/.exec(line);
+    if (m) {
+      const text = m[1].replace(/[*_`]/g, "").trim();
+      items.push({ id: slugger.slug(text), text });
+    }
+  }
+  return items;
+}
+
+/** Примерное время чтения (мин). */
+export function readingTime(content: string): number {
+  const text = content.replace(/<[^>]+>/g, " ").replace(/[#>*_`|[\]()-]/g, " ");
+  const words = text.split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 180));
 }

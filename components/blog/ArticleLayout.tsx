@@ -3,10 +3,12 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import type { Post } from "@/lib/blog";
 import { getAuthor, pick } from "@/lib/authors";
+import { getToc, readingTime } from "@/lib/blog";
 
 type Labels = {
   home: string; blog: string; updated: string; sources: string; cta: string;
   author: string; role: string; reviewed: string; aboutTitle: string; about: string; contact: string;
+  toc: string; read: string; allPosts: string;
 };
 const L: Record<string, Labels> = {
   ru: {
@@ -16,6 +18,7 @@ const L: Record<string, Labels> = {
     aboutTitle: "Кто мы и почему нам можно доверять",
     about: "BizReg (ООО «Ustores», Ташкент) помогает иностранцам открывать компании в Узбекистане под ключ — регистрация, юридический адрес, счёт и бухгалтерия. Более 1000 регистраций за 15 лет работы.",
     contact: "Консультация на русском и английском · +998 90 347 86 92",
+    toc: "Содержание", read: "мин чтения", allPosts: "Все статьи",
   },
   en: {
     home: "Home", blog: "Blog", updated: "Last updated", sources: "Sources", cta: "Get a consultation",
@@ -24,6 +27,7 @@ const L: Record<string, Labels> = {
     aboutTitle: "Who we are and why you can trust us",
     about: "BizReg (Ustores LLC, Tashkent) helps foreigners set up companies in Uzbekistan turnkey — registration, legal address, bank account and accounting. 1000+ registrations over 15 years.",
     contact: "Consultation in Russian and English · +998 90 347 86 92",
+    toc: "Contents", read: "min read", allPosts: "All articles",
   },
   zh: {
     home: "首页", blog: "博客", updated: "更新于", sources: "来源", cta: "获取咨询",
@@ -32,6 +36,7 @@ const L: Record<string, Labels> = {
     aboutTitle: "关于我们",
     about: "BizReg（Ustores 有限公司，塔什干）帮助外国人在乌兹别克斯坦一站式注册公司——注册、法律地址、银行账户与会计。15 年内完成 1000+ 注册。",
     contact: "提供俄语和英语咨询 · +998 90 347 86 92",
+    toc: "目录", read: "分钟阅读", allPosts: "全部文章",
   },
 };
 
@@ -46,6 +51,8 @@ export function ArticleLayout({ post, children }: { post: Post; children: ReactN
   const authorName = pick(author.name, post.locale);
   const authorRole = pick(author.role, post.locale);
   const authorCreds = pick(author.credentials, post.locale);
+  const toc = getToc(post.content);
+  const rt = readingTime(post.content);
 
   return (
     <article className="pb-16">
@@ -111,11 +118,33 @@ export function ArticleLayout({ post, children }: { post: Post; children: ReactN
             <p className="mt-0.5 text-xs text-slate-400">{authorCreds}</p>
           </div>
           <div className="ml-auto hidden shrink-0 text-right text-xs text-slate-400 sm:block">
-            <p>{t.updated} {date}</p>
+            <p>{t.updated} {date} · {rt} {t.read}</p>
             <p className="mt-0.5 text-emerald-600">✓ {post.reviewedBy ?? t.reviewed}</p>
           </div>
         </div>
+        {/* мобильная строка доверия */}
+        <p className="mt-2 text-xs text-slate-400 sm:hidden">
+          {t.updated} {date} · {rt} {t.read} · <span className="text-emerald-600">✓ {post.reviewedBy ?? t.reviewed}</span>
+        </p>
       </div>
+
+      {/* оглавление (TOC) */}
+      {toc.length > 2 && (
+        <nav className="mx-auto mt-6 max-w-3xl px-4">
+          <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-5">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-500">{t.toc}</p>
+            <ol className="space-y-2 text-sm">
+              {toc.map((item, i) => (
+                <li key={item.id}>
+                  <a href={`#${item.id}`} className="flex gap-2 text-slate-700 hover:text-brand-600">
+                    <span className="text-brand-400">{i + 1}.</span> {item.text}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </nav>
+      )}
 
       <div className="mx-auto mt-8 max-w-3xl px-4">{children}</div>
 
@@ -172,6 +201,12 @@ export function ArticleLayout({ post, children }: { post: Post; children: ReactN
             </Link>
           </div>
         )}
+
+        <div className="mt-10 text-center">
+          <Link href="/blog" className="text-sm font-medium text-brand-600 hover:text-brand-700">
+            ← {t.allPosts}
+          </Link>
+        </div>
       </div>
     </article>
   );

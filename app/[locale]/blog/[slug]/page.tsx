@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
+import rehypeSlug from "rehype-slug";
 import { getPost, getAllPostParams, getPostLocales } from "@/lib/blog";
 import { ArticleLayout } from "@/components/blog/ArticleLayout";
 import { mdxComponents } from "@/components/blog/mdxComponents";
@@ -32,6 +33,7 @@ export async function generateMetadata({
     title: `${post.title} | BizReg`,
     description: post.description,
     type: "article",
+    image: post.image,
   });
 }
 
@@ -75,7 +77,7 @@ export default async function BlogPostPage({
         <MDXRemote
           source={post.content}
           components={mdxComponents}
-          options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+          options={{ mdxOptions: { remarkPlugins: [remarkGfm], rehypePlugins: [rehypeSlug] } }}
         />
       </ArticleLayout>
     </>
