@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import remarkGfm from "remark-gfm";
 import { getPost, getAllPostParams, getPostLocales } from "@/lib/blog";
 import { ArticleLayout } from "@/components/blog/ArticleLayout";
 import { mdxComponents } from "@/components/blog/mdxComponents";
@@ -67,7 +68,11 @@ export default async function BlogPostPage({
     <>
       <JsonLd data={schema} />
       <ArticleLayout post={post}>
-        <MDXRemote source={post.content} components={mdxComponents} />
+        <MDXRemote
+          source={post.content}
+          components={mdxComponents}
+          options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+        />
       </ArticleLayout>
     </>
   );
