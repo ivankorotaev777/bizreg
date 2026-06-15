@@ -1,7 +1,8 @@
 // Базовая SEO-конфигурация сайта bizreg.uz
 
 export const SITE = {
-  url: "https://bizreg.uz",
+  // Канонический хост — с www (apex редиректит на www через 307).
+  url: "https://www.bizreg.uz",
   name: "BizReg",
   legalName: 'ООО "Ustores"',
   phone: "+998903478692",
