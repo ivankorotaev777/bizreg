@@ -7,6 +7,9 @@ import Script from "next/script";
 import "../globals.css";
 import { Header } from "@/components/Header";
 import { locales, type Locale } from "@/i18n";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { organizationSchema, localBusinessSchema } from "@/lib/seo/schema";
+import { SITE } from "@/lib/seo/site";
 
 const onest = Onest({
   variable: "--font-geist-sans",
@@ -28,6 +31,7 @@ export async function generateMetadata({
     : "Помощь в регистрации ООО и ИП в Ташкенте, постановка на учёт, бухгалтерское сопровождение. Быстро, прозрачно, под ключ.";
 
   return {
+    metadataBase: new URL(SITE.url),
     title,
     description,
     keywords:
@@ -84,6 +88,7 @@ export default async function LocaleLayout({
           gtag('config', 'G-MDP27W7853');
         `}
       </Script>
+      <JsonLd data={[organizationSchema(), localBusinessSchema()]} />
       <div className={`${onest.variable} antialiased`}>
         <NextIntlClientProvider messages={messages}>
           <Header />
