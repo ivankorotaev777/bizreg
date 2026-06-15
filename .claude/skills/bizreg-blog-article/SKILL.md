@@ -1,0 +1,84 @@
+---
+name: bizreg-blog-article
+description: Use when creating or editing a blog article for bizreg.uz (files in content/blog/*.mdx). Enforces the full standard: bilingual MDX (ru + en), named expert author chosen by topic, authentic photos, rich infographics, lots of text, many FAQs, inline CTAs throughout, Tier-1-sourced facts, full E-E-A-T, image card on /blog — and crucially a UNIQUE, visually DIFFERENT design for every article (never the same skeleton twice). Always finish by passing `npm run audit:blog`.
+---
+
+# BizReg — стандарт блог-статьи
+
+Любая статья в `content/blog/` должна соответствовать этому стандарту. Цель: дорогой, доверительный, уникальный лонгрид под YMYL-нишу (юр/налоги/бизнес в Узбекистане). **Каждая статья — уникальна по контенту И по дизайну.**
+
+## 0. Главное правило — УНИКАЛЬНОСТЬ И РАЗНЫЙ ДИЗАЙН
+- **Никаких клонов.** Нельзя брать предыдущую статью и менять слова — это убивает SEO и доверие.
+- **Каждая статья выглядит по-разному:** меняй набор и ПОРЯДОК блоков, типы инфографики, структуру разделов, hero-фото, акценты.
+- **Минимум один уникальный визуальный элемент на статью** — своя инфографика/схема (можно отдельный SVG-компонент под тему), нестандартная компоновка раздела, своя таблица-сравнение и т.п.
+- Контент уникален по сути: разный угол, своя глубина, свои примеры/данные под тему.
+- Перед написанием — посмотри уже существующие статьи и сделай НЕ так, как они.
+
+## 1. Файлы и локали
+- `content/blog/<slug>.ru.mdx` + `content/blog/<slug>.en.mdx` (обе обязательны; `zh` — по желанию).
+- `slug` — латиница, по ключевому запросу (см. `BezReg_SEO/01_keyword_research/keyword_core_clean.csv`).
+
+## 2. Frontmatter (обязательные поля)
+```yaml
+title:           # ≤65 симв., с ключом
+description:     # 50–160 симв.
+image:          # /blog/<hero>.jpg — фото-герой (он же OG)
+imageAlt:       # осмысленный alt
+datePublished:  # YYYY-MM-DD
+dateModified:   # YYYY-MM-DD
+factsCheckedOn: # дата сверки фактов
+cluster:        # метка кластера из keyword research
+author:         # ivan | yaroslav | karima (по теме, см. ниже)
+ctaPath:        # маршрут на профильную страницу (пока "/", позже — money-страница)
+ctaLabel:       # текст CTA
+faq:            # ≥3 пары q/a (идут и в FAQPage schema)
+sources:        # ≥1, минимум один официальный (lex.uz / soliq.uz / it-park.uz)
+```
+
+## 3. Автор по теме (E-E-A-T, реальные партнёры)
+- **ivan** (Иван Каратаев, управляющий партнёр) → регистрация компании, бизнес, релокация, выход на рынок.
+- **yaroslav** (Ярослав Колесов, учёт и налоги) → налоги, НДС, бухгалтерия, отчётность.
+- **karima** (Карима Тазиева, недвижимость) → юр.адрес, офис, коворкинг, недвижимость.
+Подпись автора, регалии, фото, блок «кто мы», Person-schema — рендерятся шаблоном `ArticleLayout` автоматически. Не выдумывай других авторов.
+
+## 4. Точность фактов (YMYL)
+- Используй скил **`uz-legal-sourcing`**: все цифры/ставки/сроки — из Tier-1 (lex.uz, soliq.uz, it-park.uz, cbu.uz) + дата.
+- **Никогда не выдумывай ставки/числа.** Нет подтверждения — не пиши цифру, дай ссылку на первоисточник.
+
+## 5. Визуальные блоки (доступны в MDX)
+`Lead`, `Callout` (info/tip/warning/note), `StatGrid`+`Stat`, `Steps`+`Step`, `CompareGrid`+`CompareCard`, `KeyTakeaways`, `ProsCons`+`Pros`+`Cons`, `IconGrid`+`Feature` (icon: building/doc/bank/wallet/shield/rocket/globe/scale), `Faq`, `Figure`, `InlineCta`, `CtaBox`, `HeroArt`.
+- Markdown-таблицы работают (remark-gfm).
+- Для уникальности можно добавлять **свои** компоненты/SVG в `components/blog/` под конкретную статью.
+
+## 6. Обязательные требования к контенту
+- **Фото-герой** (`image`) + **минимум 2–3 фото в тексте** (`<Figure>`).
+  - Фото — **аутентичные**: восточноевропейская/центральноазиатская внешность, реальная офисная среда (не «интернационал-сток»). Источники: фото клиента → AI по согласованию → бесплатный Pexels/Unsplash (`images.pexels.com`/`images.unsplash.com`, НЕ `plus.unsplash.com`). **Скачивай в `public/blog/` и СНАЧАЛА посмотри глазами** (Read), потом ставь.
+- **Много текста** — лонгрид (≥800 слов), реальная польза, без воды.
+- **Инфографика** — шаги/стат-карточки/иконки/сравнения + ≥1 уникальный визуал под тему.
+- **Много FAQ** — ≥5 `<Faq>` в теле (и ≥3 в frontmatter для schema).
+- **Inline-CTA по тексту** — 2–3 `<InlineCta>` в разных местах (не только `<CtaBox>` внизу).
+- `<Lead>` в начале.
+
+## 7. /blog индекс
+Обложка карточки берётся из `image` автоматически — просто задай качественный hero.
+
+## 8. Тех-SEO (даёт шаблон, проверь что не сломал)
+canonical, hreflang (ru/en/x-default), OG/Twitter image, Article+Person+FAQ+Breadcrumb schema, TOC по h2, время чтения, sitemap+lastmod, IndexNow. Один `<h1>` (заголовок в hero) — в тексте только `##`/`###`.
+
+## 9. Рабочий процесс
+1. Выбрать тему/slug по keyword research; назначить автора по теме.
+2. Собрать факты через `uz-legal-sourcing` (Tier-1 + даты).
+3. Подобрать и **посмотреть** фото (hero + 2–3), скачать в `public/blog/`.
+4. Написать `ru` и `en` MDX по стандарту — **с уникальным набором/порядком блоков и своим визуалом** (не повторять предыдущие статьи).
+5. `npm run build` — убедиться, что собирается.
+6. `npm run audit:blog` — **должно быть 0 ERROR** (хук всё равно проверит на push).
+7. Коммит и push (pre-push аудит запустится). По желанию `npm run indexnow`.
+
+## 10. Definition of Done
+- [ ] ru + en версии, уникальный дизайн (не как у других статей)
+- [ ] hero + ≥2 фото (аутентичные, просмотрены)
+- [ ] ≥1 уникальная инфографика/визуал
+- [ ] ≥5 FAQ в теле, 2–3 inline-CTA
+- [ ] факты из Tier-1 + источники + даты
+- [ ] правильный автор по теме
+- [ ] `npm run audit:blog` = 0 ERROR
