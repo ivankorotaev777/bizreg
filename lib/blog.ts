@@ -8,6 +8,8 @@ const BLOG_DIR = path.join(process.cwd(), "content", "blog");
 export interface PostFrontmatter {
   title: string;
   description: string;
+  image?: string;      // путь к hero-фото (в public), напр. /blog/uzbekistan-hero.jpg
+  imageAlt?: string;
   datePublished: string; // YYYY-MM-DD
   dateModified?: string;
   cluster?: string;
