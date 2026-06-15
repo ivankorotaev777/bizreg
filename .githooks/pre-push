@@ -1,0 +1,11 @@
+#!/bin/sh
+# Pre-push gate: аудит блог-страниц перед деплоем (push -> Vercel).
+# Блокирует push при ERROR. Пропустить (аварийно): git push --no-verify
+echo "▶ Pre-push: аудит блога…"
+node scripts/blog-audit.mjs
+status=$?
+if [ $status -ne 0 ]; then
+  echo "✗ Push остановлен аудитом блога. Исправь ошибки или используй 'git push --no-verify' для обхода."
+  exit 1
+fi
+exit 0
