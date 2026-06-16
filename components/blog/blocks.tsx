@@ -411,6 +411,148 @@ export function CountryRow({
   );
 }
 
+/* Уникальный визуал: трёхколоночное сравнение «коворкинг vs отдельный офис vs юр.адрес-услуга».
+   SpaceCompare содержит заголовок-шапку и строки SpaceRow (критерий → коворкинг → офис → услуга). */
+export function SpaceCompare({ children, lang = "ru" }: { children?: ReactNode; lang?: string }) {
+  const en = lang === "en";
+  return (
+    <div className="my-8 overflow-hidden rounded-2xl border border-[var(--a-200)] bg-white shadow-sm">
+      <div className="hidden gap-4 bg-gradient-to-r from-[var(--a-500)] to-[var(--a-700)] px-5 py-3 text-xs font-semibold uppercase tracking-wide text-white sm:grid sm:grid-cols-[1.2fr_1fr_1fr_1fr]">
+        <span>{en ? "Criterion" : "Критерий"}</span>
+        <span>{en ? "Coworking" : "Коворкинг"}</span>
+        <span>{en ? "Private office" : "Отдельный офис"}</span>
+        <span>{en ? "Address service" : "Юр.адрес-услуга"}</span>
+      </div>
+      <div className="divide-y divide-slate-100">{children}</div>
+    </div>
+  );
+}
+export function SpaceRow({
+  criterion, cowork, office, service, highlight,
+}: { criterion: string; cowork: string; office: string; service: string; highlight?: boolean }) {
+  return (
+    <div className={`grid gap-2 px-5 py-4 sm:grid-cols-[1.2fr_1fr_1fr_1fr] sm:gap-4 sm:items-start ${highlight ? "bg-[var(--a-50)]/60" : ""}`}>
+      <p className="font-semibold text-slate-900">{criterion}</p>
+      <p className="text-sm leading-6 text-slate-600"><span className="font-medium text-slate-500 sm:hidden">Коворкинг: </span>{cowork}</p>
+      <p className="text-sm leading-6 text-slate-600"><span className="font-medium text-slate-500 sm:hidden">Офис: </span>{office}</p>
+      <p className="text-sm leading-6 text-slate-600"><span className="font-medium text-slate-500 sm:hidden">Услуга: </span>{service}</p>
+    </div>
+  );
+}
+
+/* Уникальный визуал: две колонки сигналов «массовый» адрес vs надёжный адрес.
+   SignalGrid содержит SignalCol (kind: bad|good), внутри — SignalItem. */
+export function SignalGrid({ children }: { children?: ReactNode }) {
+  return <div className="my-8 grid gap-4 sm:grid-cols-2">{children}</div>;
+}
+export function SignalCol({
+  title, kind = "good", children,
+}: { title: string; kind?: "bad" | "good"; children?: ReactNode }) {
+  const bad = kind === "bad";
+  return (
+    <div className={bad
+      ? "rounded-2xl border border-rose-200 bg-rose-50/40 p-5"
+      : "rounded-2xl border border-[var(--a-300)] bg-[var(--a-50)] p-5 ring-1 ring-[var(--a-200)]"}>
+      <p className={`mb-3 flex items-center gap-2 font-semibold ${bad ? "text-rose-800" : "text-[var(--a-800)]"}`}>
+        {bad ? <AlertTriangle className="h-5 w-5 text-rose-500" /> : <ShieldCheck className="h-5 w-5 text-[var(--a-600)]" />}
+        {title}
+      </p>
+      <ul className="space-y-2.5">{children}</ul>
+    </div>
+  );
+}
+export function SignalItem({ kind = "good", children }: { kind?: "bad" | "good"; children?: ReactNode }) {
+  const bad = kind === "bad";
+  return (
+    <li className="flex items-start gap-2.5 text-sm leading-6 text-slate-700">
+      {bad
+        ? <XCircle className="mt-0.5 h-4 w-4 shrink-0 text-rose-400" />
+        : <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[var(--a-600)]" />}
+      <span>{children}</span>
+    </li>
+  );
+}
+
+/* Уникальный визуал: таблица рисков «массового» адреса (риск → на что влияет → последствие) */
+export function RiskTable({ children, lang = "ru" }: { children?: ReactNode; lang?: string }) {
+  const en = lang === "en";
+  return (
+    <div className="my-8 overflow-hidden rounded-2xl border border-[var(--a-200)] bg-white shadow-sm">
+      <div className="hidden gap-4 bg-[var(--a-50)] px-5 py-3 text-xs font-semibold uppercase tracking-wide text-[var(--a-700)] sm:grid sm:grid-cols-[1.1fr_1fr_1.6fr]">
+        <span>{en ? "Risk" : "Риск"}</span>
+        <span>{en ? "Where it hits" : "На что влияет"}</span>
+        <span>{en ? "Consequence" : "Последствие"}</span>
+      </div>
+      <div className="divide-y divide-slate-100">{children}</div>
+    </div>
+  );
+}
+export function RiskRow({
+  risk, area, result, highlight,
+}: { risk: string; area: string; result: string; highlight?: boolean }) {
+  return (
+    <div className={`grid gap-2 px-5 py-4 sm:grid-cols-[1.1fr_1fr_1.6fr] sm:gap-4 sm:items-start ${highlight ? "bg-[var(--a-50)]/60" : ""}`}>
+      <p className="flex items-start gap-2 font-semibold text-slate-900">
+        <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-amber-500" />
+        <span>{risk}</span>
+      </p>
+      <p className="text-sm leading-6 text-slate-600"><span className="font-medium text-slate-500 sm:hidden">→ </span>{area}</p>
+      <p className="text-sm leading-6 text-slate-600">{result}</p>
+    </div>
+  );
+}
+
+/* Уникальный визуал: сравнение требований к адресу — для регистрации vs для НДС */
+export function AddressMatrix({ lang = "ru" }: { lang?: string }) {
+  const en = lang === "en";
+  const head = en
+    ? { crit: "Requirement", reg: "For registration", vat: "For VAT" }
+    : { crit: "Требование к адресу", reg: "Для регистрации ООО", vat: "Для учёта по НДС" };
+  const rows = en
+    ? [
+        { c: "Address is mandatory", r: "Yes — a required detail", v: "Yes — re-checked on VAT registration", hi: false },
+        { c: "Proof of right to use", r: "Letter of guarantee / lease", v: "Same, but verified more closely", hi: false },
+        { c: "Real premises", r: "Expected", v: "Critical — tied to invoices", hi: true },
+        { c: "Mass address tolerance", r: "Often passes unnoticed", v: "High risk for deductions", hi: true },
+        { c: "Registry vs reality match", r: "Should match", v: "Must match — affects invoices", hi: false },
+        { c: "Depth of tax review", r: "Light", v: "In-depth", hi: true },
+      ]
+    : [
+        { c: "Адрес обязателен", r: "Да — обязательный реквизит", v: "Да — перепроверка при учёте по НДС", hi: false },
+        { c: "Подтверждение права", r: "Гарантийное письмо / аренда", v: "То же, но проверяют пристальнее", hi: false },
+        { c: "Реальность помещения", r: "Ожидается", v: "Критично — связано со счёт-фактурами", hi: true },
+        { c: "Терпимость к массовости", r: "Часто проходит незаметно", v: "Высокий риск по вычетам", hi: true },
+        { c: "Стыковка реестра и факта", r: "Желательна", v: "Обязательна — влияет на вычеты", hi: false },
+        { c: "Глубина проверки налоговой", r: "Мягкая", v: "Углублённая", hi: true },
+      ];
+  return (
+    <div className="my-8 overflow-hidden rounded-2xl border border-[var(--a-200)] bg-white shadow-sm">
+      <div className="hidden gap-4 bg-[var(--a-50)] px-5 py-3 text-xs font-semibold uppercase tracking-wide text-[var(--a-700)] sm:grid sm:grid-cols-[1.2fr_1.2fr_1.4fr]">
+        <span>{head.crit}</span>
+        <span>{head.reg}</span>
+        <span>{head.vat}</span>
+      </div>
+      <div className="divide-y divide-slate-100">
+        {rows.map((row, i) => (
+          <div
+            key={i}
+            className={`grid gap-2 px-5 py-4 sm:grid-cols-[1.2fr_1.2fr_1.4fr] sm:gap-4 sm:items-start ${row.hi ? "bg-[var(--a-50)]/60" : ""}`}
+          >
+            <p className="font-semibold text-slate-900">{row.c}</p>
+            <p className="text-sm leading-6 text-slate-600">
+              <span className="font-medium text-slate-500 sm:hidden">{head.reg}: </span>{row.r}
+            </p>
+            <p className="text-sm leading-6 text-slate-700">
+              <span className="font-medium text-slate-500 sm:hidden">{head.vat}: </span>
+              <span className={row.hi ? "font-medium text-[var(--a-700)]" : ""}>{row.v}</span>
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* FAQ-элемент (без JS, на <details>) */
 export function Faq({ q, children }: { q: string; children?: ReactNode }) {
   return (

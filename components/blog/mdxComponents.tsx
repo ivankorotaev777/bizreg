@@ -6,18 +6,28 @@ import {
   IconGrid, Feature, RateTable, RateRow, TierTable, TierCol, TierItem,
   ChangeMatrix, ChangeRow, DocChecklist, DocRow,
   EntryTable, EntryRow, PaymentFlow, OpsTable, OpsRow, CountryMatrix, CountryRow,
+  SpaceCompare, SpaceRow,
+  SignalGrid, SignalCol, SignalItem, RiskTable, RiskRow,
+  AddressMatrix,
 } from "./blocks";
 import { HeroArt } from "./HeroArt";
 import { OkedCodeTree } from "./OkedCodeTree";
 import { PayrollStack } from "./PayrollStack";
+import { BenefitHorizon } from "./BenefitHorizon";
+import { LaunchRoadmap } from "./LaunchRoadmap";
+import { ActivityCatalog, EligibilityTable, EligibilityRow } from "./ActivityCatalog";
 
 export const mdxComponents = {
   // визуальные блоки, доступные в MDX
   Lead, Callout, StatGrid, Stat, Steps, Step, CompareGrid, CompareCard,
   KeyTakeaways, ProsCons, Pros, Cons, Figure, CtaBox, Faq, InlineCta,
-  IconGrid, Feature, HeroArt, OkedCodeTree, PayrollStack, RateTable, RateRow,
+  IconGrid, Feature, HeroArt, OkedCodeTree, PayrollStack, BenefitHorizon, LaunchRoadmap, RateTable, RateRow,
   TierTable, TierCol, TierItem, ChangeMatrix, ChangeRow, DocChecklist, DocRow,
   EntryTable, EntryRow, PaymentFlow, OpsTable, OpsRow, CountryMatrix, CountryRow,
+  SpaceCompare, SpaceRow,
+  SignalGrid, SignalCol, SignalItem, RiskTable, RiskRow,
+  AddressMatrix,
+  ActivityCatalog, EligibilityTable, EligibilityRow,
 
   h2: (p: { children?: ReactNode }) => (
     <h2 className="mt-10 mb-4 text-2xl font-semibold text-slate-900 scroll-mt-24" {...p} />
