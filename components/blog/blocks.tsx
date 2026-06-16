@@ -290,6 +290,127 @@ export function DocRow({
   );
 }
 
+/* Уникальный визуал: таблица «что важно при въезде» (пункт → статус → пояснение) */
+export function EntryTable({ children, lang = "ru" }: { children?: ReactNode; lang?: string }) {
+  const en = lang === "en";
+  return (
+    <div className="my-8 overflow-hidden rounded-2xl border border-[var(--a-200)] bg-white shadow-sm">
+      <div className="hidden gap-4 bg-[var(--a-50)] px-5 py-3 text-xs font-semibold uppercase tracking-wide text-[var(--a-700)] sm:grid sm:grid-cols-[1.1fr_0.9fr_1.6fr]">
+        <span>{en ? "What matters" : "Что важно"}</span>
+        <span>{en ? "Status" : "Статус"}</span>
+        <span>{en ? "Details" : "Пояснение"}</span>
+      </div>
+      <div className="divide-y divide-slate-100">{children}</div>
+    </div>
+  );
+}
+export function EntryRow({
+  item, status, note, highlight,
+}: { item: string; status: string; note: string; highlight?: boolean }) {
+  return (
+    <div className={`grid gap-2 px-5 py-4 sm:grid-cols-[1.1fr_0.9fr_1.6fr] sm:gap-4 sm:items-start ${highlight ? "bg-[var(--a-50)]/60" : ""}`}>
+      <p className="font-semibold text-slate-900">{item}</p>
+      <p>
+        <span className="inline-flex rounded-full bg-[var(--a-100)] px-2.5 py-0.5 text-xs font-semibold text-[var(--a-700)]">{status}</span>
+      </p>
+      <p className="text-sm leading-6 text-slate-600">{note}</p>
+    </div>
+  );
+}
+
+/* Уникальный визуал: схема движения международного платежа (4 шага) */
+export function PaymentFlow({ lang = "ru" }: { lang?: string }) {
+  const en = lang === "en";
+  const steps = en
+    ? [
+        { t: "Client / sender", d: "Invoice issued in foreign currency" },
+        { t: "SWIFT transfer", d: "Routed via a correspondent bank" },
+        { t: "Bank in Uzbekistan", d: "Currency control, then crediting" },
+        { t: "Your FX account", d: "Hold · convert · pay out" },
+      ]
+    : [
+        { t: "Клиент / отправитель", d: "Выставляете инвойс в валюте" },
+        { t: "SWIFT-перевод", d: "Идёт через банк-корреспондент" },
+        { t: "Банк в Узбекистане", d: "Валютный контроль и зачисление" },
+        { t: "Ваш валютный счёт", d: "Держать · конвертировать · платить" },
+      ];
+  return (
+    <div className="my-8 rounded-2xl border border-[var(--a-200)] bg-[var(--a-50)]/40 p-5">
+      <div className="grid gap-3 sm:grid-cols-4">
+        {steps.map((s, i) => (
+          <div key={i} className="relative rounded-xl border border-[var(--a-200)] bg-white p-4">
+            <div className="mb-2 flex h-7 w-7 items-center justify-center rounded-full bg-[var(--a-600)] text-sm font-bold text-white">{i + 1}</div>
+            <p className="font-semibold leading-snug text-slate-900">{s.t}</p>
+            <p className="mt-1 text-sm leading-6 text-slate-600">{s.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* Уникальный визуал: таблица типов валютных операций (операция → направление → основание → комментарий) */
+export function OpsTable({ children, lang = "ru" }: { children?: ReactNode; lang?: string }) {
+  const en = lang === "en";
+  return (
+    <div className="my-8 overflow-hidden rounded-2xl border border-[var(--a-200)] bg-white shadow-sm">
+      <div className="hidden gap-4 bg-[var(--a-50)] px-5 py-3 text-xs font-semibold uppercase tracking-wide text-[var(--a-700)] sm:grid sm:grid-cols-[1.4fr_0.8fr_1.2fr_1.6fr]">
+        <span>{en ? "Operation" : "Операция"}</span>
+        <span>{en ? "Direction" : "Направление"}</span>
+        <span>{en ? "Basis" : "Основание"}</span>
+        <span>{en ? "Note" : "Комментарий"}</span>
+      </div>
+      <div className="divide-y divide-slate-100">{children}</div>
+    </div>
+  );
+}
+export function OpsRow({
+  op, dir, basis, note, highlight,
+}: { op: string; dir: string; basis: string; note: string; highlight?: boolean }) {
+  return (
+    <div className={`grid gap-2 px-5 py-4 sm:grid-cols-[1.4fr_0.8fr_1.2fr_1.6fr] sm:gap-4 sm:items-start ${highlight ? "bg-[var(--a-50)]/60" : ""}`}>
+      <p className="font-semibold text-slate-900">{op}</p>
+      <p>
+        <span className="inline-flex rounded-full bg-[var(--a-100)] px-2.5 py-0.5 text-xs font-semibold text-[var(--a-700)]">{dir}</span>
+      </p>
+      <p className="text-sm leading-6 text-slate-600">{basis}</p>
+      <p className="text-sm leading-6 text-slate-600">{note}</p>
+    </div>
+  );
+}
+
+/* Уникальный визуал: сравнительная матрица по странам СНГ (страна → въезд → пребывание → СИДН → специфика) */
+export function CountryMatrix({ children, lang = "ru" }: { children?: ReactNode; lang?: string }) {
+  const en = lang === "en";
+  return (
+    <div className="my-8 overflow-hidden rounded-2xl border border-[var(--a-200)] bg-white shadow-sm">
+      <div className="hidden gap-4 bg-[var(--a-50)] px-5 py-3 text-xs font-semibold uppercase tracking-wide text-[var(--a-700)] lg:grid lg:grid-cols-[0.9fr_0.8fr_0.9fr_0.9fr_1.8fr]">
+        <span>{en ? "Country" : "Страна"}</span>
+        <span>{en ? "Entry" : "Въезд"}</span>
+        <span>{en ? "Stay" : "Пребывание"}</span>
+        <span>{en ? "DTT" : "СИДН"}</span>
+        <span>{en ? "Specifics" : "Специфика"}</span>
+      </div>
+      <div className="divide-y divide-slate-100">{children}</div>
+    </div>
+  );
+}
+export function CountryRow({
+  country, entry, stay, dtt, note, highlight,
+}: { country: string; entry: string; stay: string; dtt: string; note: string; highlight?: boolean }) {
+  return (
+    <div className={`grid gap-2 px-5 py-4 lg:grid-cols-[0.9fr_0.8fr_0.9fr_0.9fr_1.8fr] lg:gap-4 lg:items-start ${highlight ? "bg-[var(--a-50)]/60" : ""}`}>
+      <p className="font-semibold text-slate-900">{country}</p>
+      <p>
+        <span className="inline-flex rounded-full bg-[var(--a-100)] px-2.5 py-0.5 text-xs font-semibold text-[var(--a-700)]">{entry}</span>
+      </p>
+      <p className="text-sm leading-6 text-slate-600">{stay}</p>
+      <p className="text-sm leading-6 text-slate-600">{dtt}</p>
+      <p className="text-sm leading-6 text-slate-600">{note}</p>
+    </div>
+  );
+}
+
 /* FAQ-элемент (без JS, на <details>) */
 export function Faq({ q, children }: { q: string; children?: ReactNode }) {
   return (

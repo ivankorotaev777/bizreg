@@ -5,6 +5,7 @@ import {
   KeyTakeaways, ProsCons, Pros, Cons, Figure, CtaBox, Faq, InlineCta,
   IconGrid, Feature, RateTable, RateRow, TierTable, TierCol, TierItem,
   ChangeMatrix, ChangeRow, DocChecklist, DocRow,
+  EntryTable, EntryRow, PaymentFlow, OpsTable, OpsRow, CountryMatrix, CountryRow,
 } from "./blocks";
 import { HeroArt } from "./HeroArt";
 import { OkedCodeTree } from "./OkedCodeTree";
@@ -16,6 +17,7 @@ export const mdxComponents = {
   KeyTakeaways, ProsCons, Pros, Cons, Figure, CtaBox, Faq, InlineCta,
   IconGrid, Feature, HeroArt, OkedCodeTree, PayrollStack, RateTable, RateRow,
   TierTable, TierCol, TierItem, ChangeMatrix, ChangeRow, DocChecklist, DocRow,
+  EntryTable, EntryRow, PaymentFlow, OpsTable, OpsRow, CountryMatrix, CountryRow,
 
   h2: (p: { children?: ReactNode }) => (
     <h2 className="mt-10 mb-4 text-2xl font-semibold text-slate-900 scroll-mt-24" {...p} />
