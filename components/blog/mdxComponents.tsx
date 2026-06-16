@@ -3,16 +3,19 @@ import type { ReactNode } from "react";
 import {
   Lead, Callout, StatGrid, Stat, Steps, Step, CompareGrid, CompareCard,
   KeyTakeaways, ProsCons, Pros, Cons, Figure, CtaBox, Faq, InlineCta,
-  IconGrid, Feature, RateTable, RateRow,
+  IconGrid, Feature, RateTable, RateRow, TierTable, TierCol, TierItem,
+  ChangeMatrix, ChangeRow, DocChecklist, DocRow,
 } from "./blocks";
 import { HeroArt } from "./HeroArt";
 import { OkedCodeTree } from "./OkedCodeTree";
+import { PayrollStack } from "./PayrollStack";
 
 export const mdxComponents = {
   // визуальные блоки, доступные в MDX
   Lead, Callout, StatGrid, Stat, Steps, Step, CompareGrid, CompareCard,
   KeyTakeaways, ProsCons, Pros, Cons, Figure, CtaBox, Faq, InlineCta,
-  IconGrid, Feature, HeroArt, OkedCodeTree, RateTable, RateRow,
+  IconGrid, Feature, HeroArt, OkedCodeTree, PayrollStack, RateTable, RateRow,
+  TierTable, TierCol, TierItem, ChangeMatrix, ChangeRow, DocChecklist, DocRow,
 
   h2: (p: { children?: ReactNode }) => (
     <h2 className="mt-10 mb-4 text-2xl font-semibold text-slate-900 scroll-mt-24" {...p} />

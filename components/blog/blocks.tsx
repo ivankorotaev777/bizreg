@@ -206,6 +206,90 @@ export function RateRow({
   );
 }
 
+/* Уникальный визуал: таблица «что входит» по тарифам/пакетам.
+   TierTable содержит TierCol (колонка-пакет), внутри — TierItem (строка с галкой/прочерком). */
+export function TierTable({ children }: { children?: ReactNode }) {
+  return <div className="my-8 grid gap-4 sm:grid-cols-3">{children}</div>;
+}
+export function TierCol({
+  name, tagline, children, highlight,
+}: { name: string; tagline?: string; children?: ReactNode; highlight?: boolean }) {
+  return (
+    <div className={`overflow-hidden rounded-2xl border ${highlight ? "border-[var(--a-300)] ring-1 ring-[var(--a-200)]" : "border-slate-200"} bg-white shadow-sm`}>
+      <div className={`px-5 py-4 ${highlight ? "bg-gradient-to-br from-[var(--a-500)] to-[var(--a-700)] text-white" : "bg-[var(--a-50)] text-slate-900"}`}>
+        <p className="text-lg font-bold">{name}</p>
+        {tagline && <p className={`mt-0.5 text-xs ${highlight ? "text-white/80" : "text-slate-500"}`}>{tagline}</p>}
+      </div>
+      <ul className="divide-y divide-slate-100">{children}</ul>
+    </div>
+  );
+}
+export function TierItem({ ok, children }: { ok?: boolean; children?: ReactNode }) {
+  return (
+    <li className="flex items-center gap-2.5 px-5 py-3 text-sm">
+      {ok
+        ? <CheckCircle2 className="h-4 w-4 shrink-0 text-[var(--a-600)]" />
+        : <XCircle className="h-4 w-4 shrink-0 text-slate-300" />}
+      <span className={ok ? "text-slate-700" : "text-slate-400 line-through"}>{children}</span>
+    </li>
+  );
+}
+
+/* Уникальный визуал: матрица изменений «что меняем → документы → срок → пошлина» */
+export function ChangeMatrix({ children }: { children?: ReactNode }) {
+  return (
+    <div className="my-8 overflow-hidden rounded-2xl border border-[var(--a-200)] bg-white shadow-sm">
+      <div className="hidden gap-4 bg-[var(--a-50)] px-5 py-3 text-xs font-semibold uppercase tracking-wide text-[var(--a-700)] sm:grid sm:grid-cols-[1.1fr_1.6fr_1fr_1fr]">
+        <span>Что меняем</span>
+        <span>Документы</span>
+        <span>Срок</span>
+        <span>Госпошлина</span>
+      </div>
+      <div className="divide-y divide-slate-100">{children}</div>
+    </div>
+  );
+}
+export function ChangeRow({
+  what, docs, deadline, fee, highlight,
+}: { what: string; docs: string; deadline: string; fee: string; highlight?: boolean }) {
+  return (
+    <div className={`grid gap-2 px-5 py-4 sm:grid-cols-[1.1fr_1.6fr_1fr_1fr] sm:gap-4 sm:items-start ${highlight ? "bg-[var(--a-50)]/60" : ""}`}>
+      <p className="font-semibold text-slate-900">{what}</p>
+      <p className="text-sm text-slate-600"><span className="font-medium text-slate-500 sm:hidden">Документы: </span>{docs}</p>
+      <p className="text-sm text-slate-600"><span className="font-medium text-slate-500 sm:hidden">Срок: </span>{deadline}</p>
+      <p className="text-sm font-medium text-[var(--a-700)]"><span className="font-medium text-slate-500 sm:hidden">Пошлина: </span>{fee}</p>
+    </div>
+  );
+}
+
+/* Уникальный визуал: чек-лист учредительных документов (документ → кто готовит → нюанс) */
+export function DocChecklist({ children }: { children?: ReactNode }) {
+  return (
+    <div className="my-8 overflow-hidden rounded-2xl border border-[var(--a-200)] bg-white shadow-sm">
+      <div className="grid grid-cols-[1.1fr_0.9fr_1.3fr] gap-3 bg-[var(--a-50)] px-5 py-3 text-xs font-semibold uppercase tracking-wide text-[var(--a-700)]">
+        <span>Документ / Document</span>
+        <span>Кто готовит / Prepared by</span>
+        <span>Нюанс / Note</span>
+      </div>
+      <div className="divide-y divide-slate-100">{children}</div>
+    </div>
+  );
+}
+export function DocRow({
+  doc, who, note, highlight,
+}: { doc: string; who: string; note: string; highlight?: boolean }) {
+  return (
+    <div className={`grid grid-cols-[1.1fr_0.9fr_1.3fr] items-start gap-3 px-5 py-4 ${highlight ? "bg-[var(--a-50)]/60" : ""}`}>
+      <div className="flex items-start gap-2 font-semibold text-slate-900">
+        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[var(--a-500)]" />
+        <span>{doc}</span>
+      </div>
+      <div className="text-sm leading-6 text-slate-600">{who}</div>
+      <div className="text-sm leading-6 text-slate-600">{note}</div>
+    </div>
+  );
+}
+
 /* FAQ-элемент (без JS, на <details>) */
 export function Faq({ q, children }: { q: string; children?: ReactNode }) {
   return (
