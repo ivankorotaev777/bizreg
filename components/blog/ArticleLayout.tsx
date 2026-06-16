@@ -91,11 +91,27 @@ export function ArticleLayout({ post, children }: { post: Post; children: ReactN
           );
         }
 
-        // АКЦЕНТ: цветная плашка-градиент без большого фото
+        // АКЦЕНТ: цветная плашка-градиент с декоративным SVG-мотивом (свой цвет у каждой статьи)
         if (style === "accent" || !post.image) {
           return (
-            <header className="bg-gradient-to-br from-[var(--a-500)] to-[var(--a-700)] pt-36 pb-12 text-white">
-              <div className="mx-auto max-w-3xl px-4">
+            <header className="relative overflow-hidden bg-gradient-to-br from-[var(--a-500)] to-[var(--a-700)] pt-36 pb-12 text-white">
+              <svg
+                aria-hidden="true"
+                className="pointer-events-none absolute right-0 top-0 h-full w-2/3 text-white/10"
+                viewBox="0 0 400 400"
+                fill="none"
+                preserveAspectRatio="xMaxYMid slice"
+              >
+                <circle cx="330" cy="70" r="170" stroke="currentColor" strokeWidth="2" />
+                <circle cx="330" cy="70" r="115" stroke="currentColor" strokeWidth="2" />
+                <circle cx="330" cy="70" r="62" stroke="currentColor" strokeWidth="2" />
+                {Array.from({ length: 5 }).flatMap((_, r) =>
+                  Array.from({ length: 7 }).map((_, c) => (
+                    <circle key={`${r}-${c}`} cx={150 + c * 34} cy={250 + r * 26} r="2.5" fill="currentColor" />
+                  )),
+                )}
+              </svg>
+              <div className="relative mx-auto max-w-3xl px-4">
                 {crumbW}
                 <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:text-[2.9rem] lg:leading-[1.1]">{post.title}</h1>
                 <p className="mt-4 max-w-2xl text-lg text-white/85">{post.description}</p>
