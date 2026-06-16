@@ -178,6 +178,34 @@ export function CtaBox({ href, title, label }: { href: string; title: string; la
   );
 }
 
+/* Уникальный визуал: таблица ставок налога у источника по типам дохода */
+export function RateTable({ children }: { children?: ReactNode }) {
+  return (
+    <div className="my-8 overflow-hidden rounded-2xl border border-[var(--a-200)] bg-white shadow-sm">
+      <div className="flex items-center justify-between bg-[var(--a-50)] px-5 py-3 text-xs font-semibold uppercase tracking-wide text-[var(--a-700)]">
+        <span>Вид дохода / Income</span>
+        <span>Ставка у источника / WHT</span>
+      </div>
+      <div className="divide-y divide-slate-100">{children}</div>
+    </div>
+  );
+}
+export function RateRow({
+  income, rate, note, highlight,
+}: { income: string; rate: string; note?: string; highlight?: boolean }) {
+  return (
+    <div className={`flex items-center justify-between gap-4 px-5 py-4 ${highlight ? "bg-[var(--a-50)]/60" : ""}`}>
+      <div className="min-w-0">
+        <p className="font-semibold text-slate-900">{income}</p>
+        {note && <p className="mt-0.5 text-sm text-slate-500">{note}</p>}
+      </div>
+      <span className={`shrink-0 rounded-full px-3.5 py-1.5 text-base font-bold ${highlight ? "bg-[var(--a-500)] text-white" : "bg-[var(--a-100)] text-[var(--a-700)]"}`}>
+        {rate}
+      </span>
+    </div>
+  );
+}
+
 /* FAQ-элемент (без JS, на <details>) */
 export function Faq({ q, children }: { q: string; children?: ReactNode }) {
   return (
