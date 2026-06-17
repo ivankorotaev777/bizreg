@@ -90,9 +90,10 @@ const accentBySlug = {};
 for (const p of posts) accentBySlug[p.slug] = p.fm.accent || "teal(default)";
 const accentUsage = {};
 for (const [slug, acc] of Object.entries(accentBySlug)) (accentUsage[acc] ??= []).push(slug);
+// при 50 статьях 7 палитр неизбежно повторяются — предупреждаем только при явном перекосе
 for (const [acc, slugs] of Object.entries(accentUsage)) {
-  if (slugs.length > 1) {
-    warn("ДИЗАЙН", `одинаковый accent "${acc}" у статей: ${slugs.join(", ")} — задай разные accent для разного дизайна`);
+  if (slugs.length > 12) {
+    warn("ДИЗАЙН", `accent "${acc}" слишком частый (${slugs.length} статей) — распредели палитры равномернее`);
   }
 }
 
