@@ -221,6 +221,10 @@ for (const { slug, locale, fm, content } of posts) {
   if (!/<Lead>/.test(content)) warn(F, "нет вводного <Lead>");
   if (!/<(Faq|FaqList)\b/.test(content)) warn(F, "нет FAQ-блока в теле статьи");
 
+  // --- AEO (оптимизация под ИИ-ответы) ---
+  if (!/<KeyTakeaways\b/.test(content)) err(F, "AEO: нет блока <KeyTakeaways> (TL;DR с ключевыми фактами для извлечения ИИ)");
+  if (!/^##[^#].*\?\s*$/m.test(content)) err(F, "AEO: нет ни одного H2-вопроса (подзаголовок вида «Сколько…?/Какая…?») — ИИ цитирует вопрос+ответ");
+
   // плейсхолдеры
   const low = content.toLowerCase();
   for (const ph of PLACEHOLDERS) if (low.includes(ph)) warn(F, `найден плейсхолдер "${ph}"`);

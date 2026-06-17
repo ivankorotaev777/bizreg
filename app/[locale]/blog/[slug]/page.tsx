@@ -9,7 +9,7 @@ import { ArticleLayout } from "@/components/blog/ArticleLayout";
 import { mdxComponents } from "@/components/blog/mdxComponents";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { pageMetadata } from "@/lib/seo/metadata";
-import { articleSchema, breadcrumbSchema, faqSchema } from "@/lib/seo/schema";
+import { articleSchema, breadcrumbSchema, faqSchema, howToSchema } from "@/lib/seo/schema";
 import { localizedUrl } from "@/lib/seo/site";
 import { getAuthor, pick } from "@/lib/authors";
 
@@ -69,6 +69,15 @@ export default async function BlogPostPage({
     ),
   ];
   if (post.faq?.length) schema.push(faqSchema(post.faq));
+
+  // HowTo: если в статье есть пошаговый блок <Steps> (≥3 <Step title="…">) — отдаём HowTo-разметку
+  const steps = [...post.content.matchAll(/<Step\b[^>]*\btitle="([^"]+)"[^>]*>([\s\S]*?)<\/Step>/g)].map((m) => ({
+    name: m[1],
+    text: m[2].replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().slice(0, 300),
+  }));
+  if (steps.length >= 3) {
+    schema.push(howToSchema({ name: post.title, description: post.description, url, steps }));
+  }
 
   return (
     <>

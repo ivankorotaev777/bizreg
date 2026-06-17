@@ -90,6 +90,27 @@ export function articleSchema(opts: {
   };
 }
 
+export function howToSchema(opts: {
+  name: string;
+  description: string;
+  url: string;
+  steps: { name: string; text: string }[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: opts.name,
+    description: opts.description,
+    mainEntityOfPage: opts.url,
+    step: opts.steps.map((s, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      name: s.name,
+      text: s.text || s.name,
+    })),
+  };
+}
+
 export function faqSchema(items: { q: string; a: string }[]) {
   return {
     "@context": "https://schema.org",
