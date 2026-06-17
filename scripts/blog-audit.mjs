@@ -59,11 +59,12 @@ if (fs.existsSync(headerPath)) {
   }
 }
 
+const LOCALE_PREFIX = /^\/(en|kk|uz|zh)(?=\/|$)/; // localePrefix as-needed: ru в корне, прочие с префиксом
 function checkInternalLink(F, href) {
   if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) return;
   if (/^https?:\/\//.test(href)) return; // внешняя
   if (!href.startsWith("/")) { warn(F, `относительная ссылка без / : "${href}"`); return; }
-  const clean = href.split(/[?#]/)[0].replace(/\/$/, "") || "/";
+  let clean = (href.split(/[?#]/)[0].replace(/\/$/, "") || "/").replace(LOCALE_PREFIX, "") || "/";
   if (STATIC_ROUTES.has(clean)) return;
   const bm = clean.match(/^\/blog\/(.+)$/);
   if (bm) {
@@ -90,9 +91,10 @@ const accentBySlug = {};
 for (const p of posts) accentBySlug[p.slug] = p.fm.accent || "teal(default)";
 const accentUsage = {};
 for (const [slug, acc] of Object.entries(accentBySlug)) (accentUsage[acc] ??= []).push(slug);
+// при 50 статьях 7 палитр неизбежно повторяются — предупреждаем только при явном перекосе
 for (const [acc, slugs] of Object.entries(accentUsage)) {
-  if (slugs.length > 1) {
-    warn("ДИЗАЙН", `одинаковый accent "${acc}" у статей: ${slugs.join(", ")} — задай разные accent для разного дизайна`);
+  if (slugs.length > 12) {
+    warn("ДИЗАЙН", `accent "${acc}" слишком частый (${slugs.length} статей) — распредели палитры равномернее`);
   }
 }
 
@@ -111,6 +113,62 @@ for (const [slug, vs] of Object.entries(bySlug)) {
   if (!locs.includes("ru")) warn(slug, "нет ru-версии");
   if (!locs.includes("en")) warn(slug, "нет en-версии (hreflang/охват en)");
 }
+
+// --- карта внутренней перелинковки (для SEO-score и поиска «сирот») ---
+function siblingLinks(content, selfSlug) {
+  const set = new Set();
+  const add = (href) => {
+    const m = (href || "").split(/[?#]/)[0].replace(/\/$/, "").replace(/^\/(en|kk|uz|zh)(?=\/)/, "").match(/^\/blog\/(.+)$/);
+    if (m && KNOWN_SLUGS.has(m[1]) && m[1] !== selfSlug) set.add(m[1]);
+  };
+  for (const m of content.matchAll(/\bhref="([^"]+)"/g)) add(m[1]);
+  for (const m of content.matchAll(/\]\((\/[^)\s]+)\)/g)) add(m[1]);
+  return set;
+}
+const inboundBySlug = {}; // slug -> Set(статей, которые на него ссылаются)
+for (const p of posts) {
+  for (const tgt of siblingLinks(p.content, p.slug)) (inboundBySlug[tgt] ??= new Set()).add(p.slug);
+}
+
+// --- пер-статейный SEO-score (0–100); <70 = на доработку ---
+const SEO_MIN = 70;        // ниже — ERROR (блокирует push)
+const SEO_GOOD = 85;       // ниже — WARN
+function seoScore({ slug, fm, content }) {
+  const kw = (fm.keyword || "").toLowerCase().trim();
+  const STOP = new Set(["для", "как", "или", "что", "при", "the", "and", "for", "with", "from", "your", "vs"]);
+  const GEO = new Set(["узбекистане", "узбекистан", "узбекистана", "ташкенте", "ташкент", "ташкента", "uzbekistan", "tashkent"]);
+  const root = (w) => w.slice(0, Math.max(5, w.length - 2)); // морфология ru: налоги/налогов → «налог»
+  // значимые слова ключа без стоп- и гео-слов (гео в H2/абзацах не требуем)
+  const contentWords = kw.split(/\s+/).filter((w) => w.length >= 3 && !STOP.has(w) && !GEO.has(w));
+  const hasKw = (txt) => kw && contentWords.length > 0 && contentWords.every((w) => txt.includes(root(w)));
+  // первый абзац: достаточно главного (самого длинного) слова ключа — без насилия над текстом
+  const primary = contentWords.slice().sort((a, b) => b.length - a.length)[0] || "";
+  const hasKwLead = (txt) => primary && txt.includes(root(primary));
+  const title = (fm.title || "").toLowerCase();
+  const leadM = content.match(/<Lead>([\s\S]*?)<\/Lead>/i);
+  const firstText = (leadM ? leadM[1] : content.slice(0, 500)).toLowerCase();
+  const h2s = (content.match(/^##\s+(.+)$/gm) || []).map((s) => s.toLowerCase());
+  const words = content.replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
+  const links = siblingLinks(content, slug).size;
+  const inbound = inboundBySlug[slug]?.size || 0;
+  const faqBody = (content.match(/<Faq\b/g) || []).length;
+
+  let s = 0; const miss = [];
+  if (hasKw(title)) s += 20; else miss.push("ключ не в title");
+  if (hasKwLead(firstText)) s += 15; else miss.push("ключ не в первом абзаце (Lead)");
+  if (links >= 3) s += 20; else { s += links * 6; miss.push(`внутр.ссылок ${links}<3`); }
+  if (inbound >= 1) s += 15; else miss.push("статья-сирота (нет входящих ссылок)");
+  if (words >= 1200) s += 10; else { s += Math.round(words / 120); miss.push(`слов ${words}<1200`); }
+  if (faqBody >= 5) s += 5; else { s += faqBody; miss.push(`FAQ в теле ${faqBody}<5`); }
+  if (/<Lead>/.test(content)) s += 5; else miss.push("нет Lead");
+  const dl = (fm.description || "").length;
+  if (dl >= 50 && dl <= 160) s += 5; else miss.push("description вне 50–160");
+  if ((fm.title || "").length <= 65) s += 5; else miss.push("title>65");
+  // H2 с ключом — мягкий совет (не в баллах), чтобы не плодить неестественные подзаголовки
+  if (!h2s.some((h) => hasKw(h))) miss.push("совет: ключ ни в одном H2");
+  return { score: Math.min(100, s), miss };
+}
+const scoreList = [];
 
 // --- по каждой статье ---
 for (const { slug, locale, fm, content } of posts) {
@@ -182,6 +240,21 @@ for (const { slug, locale, fm, content } of posts) {
   // внутренние ссылки в контенте: href="..." и markdown ](/...)
   for (const m of content.matchAll(/\bhref="([^"]+)"/g)) checkInternalLink(F, m[1]);
   for (const m of content.matchAll(/\]\((\/[^)\s]+)\)/g)) checkInternalLink(F, m[1]);
+
+  // --- SEO-score + порог ---
+  if (!fm.keyword) err(F, "нет keyword (целевой ключ) — обязателен для SEO-скоринга и размещения ключа");
+  const { score, miss } = seoScore({ slug, fm, content });
+  scoreList.push({ F, score });
+  if (score < SEO_MIN) err(F, `SEO-score ${score}/100 (<${SEO_MIN}) → НА ДОРАБОТКУ: ${miss.join("; ")}`);
+  else if (score < SEO_GOOD) warn(F, `SEO-score ${score}/100: ${miss.join("; ")}`);
+}
+
+// --- сводка по SEO-score ---
+if (scoreList.length) {
+  const avg = Math.round(scoreList.reduce((a, b) => a + b.score, 0) / scoreList.length);
+  const bad = scoreList.filter((x) => x.score < SEO_MIN).length;
+  const ok = scoreList.filter((x) => x.score >= SEO_GOOD).length;
+  console.log(`\n📈 SEO-score: средний ${avg}/100 · ✅ ≥${SEO_GOOD}: ${ok} · ⚠ ${SEO_MIN}–${SEO_GOOD - 1}: ${scoreList.length - ok - bad} · ❌ <${SEO_MIN}: ${bad}`);
 }
 
 console.log(`\n— Итог: ${errors} ошибок, ${warns} предупреждений —`);

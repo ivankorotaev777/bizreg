@@ -1,7 +1,8 @@
 #!/bin/sh
-# Pre-push gate: аудит блог-страниц перед деплоем (push -> Vercel).
-# Блокирует push при ERROR. Пропустить (аварийно): git push --no-verify
-echo "▶ Pre-push: аудит блога…"
+# Pre-push gate: аудит блог-страниц перед деплоем/PR (push -> Vercel).
+# Блокирует push при ERROR, в т.ч. SEO-score < 70 (статья идёт на доработку).
+# Пропустить (аварийно): git push --no-verify
+echo "▶ Pre-push: аудит блога (структура + YMYL + SEO-score, порог 70)…"
 node scripts/blog-audit.mjs
 status=$?
 if [ $status -ne 0 ]; then
