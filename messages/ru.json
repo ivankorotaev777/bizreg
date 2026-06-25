@@ -1,15 +1,15 @@
 {
   "nav": {
     "home": "Главная",
-    "registration": "Открытие ООО/ИП",
+    "registration": "Открытие компании",
     "legalAddress": "Юридический адрес",
     "itpark": "IT Park",
     "blog": "Блог",
     "about": "О компании",
     "payment": "Оплата",
-    "priceListFull": "Полный прайс",
+    "priceListFull": "Прайс",
     "guarantees": "Гарантии",
-    "clients": "Наши клиенты",
+    "clients": "Клиенты",
     "contacts": "Контакты",
     "write": "Оставить заявку"
   },

@@ -59,12 +59,12 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-6">
+          <div className="hidden lg:flex items-center gap-x-3 xl:gap-x-4">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+                className="text-muted-foreground hover:text-foreground transition-colors text-sm whitespace-nowrap"
               >
                 {item.name}
               </Link>
