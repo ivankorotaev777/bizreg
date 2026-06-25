@@ -4,6 +4,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { LandingAmoForm } from "@/components/LandingAmoForm";
 import { PartnersSection } from "@/components/PartnersSection";
+import { TrustLogos } from "@/components/TrustLogos";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -39,18 +40,17 @@ function trackEvent(event: string, location: string) {
 
 const content = {
   ru: {
-    badge: "Под ключ, с юристом",
-    heroTitle: "Помогаем зарегистрировать ООО и ИП в Узбекистане под ключ",
+    badge: "Юрист на всех этапах",
+    heroTitle: "Помогаем зарегистрировать ООО в Узбекистане",
     heroDesc:
-      "Берём на себя весь процесс: подбор формы, подготовка документов, подача и постановка на учёт. Для резидентов и иностранных учредителей. Работаем по Ташкенту и удалённо.",
+      "Берём на себя весь процесс: подбор формы собственности, подготовка документов, подача и постановка на учёт. Для резидентов и иностранных учредителей. Работаем по Ташкенту и удалённо.",
     ctaPrimary: "Запросить консультацию",
     telegram: "Написать в Telegram",
-    trustStat: "Более 1000 компаний успешно зарегистрировано за 10 лет",
+    trustStat: "Более 1000 компаний доверили нам за 15 лет",
     chips: [
-      "Под ключ — от заявки до готовых документов",
-      "Для иностранных учредителей",
-      "Помощь юриста на всех этапах",
-      "Удалённо, без вашего выезда",
+      "Юридический адрес и счёт включены",
+      "Для резидентов и иностранцев",
+      "Удалённо, без вашего присутствия",
     ],
     benefitsTitle: "Что входит в услугу",
     benefits: [
@@ -81,23 +81,22 @@ const content = {
       ["Что после регистрации?", "Подскажем по счёту, налоговому учёту и первым шагам. При необходимости — бухгалтерское сопровождение."],
     ],
     finalTitle: "Готовы зарегистрировать компанию?",
-    finalDesc: "Оставьте заявку — бесплатно проконсультируем, подберём форму и подготовим документы под ключ.",
+    finalDesc: "Оставьте заявку — бесплатно проконсультируем, подберём форму и подготовим документы.",
     homePrefix: "Главная страница:",
     homeText: "перейти на основной сайт",
   },
   en: {
-    badge: "Turnkey, with a lawyer",
-    heroTitle: "We help register an LLC or sole proprietor in Uzbekistan, turnkey",
+    badge: "Lawyer at every step",
+    heroTitle: "We help register an LLC in Uzbekistan",
     heroDesc:
       "We handle the whole process: entity choice, document preparation, filing and tax registration. For residents and foreign founders. Tashkent and remote.",
     ctaPrimary: "Request a consultation",
     telegram: "Message on Telegram",
-    trustStat: "Over 1000 companies successfully registered in 10 years",
+    trustStat: "Over 1000 companies have trusted us in 15 years",
     chips: [
-      "Turnkey — from request to ready documents",
-      "For foreign founders",
-      "Lawyer support at every step",
-      "Remote, without your visit",
+      "Legal address & bank account included",
+      "For residents and foreigners",
+      "Remote, without your presence",
     ],
     benefitsTitle: "What the service includes",
     benefits: [
@@ -128,7 +127,7 @@ const content = {
       ["What happens after registration?", "We advise on the bank account, tax accounting and first steps. Accounting support is available if needed."],
     ],
     finalTitle: "Ready to register your company?",
-    finalDesc: "Leave a request — a free consultation, entity selection and turnkey document preparation.",
+    finalDesc: "Leave a request — a free consultation, entity selection and document preparation.",
     homePrefix: "Main page:",
     homeText: "go to the main site",
   },
@@ -142,22 +141,22 @@ export default function RegistrationLandingClient() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       {/* Hero */}
-      <section className="relative overflow-hidden pt-14 pb-16">
+      <section className="relative overflow-hidden pt-28 pb-16">
         <div className="absolute inset-0 -z-10 bg-gradient-to-br from-brand-50 via-background to-navy-50" />
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <Badge className="mb-5 bg-brand-100 text-brand-800 hover:bg-brand-100 border-0">{c.badge}</Badge>
-            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-navy-900">{c.heroTitle}</h1>
+            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight leading-tight text-gradient">{c.heroTitle}</h1>
             <p className="mt-5 text-lg text-muted-foreground leading-relaxed">{c.heroDesc}</p>
             <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-              <Button asChild size="lg" className="bg-brand-600 hover:bg-brand-700 text-white" onClick={() => trackEvent("cta_click", "hero")}>
+              <Button asChild size="lg" className="rounded-full bg-gradient-brand hover:opacity-90 transition-all shadow-md shadow-brand-500/20 text-white" onClick={() => trackEvent("cta_click", "hero")}>
                 <a href="#form">{c.ctaPrimary} <ArrowRight className="w-4 h-4 ml-2" /></a>
               </Button>
-              <Button asChild size="lg" variant="outline" onClick={() => trackEvent("telegram_click", "hero")}>
+              <Button asChild size="lg" variant="outline" className="rounded-full" onClick={() => trackEvent("telegram_click", "hero")}>
                 <a href={TELEGRAM} target="_blank" rel="noopener noreferrer"><Send className="w-4 h-4 mr-2" />{c.telegram}</a>
               </Button>
             </div>
-            <div className="mt-10 grid sm:grid-cols-2 gap-3 max-w-2xl mx-auto text-left">
+            <div className="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-3">
               {c.chips.map((chip) => (
                 <div key={chip} className="flex items-center gap-2 text-sm text-navy-800">
                   <CheckCircle2 className="w-5 h-5 text-brand-600 shrink-0" />
@@ -166,14 +165,12 @@ export default function RegistrationLandingClient() {
               ))}
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Trust band */}
-      <section className="py-10 border-y bg-muted/30">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-2xl sm:text-3xl font-bold text-navy-900">{c.trustStat}</p>
-          {/* TODO: скролл с логотипами брендов — добавить позже */}
+          {/* Trust — внутри hero, без разделителей */}
+          <div className="mt-16 text-center">
+            <p className="text-sm sm:text-base font-bold text-navy-900">{c.trustStat}</p>
+            <TrustLogos />
+          </div>
         </div>
       </section>
 
@@ -261,10 +258,10 @@ export default function RegistrationLandingClient() {
             <h2 className="text-3xl font-bold">{c.finalTitle}</h2>
             <p className="mt-3 text-navy-100 max-w-2xl mx-auto leading-relaxed">{c.finalDesc}</p>
             <div className="mt-7 flex flex-wrap gap-3 justify-center">
-              <Button asChild size="lg" className="bg-brand-500 hover:bg-brand-600 text-white" onClick={() => trackEvent("cta_click", "final")}>
+              <Button asChild size="lg" className="rounded-full bg-white text-brand-700 hover:bg-white/90 shadow-md" onClick={() => trackEvent("cta_click", "final")}>
                 <a href="#form">{c.ctaPrimary}</a>
               </Button>
-              <Button asChild size="lg" variant="outline" className="bg-transparent text-white border-white/40 hover:bg-white/10 hover:text-white" onClick={() => trackEvent("telegram_click", "final")}>
+              <Button asChild size="lg" variant="outline" className="rounded-full bg-transparent text-white border-white/40 hover:bg-white/10 hover:text-white" onClick={() => trackEvent("telegram_click", "final")}>
                 <a href={TELEGRAM} target="_blank" rel="noopener noreferrer"><MessageCircle className="w-4 h-4 mr-2" />{c.telegram}</a>
               </Button>
             </div>
