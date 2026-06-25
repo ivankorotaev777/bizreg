@@ -5,6 +5,7 @@ import { Link } from "@/i18n/navigation";
 import { LandingAmoForm } from "@/components/LandingAmoForm";
 import { PartnersSection } from "@/components/PartnersSection";
 import { TrustLogos } from "@/components/TrustLogos";
+import { LandingStickyCta } from "@/components/LandingStickyCta";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -139,7 +140,7 @@ export default function RegistrationLandingClient() {
   const tForm = useTranslations("requestForm");
 
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main className="min-h-screen bg-background text-foreground pb-24 lg:pb-0">
       {/* Hero */}
       <section className="relative overflow-hidden pt-28 pb-16">
         <div className="absolute inset-0 -z-10 bg-gradient-to-br from-brand-50 via-background to-navy-50" />
@@ -278,6 +279,8 @@ export default function RegistrationLandingClient() {
           </p>
         </div>
       </section>
+
+      <LandingStickyCta ctaLabel={c.ctaPrimary} telegram={TELEGRAM} />
     </main>
   );
 }

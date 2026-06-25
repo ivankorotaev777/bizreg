@@ -37,6 +37,9 @@ export function Header() {
     { name: t("contacts"), href: "/contacts" },
   ];
 
+  // На рекламных лендингах — минимальная шапка без навигации (меньше «утечек»)
+  const isLanding = pathname === "/registratsiya-ooo" || pathname === "/yuridicheskiy-adres";
+
   const switchLocale = (newLocale: Locale) => {
     router.replace(pathname, { locale: newLocale });
     setLangMenuOpen(false);
@@ -59,17 +62,19 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-x-3 xl:gap-x-4">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-muted-foreground hover:text-foreground transition-colors text-sm whitespace-nowrap"
-              >
-                {item.name}
-              </Link>
-            ))}
-          </div>
+          {!isLanding && (
+            <div className="hidden lg:flex items-center gap-x-3 xl:gap-x-4">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="text-muted-foreground hover:text-foreground transition-colors text-sm whitespace-nowrap"
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+          )}
 
           {/* Language Switcher & CTA */}
           <div className="hidden md:flex items-center gap-3">
@@ -134,17 +139,19 @@ export function Header() {
               <span className="text-sm font-medium">{locale.toUpperCase()}</span>
             </button>
             
-            <button
-              type="button"
-              className="p-2 text-muted-foreground"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </button>
+            {!isLanding && (
+              <button
+                type="button"
+                className="p-2 text-muted-foreground"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              >
+                {mobileMenuOpen ? (
+                  <X className="w-6 h-6" />
+                ) : (
+                  <Menu className="w-6 h-6" />
+                )}
+              </button>
+            )}
           </div>
         </div>
 
