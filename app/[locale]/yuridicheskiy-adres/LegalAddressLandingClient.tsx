@@ -43,10 +43,10 @@ const content = {
     badge: "Юридический адрес",
     heroTitle: "Юридический адрес в Ташкенте для регистрации ООО",
     heroDesc:
-      "Предоставляем юридический адрес, который проходит проверку при регистрации компании и постановке на учёт по НДС. Не массовый. Полный пакет документов на адрес.",
+      "Предоставляем не массовый юридический адрес, пригодный для регистрации компании и постановки на учёт по НДС. Полный пакет документов на адрес.",
     ctaPrimary: "Запросить консультацию",
     telegram: "Написать в Telegram",
-    trustStat: "Более 1000 компаний доверили нам за 15 лет",
+    trustStat: "Помогаем бизнесу в Узбекистане более 15 лет",
     chips: [
       "Подходит для регистрации ООО",
       "Не массовый адрес",
@@ -55,7 +55,7 @@ const content = {
     ],
     benefitsTitle: "Почему наш юридический адрес",
     benefits: [
-      ["Проходит проверку", "Адрес подходит для регистрации компании и постановки на учёт, в том числе по НДС.", ShieldCheck],
+      ["Пригоден для регистрации", "Адрес подходит для регистрации компании и постановки на учёт, в том числе по НДС.", ShieldCheck],
       ["Не массовый", "Используем адреса, которые не вызывают вопросов у проверяющих.", MapPin],
       ["Полный пакет документов", "Готовим все документы на адрес для подачи — сразу и без задержек.", FileCheck],
       ["Для ООО и ИП", "Подберём решение под вашу форму и задачи бизнеса.", Building2],
@@ -90,10 +90,10 @@ const content = {
     badge: "Legal address",
     heroTitle: "Legal address in Tashkent for company registration",
     heroDesc:
-      "We provide a legal address that passes checks during company registration and VAT registration. Non-mass. Full document package for the address.",
+      "We provide a non-mass legal address suitable for company and VAT registration. Full document package for the address.",
     ctaPrimary: "Request a consultation",
     telegram: "Message on Telegram",
-    trustStat: "Over 1000 companies have trusted us in 15 years",
+    trustStat: "Helping businesses in Uzbekistan for 15+ years",
     chips: [
       "Suitable for LLC registration",
       "Non-mass address",
@@ -102,7 +102,7 @@ const content = {
     ],
     benefitsTitle: "Why our legal address",
     benefits: [
-      ["Passes checks", "The address is suitable for company registration and tax registration, including VAT.", ShieldCheck],
+      ["Suitable for registration", "The address is suitable for company registration and tax registration, including VAT.", ShieldCheck],
       ["Non-mass", "We use addresses that raise no questions with inspectors.", MapPin],
       ["Full document package", "We prepare all address documents for filing — promptly and without delays.", FileCheck],
       ["For LLC and sole proprietor", "We pick a solution for your form and business needs.", Building2],
