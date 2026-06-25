@@ -28,22 +28,22 @@ export function PartnersSection() {
             {t("title")}
           </h2>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto">
           {PARTNERS.map((partner, index) => (
             <Card
               key={index}
-              className="border border-border bg-card hover:border-brand-300 transition-all overflow-hidden p-0 flex flex-col"
+              className="border border-border bg-card hover:border-brand-300 transition-all overflow-hidden flex flex-row md:flex-col items-center md:items-stretch gap-4 md:gap-0 p-4 md:p-0 text-left md:text-center"
             >
-              <div className="relative w-full aspect-[3/4] md:min-h-[280px] bg-muted flex-shrink-0">
+              <div className="shrink-0 w-20 h-20 rounded-full overflow-hidden bg-muted md:w-full md:h-auto md:rounded-none md:aspect-[3/4] md:min-h-[280px]">
                 <img
                   src={partner.image}
                   alt={t(partner.nameKey)}
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
-              <CardContent className="p-3 sm:p-5 text-center flex-1 flex flex-col justify-start">
-                <h3 className="font-semibold text-sm sm:text-lg text-foreground">{t(partner.nameKey)}</h3>
-                <p className="text-brand-600 text-xs sm:text-sm font-medium mt-1">{t(partner.roleKey)}</p>
+              <CardContent className="p-0 md:p-5 flex-1 flex flex-col justify-center md:justify-start">
+                <h3 className="font-semibold text-base sm:text-lg text-foreground">{t(partner.nameKey)}</h3>
+                <p className="text-brand-600 text-xs sm:text-sm font-medium mt-0.5">{t(partner.roleKey)}</p>
                 <p className="text-muted-foreground text-xs sm:text-sm mt-1 leading-relaxed">
                   {t(partner.descKey)}
                 </p>
