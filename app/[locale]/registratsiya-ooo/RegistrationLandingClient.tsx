@@ -4,6 +4,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { LandingAmoForm } from "@/components/LandingAmoForm";
 import { PartnersSection } from "@/components/PartnersSection";
+import { PricingSection } from "@/components/PricingSection";
 import { TrustLogos } from "@/components/TrustLogos";
 import { LandingStickyCta } from "@/components/LandingStickyCta";
 import { Badge } from "@/components/ui/badge";
@@ -195,41 +196,8 @@ export default function RegistrationLandingClient() {
         </div>
       </section>
 
-      {/* Steps */}
-      <section className="py-16 bg-brand-50/40">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-navy-900 mb-10 text-center">{c.stepsTitle}</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {c.steps.map(([title, desc], i) => (
-              <div key={title} className="relative bg-background rounded-xl border p-6">
-                <div className="w-9 h-9 rounded-full bg-brand-600 text-white font-semibold flex items-center justify-center mb-4">{i + 1}</div>
-                <h3 className="font-semibold text-navy-900 mb-2">{title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Who */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-navy-900 mb-10 text-center">{c.whoTitle}</h2>
-          <div className="grid sm:grid-cols-2 gap-5">
-            {c.who.map(([title, desc, Icon]) => (
-              <Card key={title} className="h-full">
-                <CardHeader>
-                  <div className="w-11 h-11 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center mb-3">
-                    <Icon className="w-5 h-5" />
-                  </div>
-                  <CardTitle className="text-lg">{title}</CardTitle>
-                </CardHeader>
-                <CardContent className="text-muted-foreground leading-relaxed">{desc}</CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Pricing */}
+      <PricingSection requestFormHref="#form" />
 
       {/* Partners */}
       <PartnersSection />
