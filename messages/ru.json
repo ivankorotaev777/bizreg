@@ -1,6 +1,8 @@
 {
   "nav": {
     "home": "Главная",
+    "registration": "Открытие ООО/ИП",
+    "legalAddress": "Юридический адрес",
     "itpark": "IT Park",
     "blog": "Блог",
     "about": "О компании",

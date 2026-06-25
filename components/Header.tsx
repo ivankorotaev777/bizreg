@@ -25,6 +25,8 @@ export function Header() {
 
   const navigation = [
     { name: t("home"), href: "/" },
+    { name: t("registration"), href: "/registratsiya-ooo" },
+    { name: t("legalAddress"), href: "/yuridicheskiy-adres" },
     { name: t("itpark"), href: "/itpark" },
     { name: t("blog"), href: "/blog" },
     { name: t("about"), href: "/about" },

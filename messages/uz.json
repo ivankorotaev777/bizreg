@@ -1,6 +1,8 @@
 {
   "nav": {
     "home": "Bosh sahifa",
+    "registration": "Kompaniya ochish",
+    "legalAddress": "Yuridik manzil",
     "itpark": "IT Park",
     "blog": "Blog",
     "about": "Kompaniya haqida",

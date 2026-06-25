@@ -1,6 +1,8 @@
 {
   "nav": {
     "home": "Басты бет",
+    "registration": "Компания ашу",
+    "legalAddress": "Заңды мекенжай",
     "itpark": "IT Park",
     "blog": "Блог",
     "about": "Компания туралы",

@@ -1,6 +1,8 @@
 {
   "nav": {
     "home": "Home",
+    "registration": "Open a company",
+    "legalAddress": "Legal address",
     "itpark": "IT Park",
     "blog": "Blog",
     "about": "About",

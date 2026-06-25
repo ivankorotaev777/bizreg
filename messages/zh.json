@@ -1,6 +1,8 @@
 {
   "nav": {
     "home": "首页",
+    "registration": "注册公司",
+    "legalAddress": "法定地址",
     "itpark": "IT Park",
     "blog": "博客",
     "about": "关于公司",
