@@ -28,23 +28,23 @@ export function PartnersSection() {
             {t("title")}
           </h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6 max-w-4xl mx-auto">
           {PARTNERS.map((partner, index) => (
             <Card
               key={index}
               className="border border-border bg-card hover:border-brand-300 transition-all overflow-hidden p-0 flex flex-col"
             >
-              <div className="relative w-full aspect-[3/4] min-h-[280px] bg-muted flex-shrink-0">
+              <div className="relative w-full aspect-[3/4] md:min-h-[280px] bg-muted flex-shrink-0">
                 <img
                   src={partner.image}
                   alt={t(partner.nameKey)}
                   className="absolute inset-0 w-full h-full object-cover"
                 />
               </div>
-              <CardContent className="p-5 text-center flex-1 flex flex-col justify-start">
-                <h3 className="font-semibold text-lg text-foreground">{t(partner.nameKey)}</h3>
-                <p className="text-brand-600 text-sm font-medium mt-1">{t(partner.roleKey)}</p>
-                <p className="text-muted-foreground text-sm mt-1 leading-relaxed">
+              <CardContent className="p-3 sm:p-5 text-center flex-1 flex flex-col justify-start">
+                <h3 className="font-semibold text-sm sm:text-lg text-foreground">{t(partner.nameKey)}</h3>
+                <p className="text-brand-600 text-xs sm:text-sm font-medium mt-1">{t(partner.roleKey)}</p>
+                <p className="text-muted-foreground text-xs sm:text-sm mt-1 leading-relaxed">
                   {t(partner.descKey)}
                 </p>
               </CardContent>
