@@ -5,7 +5,7 @@ export const SITE = {
   url: "https://www.bizreg.uz",
   name: "BizReg",
   legalName: 'ООО "Ustores"',
-  phone: "+998903478692",
+  phone: "+998770178978",
   telegram: "https://t.me/bizreg_uz",
   email: "",
   address: {

@@ -7,36 +7,36 @@ import { getToc, readingTime } from "@/lib/blog";
 import { accentVars } from "./accents";
 
 type Labels = {
-  home: string; blog: string; updated: string; sources: string; cta: string;
+  home: string; blog: string; updated: string; revised: string; sources: string; cta: string;
   author: string; role: string; reviewed: string; aboutTitle: string; about: string; contact: string;
   toc: string; read: string; allPosts: string;
 };
 const L: Record<string, Labels> = {
   ru: {
-    home: "Главная", blog: "Блог", updated: "Актуально на", sources: "Источники", cta: "Получить консультацию",
+    home: "Главная", blog: "Блог", updated: "Актуально на", revised: "Обновлено", sources: "Источники", cta: "Получить консультацию",
     author: "Эксперты BizReg", role: "Регистрация бизнеса и бухгалтерия в Узбекистане",
     reviewed: "Факты сверены по первоисточникам (lex.uz, soliq.uz)",
     aboutTitle: "Кто мы и почему нам можно доверять",
     about: "BizReg (ООО «Ustores», Ташкент) помогает иностранцам открывать компании в Узбекистане под ключ — регистрация, юридический адрес, счёт и бухгалтерия. Более 1000 регистраций за 15 лет работы.",
-    contact: "Консультация на русском и английском · +998 90 347 86 92",
+    contact: "Консультация на русском и английском · +998 77 017 89 78",
     toc: "Содержание", read: "мин чтения", allPosts: "Все статьи",
   },
   en: {
-    home: "Home", blog: "Blog", updated: "Last updated", sources: "Sources", cta: "Get a consultation",
+    home: "Home", blog: "Blog", updated: "Last updated", revised: "Updated", sources: "Sources", cta: "Get a consultation",
     author: "BizReg Experts", role: "Company registration & accounting in Uzbekistan",
     reviewed: "Facts verified against primary sources (lex.uz, soliq.uz)",
     aboutTitle: "Who we are and why you can trust us",
     about: "BizReg (Ustores LLC, Tashkent) helps foreigners set up companies in Uzbekistan turnkey — registration, legal address, bank account and accounting. 1000+ registrations over 15 years.",
-    contact: "Consultation in Russian and English · +998 90 347 86 92",
+    contact: "Consultation in Russian and English · +998 77 017 89 78",
     toc: "Contents", read: "min read", allPosts: "All articles",
   },
   zh: {
-    home: "首页", blog: "博客", updated: "更新于", sources: "来源", cta: "获取咨询",
+    home: "首页", blog: "博客", updated: "更新于", revised: "已更新", sources: "来源", cta: "获取咨询",
     author: "BizReg 专家", role: "乌兹别克斯坦公司注册与会计",
     reviewed: "事实依据官方来源核对 (lex.uz, soliq.uz)",
     aboutTitle: "关于我们",
     about: "BizReg（Ustores 有限公司，塔什干）帮助外国人在乌兹别克斯坦一站式注册公司——注册、法律地址、银行账户与会计。15 年内完成 1000+ 注册。",
-    contact: "提供俄语和英语咨询 · +998 90 347 86 92",
+    contact: "提供俄语和英语咨询 · +998 77 017 89 78",
     toc: "目录", read: "分钟阅读", allPosts: "全部文章",
   },
 };
@@ -48,6 +48,9 @@ function labels(locale: string) {
 export function ArticleLayout({ post, children }: { post: Post; children: ReactNode }) {
   const t = labels(post.locale);
   const date = post.factsCheckedOn ?? post.dateModified ?? post.datePublished;
+  // «Обновлено» показываем только если статью реально дорабатывали после публикации
+  const revised =
+    post.dateModified && post.dateModified > post.datePublished ? post.dateModified : null;
   const author = getAuthor(post.author);
   const authorName = pick(author.name, post.locale);
   const authorRole = pick(author.role, post.locale);
@@ -160,6 +163,11 @@ export function ArticleLayout({ post, children }: { post: Post; children: ReactN
         <p className="mt-2 text-xs text-slate-400 sm:hidden">
           {t.updated} {date} · {rt} {t.read} · <span className="text-emerald-600">✓ {post.reviewedBy ?? t.reviewed}</span>
         </p>
+        {revised && (
+          <p className="mt-3 inline-flex items-center gap-1.5 rounded-md bg-[var(--a-50)] px-2.5 py-1 text-xs font-medium text-[var(--a-700)] ring-1 ring-[var(--a-100)]">
+            ↻ {t.revised}: {revised}
+          </p>
+        )}
       </div>
 
       {/* оглавление (TOC) */}

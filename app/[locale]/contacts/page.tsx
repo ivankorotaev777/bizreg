@@ -53,10 +53,10 @@ export default function ContactsPage() {
                     <div>
                       <p className="text-sm text-muted-foreground mb-1">{t("phoneLabel")}</p>
                       <a 
-                        href="tel:+998903478692" 
+                        href="tel:+998770178978" 
                         className="text-xl font-medium text-foreground hover:text-brand-500 transition-colors"
                       >
-                        +998 90 347 86 92
+                        +998 77 017 89 78
                       </a>
                       <p className="text-sm text-muted-foreground mt-1">
                         {t("phoneHint")}
@@ -138,7 +138,7 @@ export default function ContactsPage() {
 
                 <div className="flex flex-col sm:flex-row gap-4 pt-3">
                   <Button size="lg" className="bg-gradient-brand" asChild>
-                    <a href="tel:+998903478692">
+                    <a href="tel:+998770178978">
                       <Phone className="w-5 h-5 mr-2" />
                       {t("callButton")}
                     </a>
