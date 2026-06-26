@@ -23,7 +23,7 @@ const content = {
       features: ["Всё из пакета Стандарт", "Регистрация плательщиком НДС", "Юридический адрес 18 м² под НДС", "Сопровождение постановки на учёт по НДС"],
     },
     foreign: {
-      title: "Иностранное предприятие", for: "ООО со 100% иностранным капиталом", price: "от 3 500 000",
+      title: "Для иностранцев", for: "Иностранное предприятие", price: "от 3 500 000",
       features: ["Регистрация предприятия с иностранными инвестициями", "Для нерезидентов — удалённо, по доверенности", "Юридический адрес и постановка на учёт", "Помощь с уставным капиталом (от 400 млн сум)"],
     },
   },
@@ -43,7 +43,7 @@ const content = {
       features: ["Everything in Standard", "Registration as a VAT payer", "18 m² legal address for VAT", "Support with VAT tax registration"],
     },
     foreign: {
-      title: "Foreign enterprise", for: "An LLC with 100% foreign capital", price: "from 3 500 000",
+      title: "For foreigners", for: "Foreign enterprise", price: "from 3 500 000",
       features: ["Registration of an enterprise with foreign investment", "For non-residents — remotely, by power of attorney", "Legal address and tax registration", "Help with charter capital (from 400M UZS)"],
     },
   },
