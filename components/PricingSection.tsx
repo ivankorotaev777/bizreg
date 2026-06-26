@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 
-export const PricingSection = ({ requestFormHref }: { requestFormHref: string }) => {
+export const PricingSection = ({ requestFormHref, showDiscounts = true }: { requestFormHref: string; showDiscounts?: boolean }) => {
   const t = useTranslations("pricing");
 
   return (
@@ -141,18 +141,20 @@ export const PricingSection = ({ requestFormHref }: { requestFormHref: string })
           </Card>
         </div>
 
-        <div className="mt-10 text-center">
-          <div className="inline-flex flex-wrap justify-center gap-6 p-5 rounded-xl bg-brand-50 border border-brand-100">
-            <div className="flex items-center gap-2 text-sm text-brand-800">
-              <CheckCircle2 className="w-5 h-5 text-brand-500" />
-              <span>{t("discount1")}</span>
-            </div>
-            <div className="flex items-center gap-2 text-sm text-brand-800">
-              <CheckCircle2 className="w-5 h-5 text-brand-500" />
-              <span>{t("discount2")}</span>
+        {showDiscounts && (
+          <div className="mt-10 text-center">
+            <div className="inline-flex flex-wrap justify-center gap-6 p-5 rounded-xl bg-brand-50 border border-brand-100">
+              <div className="flex items-center gap-2 text-sm text-brand-800">
+                <CheckCircle2 className="w-5 h-5 text-brand-500" />
+                <span>{t("discount1")}</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-brand-800">
+                <CheckCircle2 className="w-5 h-5 text-brand-500" />
+                <span>{t("discount2")}</span>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );

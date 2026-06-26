@@ -5,6 +5,7 @@ import { Link } from "@/i18n/navigation";
 import { LandingAmoForm } from "@/components/LandingAmoForm";
 import { PartnersSection } from "@/components/PartnersSection";
 import { PricingSection } from "@/components/PricingSection";
+import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { TrustLogos } from "@/components/TrustLogos";
 import { LandingStickyCta } from "@/components/LandingStickyCta";
 import { Badge } from "@/components/ui/badge";
@@ -17,7 +18,6 @@ import {
   FileCheck,
   Landmark,
   MapPin,
-  MessageCircle,
   Send,
   ShieldCheck,
   Users,
@@ -176,6 +176,9 @@ export default function RegistrationLandingClient() {
         </div>
       </section>
 
+      {/* Команда — сразу после hero */}
+      <PartnersSection />
+
       {/* Benefits */}
       <section className="py-16">
         <div className="container mx-auto px-4">
@@ -197,10 +200,10 @@ export default function RegistrationLandingClient() {
       </section>
 
       {/* Pricing */}
-      <PricingSection requestFormHref="#form" />
+      <PricingSection requestFormHref="#form" showDiscounts={false} />
 
-      {/* Partners */}
-      <PartnersSection />
+      {/* Отзывы клиентов — на месте команды */}
+      <TestimonialsSection />
 
       {/* FAQ */}
       <section className="py-16 bg-brand-50/40">
@@ -223,20 +226,7 @@ export default function RegistrationLandingClient() {
       {/* Final CTA + form */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="rounded-2xl bg-navy-900 text-white p-8 md:p-12 text-center">
-            <h2 className="text-3xl font-bold">{c.finalTitle}</h2>
-            <p className="mt-3 text-navy-100 max-w-2xl mx-auto leading-relaxed">{c.finalDesc}</p>
-            <div className="mt-7 flex flex-wrap gap-3 justify-center">
-              <Button asChild size="lg" className="rounded-full bg-white text-brand-700 hover:bg-white/90 shadow-md" onClick={() => trackEvent("cta_click", "final")}>
-                <a href="#form">{c.ctaPrimary}</a>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="rounded-full bg-transparent text-white border-white/40 hover:bg-white/10 hover:text-white" onClick={() => trackEvent("telegram_click", "final")}>
-                <a href={TELEGRAM} target="_blank" rel="noopener noreferrer"><MessageCircle className="w-4 h-4 mr-2" />{c.telegram}</a>
-              </Button>
-            </div>
-          </div>
-
-          <div id="form" className="mt-12 scroll-mt-24 max-w-3xl mx-auto">
+          <div id="form" className="scroll-mt-24 max-w-3xl mx-auto">
             <h2 className="text-2xl sm:text-3xl font-semibold mb-8 text-center">{tForm("title")}</h2>
             <LandingAmoForm />
           </div>
