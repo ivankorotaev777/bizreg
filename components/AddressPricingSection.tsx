@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale } from "next-intl";
-import { CheckCircle2, XCircle, Star, Trophy, ArrowRight } from "lucide-react";
+import { CheckCircle2, Star, Trophy, ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
@@ -10,51 +10,41 @@ const content = {
   ru: {
     badge: "Тарифы",
     title: "Выберите подходящий пакет",
-    description: "Прозрачные цены, никаких скрытых платежей. Скидка 10–15% при оплате за год.",
+    description: "Прозрачные цены под ключ, никаких скрытых платежей. Уставный капитал оплачивается отдельно.",
     popular: "Популярный",
-    area: "м²",
-    period: "сум/мес",
+    vat: "сум + НДС",
     cta: "Запросить консультацию",
-    start: {
-      title: "Старт", area: "3", price: "990 000", vat: "+ НДС",
-      desc: "Для тех, кому нужен только легальный адрес для регистрации",
-      features: ["Юридический адрес для ООО / ИП", "Регистрация в Didox и e-ijara", "Соответствие требованиям законодательства"],
-      no: ["Без выделенного представителя", "Без приёма и пересылки почты"],
-    },
     standard: {
-      title: "Стандарт", area: "5", price: "1 300 000", vat: "+ НДС",
-      desc: "Для ИП и фирм без НДС, которым важно физическое присутствие",
-      features: ["Всё из пакета Старт", "Выделенный представитель с 10:00 до 20:00", "Приём и пересылка почты — до 10 отправлений/мес"],
+      title: "Стандарт", for: "Для ООО без НДС", price: "1 190 000",
+      features: ["Регистрация ООО под ключ", "Юридический адрес для регистрации", "Постановка на учёт (e-ijara, Didox)", "Помощь юриста на всех этапах"],
     },
     business: {
-      title: "Бизнес", area: "18", price: "2 600 000", vat: "без НДС",
-      desc: "Для компаний с НДС и постановки на учёт в налоговой",
-      features: ["Всё из пакета Стандарт", "Площадь 18 м² — для учёта по НДС", "Подходит для фирм с НДС"],
+      title: "Бизнес", for: "Для ООО на НДС", price: "2 390 000",
+      features: ["Всё из пакета Стандарт", "Регистрация плательщиком НДС", "Юридический адрес 18 м² под НДС", "Сопровождение постановки на учёт по НДС"],
+    },
+    foreign: {
+      title: "Иностранное предприятие", for: "ООО со 100% иностранным капиталом", price: "от 3 500 000",
+      features: ["Регистрация предприятия с иностранными инвестициями", "Для нерезидентов — удалённо, по доверенности", "Юридический адрес и постановка на учёт", "Помощь с уставным капиталом (от 400 млн сум)"],
     },
   },
   en: {
     badge: "Plans",
     title: "Choose the right package",
-    description: "Transparent prices, no hidden fees. 10–15% discount for annual payment.",
+    description: "Transparent turnkey prices, no hidden fees. Charter capital is paid separately.",
     popular: "Popular",
-    area: "m²",
-    period: "UZS/mo",
+    vat: "UZS + VAT",
     cta: "Request a consultation",
-    start: {
-      title: "Start", area: "3", price: "990 000", vat: "+ VAT",
-      desc: "For those who only need a legal address for registration",
-      features: ["Legal address for LLC / sole proprietor", "Registration in Didox and e-ijara", "Compliance with legal requirements"],
-      no: ["No dedicated representative", "No mail receiving/forwarding"],
-    },
     standard: {
-      title: "Standard", area: "5", price: "1 300 000", vat: "+ VAT",
-      desc: "For sole proprietors and non-VAT firms that need a physical presence",
-      features: ["Everything in Start", "Dedicated representative 10:00–20:00", "Mail receiving and forwarding — up to 10/mo"],
+      title: "Standard", for: "For an LLC without VAT", price: "1 190 000",
+      features: ["Turnkey LLC registration", "Legal address for registration", "Tax registration (e-ijara, Didox)", "Lawyer support at every step"],
     },
     business: {
-      title: "Business", area: "18", price: "2 600 000", vat: "excl. VAT",
-      desc: "For VAT companies and tax registration",
-      features: ["Everything in Standard", "18 m² area — for VAT registration", "Suitable for VAT-paying firms"],
+      title: "Business", for: "For an LLC with VAT", price: "2 390 000",
+      features: ["Everything in Standard", "Registration as a VAT payer", "18 m² legal address for VAT", "Support with VAT tax registration"],
+    },
+    foreign: {
+      title: "Foreign enterprise", for: "An LLC with 100% foreign capital", price: "from 3 500 000",
+      features: ["Registration of an enterprise with foreign investment", "For non-residents — remotely, by power of attorney", "Legal address and tax registration", "Help with charter capital (from 400M UZS)"],
     },
   },
 } as const;
@@ -74,32 +64,22 @@ export const AddressPricingSection = ({ requestFormHref = "#form" }: { requestFo
         </div>
 
         <div className="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto items-start">
-          {/* Старт */}
+          {/* Стандарт */}
           <Card className="bg-white border-border relative overflow-hidden hover:border-brand-300 hover:shadow-lg transition-all">
             <CardHeader className="pb-3 pt-5">
-              <div className="flex items-center justify-between mb-3">
-                <Badge variant="secondary" className="bg-emerald-50 text-emerald-700 border-emerald-200">{c.start.title}</Badge>
-                <span className="text-sm text-muted-foreground">{c.start.area} {c.area}</span>
+              <Badge variant="secondary" className="bg-emerald-50 text-emerald-700 border-emerald-200 mb-3 w-fit">{c.standard.title}</Badge>
+              <p className="text-sm text-muted-foreground mb-2">{c.standard.for}</p>
+              <div className="flex items-baseline gap-1.5">
+                <span className="text-3xl font-semibold text-foreground">{c.standard.price}</span>
+                <span className="text-sm text-muted-foreground">{c.vat}</span>
               </div>
-              <div className="mb-1">
-                <span className="text-3xl font-semibold text-foreground">{c.start.price}</span>
-                <span className="text-muted-foreground ml-1">{c.period}</span>
-              </div>
-              <p className="text-sm text-muted-foreground">{c.start.vat}</p>
             </CardHeader>
-            <CardContent className="space-y-4 pt-0">
-              <p className="text-muted-foreground text-sm">{c.start.desc}</p>
+            <CardContent className="space-y-3 pt-0">
               <ul className="space-y-2.5">
-                {c.start.features.map((f, i) => (
+                {c.standard.features.map((f, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm">
                     <CheckCircle2 className="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" />
                     <span className="text-foreground">{f}</span>
-                  </li>
-                ))}
-                {c.start.no.map((f, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <XCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                    <span>{f}</span>
                   </li>
                 ))}
               </ul>
@@ -111,7 +91,7 @@ export const AddressPricingSection = ({ requestFormHref = "#form" }: { requestFo
             </CardFooter>
           </Card>
 
-          {/* Стандарт */}
+          {/* Бизнес — популярный */}
           <Card className="bg-gradient-to-b from-brand-500 to-brand-600 border-brand-400 text-white relative overflow-hidden md:scale-[1.03] shadow-xl shadow-brand-500/20">
             <div className="absolute top-0 right-0 w-28 h-28 bg-white/10 rounded-bl-full" />
             <div className="absolute top-2 left-1/2 -translate-x-1/2 z-10">
@@ -120,20 +100,16 @@ export const AddressPricingSection = ({ requestFormHref = "#form" }: { requestFo
               </Badge>
             </div>
             <CardHeader className="pb-3 pt-10">
-              <div className="flex items-center justify-between mb-3">
-                <Badge className="bg-white/20 text-white border-white/30">{c.standard.title}</Badge>
-                <span className="text-sm text-brand-100">{c.standard.area} {c.area}</span>
+              <Badge className="bg-white/20 text-white border-white/30 mb-3 w-fit">{c.business.title}</Badge>
+              <p className="text-sm text-brand-100 mb-2">{c.business.for}</p>
+              <div className="flex items-baseline gap-1.5">
+                <span className="text-3xl font-semibold">{c.business.price}</span>
+                <span className="text-sm text-brand-100">{c.vat}</span>
               </div>
-              <div className="mb-1">
-                <span className="text-3xl font-semibold">{c.standard.price}</span>
-                <span className="text-brand-100 ml-1">{c.period}</span>
-              </div>
-              <p className="text-sm text-brand-200">{c.standard.vat}</p>
             </CardHeader>
-            <CardContent className="space-y-4 pt-0">
-              <p className="text-brand-100 text-sm">{c.standard.desc}</p>
+            <CardContent className="space-y-3 pt-0">
               <ul className="space-y-2.5">
-                {c.standard.features.map((f, i) => (
+                {c.business.features.map((f, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm">
                     <CheckCircle2 className="w-5 h-5 text-white flex-shrink-0 mt-0.5" />
                     <span className="text-white">{f}</span>
@@ -151,26 +127,22 @@ export const AddressPricingSection = ({ requestFormHref = "#form" }: { requestFo
             </CardFooter>
           </Card>
 
-          {/* Бизнес */}
+          {/* Иностранное предприятие */}
           <Card className="bg-white border-border relative overflow-hidden hover:border-brand-300 hover:shadow-lg transition-all">
             <div className="absolute top-0 right-0 w-24 h-24 bg-yellow-500/10 rounded-bl-full" />
             <CardHeader className="pb-3 pt-5">
-              <div className="flex items-center justify-between mb-3">
-                <Badge variant="secondary" className="bg-amber-50 text-amber-700 border-amber-200">
-                  <Trophy className="w-4 h-4 mr-1" />{c.business.title}
-                </Badge>
-                <span className="text-sm text-muted-foreground">{c.business.area} {c.area}</span>
+              <Badge variant="secondary" className="bg-amber-50 text-amber-700 border-amber-200 mb-3 w-fit">
+                <Trophy className="w-4 h-4 mr-1" />{c.foreign.title}
+              </Badge>
+              <p className="text-sm text-muted-foreground mb-2">{c.foreign.for}</p>
+              <div className="flex items-baseline gap-1.5">
+                <span className="text-3xl font-semibold text-foreground">{c.foreign.price}</span>
+                <span className="text-sm text-muted-foreground">{c.vat}</span>
               </div>
-              <div className="mb-1">
-                <span className="text-3xl font-semibold text-foreground">{c.business.price}</span>
-                <span className="text-muted-foreground ml-1">{c.period}</span>
-              </div>
-              <p className="text-sm text-brand-600 font-medium">{c.business.vat}</p>
             </CardHeader>
-            <CardContent className="space-y-4 pt-0">
-              <p className="text-muted-foreground text-sm">{c.business.desc}</p>
+            <CardContent className="space-y-3 pt-0">
               <ul className="space-y-2.5">
-                {c.business.features.map((f, i) => (
+                {c.foreign.features.map((f, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm">
                     <CheckCircle2 className="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" />
                     <span className="text-foreground">{f}</span>
