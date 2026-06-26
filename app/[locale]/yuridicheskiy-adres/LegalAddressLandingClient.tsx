@@ -4,6 +4,8 @@ import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { LandingAmoForm } from "@/components/LandingAmoForm";
 import { PartnersSection } from "@/components/PartnersSection";
+import { TestimonialsSection } from "@/components/TestimonialsSection";
+import { AddressPricingSection } from "@/components/AddressPricingSection";
 import { TrustLogos } from "@/components/TrustLogos";
 import { LandingStickyCta } from "@/components/LandingStickyCta";
 import { Badge } from "@/components/ui/badge";
@@ -48,17 +50,17 @@ const content = {
     telegram: "Написать в Telegram",
     trustStat: "Помогаем бизнесу в Узбекистане более 15 лет",
     chips: [
-      "Подходит для регистрации ООО",
+      "Подходит для регистрации ООО на УСН и НДС",
       "Не массовый адрес",
-      "Полный пакет документов",
+      "Полный пакет документов (e-ijara, Didox)",
       "Помощь юриста",
     ],
-    benefitsTitle: "Почему наш юридический адрес",
+    benefitsTitle: "Почему наш юридический адрес?",
     benefits: [
-      ["Пригоден для регистрации", "Адрес подходит для регистрации компании и постановки на учёт, в том числе по НДС.", ShieldCheck],
+      ["Пригоден для регистрации", "Подходит для регистрации ООО — с НДС и без НДС, с постановкой на учёт.", ShieldCheck],
       ["Не массовый", "Используем адреса, которые не вызывают вопросов у проверяющих.", MapPin],
-      ["Полный пакет документов", "Готовим все документы на адрес для подачи — сразу и без задержек.", FileCheck],
-      ["Для ООО и ИП", "Подберём решение под вашу форму и задачи бизнеса.", Building2],
+      ["Полный пакет документов", "Готовим документы на адрес и регистрируем в e-ijara и Didox — сразу и без задержек.", FileCheck],
+      ["Для ООО и иностранного предприятия", "Подойдёт и для обычного ООО, и для иностранного предприятия (ООО со 100% иностранным капиталом).", Building2],
     ] as const,
     stepsTitle: "Как получить адрес",
     steps: [
@@ -95,17 +97,17 @@ const content = {
     telegram: "Message on Telegram",
     trustStat: "Helping businesses in Uzbekistan for 15+ years",
     chips: [
-      "Suitable for LLC registration",
+      "Suitable for LLC registration (simplified & VAT)",
       "Non-mass address",
-      "Full document package",
+      "Full document package (e-ijara, Didox)",
       "Lawyer support",
     ],
-    benefitsTitle: "Why our legal address",
+    benefitsTitle: "Why our legal address?",
     benefits: [
-      ["Suitable for registration", "The address is suitable for company registration and tax registration, including VAT.", ShieldCheck],
+      ["Suitable for registration", "Suitable for registering an LLC — with and without VAT, including tax registration.", ShieldCheck],
       ["Non-mass", "We use addresses that raise no questions with inspectors.", MapPin],
-      ["Full document package", "We prepare all address documents for filing — promptly and without delays.", FileCheck],
-      ["For LLC and sole proprietor", "We pick a solution for your form and business needs.", Building2],
+      ["Full document package", "We prepare the address documents and register in e-ijara and Didox — promptly and without delays.", FileCheck],
+      ["For LLC and foreign enterprise", "Works for an ordinary LLC and for a foreign enterprise (an LLC with 100% foreign capital).", Building2],
     ] as const,
     stepsTitle: "How to get the address",
     steps: [
@@ -176,6 +178,9 @@ export default function LegalAddressLandingClient() {
         </div>
       </section>
 
+      {/* Команда — сразу после hero */}
+      <PartnersSection />
+
       {/* Benefits */}
       <section className="py-16">
         <div className="container mx-auto px-4">
@@ -196,44 +201,11 @@ export default function LegalAddressLandingClient() {
         </div>
       </section>
 
-      {/* Steps */}
-      <section className="py-16 bg-brand-50/40">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-navy-900 mb-10 text-center">{c.stepsTitle}</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {c.steps.map(([title, desc], i) => (
-              <div key={title} className="relative bg-background rounded-xl border p-6">
-                <div className="w-9 h-9 rounded-full bg-brand-600 text-white font-semibold flex items-center justify-center mb-4">{i + 1}</div>
-                <h3 className="font-semibold text-navy-900 mb-2">{title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Отзывы клиентов */}
+      <TestimonialsSection />
 
-      {/* Who */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-navy-900 mb-10 text-center">{c.whoTitle}</h2>
-          <div className="grid sm:grid-cols-2 gap-5">
-            {c.who.map(([title, desc, Icon]) => (
-              <Card key={title} className="h-full">
-                <CardHeader>
-                  <div className="w-11 h-11 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center mb-3">
-                    <Icon className="w-5 h-5" />
-                  </div>
-                  <CardTitle className="text-lg">{title}</CardTitle>
-                </CardHeader>
-                <CardContent className="text-muted-foreground leading-relaxed">{desc}</CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Partners */}
-      <PartnersSection />
+      {/* Цены */}
+      <AddressPricingSection requestFormHref="#form" />
 
       {/* FAQ */}
       <section className="py-16 bg-brand-50/40">
