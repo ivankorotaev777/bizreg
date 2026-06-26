@@ -10,16 +10,16 @@ const content = {
   ru: {
     badge: "Тарифы",
     title: "Выберите подходящий пакет",
-    description: "Прозрачные цены под ключ, никаких скрытых платежей. Уставный капитал оплачивается отдельно.",
+    description: "Прозрачные цены под ключ с НДС, никаких скрытых платежей. Уставный капитал оплачивается отдельно.",
     popular: "Популярный",
-    vat: "сум + НДС",
+    vat: "сум",
     cta: "Запросить консультацию",
     standard: {
       title: "Стандарт", for: "Для ООО без НДС", price: "1 190 000",
       features: ["Регистрация ООО под ключ", "Юридический адрес для регистрации", "Постановка на учёт (e-ijara, Didox)", "Помощь юриста на всех этапах"],
     },
     business: {
-      title: "Бизнес", for: "Для ООО на НДС", price: "2 390 000",
+      title: "Бизнес", for: "Для ООО на НДС", price: "2 490 000",
       features: ["Всё из пакета Стандарт", "Регистрация плательщиком НДС", "Юридический адрес 18 м² под НДС", "Сопровождение постановки на учёт по НДС"],
     },
     foreign: {
@@ -30,16 +30,16 @@ const content = {
   en: {
     badge: "Plans",
     title: "Choose the right package",
-    description: "Transparent turnkey prices, no hidden fees. Charter capital is paid separately.",
+    description: "Transparent turnkey prices incl. VAT, no hidden fees. Charter capital is paid separately.",
     popular: "Popular",
-    vat: "UZS + VAT",
+    vat: "UZS",
     cta: "Request a consultation",
     standard: {
       title: "Standard", for: "For an LLC without VAT", price: "1 190 000",
       features: ["Turnkey LLC registration", "Legal address for registration", "Tax registration (e-ijara, Didox)", "Lawyer support at every step"],
     },
     business: {
-      title: "Business", for: "For an LLC with VAT", price: "2 390 000",
+      title: "Business", for: "For an LLC with VAT", price: "2 490 000",
       features: ["Everything in Standard", "Registration as a VAT payer", "18 m² legal address for VAT", "Support with VAT tax registration"],
     },
     foreign: {
