@@ -27,7 +27,7 @@ declare global {
   }
 }
 
-const TELEGRAM = "https://t.me/bizreg_uradres_bot";
+const TELEGRAM = "https://t.me/BizRegUz";
 
 function trackEvent(event: string, location: string) {
   if (typeof window !== "undefined" && typeof window.gtag === "function") {

@@ -6,7 +6,7 @@ export const SITE = {
   name: "BizReg",
   legalName: 'ООО "Ustores"',
   phone: "+998770178978",
-  telegram: "https://t.me/bizreg_uz",
+  telegram: "https://t.me/BizRegUz",
   email: "",
   address: {
     locality: "Ташкент",

@@ -296,7 +296,7 @@ const CTA = () => {
           
           <div className="flex justify-center">
             <Button size="lg" className="px-8 rounded-full bg-gradient-brand hover:opacity-90 transition-all shadow-md shadow-brand-500/20" asChild>
-              <a href="https://t.me/bizreg_uradres_bot" target="_blank" rel="noopener noreferrer">
+              <a href="https://t.me/BizRegUz" target="_blank" rel="noopener noreferrer">
                 <Send className="mr-2 w-5 h-5" />
                 {t("button")}
               </a>

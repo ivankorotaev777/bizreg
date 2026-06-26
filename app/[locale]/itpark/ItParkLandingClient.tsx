@@ -555,7 +555,7 @@ export default function ItParkLandingClient() {
                     onClick={() => trackEvent("telegram_click", "hero")}
                   >
                     <a
-                      href="https://t.me/bizreg_uradres_bot"
+                      href="https://t.me/BizRegUz"
                       target="_blank"
                       rel="noopener noreferrer"
                       className={`${pixelButtonBase} border-black bg-white text-black hover:bg-[#e7e7e7] shadow-[6px_6px_0_0_#000] justify-center`}
@@ -677,7 +677,7 @@ export default function ItParkLandingClient() {
                 className="rounded-full border-4 border-black bg-white text-black hover:bg-[#e7e7e7]"
               >
                 <a
-                  href="https://t.me/bizreg_uradres_bot"
+                  href="https://t.me/BizRegUz"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`${pixelButtonBase} border-black bg-white text-black hover:bg-[#e7e7e7] shadow-[6px_6px_0_0_#000] justify-center`}
@@ -925,10 +925,10 @@ export default function ItParkLandingClient() {
             </p>
             <div className="mt-6 flex flex-wrap gap-3 justify-center">
               <Button asChild className={`${pixelButtonBase} border-black bg-black text-white hover:bg-[#1f1f1f] shadow-[6px_6px_0_0_#000]`} onClick={() => trackEvent("cta_click", "final_offer")}>
-                <a href="https://t.me/bizreg_uradres_bot" target="_blank" rel="noopener noreferrer">{t.getOffer}</a>
+                <a href="https://t.me/BizRegUz" target="_blank" rel="noopener noreferrer">{t.getOffer}</a>
               </Button>
               <Button variant="outline" asChild onClick={() => trackEvent("telegram_click", "final_block")}>
-                <a href="https://t.me/bizreg_uradres_bot" target="_blank" rel="noopener noreferrer" className={`${pixelButtonBase} border-black bg-white text-black hover:bg-[#e7e7e7] shadow-[6px_6px_0_0_#000]`}>
+                <a href="https://t.me/BizRegUz" target="_blank" rel="noopener noreferrer" className={`${pixelButtonBase} border-black bg-white text-black hover:bg-[#e7e7e7] shadow-[6px_6px_0_0_#000]`}>
                   <MessageCircle className="w-4 h-4 mr-2" />
                   {t.telegram}
                 </a>

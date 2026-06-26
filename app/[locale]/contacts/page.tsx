@@ -73,10 +73,12 @@ export default function ContactsPage() {
                     <div>
                       <p className="text-sm text-muted-foreground mb-1">{t("telegramLabel")}</p>
                       <a
-                        href={requestFormHref}
+                        href="https://t.me/BizRegUz"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="text-xl font-medium text-foreground hover:text-brand-500 transition-colors"
                       >
-                        @bizreg_uradres_bot
+                        @BizRegUz
                       </a>
                       <p className="text-sm text-muted-foreground mt-1">
                         {t("telegramHint")}
