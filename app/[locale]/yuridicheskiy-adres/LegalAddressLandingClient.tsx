@@ -143,7 +143,7 @@ export default function LegalAddressLandingClient() {
   return (
     <main className="min-h-screen bg-background text-foreground pb-24 lg:pb-0">
       {/* Hero */}
-      <section className="relative overflow-hidden pt-28 pb-16">
+      <section id="hero" className="relative overflow-hidden pt-28 pb-16">
         <div className="absolute inset-0 -z-10 bg-gradient-to-br from-brand-50 via-background to-navy-50" />
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
@@ -281,7 +281,7 @@ export default function LegalAddressLandingClient() {
         </div>
       </section>
 
-      <LandingStickyCta ctaLabel={c.ctaPrimary} telegram={TELEGRAM} />
+      <LandingStickyCta ctaLabel={c.ctaPrimary} />
     </main>
   );
 }
