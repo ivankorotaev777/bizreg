@@ -34,7 +34,7 @@ export function LandingStickyCta({ ctaLabel }: Props) {
 
   return (
     <div
-      className={`lg:hidden fixed inset-x-0 bottom-0 z-40 flex justify-center px-6 pb-8 pointer-events-none transition-transform duration-300 ${
+      className={`lg:hidden fixed inset-x-0 bottom-0 z-40 flex justify-center px-6 pb-[70px] pointer-events-none transition-transform duration-300 ${
         visible ? "translate-y-0" : "translate-y-[150%]"
       }`}
     >
