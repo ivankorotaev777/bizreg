@@ -24,7 +24,7 @@ const content = {
     },
     foreign: {
       title: "Для иностранцев", for: "Иностранное предприятие", price: "от 3 500 000",
-      features: ["Регистрация предприятия с иностранными инвестициями", "Для нерезидентов — удалённо, по доверенности", "Юридический адрес и постановка на учёт", "Помощь с уставным капиталом (от 400 млн сум)"],
+      features: ["Регистрация предприятия с иностранными инвестициями", "Для нерезидентов — удалённо, по доверенности", "Юридический адрес и постановка на учёт"],
     },
   },
   en: {
@@ -44,7 +44,7 @@ const content = {
     },
     foreign: {
       title: "For foreigners", for: "Foreign enterprise", price: "from 3 500 000",
-      features: ["Registration of an enterprise with foreign investment", "For non-residents — remotely, by power of attorney", "Legal address and tax registration", "Help with charter capital (from 400M UZS)"],
+      features: ["Registration of an enterprise with foreign investment", "For non-residents — remotely, by power of attorney", "Legal address and tax registration"],
     },
   },
 } as const;
