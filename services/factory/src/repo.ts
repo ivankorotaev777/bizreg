@@ -42,6 +42,10 @@ export async function ensureRepo(): Promise<void> {
   await git("clean -fd"); // убрать незакоммиченные файлы прошлых прогонов (node_modules сохраняется — он в .gitignore)
   await git(`config user.name "${config.gitAuthorName}"`);
   await git(`config user.email "${config.gitAuthorEmail}"`);
+  // Устойчивость push к "RPC failed; HTTP 500 / the remote end hung up"
+  // (большие паки с картинками + капризы HTTP/2 на стороне GitHub).
+  await git("config http.postBuffer 524288000");
+  await git("config http.version HTTP/1.1");
 
   if (!existsSync(path.join(REPO, "node_modules"))) {
     console.log("Устанавливаю зависимости репозитория (npm ci)… это разово.");
@@ -66,8 +70,19 @@ export async function commitAndPush(message: string): Promise<string> {
   // -q + экранирование сообщения через файл, чтобы не ломать кавычками
   const safe = message.replace(/"/g, "'");
   await git(`commit -q -m "${safe}"`);
-  await git(`push origin ${config.gitBranch}`);
-  return currentSha();
+  // push с ретраями: GitHub иногда отдаёт HTTP 500/обрыв на больших паках
+  let lastErr: unknown;
+  for (let attempt = 1; attempt <= 4; attempt++) {
+    try {
+      await git(`push origin ${config.gitBranch}`);
+      return currentSha();
+    } catch (e) {
+      lastErr = e;
+      console.error(`push: попытка ${attempt}/4 не удалась, повтор…`);
+      await new Promise((r) => setTimeout(r, attempt * 3000));
+    }
+  }
+  throw lastErr;
 }
 
 /** Откатывает незакоммиченные изменения (после неудачного гейта). */
