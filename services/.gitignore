@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.env
+.env.local
+*.log
+# рабочая копия репозитория, которую завод клонирует в рантайме
+.workrepo/
