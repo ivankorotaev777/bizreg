@@ -10,17 +10,30 @@ const sh = promisify(exec);
 const REPO = path.resolve(config.workdir);
 const BLOG_DIR = path.join(REPO, "content", "blog");
 
+// Никогда не печатаем токен в логах/ошибках.
+function redact(s: unknown): string {
+  return String(s ?? "").split(config.githubToken).join("***");
+}
+
 async function git(args: string, cwd = REPO) {
-  return sh(`git ${args}`, { cwd, maxBuffer: 64 * 1024 * 1024 });
+  try {
+    return await sh(`git ${args}`, { cwd, maxBuffer: 64 * 1024 * 1024 });
+  } catch (e: any) {
+    throw new Error(redact(e?.stderr || e?.message || e));
+  }
 }
 
 /** Клонирует репозиторий (если нужно), сбрасывает к свежему origin/<branch>, ставит deps. */
 export async function ensureRepo(): Promise<void> {
   if (!existsSync(path.join(REPO, ".git"))) {
     console.log("Клонирую репозиторий…");
-    await sh(`git clone --branch ${config.gitBranch} ${config.repoUrl} ${REPO}`, {
-      maxBuffer: 64 * 1024 * 1024,
-    });
+    try {
+      await sh(`git clone --branch ${config.gitBranch} ${config.repoUrl} ${REPO}`, {
+        maxBuffer: 64 * 1024 * 1024,
+      });
+    } catch (e: any) {
+      throw new Error(redact(e?.stderr || e?.message || e));
+    }
   } else {
     await git("fetch origin");
   }
