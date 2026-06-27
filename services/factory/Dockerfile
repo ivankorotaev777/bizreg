@@ -13,4 +13,9 @@ RUN npm install
 
 COPY . .
 
+# Claude в автономном режиме (bypassPermissions) не запускается от root —
+# поэтому работаем под непривилегированным пользователем node.
+RUN chown -R node:node /app
+USER node
+
 CMD ["npm", "start"]

@@ -29,6 +29,8 @@ export async function runAgent(prompt: string, maxTurns: number): Promise<AgentR
       allowedTools: ALLOWED_TOOLS,
       systemPrompt: { type: "preset", preset: "claude_code" },
       maxTurns,
+      // stderr процесса Claude Code → в логи завода (для диагностики)
+      stderr: (data: string) => console.error("[claude-code]", data),
     },
   });
 
