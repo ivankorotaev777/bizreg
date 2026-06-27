@@ -71,7 +71,7 @@ export async function overview(days: number) {
   const totals = await pool.query(
     `select coalesce(sum(clicks),0)::int as clicks,
             coalesce(sum(impressions),0)::int as impressions,
-            coalesce(round(sum(position*impressions)/nullif(sum(impressions),0),1),0) as position
+            coalesce(round((sum(position*impressions)/nullif(sum(impressions),0))::numeric,1),0) as position
      from gsc_daily where date >= ${since(days)}`,
   );
   const trend = await pool.query(
@@ -88,7 +88,7 @@ export async function pages(days: number) {
     `select page,
             sum(clicks)::int as clicks,
             sum(impressions)::int as impressions,
-            round(sum(position*impressions)/nullif(sum(impressions),0),1) as position,
+            round((sum(position*impressions)/nullif(sum(impressions),0))::numeric,1) as position,
             (array_agg(query order by clicks desc))[1] as top_query
      from gsc_daily where date >= ${since(days)}
      group by page
@@ -104,7 +104,7 @@ export async function pageDetail(url: string, days: number) {
     `select query,
             sum(clicks)::int as clicks,
             sum(impressions)::int as impressions,
-            round(sum(position*impressions)/nullif(sum(impressions),0),1) as position
+            round((sum(position*impressions)/nullif(sum(impressions),0))::numeric,1) as position
      from gsc_daily where page = $1 and date >= ${since(days)}
      group by query order by clicks desc, impressions desc limit 50`,
     [url],
@@ -113,7 +113,7 @@ export async function pageDetail(url: string, days: number) {
     `select country,
             sum(clicks)::int as clicks,
             sum(impressions)::int as impressions,
-            round(sum(position*impressions)/nullif(sum(impressions),0),1) as position
+            round((sum(position*impressions)/nullif(sum(impressions),0))::numeric,1) as position
      from gsc_daily where page = $1 and date >= ${since(days)}
      group by country order by clicks desc, impressions desc limit 20`,
     [url],
