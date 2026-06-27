@@ -23,6 +23,7 @@ export const config = {
   // Telegram — уведомления в общую группу при публикации/обновлении.
   botToken: req("BOT_TOKEN"),
   groupId: req("TELEGRAM_GROUP_ID"), // ID общей группы (отрицательное число)
+  topicId: process.env.TELEGRAM_TOPIC_ID, // ID ветки (topic) в супергруппе — необязательно
 
   siteUrl: process.env.SITE_URL ?? "https://www.bizreg.uz",
   workdir: process.env.WORKDIR ?? "./.workrepo",
