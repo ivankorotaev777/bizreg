@@ -54,6 +54,18 @@ create table if not exists articles (
   synced_at       timestamptz not null default now()
 );
 
+-- 5) Черновик правок: бот копит несколько правок по статье, отправляет одним
+--    заданием по команде /end (тогда же уходит уведомление в группу).
+create table if not exists pending_edits (
+  id          uuid primary key default gen_random_uuid(),
+  manager_id  bigint not null,
+  slug        text not null,
+  note        text not null,
+  created_at  timestamptz not null default now()
+);
+
+create index if not exists pending_edits_mgr_slug_idx on pending_edits (manager_id, slug, created_at);
+
 -- Удобное представление: статья + дата последнего обновления из истории.
 create or replace view articles_with_updates as
 select

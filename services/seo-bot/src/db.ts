@@ -103,3 +103,31 @@ export async function enqueueGeneration(opts: {
     ],
   );
 }
+
+// --- Черновик правок: копим несколько правок по статье, отправляем по /end ---
+
+export async function addPendingEdit(
+  managerId: number,
+  slug: string,
+  note: string,
+): Promise<void> {
+  await pool.query(
+    "insert into pending_edits (manager_id, slug, note) values ($1, $2, $3)",
+    [managerId, slug, note],
+  );
+}
+
+export async function listPendingEdits(managerId: number, slug: string): Promise<string[]> {
+  const { rows } = await pool.query(
+    "select note from pending_edits where manager_id = $1 and slug = $2 order by created_at",
+    [managerId, slug],
+  );
+  return rows.map((r) => r.note as string);
+}
+
+export async function clearPendingEdits(managerId: number, slug: string): Promise<void> {
+  await pool.query("delete from pending_edits where manager_id = $1 and slug = $2", [
+    managerId,
+    slug,
+  ]);
+}

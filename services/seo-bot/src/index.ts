@@ -7,6 +7,9 @@ import {
   getHistory,
   enqueueEnrichment,
   enqueueGeneration,
+  addPendingEdit,
+  listPendingEdits,
+  clearPendingEdits,
   type Manager,
 } from "./db.js";
 import { transcribe } from "./transcribe.js";
@@ -16,6 +19,7 @@ import {
   articleList,
   articleActions,
   confirmNote,
+  moreOrFinish,
   genCounts,
 } from "./keyboards.js";
 
@@ -139,18 +143,16 @@ bot.callbackQuery(/^gen:(\d+)$/, async (ctx) => {
   await ctx.reply(T.genQueued(n));
 });
 
+// Подтверждение правки → копим в черновик (НЕ отправляем сразу)
 bot.callbackQuery("note:send", async (ctx) => {
   await ctx.answerCallbackQuery();
   const { slug, pendingNote } = ctx.session;
   if (!slug || !pendingNote) return ctx.reply(T.sendVoiceFirst);
-  await enqueueEnrichment({
-    slug,
-    note: pendingNote,
-    managerId: ctx.manager.telegram_id,
-    managerName: ctx.manager.name,
-  });
-  ctx.session = { stage: "idle" };
-  await ctx.reply(T.queued);
+  await addPendingEdit(ctx.manager.telegram_id, slug, pendingNote);
+  const count = (await listPendingEdits(ctx.manager.telegram_id, slug)).length;
+  ctx.session.pendingNote = undefined;
+  ctx.session.stage = "awaiting_note";
+  await ctx.reply(T.noteAdded(count), { reply_markup: moreOrFinish() });
 });
 
 bot.callbackQuery("note:redo", async (ctx) => {
@@ -162,8 +164,44 @@ bot.callbackQuery("note:redo", async (ctx) => {
 
 bot.callbackQuery("note:cancel", async (ctx) => {
   await ctx.answerCallbackQuery();
-  ctx.session = { stage: "idle" };
+  ctx.session.pendingNote = undefined;
+  ctx.session.stage = "awaiting_note";
   await ctx.reply(T.cancelled);
+});
+
+// ---------- Завершение правок по статье (/end) ----------
+async function finalize(ctx: Ctx) {
+  const slug = ctx.session.slug;
+  if (!slug) return ctx.reply(T.nothingToFinish);
+  const notes = await listPendingEdits(ctx.manager.telegram_id, slug);
+  if (notes.length === 0) return ctx.reply(T.nothingToFinish);
+  const combined = notes.map((n, i) => `${i + 1}) ${n}`).join("\n");
+  await enqueueEnrichment({
+    slug,
+    note: combined,
+    managerId: ctx.manager.telegram_id,
+    managerName: ctx.manager.name,
+  });
+  await clearPendingEdits(ctx.manager.telegram_id, slug);
+  ctx.session = { stage: "idle" };
+  await ctx.reply(T.finished(notes.length));
+}
+
+async function discardEdits(ctx: Ctx) {
+  if (ctx.session.slug) await clearPendingEdits(ctx.manager.telegram_id, ctx.session.slug);
+  ctx.session = { stage: "idle" };
+  await ctx.reply(T.discarded);
+}
+
+bot.command("end", (ctx) => finalize(ctx));
+bot.command("cancel", (ctx) => discardEdits(ctx));
+bot.callbackQuery("finish", async (ctx) => {
+  await ctx.answerCallbackQuery();
+  await finalize(ctx);
+});
+bot.callbackQuery("discard", async (ctx) => {
+  await ctx.answerCallbackQuery();
+  await discardEdits(ctx);
 });
 
 // ---------- Приём дополнения (голос или текст) ----------

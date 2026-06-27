@@ -33,18 +33,26 @@ export function articleList(items: ArticleRow[], page: number): InlineKeyboard {
 /** Экран статьи: дополнить или назад к списку. */
 export function articleActions(): InlineKeyboard {
   return new InlineKeyboard()
-    .text("🎙 Записать дополнение", "addnote")
+    .text("🎙 Добавить правки", "addnote")
     .row()
     .text("‹ К списку", "menu:articles:0");
 }
 
-/** Подтверждение расшифровки. */
+/** Подтверждение расшифровки одной правки. */
 export function confirmNote(): InlineKeyboard {
   return new InlineKeyboard()
-    .text("✅ Отправить в работу", "note:send")
+    .text("✅ Добавить правку", "note:send")
     .row()
     .text("🔁 Перезаписать", "note:redo")
-    .text("✖️ Отмена", "note:cancel");
+    .text("✖️ Отмена правки", "note:cancel");
+}
+
+/** После добавления правки: записать ещё или завершить/отменить. */
+export function moreOrFinish(): InlineKeyboard {
+  return new InlineKeyboard()
+    .text("✅ Завершить и отправить", "finish")
+    .row()
+    .text("🗑 Отменить все правки", "discard");
 }
 
 /** Пресеты количества статей для генерации. */
