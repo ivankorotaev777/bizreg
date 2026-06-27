@@ -58,7 +58,13 @@ export const PAGE_HTML = `<!doctype html>
     <div class="bk"><div class="n p-bad" id="b-50">–</div><div class="t">50+</div></div>
   </div>
 
-  <h2>Запросы <span class="muted">— клик по заголовку: сортировка</span></h2>
+  <h2>Целевые ключи <span class="muted">— наш финальный лист vs реальные позиции в Google</span> <span class="pill" id="t-cov"></span></h2>
+  <div class="wrap"><table>
+    <thead><tr><th>Ключ</th><th>Кластер</th><th class="num">Wordstat</th><th class="num">Позиция</th><th class="num">Клики</th><th class="num">Показы</th><th>Статья</th></tr></thead>
+    <tbody id="targets"></tbody>
+  </table></div>
+
+  <h2>Запросы <span class="muted">— фактические запросы из Google · клик по заголовку: сортировка</span></h2>
   <div class="wrap"><table>
     <thead><tr>
       <th class="s" data-k="query">Запрос</th>
@@ -124,6 +130,13 @@ async function load(){
   document.getElementById('b-1120').textContent=fmt(b.p11_20);
   document.getElementById('b-2150').textContent=fmt(b.p21_50);
   document.getElementById('b-50').textContent=fmt(b.p50plus);
+
+  const tg=await (await fetch('/api/targets?days='+days())).json();
+  const tt=document.getElementById('targets');tt.innerHTML='';let ranked=0;
+  if(!tg.length)tt.innerHTML='<tr><td colspan=7 class="muted" style="padding:16px">Список целевых ключей пуст.</td></tr>';
+  for(const r of tg){const has=r.impressions>0;if(has)ranked++;
+    tt.insertAdjacentHTML('beforeend','<tr><td class="q">'+r.keyword+'</td><td class="muted">'+(r.cluster||'')+'</td><td class="num">'+fmt(r.freq)+'</td><td class="num">'+(has?posCell(r.position):'<span class="muted">нет показов</span>')+'</td><td class="num">'+fmt(r.clicks)+'</td><td class="num">'+fmt(r.impressions)+'</td><td class="pg">'+(r.page?'<a href="'+r.page+'" target="_blank">'+path(r.page)+'</a>':'<span class="muted">—</span>')+'</td></tr>');}
+  document.getElementById('t-cov').textContent=ranked+' из '+tg.length+' уже в выдаче';
 
   Q=await (await fetch('/api/queries?days='+days())).json();
   renderQueries();

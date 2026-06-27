@@ -7,6 +7,7 @@ import {
   opportunities,
   pages,
   pageDetail,
+  targetsReport,
   lastSyncDate,
 } from "./db.js";
 import { syncGsc } from "./gsc.js";
@@ -36,6 +37,7 @@ export function createServer() {
   app.get("/api/opportunities", async (req, res) =>
     res.json(await opportunities(clampDays(req.query.days))),
   );
+  app.get("/api/targets", async (req, res) => res.json(await targetsReport(clampDays(req.query.days))));
   app.get("/api/pages", async (req, res) => res.json(await pages(clampDays(req.query.days))));
   app.get("/api/page", async (req, res) => {
     const url = String(req.query.url ?? "");

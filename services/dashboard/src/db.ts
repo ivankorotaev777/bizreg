@@ -22,7 +22,59 @@ export async function ensureSchema(): Promise<void> {
     );
     create index if not exists gsc_daily_page_idx  on gsc_daily (page, date);
     create index if not exists gsc_daily_query_idx on gsc_daily (query, date);
+    create table if not exists target_keywords (
+      keyword text primary key, cluster text, intent text, freq int
+    );
   `);
+}
+
+export interface TargetRow {
+  keyword: string;
+  cluster: string;
+  intent: string;
+  freq: number;
+}
+
+/** Заменяет весь список целевых ключей (источник — CSV в репозитории). */
+export async function setTargets(rows: TargetRow[]): Promise<void> {
+  const client = await pool.connect();
+  try {
+    await client.query("begin");
+    await client.query("delete from target_keywords");
+    for (const r of rows) {
+      if (!r.keyword) continue;
+      await client.query(
+        `insert into target_keywords (keyword, cluster, intent, freq) values ($1,$2,$3,$4)
+         on conflict (keyword) do update set cluster=excluded.cluster, intent=excluded.intent, freq=excluded.freq`,
+        [r.keyword, r.cluster || null, r.intent || null, r.freq || null],
+      );
+    }
+    await client.query("commit");
+  } catch (e) {
+    await client.query("rollback");
+    throw e;
+  } finally {
+    client.release();
+  }
+}
+
+/** Отчёт по целевым ключам: список + позиция/клики/показы/страница из GSC (или null, если показов не было). */
+export async function targetsReport(days: number) {
+  const { rows } = await pool.query(`
+    select t.keyword, t.cluster, t.intent, t.freq,
+           g.position, g.clicks, g.impressions, g.page
+    from target_keywords t
+    left join lateral (
+      select round((${WPOS})::numeric,1) as position,
+             sum(clicks)::int as clicks,
+             sum(impressions)::int as impressions,
+             (array_agg(page order by impressions desc))[1] as page
+      from gsc_daily
+      where date >= ${CUR(days)} and lower(query) = lower(t.keyword)
+    ) g on true
+    order by g.clicks desc nulls last, g.impressions desc nulls last, t.freq desc nulls last
+  `);
+  return rows;
 }
 
 export interface GscRow {
