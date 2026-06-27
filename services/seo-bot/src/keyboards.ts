@@ -1,8 +1,7 @@
 import { InlineKeyboard } from "grammy";
 import type { ArticleRow } from "./db.js";
-import { badge } from "./messages.js";
 
-const PAGE = 8;
+const PAGE = 18;
 
 /** Главное меню. Кнопка генерации — только владельцу. */
 export function mainMenu(isOwner: boolean): InlineKeyboard {
@@ -17,9 +16,11 @@ export function articleList(items: ArticleRow[], page: number): InlineKeyboard {
   const start = page * PAGE;
   const slice = items.slice(start, start + PAGE);
   for (const a of slice) {
-    // Telegram ограничивает текст кнопки ~64 символами — обрезаем заголовок.
-    const title = a.title_ru.length > 38 ? a.title_ru.slice(0, 37) + "…" : a.title_ru;
-    kb.text(`${badge(a)} · ${title}`, `pick:${a.slug}`).row();
+    // Telegram не переносит текст в кнопке — отдаём максимум места заголовку,
+    // статус показываем компактной точкой: 🟢 — есть обновление, ⚪️ — нет.
+    const mark = a.last_update ? "🟢" : "⚪️";
+    const title = a.title_ru.length > 52 ? a.title_ru.slice(0, 51) + "…" : a.title_ru;
+    kb.text(`${mark} ${title}`, `pick:${a.slug}`).row();
   }
   const pages = Math.max(1, Math.ceil(items.length / PAGE));
   const nav: { t: string; d: string }[] = [];
