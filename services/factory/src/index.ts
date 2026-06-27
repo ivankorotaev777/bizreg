@@ -1,9 +1,18 @@
 import { config } from "./config.js";
-import { claimNextJob, markDone, markError, recordUpdate, type Job } from "./db.js";
+import {
+  claimNextJob,
+  markDone,
+  markError,
+  recordUpdate,
+  requeueStaleProcessing,
+  type Job,
+} from "./db.js";
 import {
   ensureRepo,
   hasChanges,
   commitAndPush,
+  commitPathsAndPush,
+  currentSha,
   discardChanges,
   articleTitle,
   articleUrl,
@@ -124,7 +133,23 @@ async function processGeneration(job: Job): Promise<void> {
     return;
   }
 
-  const sha = await commitAndPush(`feat(blog): +${topics.length} статей (автогенерация)`);
+  // Публикуем по одной статье: маленькие паки обходят HTTP 500 GitHub на
+  // больших пушах (на нём раньше падала генерация нескольких статей разом).
+  let sha = "";
+  for (const w of writes) {
+    if (!w.ok) continue;
+    const slug = w.topic.slug;
+    const pushed = await commitPathsAndPush(
+      [`content/blog/${slug}.ru.mdx`, `content/blog/${slug}.en.mdx`],
+      `feat(blog): ${slug} (автогенерация)`,
+    );
+    if (pushed) sha = await currentSha();
+  }
+  // Остальное (картинки, данные синка и т.п.) — финальным коммитом.
+  if (await hasChanges()) {
+    sha = await commitAndPush(`chore(blog): ассеты для ${topics.length} статей (автогенерация)`);
+  }
+  if (!sha) sha = await currentSha();
   await syncArticles();
 
   const list = writes
@@ -159,6 +184,8 @@ async function main() {
   console.log("Factory: запуск. Подготовка репозитория…");
   await ensureRepo();
   const n = await syncArticles();
+  const requeued = await requeueStaleProcessing();
+  if (requeued > 0) console.log(`Возвращено в очередь зависших заданий: ${requeued}`);
   console.log(`Готов. В кэше ${n} статей. Опрос очереди каждые ${config.pollIntervalMs} мс.`);
 
   // Простой цикл-поллер. Один воркер обрабатывает задания последовательно.

@@ -64,18 +64,13 @@ export async function hasChanges(): Promise<boolean> {
   return stdout.trim().length > 0;
 }
 
-/** Коммитит и пушит. Возвращает sha коммита. */
-export async function commitAndPush(message: string): Promise<string> {
-  await git("add -A");
-  // -q + экранирование сообщения через файл, чтобы не ломать кавычками
-  const safe = message.replace(/"/g, "'");
-  await git(`commit -q -m "${safe}"`);
-  // push с ретраями: GitHub иногда отдаёт HTTP 500/обрыв на больших паках
+/** push с ретраями: GitHub иногда отдаёт HTTP 500/обрыв на больших паках. */
+async function pushWithRetry(): Promise<void> {
   let lastErr: unknown;
   for (let attempt = 1; attempt <= 4; attempt++) {
     try {
       await git(`push origin ${config.gitBranch}`);
-      return currentSha();
+      return;
     } catch (e) {
       lastErr = e;
       console.error(`push: попытка ${attempt}/4 не удалась, повтор…`);
@@ -83,6 +78,43 @@ export async function commitAndPush(message: string): Promise<string> {
     }
   }
   throw lastErr;
+}
+
+/** Есть ли застейдженные (в индексе) изменения. */
+async function hasStaged(): Promise<boolean> {
+  try {
+    await git("diff --cached --quiet");
+    return false;
+  } catch {
+    return true; // ненулевой код = есть изменения в индексе
+  }
+}
+
+/** Коммитит и пушит все изменения одним коммитом. Возвращает sha. */
+export async function commitAndPush(message: string): Promise<string> {
+  await git("add -A");
+  // -q + экранирование сообщения, чтобы не ломать кавычками
+  const safe = message.replace(/"/g, "'");
+  await git(`commit -q -m "${safe}"`);
+  await pushWithRetry();
+  return currentSha();
+}
+
+/**
+ * Коммитит и пушит ТОЛЬКО указанные пути отдельным маленьким коммитом.
+ * GitHub отдаёт HTTP 500 на больших паках (несколько статей разом), поэтому
+ * генерация публикует статьи по одной — каждый pack мелкий, как у enrichment.
+ * Несуществующие пути молча пропускаются. Возвращает true, если что-то ушло.
+ */
+export async function commitPathsAndPush(paths: string[], message: string): Promise<boolean> {
+  for (const p of paths) {
+    if (existsSync(path.join(REPO, p))) await git(`add -- "${p}"`);
+  }
+  if (!(await hasStaged())) return false;
+  const safe = message.replace(/"/g, "'");
+  await git(`commit -q -m "${safe}"`);
+  await pushWithRetry();
+  return true;
 }
 
 /** Откатывает незакоммиченные изменения (после неудачного гейта). */

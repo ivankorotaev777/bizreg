@@ -60,6 +60,18 @@ export async function markError(id: string, err: string): Promise<void> {
   );
 }
 
+/**
+ * Возвращает в очередь задания, зависшие в 'processing' (контейнер упал/был
+ * передеплоен во время обработки). Вызывается на старте — воркер один, поэтому
+ * любое 'processing' на старте заведомо осиротевшее. Возвращает число заданий.
+ */
+export async function requeueStaleProcessing(): Promise<number> {
+  const r = await pool.query(
+    "update jobs set status = 'queued', started_at = null where status = 'processing'",
+  );
+  return r.rowCount ?? 0;
+}
+
 export async function recordUpdate(opts: {
   slug: string;
   managerId: number | null;
