@@ -1,6 +1,14 @@
 import express from "express";
 import { config } from "./config.js";
-import { overview, pages, pageDetail, lastSyncDate } from "./db.js";
+import {
+  overview,
+  buckets,
+  queriesTable,
+  opportunities,
+  pages,
+  pageDetail,
+  lastSyncDate,
+} from "./db.js";
 import { syncGsc } from "./gsc.js";
 import { PAGE_HTML } from "./page.js";
 
@@ -21,26 +29,20 @@ export function createServer() {
   });
 
   app.get("/", (_req, res) => res.type("html").send(PAGE_HTML));
-
-  app.get("/api/freshness", async (_req, res) => {
-    res.json({ last: await lastSyncDate() });
-  });
-
-  app.get("/api/overview", async (req, res) => {
-    res.json(await overview(clampDays(req.query.days)));
-  });
-
-  app.get("/api/pages", async (req, res) => {
-    res.json(await pages(clampDays(req.query.days)));
-  });
-
+  app.get("/api/freshness", async (_req, res) => res.json({ last: await lastSyncDate() }));
+  app.get("/api/overview", async (req, res) => res.json(await overview(clampDays(req.query.days))));
+  app.get("/api/buckets", async (req, res) => res.json(await buckets(clampDays(req.query.days))));
+  app.get("/api/queries", async (req, res) => res.json(await queriesTable(clampDays(req.query.days))));
+  app.get("/api/opportunities", async (req, res) =>
+    res.json(await opportunities(clampDays(req.query.days))),
+  );
+  app.get("/api/pages", async (req, res) => res.json(await pages(clampDays(req.query.days))));
   app.get("/api/page", async (req, res) => {
     const url = String(req.query.url ?? "");
     if (!url) return res.status(400).json({ error: "url required" });
     res.json(await pageDetail(url, clampDays(req.query.days)));
   });
 
-  // Ручной запуск синхронизации
   app.post("/api/sync", async (_req, res) => {
     try {
       res.json(await syncGsc());
