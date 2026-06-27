@@ -24,7 +24,7 @@ export function enrichmentPrompt(slug: string, note: string): string {
 2. Органично интегрируй информацию из заметки в ОБЕ версии (ru и en), сохраняя стиль и структуру, не дублируя уже написанное.
 3. Проверь новые факты по первоисточникам Tier-1 (lex.uz, soliq.uz, it-park.uz, cbu.uz, gov.uz) через web-поиск. Не выдумывай цифры. При необходимости обнови sources и factsCheckedOn.
 4. Проставь dateModified: "${today()}" в обеих версиях.
-5. Запусти \`npm run build\`, затем \`npm run audit:blog\`; добейся 0 ERROR и SEO-score ≥70 для этой статьи.
+5. Запусти \`npm run audit:blog\`; добейся 0 ERROR и SEO-score ≥70 для этой статьи. (build не запускай — это лишние токены.)
 
 В САМОМ КОНЦЕ выведи ровно одну строку:
 SUMMARY: <что добавил/изменил, на русском, до 200 символов>`;
@@ -42,7 +42,7 @@ export function writePrompt(topic: Topic): string {
 1. Убедись, что content/blog/${topic.slug}.ru.mdx ещё не существует; если занят — выбери близкий незанятый латинский slug.
 2. Создай content/blog/<slug>.ru.mdx и content/blog/<slug>.en.mdx по стандарту: 1200+ слов/язык, уникальный дизайн (accent/heroStyle), <Lead>, ≥3 внутренние ссылки, ≥5 FAQ, 2–3 CTA, <KeyTakeaways>, ≥1 H2-вопрос, уникальное hero-фото (не дублируй существующие в /public/blog).
 3. Факты — только Tier-1, с датами и источниками. datePublished и dateModified: "${today()}".
-4. Запусти \`npm run build\`, затем \`npm run audit:blog\`; добейся 0 ERROR и SEO-score ≥70 для своей статьи.
+4. Запусти \`npm run audit:blog\`; добейся 0 ERROR и SEO-score ≥70 для своей статьи. (build не запускай — это лишние токены.)
 
 В КОНЦЕ выведи ровно одну строку:
 SUMMARY: <финальный-slug> — <заголовок ru>`;
@@ -67,6 +67,6 @@ export function fixPrompt(auditOutput: string): string {
 ---
 ${auditOutput.slice(-6000)}
 ---
-Прочитай .claude/skills/bizreg-blog-article/SKILL.md и исправь ВСЕ ERROR (и по возможности подтяни SEO-score <70 до ≥70) в затронутых статьях. Не ломай MDX (никаких вложенных двойных кавычек в JSX-атрибутах). Запусти \`npm run build\` и \`npm run audit:blog\` снова, добейся 0 ERROR. НЕ делай git commit/push.
+Прочитай .claude/skills/bizreg-blog-article/SKILL.md и исправь ВСЕ ERROR (и по возможности подтяни SEO-score <70 до ≥70) в затронутых статьях. Не ломай MDX (никаких вложенных двойных кавычек в JSX-атрибутах). Запусти \`npm run audit:blog\` снова, добейся 0 ERROR. НЕ делай git commit/push.
 В конце выведи: SUMMARY: исправлено`;
 }

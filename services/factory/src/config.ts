@@ -8,7 +8,10 @@ export const config = {
   // Claude Agent SDK берёт ключ из ANTHROPIC_API_KEY автоматически —
   // просто проверяем, что он задан.
   anthropicKey: req("ANTHROPIC_API_KEY"),
-  model: process.env.MODEL ?? "claude-opus-4-8",
+  // Дополнения готового текста — на Sonnet (дешевле, качества хватает).
+  // Генерация новых статей с нуля — на Opus (максимальное качество).
+  enrichModel: process.env.ENRICH_MODEL ?? "claude-sonnet-4-6",
+  genModel: process.env.GEN_MODEL ?? process.env.MODEL ?? "claude-opus-4-8",
 
   // Postgres (Railway Postgres → DATABASE_URL). Тот же сервис БД, что у бота.
   databaseUrl: req("DATABASE_URL"),

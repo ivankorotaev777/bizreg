@@ -1,5 +1,4 @@
 import { query } from "@anthropic-ai/claude-agent-sdk";
-import { config } from "./config.js";
 import { repoPaths } from "./repo.js";
 
 const ALLOWED_TOOLS = ["Read", "Edit", "Write", "Bash", "Glob", "Grep", "WebSearch", "WebFetch"];
@@ -15,7 +14,11 @@ export interface AgentRun {
  * cwd = клон → агент видит .claude/skills/bizreg-blog-article и весь проект.
  * permissionMode bypassPermissions → без интерактивных подтверждений (headless).
  */
-export async function runAgent(prompt: string, maxTurns: number): Promise<AgentRun> {
+export async function runAgent(
+  prompt: string,
+  maxTurns: number,
+  model: string,
+): Promise<AgentRun> {
   let text = "";
   let costUsd = 0;
   let ok = false;
@@ -23,7 +26,7 @@ export async function runAgent(prompt: string, maxTurns: number): Promise<AgentR
   const iter = query({
     prompt,
     options: {
-      model: config.model,
+      model,
       cwd: repoPaths.root,
       permissionMode: "bypassPermissions",
       allowedTools: ALLOWED_TOOLS,

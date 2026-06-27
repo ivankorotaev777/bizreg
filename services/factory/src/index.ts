@@ -18,14 +18,14 @@ import { syncArticles } from "./sync.js";
  * Гейт публикации: прогоняет аудит; если есть ERROR — натравливает агента-исправителя
  * (до maxFixAttempts раз). Возвращает true, если в итоге 0 ERROR.
  */
-async function passGate(): Promise<{ ok: boolean; fixCost: number; lastOutput: string }> {
+async function passGate(model: string): Promise<{ ok: boolean; fixCost: number; lastOutput: string }> {
   let fixCost = 0;
   let { ok, output } = await runAudit();
   let attempt = 0;
   while (!ok && attempt < config.maxFixAttempts) {
     attempt++;
     console.log(`Аудит не прошёл, попытка исправления ${attempt}…`);
-    const fix = await runAgent(fixPrompt(output), 40);
+    const fix = await runAgent(fixPrompt(output), 40, model);
     fixCost += fix.costUsd;
     ({ ok, output } = await runAudit());
   }
@@ -36,7 +36,7 @@ async function processEnrichment(job: Job): Promise<void> {
   const { slug, note, manager_id, manager_name } = job.payload;
   await ensureRepo();
 
-  const run = await runAgent(enrichmentPrompt(slug, note), 40);
+  const run = await runAgent(enrichmentPrompt(slug, note), 40, config.enrichModel);
   let cost = run.costUsd;
 
   if (!(await hasChanges())) {
@@ -46,7 +46,7 @@ async function processEnrichment(job: Job): Promise<void> {
     return;
   }
 
-  const gate = await passGate();
+  const gate = await passGate(config.enrichModel);
   cost += gate.fixCost;
   if (!gate.ok) {
     await discardChanges();
@@ -82,7 +82,11 @@ async function processGeneration(job: Job): Promise<void> {
   await ensureRepo();
 
   // 1) План тем
-  const plan = await runAgent(planPrompt(n, Array.isArray(wishTopics) ? wishTopics : []), 15);
+  const plan = await runAgent(
+    planPrompt(n, Array.isArray(wishTopics) ? wishTopics : []),
+    15,
+    config.genModel,
+  );
   let cost = plan.costUsd;
   const topics: Topic[] = parseTopics(plan.text).slice(0, n);
   if (topics.length === 0) {
@@ -94,7 +98,7 @@ async function processGeneration(job: Job): Promise<void> {
   // 2) Волны писателей (ограниченный параллелизм)
   const writes = await pool(topics, config.writerConcurrency, async (t) => {
     try {
-      const r = await runAgent(writePrompt(t), 60);
+      const r = await runAgent(writePrompt(t), 60, config.genModel);
       return { topic: t, summary: parseSummary(r.text), cost: r.costUsd, ok: r.ok };
     } catch (e) {
       console.error("writer failed", t.slug, e);
@@ -111,7 +115,7 @@ async function processGeneration(job: Job): Promise<void> {
   }
 
   // 3) Гейт по всему репозиторию
-  const gate = await passGate();
+  const gate = await passGate(config.genModel);
   cost += gate.fixCost;
   if (!gate.ok) {
     await discardChanges();
