@@ -16,6 +16,7 @@ import { PayrollStack } from "./PayrollStack";
 import { BenefitHorizon } from "./BenefitHorizon";
 import { LaunchRoadmap } from "./LaunchRoadmap";
 import { ActivityCatalog, EligibilityTable, EligibilityRow } from "./ActivityCatalog";
+import { TreatyRateMatrix } from "./TreatyRateMatrix";
 
 export const mdxComponents = {
   // визуальные блоки, доступные в MDX
@@ -28,6 +29,7 @@ export const mdxComponents = {
   SignalGrid, SignalCol, SignalItem, RiskTable, RiskRow,
   AddressMatrix,
   ActivityCatalog, EligibilityTable, EligibilityRow,
+  TreatyRateMatrix,
 
   h2: (p: { children?: ReactNode }) => (
     <h2 className="mt-10 mb-4 text-2xl font-semibold text-slate-900 scroll-mt-24" {...p} />
