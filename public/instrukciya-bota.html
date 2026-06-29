@@ -93,6 +93,23 @@
     display:grid;place-items:center;font-weight:700;font-size:13px}
   footer{margin-top:50px;color:var(--muted);font-size:14px;text-align:center}
   .tips li{margin:.4em 0}
+
+  /* authors */
+  .blogbtn{display:inline-flex;align-items:center;gap:8px;background:var(--brand);color:#fff;font-weight:600;
+    padding:11px 18px;border-radius:12px;text-decoration:none;margin:4px 0 18px}
+  .authors{display:grid;gap:16px}
+  .author{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+  .author .ah{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line)}
+  .author .ava{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:17px;flex:none}
+  .author .who{font-weight:700;font-size:17px;line-height:1.1}
+  .author .spec{color:var(--muted);font-size:13px}
+  .author .cnt{margin-left:auto;font-size:13px;color:var(--muted);background:#f1f5f9;padding:4px 11px;border-radius:999px;white-space:nowrap}
+  .alist{list-style:none;margin:0;padding:8px}
+  .alist a{display:block;padding:9px 12px;border-radius:10px;color:#1e293b;text-decoration:none;font-size:15px}
+  .alist a:hover{background:#f1f5f9;color:var(--brand-ink)}
+  .ava.k{background:linear-gradient(135deg,#db2777,#f472b6)}
+  .ava.y{background:linear-gradient(135deg,#0891b2,#22d3ee)}
+  .ava.i{background:linear-gradient(135deg,#2563eb,#60a5fa)}
 </style>
 </head>
 <body>
@@ -109,31 +126,82 @@
 
 <div class="wrap">
 
-  <!-- ДОСТУП -->
-  <h2><span class="n">1</span>Получите доступ</h2>
-  <p class="lead">Бот работает только для сотрудников из списка. Просто так он не ответит.</p>
-  <div class="grid split">
-    <div class="card">
-      <p><b>Что сделать:</b></p>
-      <ol style="margin:.3em 0 .6em;padding-left:20px">
-        <li>Узнайте свой числовой <b>Telegram&nbsp;ID</b>: напишите боту <a href="https://t.me/userinfobot">@userinfobot</a> — он пришлёт ваш <span class="pill">Id</span>.</li>
-        <li>Передайте этот ID владельцу (Иван) — он добавит вас в список.</li>
-        <li>Откройте <a href="https://t.me/bizregSEO_bot">@bizregSEO_bot</a> и нажмите <b>/start</b>.</li>
-      </ol>
-      <div class="note warn">Пока вас не добавили, бот отвечает: «Доступ только для менеджеров BizReg…». Это нормально — значит, нужно дождаться, пока владелец внесёт ваш ID.</div>
+  <!-- БЛОГ И АВТОРЫ -->
+  <h2><span class="n">1</span>Блог и кто что ведёт</h2>
+  <p class="lead">Все статьи — в блоге BizReg. Каждый ведёт своё направление: правьте в первую очередь свои статьи.</p>
+  <a class="blogbtn" href="https://www.bizreg.uz/blog">🌐 Открыть блог BizReg →</a>
+
+  <div class="authors">
+    <div class="author">
+      <div class="ah"><div class="ava k">К</div><div><div class="who">Карима</div><div class="spec">Юридический адрес и офис</div></div><div class="cnt">5 статей</div></div>
+      <ul class="alist">
+        <li><a href="https://www.bizreg.uz/blog/ne-massovyy-yuridicheskiy-adres">«Не массовый» юридический адрес в Узбекистане: зачем он</a></li>
+        <li><a href="https://www.bizreg.uz/blog/arenda-ofisa-tashkent">Аренда офиса в Ташкенте для компании: районы, цены, договор</a></li>
+        <li><a href="https://www.bizreg.uz/blog/kovorking-tashkent">Коворкинг в Ташкенте: можно ли использовать как юр.адрес</a></li>
+        <li><a href="https://www.bizreg.uz/blog/yuridicheskiy-adres-tashkent">Юридический адрес в Ташкенте: что это и зачем</a></li>
+        <li><a href="https://www.bizreg.uz/blog/yuradres-dlya-ooo-i-nds">Юридический адрес для ООО и для учёта по НДС в Узбекистане</a></li>
+      </ul>
     </div>
-    <div class="tg">
-      <div class="tg-head"><div class="tg-ava">B</div><div><div class="tg-name">BizReg бот</div><div class="tg-sub">бот</div></div></div>
-      <div class="tg-body">
-        <div class="msg me">/start</div>
-        <div class="msg">Привет, <b>Карима</b>! Это рабочий бот BizReg.</div>
-        <div class="msg">Как дополнить статью: выбери статью → наговори голосом правку → когда все правки готовы, нажми «Завершить» или отправь /end.</div>
-        <div class="kb">
-          <div class="kbtn full">✍️ Дополнить статью</div>
-        </div>
-      </div>
+    <div class="author">
+      <div class="ah"><div class="ava y">Я</div><div><div class="who">Ярослав</div><div class="spec">Налоги, бухгалтерия, IT Park</div></div><div class="cnt">18 статей</div></div>
+      <ul class="alist">
+        <li><a href="https://www.bizreg.uz/blog/autsorsing-buhgalterii">Аутсорсинг бухгалтерии vs штатный бухгалтер в Узбекистане</a></li>
+        <li><a href="https://www.bizreg.uz/blog/buhgalterskie-uslugi-tashkent">Бухгалтерское сопровождение в Ташкенте: состав и цены 2026</a></li>
+        <li><a href="https://www.bizreg.uz/blog/vidy-deyatelnosti-it-park">Виды деятельности IT Park: что входит в льготный перечень</a></li>
+        <li><a href="https://www.bizreg.uz/blog/dvojnoe-nalogooblozhenie-uzbekistan">Двойное налогообложение в Узбекистане: соглашения (СИДН) 2026</a></li>
+        <li><a href="https://www.bizreg.uz/blog/kak-stat-rezidentom-it-park">Как стать резидентом IT Park в Узбекистане: пошагово</a></li>
+        <li><a href="https://www.bizreg.uz/blog/it-park-lgoty">Льготы резидента IT Park в Узбекистане: ставки и условия</a></li>
+        <li><a href="https://www.bizreg.uz/blog/minimalnaya-zarplata-uzbekistan">Минимальная зарплата в Узбекистане 2026: МРОТ и расчёт</a></li>
+        <li><a href="https://www.bizreg.uz/blog/nalog-na-pribyl-v-uzbekistane">Налог на прибыль в Узбекистане 2026: ставка 15%, сроки, дивиденды</a></li>
+        <li><a href="https://www.bizreg.uz/blog/nalog-s-oborota-uzbekistan">Налог с оборота (ОУСН) в Узбекистане 2026: ставки и порог</a></li>
+        <li><a href="https://www.bizreg.uz/blog/nalogi-v-uzbekistane">Налоги в Узбекистане в 2026 году: ставки, режимы, льготы</a></li>
+        <li><a href="https://www.bizreg.uz/blog/nalogi-dlya-nerezidentov">Налоги для нерезидентов в Узбекистане 2026: налог у источника</a></li>
+        <li><a href="https://www.bizreg.uz/blog/nalogovaya-otchetnost-sroki">Налоговая отчётность и сроки сдачи в Узбекистане 2026</a></li>
+        <li><a href="https://www.bizreg.uz/blog/nalogovaya-proverka">Налоговая проверка в Узбекистане 2026: виды, права, подготовка</a></li>
+        <li><a href="https://www.bizreg.uz/blog/nds-v-uzbekistane">НДС в Узбекистане 2026: ставка, 6%, порог, вычеты, экспорт</a></li>
+        <li><a href="https://www.bizreg.uz/blog/nds-usn-ousn-sravnenie">НДС или упрощёнка в Узбекистане: какой режим выбрать в 2026</a></li>
+        <li><a href="https://www.bizreg.uz/blog/ndfl-zarplatnye-nalogi">НДФЛ и зарплатные налоги в Узбекистане 2026: ставки и ФОТ</a></li>
+        <li><a href="https://www.bizreg.uz/blog/srednij-chek-buhgalterii-uzbekistan">Сколько стоит бухгалтер в Узбекистане 2026: цены и тарифы</a></li>
+        <li><a href="https://www.bizreg.uz/blog/socialnyy-nalog-uzbekistan">Социальный налог в Узбекистане 2026: ставки 12% и 25%, сроки</a></li>
+      </ul>
+    </div>
+    <div class="author">
+      <div class="ah"><div class="ava i">И</div><div><div class="who">Иван</div><div class="spec">Регистрация компаний, банки, релокация</div></div><div class="cnt">30 статей</div></div>
+      <ul class="alist">
+        <li><a href="https://www.bizreg.uz/blog/biznes-dlya-belarusov">Бизнес в Узбекистане для граждан Беларуси: гид 2026</a></li>
+        <li><a href="https://www.bizreg.uz/blog/biznes-dlya-kazahstancev">Бизнес в Узбекистане для граждан Казахстана: гид 2026</a></li>
+        <li><a href="https://www.bizreg.uz/blog/biznes-dlya-rossiyan">Бизнес в Узбекистане для граждан России: гид 2026</a></li>
+        <li><a href="https://www.bizreg.uz/blog/biznes-dlya-sng">Бизнес в Узбекистане для граждан СНГ: обзор по странам</a></li>
+        <li><a href="https://www.bizreg.uz/blog/biznes-dlya-tadzhikistana">Бизнес в Узбекистане для граждан Таджикистана 2026</a></li>
+        <li><a href="https://www.bizreg.uz/blog/biznes-dlya-ukrainy">Бизнес в Узбекистане для граждан Украины: гид 2026</a></li>
+        <li><a href="https://www.bizreg.uz/blog/biznes-v-uzbekistane">Бизнес в Узбекистане: с чего начать иностранцу в 2026 году</a></li>
+        <li><a href="https://www.bizreg.uz/blog/valyutnyy-schet-uzbekistan">Валютный счёт в Узбекистане для бизнеса: гид 2026</a></li>
+        <li><a href="https://www.bizreg.uz/blog/vnzh-v-uzbekistane">ВНЖ в Узбекистане: как получить иностранцу и инвестору</a></li>
+        <li><a href="https://www.bizreg.uz/blog/vykhod-na-rynok-uzbekistana">Выход на рынок Узбекистана: стратегия для компании</a></li>
+        <li><a href="https://www.bizreg.uz/blog/direktor-inostranec">Директор-иностранец в компании в Узбекистане</a></li>
+        <li><a href="https://www.bizreg.uz/blog/inostrannoe-predpriyatie">Иностранное предприятие (ИП ООО) в Узбекистане: как открыть</a></li>
+        <li><a href="https://www.bizreg.uz/blog/ip-v-uzbekistane-dlya-inostrancev">ИП в Узбекистане для иностранцев: можно ли и стоит ли</a></li>
+        <li><a href="https://www.bizreg.uz/blog/kak-vybrat-bank-dlya-biznesa">Как выбрать банк для бизнеса в Узбекистане</a></li>
+        <li><a href="https://www.bizreg.uz/blog/kak-otkryt-ooo-poshagovo">Как открыть ООО в Узбекистане: пошагово для иностранца</a></li>
+        <li><a href="https://www.bizreg.uz/blog/otkryt-it-kompaniyu-uzbekistan">Как открыть IT-компанию в Узбекистане: полный путь</a></li>
+        <li><a href="https://www.bizreg.uz/blog/platit-zarubezhnym-podryadchikam">Как платить зарубежным подрядчикам из узбекской компании</a></li>
+        <li><a href="https://www.bizreg.uz/blog/kak-prinimat-oplatu-iz-za-rubezha">Как принимать оплату из-за рубежа для бизнеса из России</a></li>
+        <li><a href="https://www.bizreg.uz/blog/mezhdunarodnye-raschety-uzbekistan">Международные расчёты через юрлицо в Узбекистане</a></li>
+        <li><a href="https://www.bizreg.uz/blog/naym-sotrudnikov-uzbekistan">Найм сотрудников в Узбекистане: локальные и иностранцы</a></li>
+        <li><a href="https://www.bizreg.uz/blog/oked-vidy-deyatelnosti">ОКЭД в Узбекистане: как выбрать виды деятельности</a></li>
+        <li><a href="https://www.bizreg.uz/blog/otkryt-schet-v-banke-uzbekistana">Открыть счёт в банке Узбекистана для компании</a></li>
+        <li><a href="https://www.bizreg.uz/blog/razreshenie-na-rabotu-uzbekistan">Разрешение на работу в Узбекистане для иностранца</a></li>
+        <li><a href="https://www.bizreg.uz/blog/registraciya-kompanii-udalenno">Регистрация компании в Узбекистане удалённо, без приезда</a></li>
+        <li><a href="https://www.bizreg.uz/blog/relokaciya-biznesa-v-uzbekistan">Релокация бизнеса в Узбекистан из России: гид 2026</a></li>
+        <li><a href="https://www.bizreg.uz/blog/skolko-stoit-otkryt-kompaniyu">Сколько стоит открыть компанию в Узбекистане в 2026</a></li>
+        <li><a href="https://www.bizreg.uz/blog/smena-direktora-adresa-oked">Смена директора, адреса и ОКЭД компании в Узбекистане</a></li>
+        <li><a href="https://www.bizreg.uz/blog/ustavnyy-kapital-ooo">Уставный капитал ООО в Узбекистане: размер и сроки</a></li>
+        <li><a href="https://www.bizreg.uz/blog/uchreditelnye-dokumenty">Учредительные документы ООО в Узбекистане: что подготовить</a></li>
+        <li><a href="https://www.bizreg.uz/blog/it-park-dlya-saas">IT Park для SaaS-компаний и разработчиков в Узбекистане</a></li>
+      </ul>
     </div>
   </div>
+  <div class="note ok">Бот открывает доступ ко <b>всем</b> статьям — при желании можно дополнить и чужую, если хорошо знаете тему. Но в первую очередь следите за своими.</div>
 
   <!-- ОСНОВНОЙ СЦЕНАРИЙ -->
   <h2><span class="n">2</span>Как дополнить статью</h2>
