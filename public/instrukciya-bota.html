@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Как работать с ботом BizReg — инструкция для сотрудников</title>
+<style>
+  :root{
+    --bg:#f4f6fb; --card:#fff; --ink:#0f172a; --muted:#64748b; --line:#e6eaf2;
+    --brand:#2563eb; --brand-ink:#1d4ed8; --ok:#16a34a; --warn:#d97706;
+    --tg-bg:#cfd9e8; --tg-bot:#ffffff; --tg-me:#3b82f6; --tg-btn:#2f8ee0;
+    --radius:18px; --shadow:0 10px 30px rgba(15,23,42,.08);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto;padding:0 18px 80px}
+  a{color:var(--brand-ink)}
+
+  /* HERO */
+  .hero{position:relative;border-radius:0 0 28px 28px;overflow:hidden;margin-bottom:34px;
+    background:linear-gradient(135deg,#1e3a8a,#2563eb 55%,#3b82f6)}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.32}
+  .hero .inner{position:relative;max-width:920px;margin:0 auto;padding:64px 22px 56px;color:#fff}
+  .hero .eyebrow{display:inline-block;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    font-size:12px;background:rgba(255,255,255,.16);padding:6px 12px;border-radius:999px;margin-bottom:16px}
+  .hero h1{margin:0 0 12px;font-size:38px;line-height:1.12;font-weight:800;letter-spacing:-.02em}
+  .hero p{margin:0;max-width:620px;font-size:18px;color:rgba(255,255,255,.92)}
+  .hero .bot{margin-top:18px;font-weight:600;font-size:15px;color:#fff;
+    display:inline-flex;gap:8px;align-items:center;background:rgba(0,0,0,.18);padding:8px 14px;border-radius:999px}
+
+  /* generic */
+  h2{font-size:26px;letter-spacing:-.01em;margin:46px 0 6px}
+  h2 .n{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:10px;
+    background:var(--brand);color:#fff;font-size:17px;margin-right:10px;vertical-align:-6px}
+  .lead{color:var(--muted);margin:4px 0 22px;font-size:17px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 24px;box-shadow:var(--shadow)}
+  .grid{display:grid;gap:20px}
+  @media(min-width:720px){.split{grid-template-columns:1fr 320px;align-items:start}}
+  .note{border-left:4px solid var(--brand);background:#eff5ff;border-radius:10px;padding:14px 16px;margin:16px 0}
+  .note.warn{border-color:var(--warn);background:#fff7ed}
+  .note.ok{border-color:var(--ok);background:#f0fdf4}
+  .pill{display:inline-block;background:#eef2ff;color:#3730a3;border-radius:8px;padding:2px 9px;font-weight:600;font-size:14px}
+
+  /* step layout */
+  .step{display:grid;gap:22px;margin:26px 0;padding:24px;background:var(--card);
+    border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+  @media(min-width:760px){.step{grid-template-columns:1fr 300px;align-items:center}.step.rev .txt{order:2}}
+  .step h3{margin:0 0 6px;font-size:20px}
+  .step .txt p{margin:.4em 0;color:#334155}
+  .step .badge{display:inline-block;font-weight:700;color:var(--brand);font-size:14px;margin-bottom:6px}
+
+  /* Telegram mockup */
+  .tg{width:100%;max-width:300px;margin:0 auto;border-radius:22px;overflow:hidden;
+    border:1px solid #b9c6d8;box-shadow:0 14px 34px rgba(15,23,42,.16);background:var(--tg-bg)}
+  .tg-head{display:flex;align-items:center;gap:10px;background:#fff;padding:10px 12px;border-bottom:1px solid #e3e8f0}
+  .tg-ava{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#60a5fa);
+    color:#fff;display:grid;place-items:center;font-weight:800;font-size:14px}
+  .tg-name{font-weight:700;font-size:14px;line-height:1.1}
+  .tg-sub{font-size:11px;color:#16a34a}
+  .tg-body{padding:14px 12px;display:flex;flex-direction:column;gap:9px;min-height:60px;
+    background-image:radial-gradient(rgba(255,255,255,.5) 1px,transparent 1px);background-size:16px 16px}
+  .msg{max-width:88%;background:var(--tg-bot);padding:9px 12px;border-radius:14px 14px 14px 4px;
+    font-size:13px;line-height:1.45;color:#0f172a;box-shadow:0 1px 1px rgba(0,0,0,.06)}
+  .msg.me{align-self:flex-end;background:var(--tg-me);color:#fff;border-radius:14px 14px 4px 14px}
+  .msg b{font-weight:700}
+  .msg .q{color:#475569}
+  .voice{display:flex;align-items:center;gap:9px;min-width:170px}
+  .voice .mic{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.25);display:grid;place-items:center;font-size:15px}
+  .wave{flex:1;height:20px;background:
+    repeating-linear-gradient(90deg,#fff 0 2px,transparent 2px 5px);opacity:.85;border-radius:3px}
+  .voice .dur{font-size:11px;opacity:.9}
+  .kb{display:flex;flex-direction:column;gap:6px;margin-top:3px}
+  .kbrow{display:flex;gap:6px}
+  .kbtn{flex:1;text-align:center;background:#fff;color:var(--tg-btn);font-weight:600;font-size:12.5px;
+    padding:9px 8px;border-radius:10px;border:1px solid #dce4ef}
+  .kbtn.full{width:100%}
+
+  /* commands table */
+  table{width:100%;border-collapse:collapse;margin-top:8px;font-size:15px}
+  th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--muted);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+  td code{background:#0f172a;color:#e2e8f0;padding:2px 8px;border-radius:7px;font-size:14px}
+
+  .flow{display:grid;gap:10px;margin-top:8px}
+  .flow .row{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--line);
+    border-radius:12px;padding:12px 14px}
+  .flow .dot{flex:none;width:26px;height:26px;border-radius:50%;background:var(--brand);color:#fff;
+    display:grid;place-items:center;font-weight:700;font-size:13px}
+  footer{margin-top:50px;color:var(--muted);font-size:14px;text-align:center}
+  .tips li{margin:.4em 0}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <img src="/instrukciya-bota-hero.jpg" alt="" onerror="this.style.display='none'">
+  <div class="inner">
+    <span class="eyebrow">Инструкция для сотрудников BizReg</span>
+    <h1>Как работать с ботом BizReg</h1>
+    <p>Бот помогает дополнять статьи блога: вы наговариваете правку голосом, а «завод» сам расширяет статью по стандарту, проверяет факты и публикует. Ниже — пошагово, с экранами.</p>
+    <span class="bot">🤖 Бот: @bizregSEO_bot</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ДОСТУП -->
+  <h2><span class="n">1</span>Получите доступ</h2>
+  <p class="lead">Бот работает только для сотрудников из списка. Просто так он не ответит.</p>
+  <div class="grid split">
+    <div class="card">
+      <p><b>Что сделать:</b></p>
+      <ol style="margin:.3em 0 .6em;padding-left:20px">
+        <li>Узнайте свой числовой <b>Telegram&nbsp;ID</b>: напишите боту <a href="https://t.me/userinfobot">@userinfobot</a> — он пришлёт ваш <span class="pill">Id</span>.</li>
+        <li>Передайте этот ID владельцу (Иван) — он добавит вас в список.</li>
+        <li>Откройте <a href="https://t.me/bizregSEO_bot">@bizregSEO_bot</a> и нажмите <b>/start</b>.</li>
+      </ol>
+      <div class="note warn">Пока вас не добавили, бот отвечает: «Доступ только для менеджеров BizReg…». Это нормально — значит, нужно дождаться, пока владелец внесёт ваш ID.</div>
+    </div>
+    <div class="tg">
+      <div class="tg-head"><div class="tg-ava">B</div><div><div class="tg-name">BizReg бот</div><div class="tg-sub">бот</div></div></div>
+      <div class="tg-body">
+        <div class="msg me">/start</div>
+        <div class="msg">Привет, <b>Карима</b>! Это рабочий бот BizReg.</div>
+        <div class="msg">Как дополнить статью: выбери статью → наговори голосом правку → когда все правки готовы, нажми «Завершить» или отправь /end.</div>
+        <div class="kb">
+          <div class="kbtn full">✍️ Дополнить статью</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ОСНОВНОЙ СЦЕНАРИЙ -->
+  <h2><span class="n">2</span>Как дополнить статью</h2>
+  <p class="lead">Главный сценарий. Занимает пару минут: выбрали статью → наговорили правки → отправили.</p>
+
+  <div class="step">
+    <div class="txt">
+      <span class="badge">Шаг 1</span>
+      <h3>Откройте список статей</h3>
+      <p>Отправьте <code>/start</code> и нажмите <b>«✍️ Дополнить статью»</b>.</p>
+      <p>Появится список. <b>🟢</b> — статья уже обновлялась, <b>⚪️</b> — ещё нет. Листайте кнопками <b>«Вперёд ›»</b> / <b>«‹ Назад»</b>.</p>
+    </div>
+    <div class="tg">
+      <div class="tg-head"><div class="tg-ava">B</div><div><div class="tg-name">BizReg бот</div><div class="tg-sub">бот</div></div></div>
+      <div class="tg-body">
+        <div class="msg">Выберите статью для дополнения:</div>
+        <div class="kb">
+          <div class="kbtn full">🟢 Как открыть ООО пошагово</div>
+          <div class="kbtn full">⚪️ Минимальная зарплата в Узбекистане 2026</div>
+          <div class="kbtn full">🟢 Двойное налогообложение (СИДН)</div>
+          <div class="kbrow">
+            <div class="kbtn">‹ Назад</div><div class="kbtn">1/3</div><div class="kbtn">Вперёд ›</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step rev">
+    <div class="txt">
+      <span class="badge">Шаг 2</span>
+      <h3>Выберите статью и нажмите «Добавить правки»</h3>
+      <p>Бот покажет <b>историю обновлений</b> статьи (кто и что менял).</p>
+      <p>Нажмите <b>«🎙 Добавить правки»</b>, чтобы начать наговаривать.</p>
+    </div>
+    <div class="tg">
+      <div class="tg-head"><div class="tg-ava">B</div><div><div class="tg-name">BizReg бот</div><div class="tg-sub">бот</div></div></div>
+      <div class="tg-body">
+        <div class="msg">📄 <b>Минимальная зарплата в Узбекистане 2026</b><br><br>История обновлений: <i>нет обновлений</i>.</div>
+        <div class="kb">
+          <div class="kbtn full">🎙 Добавить правки</div>
+          <div class="kbtn full">‹ К списку</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="txt">
+      <span class="badge">Шаг 3</span>
+      <h3>Наговорите правку голосом</h3>
+      <p>Запишите голосовое прямо в чат — простыми словами, что добавить или исправить. Можно и текстом.</p>
+      <p>Бот расшифрует и покажет, что услышал. Если всё верно — <b>«✅ Добавить правку»</b>. Если нет — <b>«🔁 Перезаписать»</b>.</p>
+      <div class="note">Говорите как живому редактору: «В разделе про ставки добавь, что с 1 июля НДС для торговли снизили с 12% до 6%».</div>
+    </div>
+    <div class="tg">
+      <div class="tg-head"><div class="tg-ava">B</div><div><div class="tg-name">BizReg бот</div><div class="tg-sub">бот</div></div></div>
+      <div class="tg-body">
+        <div class="msg me"><div class="voice"><div class="mic">🎙</div><div class="wave"></div><div class="dur">0:14</div></div></div>
+        <div class="msg">🎧 Расшифровываю голосовое…</div>
+        <div class="msg">Вот что я расслышал:<br><br><span class="q">«Добавь, что с 1 июля НДС для торговли снизили с 12 до 6 процентов»</span><br><br>Добавить эту правку?</div>
+        <div class="kb">
+          <div class="kbtn full">✅ Добавить правку</div>
+          <div class="kbrow"><div class="kbtn">🔁 Перезаписать</div><div class="kbtn">✖️ Отмена правки</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step rev">
+    <div class="txt">
+      <span class="badge">Шаг 4</span>
+      <h3>Добавьте ещё правки или завершите</h3>
+      <p>Каждая подтверждённая правка копится в черновик. Можно наговорить <b>несколько подряд</b>.</p>
+      <p>Когда всё готово — <b>«✅ Завершить и отправить»</b> (или команда <code>/end</code>).</p>
+      <div class="note warn">Важно: статья уходит в работу <b>только</b> после «Завершить и отправить». Пока вы не нажали — правки просто лежат в черновике.</div>
+    </div>
+    <div class="tg">
+      <div class="tg-head"><div class="tg-ava">B</div><div><div class="tg-name">BizReg бот</div><div class="tg-sub">бот</div></div></div>
+      <div class="tg-body">
+        <div class="msg">✅ Правка №1 добавлена в черновик.<br><br>Запишите ещё голосовое, либо нажмите «Завершить и отправить» (или /end).</div>
+        <div class="kb">
+          <div class="kbtn full">✅ Завершить и отправить</div>
+          <div class="kbtn full">🗑 Отменить все правки</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="txt">
+      <span class="badge">Шаг 5</span>
+      <h3>Готово</h3>
+      <p>Бот подтвердит, что правки ушли в работу. Дальше «завод» сам:</p>
+      <div class="flow">
+        <div class="row"><div class="dot">1</div><div>Расширит статью по стандарту BizReg (структура, FAQ, ссылки).</div></div>
+        <div class="row"><div class="dot">2</div><div>Проверит факты по официальным источникам.</div></div>
+        <div class="row"><div class="dot">3</div><div>Опубликует на сайт и пришлёт уведомление в общую группу.</div></div>
+      </div>
+    </div>
+    <div class="tg">
+      <div class="tg-head"><div class="tg-ava">B</div><div><div class="tg-name">BizReg бот</div><div class="tg-sub">бот</div></div></div>
+      <div class="tg-body">
+        <div class="msg">📤 Отправил 1 правку по статье в работу. Завод обновит статью по стандарту, проверит факты и пришлёт уведомление в общую группу.</div>
+        <div class="msg">📝 <b>Статья обновлена</b><br>Минимальная зарплата в Узбекистане 2026<br>Дополнил: Карима</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- КОМАНДЫ -->
+  <h2><span class="n">3</span>Команды</h2>
+  <div class="card">
+    <table>
+      <tr><th>Команда</th><th>Что делает</th></tr>
+      <tr><td><code>/start</code></td><td>Главное меню: открыть список статей и начать заново.</td></tr>
+      <tr><td><code>/end</code></td><td>Завершить и отправить все накопленные правки по статье в работу.</td></tr>
+      <tr><td><code>/cancel</code></td><td>Очистить черновик правок по текущей статье (ничего не отправляя).</td></tr>
+    </table>
+    <div class="note ok">Кнопки в чате дублируют команды — можно пользоваться чем удобнее.</div>
+  </div>
+
+  <!-- СОВЕТЫ -->
+  <h2><span class="n">4</span>Полезно знать</h2>
+  <div class="card">
+    <ul class="tips" style="margin:0;padding-left:20px">
+      <li>Говорите <b>конкретно</b>: какой раздел и что именно добавить/исправить. Чем понятнее правка — тем точнее результат.</li>
+      <li>Несколько правок по одной статье удобнее <b>наговорить подряд</b> и отправить одним пакетом.</li>
+      <li>Не услышал/расшифровал криво — нажмите <b>«🔁 Перезаписать»</b> или отправьте текстом.</li>
+      <li>Публикация не мгновенная: «завод» расширяет и проверяет статью — итог придёт <b>в общую группу</b>.</li>
+      <li>Заказ <b>новых</b> статей с нуля доступен только владельцу — у сотрудников этой кнопки нет.</li>
+    </ul>
+  </div>
+
+  <footer>
+    BizReg · внутренняя инструкция · бот <a href="https://t.me/bizregSEO_bot">@bizregSEO_bot</a>
+  </footer>
+</div>
+</body>
+</html>
