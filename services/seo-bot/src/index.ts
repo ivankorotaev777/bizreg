@@ -34,6 +34,15 @@ type Ctx = Context & SessionFlavor<SessionData> & { manager: Manager };
 
 const bot = new Bot<Ctx>(config.botToken);
 
+// В группе уведомлений бот только постит итоги генерации (это делает сервис
+// фабрики) и НЕ реагирует на входящие — иначе чужие реплики в группе он
+// принимает за запросы. Игнорируем любые апдейты из этого чата ещё до
+// allowlist'а, чтобы не плодить и ответы T.denied. Остальные чаты — как обычно.
+bot.use(async (ctx, next) => {
+  if (config.notifyGroupId && String(ctx.chat?.id) === config.notifyGroupId) return;
+  await next();
+});
+
 bot.use(
   session<SessionData, Ctx>({
     initial: () => ({ stage: "idle" }),

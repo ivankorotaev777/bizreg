@@ -13,4 +13,8 @@ export const config = {
   siteUrl: process.env.SITE_URL ?? "https://www.bizreg.uz",
   // Модель транскрипции. whisper-1 — дёшево и хорошо для русского.
   sttModel: process.env.STT_MODEL ?? "whisper-1",
+  // Группа уведомлений: туда фабрика постит итоги генерации, но бот НЕ должен
+  // реагировать на входящие сообщения (иначе чужие реплики в группе он принимает
+  // за запросы). Пусто = фильтр выключен. То же значение, что TELEGRAM_GROUP_ID у фабрики.
+  notifyGroupId: process.env.TELEGRAM_GROUP_ID ?? "",
 };
