@@ -6,7 +6,10 @@ const PAGE = 18;
 /** Главное меню. Кнопка генерации — только владельцу. */
 export function mainMenu(isOwner: boolean): InlineKeyboard {
   const kb = new InlineKeyboard().text("✍️ Дополнить статью", "menu:articles:0");
-  if (isOwner) kb.row().text("🏭 Заказать новые статьи", "menu:gen");
+  if (isOwner) {
+    kb.row().text("🎙 Заказать статью голосом", "menu:gentopic");
+    kb.row().text("🏭 Заказать новые статьи", "menu:gen");
+  }
   return kb;
 }
 
@@ -54,6 +57,15 @@ export function moreOrFinish(): InlineKeyboard {
     .text("✅ Завершить и отправить", "finish")
     .row()
     .text("🗑 Отменить все правки", "discard");
+}
+
+/** Подтверждение темы для генерации одной статьи (голосом/текстом). */
+export function confirmTopic(): InlineKeyboard {
+  return new InlineKeyboard()
+    .text("✅ Заказать статью", "topic:send")
+    .row()
+    .text("🔁 Перезаписать", "topic:redo")
+    .text("✖️ Отмена", "topic:cancel");
 }
 
 /** Пресеты количества статей для генерации. */

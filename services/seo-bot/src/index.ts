@@ -19,15 +19,17 @@ import {
   articleList,
   articleActions,
   confirmNote,
+  confirmTopic,
   moreOrFinish,
   genCounts,
 } from "./keyboards.js";
 
 interface SessionData {
-  stage: "idle" | "awaiting_note" | "confirm_note";
+  stage: "idle" | "awaiting_note" | "confirm_note" | "awaiting_topic" | "confirm_topic";
   slug?: string;
   title?: string;
   pendingNote?: string;
+  pendingTopic?: string;
 }
 
 type Ctx = Context & SessionFlavor<SessionData> & { manager: Manager };
@@ -85,6 +87,13 @@ bot.command("generate", async (ctx) => {
   await ctx.reply(T.genQueued(n));
 });
 
+// Заказ генерации ОДНОЙ статьи голосом: /article → наговорить тему
+bot.command("article", async (ctx) => {
+  if (!isOwner(ctx)) return ctx.reply(T.ownerOnly);
+  ctx.session = { stage: "awaiting_topic" };
+  await ctx.reply(T.genTopicPrompt);
+});
+
 // ---------- Callback-кнопки ----------
 async function showArticleList(ctx: Ctx, page: number) {
   const items = await listArticles();
@@ -140,6 +149,14 @@ bot.callbackQuery("menu:gen", async (ctx) => {
   await ctx.reply(T.genMenu, { reply_markup: genCounts() });
 });
 
+// Заказ одной статьи голосом — старт сценария: ждём тему
+bot.callbackQuery("menu:gentopic", async (ctx) => {
+  await ctx.answerCallbackQuery();
+  if (!isOwner(ctx)) return;
+  ctx.session = { stage: "awaiting_topic" };
+  await ctx.reply(T.genTopicPrompt);
+});
+
 bot.callbackQuery(/^gen:(\d+)$/, async (ctx) => {
   await ctx.answerCallbackQuery();
   if (!isOwner(ctx)) return;
@@ -175,6 +192,35 @@ bot.callbackQuery("note:cancel", async (ctx) => {
   await ctx.answerCallbackQuery();
   ctx.session.pendingNote = undefined;
   ctx.session.stage = "awaiting_note";
+  await ctx.reply(T.cancelled);
+});
+
+// Подтверждение темы → ставим задание на генерацию одной статьи
+bot.callbackQuery("topic:send", async (ctx) => {
+  await ctx.answerCallbackQuery();
+  if (!isOwner(ctx)) return;
+  const topic = ctx.session.pendingTopic;
+  if (!topic) return ctx.reply(T.genTopicPrompt);
+  await enqueueGeneration({
+    count: 1,
+    topics: [topic],
+    managerId: ctx.manager.telegram_id,
+    managerName: ctx.manager.name,
+  });
+  ctx.session = { stage: "idle" };
+  await ctx.reply(T.genTopicQueued(topic));
+});
+
+bot.callbackQuery("topic:redo", async (ctx) => {
+  await ctx.answerCallbackQuery();
+  ctx.session.stage = "awaiting_topic";
+  ctx.session.pendingTopic = undefined;
+  await ctx.reply(T.reRecord);
+});
+
+bot.callbackQuery("topic:cancel", async (ctx) => {
+  await ctx.answerCallbackQuery();
+  ctx.session = { stage: "idle" };
   await ctx.reply(T.cancelled);
 });
 
@@ -221,15 +267,25 @@ async function presentNote(ctx: Ctx, note: string) {
   await ctx.reply(T.confirmNote(note), { reply_markup: confirmNote() });
 }
 
+async function presentTopic(ctx: Ctx, topic: string) {
+  if (!topic) return ctx.reply(T.transcribeFailed);
+  ctx.session.pendingTopic = topic;
+  ctx.session.stage = "confirm_topic";
+  await ctx.reply(T.confirmTopic(topic), { reply_markup: confirmTopic() });
+}
+
 bot.on("message:voice", async (ctx) => {
-  if (ctx.session.stage !== "awaiting_note") return ctx.reply(T.sendVoiceFirst);
+  const stage = ctx.session.stage;
+  if (stage !== "awaiting_note" && stage !== "awaiting_topic")
+    return ctx.reply(T.sendVoiceFirst);
   await ctx.reply(T.transcribing);
   try {
     const file = await ctx.getFile();
     const url = `https://api.telegram.org/file/bot${config.botToken}/${file.file_path}`;
     const buf = Buffer.from(await (await fetch(url)).arrayBuffer());
-    const note = await transcribe(buf, "voice.ogg");
-    await presentNote(ctx, note);
+    const text = await transcribe(buf, "voice.ogg");
+    if (stage === "awaiting_topic") return presentTopic(ctx, text);
+    await presentNote(ctx, text);
   } catch (e) {
     console.error("transcribe error", e);
     await ctx.reply(T.transcribeFailed);
@@ -238,6 +294,8 @@ bot.on("message:voice", async (ctx) => {
 
 bot.on("message:text", async (ctx) => {
   if (ctx.message.text.startsWith("/")) return; // команды обрабатываются выше
+  if (ctx.session.stage === "awaiting_topic")
+    return presentTopic(ctx, ctx.message.text.trim());
   if (ctx.session.stage !== "awaiting_note") return; // вне сценария — игнор
   await presentNote(ctx, ctx.message.text.trim());
 });
