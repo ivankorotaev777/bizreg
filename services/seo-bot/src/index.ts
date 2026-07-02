@@ -299,6 +299,17 @@ bot.on("message:text", async (ctx) => {
 
 bot.catch((err) => console.error("Bot error:", err.error));
 
-bot.start({
-  onStart: (me) => console.log(`SEO-bot запущен: @${me.username}`),
-});
+// Устойчивый long-polling: сбой опроса (в т.ч. 409 Conflict — пересечение
+// инстансов в окне редеплоя) не роняет процесс, а перезапускает опрос с паузой.
+async function startPolling(): Promise<void> {
+  try {
+    await bot.start({
+      onStart: (me) => console.log(`SEO-bot запущен: @${me.username}`),
+    });
+  } catch (e) {
+    console.error("Polling остановлен (напр. 409 Conflict), перезапуск через 5с:", e);
+    await new Promise((r) => setTimeout(r, 5000));
+    return startPolling();
+  }
+}
+startPolling();
