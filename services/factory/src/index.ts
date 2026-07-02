@@ -152,13 +152,15 @@ async function processGeneration(job: Job): Promise<void> {
   if (!sha) sha = await currentSha();
   await syncArticles();
 
-  const list = writes
-    .filter((w) => w.summary)
-    .map((w) => `• ${w.summary}`)
-    .slice(0, 20)
+  const escHtml = (s: string) =>
+    s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const published = writes.filter((w) => w.ok);
+  const list = published
+    .map((w) => `• <a href="${articleUrl(w.topic.slug)}">${escHtml(w.topic.title)}</a>`)
     .join("\n");
   await notifyGroup(
-    `🏭 <b>Опубликовано новых статей: ${topics.length}</b>\nЗаказал: ${manager_name ?? "—"}\n\n${list}`,
+    `🏭 <b>Опубликовано новых статей: ${published.length}</b>\n` +
+      `Заказал: ${escHtml(manager_name ?? "—")}\n\n${list}`,
   );
   await markDone(job.id, { count: topics.length, sha, costUsd: cost });
   console.log(`Generation готов: ${topics.length} статей. Стоимость ≈ $${cost.toFixed(2)}`);

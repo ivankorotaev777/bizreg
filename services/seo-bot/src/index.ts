@@ -87,9 +87,8 @@ bot.command("generate", async (ctx) => {
   await ctx.reply(T.genQueued(n));
 });
 
-// Заказ генерации ОДНОЙ статьи голосом: /article → наговорить тему
+// Заказ генерации ОДНОЙ статьи голосом: /article → наговорить тему (доступно всем менеджерам)
 bot.command("article", async (ctx) => {
-  if (!isOwner(ctx)) return ctx.reply(T.ownerOnly);
   ctx.session = { stage: "awaiting_topic" };
   await ctx.reply(T.genTopicPrompt);
 });
@@ -149,10 +148,9 @@ bot.callbackQuery("menu:gen", async (ctx) => {
   await ctx.reply(T.genMenu, { reply_markup: genCounts() });
 });
 
-// Заказ одной статьи голосом — старт сценария: ждём тему
+// Заказ одной статьи голосом — старт сценария: ждём тему (доступно всем менеджерам)
 bot.callbackQuery("menu:gentopic", async (ctx) => {
   await ctx.answerCallbackQuery();
-  if (!isOwner(ctx)) return;
   ctx.session = { stage: "awaiting_topic" };
   await ctx.reply(T.genTopicPrompt);
 });
@@ -198,7 +196,6 @@ bot.callbackQuery("note:cancel", async (ctx) => {
 // Подтверждение темы → ставим задание на генерацию одной статьи
 bot.callbackQuery("topic:send", async (ctx) => {
   await ctx.answerCallbackQuery();
-  if (!isOwner(ctx)) return;
   const topic = ctx.session.pendingTopic;
   if (!topic) return ctx.reply(T.genTopicPrompt);
   await enqueueGeneration({
