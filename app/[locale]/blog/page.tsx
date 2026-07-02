@@ -1,15 +1,52 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { setRequestLocale } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
 import { getAllPostMeta } from "@/lib/blog";
+import { clusterTag } from "@/lib/tags";
 import { pageMetadata } from "@/lib/seo/metadata";
+import BlogIndex, { type BlogCard } from "@/components/blog/BlogIndex";
 
-type BlogLabels = { title: string; desc: string; empty: string };
+type BlogLabels = {
+  title: string;
+  desc: string;
+  empty: string;
+  searchPlaceholder: string;
+  updated: string;
+  read: string;
+  nothing: string;
+  all: string;
+};
+
 const T: Record<string, BlogLabels> = {
-  ru: { title: "Блог о бизнесе в Узбекистане", desc: "Налоги, НДС, ВНЖ, регистрация компании и релокация в Узбекистан — гайды и разборы для предпринимателей.", empty: "Скоро здесь появятся статьи." },
-  en: { title: "Blog: doing business in Uzbekistan", desc: "Taxes, VAT, residence, company registration and relocation to Uzbekistan — guides for entrepreneurs.", empty: "Articles coming soon." },
-  zh: { title: "乌兹别克斯坦营商博客", desc: "税务、增值税、居留、公司注册与迁移指南。", empty: "文章即将上线。" },
+  ru: {
+    title: "Блог о бизнесе в Узбекистане",
+    desc: "Налоги, НДС, ВНЖ, регистрация компании и релокация в Узбекистан — гайды и разборы для предпринимателей.",
+    empty: "Скоро здесь появятся статьи.",
+    searchPlaceholder: "Поиск по статьям и тегам…",
+    updated: "Обновлено",
+    read: "Читать",
+    nothing: "Ничего не найдено. Измените запрос или снимите фильтры.",
+    all: "Все",
+  },
+  en: {
+    title: "Blog: doing business in Uzbekistan",
+    desc: "Taxes, VAT, residence, company registration and relocation to Uzbekistan — guides for entrepreneurs.",
+    empty: "Articles coming soon.",
+    searchPlaceholder: "Search articles and tags…",
+    updated: "Updated",
+    read: "Read",
+    nothing: "Nothing found. Try another query or clear the filters.",
+    all: "All",
+  },
+  zh: {
+    title: "乌兹别克斯坦营商博客",
+    desc: "税务、增值税、居留、公司注册与迁移指南。",
+    empty: "文章即将上线。",
+    searchPlaceholder: "搜索文章和标签…",
+    updated: "已更新",
+    read: "阅读",
+    nothing: "未找到内容。",
+    all: "全部",
+  },
 };
 
 function t(locale: string) {
@@ -40,6 +77,31 @@ export default async function BlogIndexPage({
   const tt = t(locale);
   const posts = getAllPostMeta(locale);
 
+  const cards: BlogCard[] = posts.map((p) => {
+    const tag = clusterTag(p.cluster, locale);
+    return {
+      slug: p.slug,
+      title: p.title,
+      description: p.description,
+      image: p.image,
+      imageAlt: p.imageAlt,
+      tagCode: tag?.code,
+      tagLabel: tag?.label,
+      date: p.dateModified || p.datePublished,
+    };
+  });
+
+  // Уникальные теги, присутствующие в статьях — по возрастанию кода (C1, C3, …).
+  const tagMap = new Map<string, { code: string; label: string }>();
+  for (const c of cards) {
+    if (c.tagCode && c.tagLabel && !tagMap.has(c.tagCode)) {
+      tagMap.set(c.tagCode, { code: c.tagCode, label: c.tagLabel });
+    }
+  }
+  const tags = [...tagMap.values()].sort(
+    (a, b) => Number(a.code.slice(1)) - Number(b.code.slice(1)),
+  );
+
   return (
     <main className="pt-20 pb-16">
       <section className="bg-gradient-to-b from-brand-50 to-background py-12 sm:py-16">
@@ -51,38 +113,22 @@ export default async function BlogIndexPage({
         </div>
       </section>
 
-      <div className="container mx-auto max-w-3xl px-4">
-        {posts.length === 0 ? (
+      <div className="container mx-auto max-w-4xl px-4 pt-8">
+        {cards.length === 0 ? (
           <p className="mt-10 text-slate-500">{tt.empty}</p>
         ) : (
-          <ul className="-mt-6 grid gap-6 sm:grid-cols-2">
-            {posts.map((p) => (
-              <li key={p.slug} className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:border-brand-200 hover:shadow-md">
-                <Link href={`/blog/${p.slug}`} className="flex h-full flex-col">
-                  <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
-                    {p.image ? (
-                      <Image
-                        src={p.image}
-                        alt={p.imageAlt ?? p.title}
-                        fill
-                        sizes="(max-width: 640px) 100vw, 50vw"
-                        className="object-cover transition duration-300 group-hover:scale-105"
-                      />
-                    ) : (
-                      <div className="h-full w-full bg-gradient-to-br from-brand-100 to-brand-50" />
-                    )}
-                  </div>
-                  <div className="flex flex-1 flex-col p-5">
-                    <h2 className="text-lg font-semibold leading-snug text-slate-900">{p.title}</h2>
-                    <p className="mt-2 line-clamp-3 text-sm text-slate-600">{p.description}</p>
-                    <span className="mt-4 inline-block text-sm font-medium text-brand-600">
-                      {locale === "ru" ? "Читать →" : locale === "zh" ? "阅读 →" : "Read →"}
-                    </span>
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <BlogIndex
+            posts={cards}
+            tags={tags}
+            locale={locale}
+            ui={{
+              searchPlaceholder: tt.searchPlaceholder,
+              updated: tt.updated,
+              read: tt.read,
+              nothing: tt.nothing,
+              all: tt.all,
+            }}
+          />
         )}
       </div>
     </main>
