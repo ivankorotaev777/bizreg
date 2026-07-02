@@ -114,6 +114,17 @@ for (const [slug, vs] of Object.entries(bySlug)) {
   if (!locs.includes("en")) warn(slug, "нет en-версии (hreflang/охват en)");
 }
 
+// --- тег карточки /blog: cluster обязан давать распознаваемый тег (C1–C13) ---
+// Коды синхронизированы с lib/tags.ts — иначе на /blog карточка будет без тега.
+const KNOWN_TAG_CODES = new Set(["C1", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "C10", "C11", "C12", "C13"]);
+for (const p of posts) {
+  const F = `${p.slug}.${p.locale}`;
+  const code = String(p.fm.cluster || "").match(/C\d+/i)?.[0]?.toUpperCase();
+  if (!code || !KNOWN_TAG_CODES.has(code)) {
+    err(F, `нет тега карточки: cluster="${p.fm.cluster ?? "—"}" — нужен код C1–C13 (см. lib/tags.ts), иначе на /blog карточка без тега`);
+  }
+}
+
 // --- карта внутренней перелинковки (для SEO-score и поиска «сирот») ---
 function siblingLinks(content, selfSlug) {
   const set = new Set();
