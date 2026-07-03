@@ -62,7 +62,7 @@ export async function generateMetadata({
   return pageMetadata({
     locale,
     path: "/blog",
-    localesAvailable: ["ru", "en", "zh"],
+    localesAvailable: ["ru", "en"],
     title: `${tt.title} | BizReg`,
     description: tt.desc,
   });

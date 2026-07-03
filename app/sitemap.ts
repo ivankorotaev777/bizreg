@@ -32,8 +32,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     emit(entries, route.path, route.locales, route.priority ?? 0.6, route.changeFrequency ?? "weekly");
   }
 
-  // Блог: индекс + статьи (динамически)
-  emit(entries, "/blog", ["ru", "en", "zh"], 0.6);
+  // Блог: индекс + статьи (динамически). Индекс — ru+en (zh-листинг тонкий).
+  emit(entries, "/blog", ["ru", "en"], 0.6);
   const slugs = [...new Set(getAllPostParams().map((p) => p.slug))];
   for (const slug of slugs) {
     const locs = getPostLocales(slug);
