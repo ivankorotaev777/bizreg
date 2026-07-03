@@ -1,0 +1,31 @@
+name: IndexNow ping
+
+# Пингуем IndexNow (Яндекс/Bing; Google IndexNow не использует) при публикации/правке
+# контента. Ключ и ключ-файл уже в репо (public/<key>.txt) — секреты не нужны.
+# Ждём деплой Vercel, затем шлём актуальный список URL из живого sitemap.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "content/blog/**"
+      - "app/**"
+      - "lib/seo/**"
+  workflow_dispatch: {} # можно запустить вручную из вкладки Actions
+
+# Хватает одного пинга на серию быстрых пушей завода — новые отменяют старые.
+concurrency:
+  group: indexnow
+  cancel-in-progress: true
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Wait for Vercel deploy
+        run: sleep 240
+      - name: Submit URLs to IndexNow
+        run: node scripts/indexnow.mjs
