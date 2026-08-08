@@ -28,6 +28,7 @@ export function Header() {
     { name: t("registration"), href: "/registratsiya-ooo" },
     { name: t("legalAddress"), href: "/yuridicheskiy-adres" },
     { name: t("itpark"), href: "/itpark" },
+    { name: t("marketplace"), href: "/marketplace" },
     { name: t("blog"), href: "/blog" },
     { name: t("about"), href: "/about" },
     { name: t("payment"), href: "/payment" },
