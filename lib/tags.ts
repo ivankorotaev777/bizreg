@@ -14,6 +14,7 @@ const MAP: Record<string, { ru: string; en: string }> = {
   C11: { ru: "Персонал", en: "HR & staff" },
   C12: { ru: "ВНЖ и релокация", en: "Residence & relocation" },
   C13: { ru: "Платежи и ВЭД", en: "Payments & FX" },
+  C15: { ru: "Маркетплейсы", en: "Marketplaces" },
 };
 
 export interface ArticleTag {
