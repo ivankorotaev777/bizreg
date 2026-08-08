@@ -29,6 +29,17 @@ type Content = {
   totalLabel: string;
   totalSum: string;
   totalUsd: string;
+  timelineTitle: string;
+  timelineSub: string;
+  day1t: string;
+  day1d: string;
+  day2t: string;
+  day2d: string;
+  otherTitle: string;
+  otherText: string;
+  needTitle: string;
+  needSub: string;
+  need: { ic: string; t: string; d: string }[];
   faqTitle: string;
   faq: QA[];
   finalTitle: string;
@@ -36,35 +47,35 @@ type Content = {
 };
 
 const RU: Content = {
-  eyebrow: "Wildberries · Uzum · Ozon — для иностранцев",
+  eyebrow: "Wildberries · Узбекистан · для иностранцев",
   h1a: "Стать продавцом на ",
-  h1accent: "маркетплейсах",
-  h1b: " Узбекистана — под ключ",
-  sub: "Иностранцу нельзя торговать как частному лицу — нужен бизнес и счёт в Узбекистане. Открываем ООО и готовим документы под маркетплейс. Без личного присутствия, за 2 дня.",
-  cta: "Оставить заявку",
+  h1accent: "Wildberries",
+  h1b: " в Узбекистане — под ключ",
+  sub: "Иностранцу нельзя торговать на WB как частному лицу — нужен бизнес и счёт в Узбекистане. Открываем ООО и готовим документы под маркетплейс. Без личного присутствия.",
+  cta: "Открыть бизнес под WB",
   ctaMore: "Как это работает",
   note: "Работаем с нерезидентами из России, Казахстана, Турции и других стран.",
   stats: [
-    { v: "$605 млн", l: "продаж из Узбекистана на Wildberries за 2024" },
-    { v: "×2", l: "рост продаж за 2025 год" },
-    { v: "2 дня", l: "выход под ключ" },
+    { v: "$605 млн", l: "продаж товаров из Узбекистана на Wildberries за 2024 год — и рост более чем вдвое за 2025-й" },
+    { v: "100 000 м²", l: "склад WB под Ташкентом к концу 2026" },
+    { v: "7 500", l: "рабочих мест логоцентра" },
   ],
   barriersTitle: "Почему нерезиденту нельзя просто зайти и продавать",
   barriers: [
     { ic: "🏢", t: "Нужен местный бизнес", d: "Кабинет продавца открывают только ИП или юрлицу, зарегистрированному в Узбекистане. Частное лицо-иностранец не откроет." },
-    { ic: "🏦", t: "Нужен счёт в банке УЗ", d: "Выручку маркетплейс перечисляет на расчётный счёт бизнеса в узбекском банке." },
-    { ic: "📄", t: "Нужны документы и статус", d: "Свидетельство, ИНН, добавление площадки в комиссионеры на soliq.uz. Пропустишь шаг — расчёты пойдут неверно." },
+    { ic: "🏦", t: "Нужен счёт в банке УЗ", d: "Выручку Wildberries перечисляет на расчётный счёт бизнеса в узбекском банке." },
+    { ic: "📄", t: "Нужны документы и статус", d: "Свидетельство, ИНН, добавление WB в комиссионеры на soliq.uz. Пропустишь шаг — расчёты пойдут неверно." },
   ],
-  stepsTitle: "Как выйти на маркетплейс — 6 шагов",
+  stepsTitle: "Как выйти на Wildberries — 6 шагов",
   steps: [
-    { t: "Открываем ООО", d: "Рекомендуем ООО: не требует прописки и ВНЖ, и только юрлицо может вести импорт товара из-за рубежа." },
-    { t: "Открываем расчётный счёт", d: "В узбекском банке — на него площадка перечисляет выручку." },
-    { t: "Регистрируем кабинет продавца", d: "На портале маркетплейса: WB Partners, Uzum Seller или Ozon." },
+    { t: "Открываем ООО", d: "Рекомендуем ООО: не требует прописки и ВНЖ, и только юрлицо может вести импорт товара из-за рубежа (Россия, Китай и др.)." },
+    { t: "Открываем расчётный счёт", d: "В узбекском банке — на него Wildberries перечисляет выручку." },
+    { t: "Регистрируем кабинет на WB Partners", d: "wildberries.uz → «Для бизнеса» → «Стать продавцом»." },
     { t: "Загружаем документы", d: "Паспорт, свидетельство о регистрации и банковские реквизиты." },
-    { t: "Добавляем площадку в комиссионеры", d: "На my.soliq.uz — обязательный шаг для корректной отчётности." },
-    { t: "Выбираем схему и продаём", d: "Основная схема — фулфилмент площадки: товар на складе, доставку берёт маркетплейс." },
+    { t: "Добавляем WB в комиссионеры", d: "На my.soliq.uz — обязательный шаг для корректной отчётности." },
+    { t: "Выбираем схему и продаём", d: "Основная схема — FBW: товар на складе WB, доставку берёт маркетплейс." },
   ],
-  taxTitle: "Налоги продавца в Узбекистане",
+  taxTitle: "Что вас ждёт дальше: налоги",
   taxSub: "Один из самых мягких режимов в регионе. Пока оборот ниже порога — простой налог с оборота, а не сложный НДС.",
   taxHead: ["Налог", "Ставка 2026", "Когда"],
   taxRows: [
@@ -86,6 +97,21 @@ const RU: Content = {
   totalLabel: "Итого — выход за 2 дня",
   totalSum: "25 972 000 сум",
   totalUsd: "≈ $2 078 · срок 2 дня",
+  timelineTitle: "Выход за 2 дня — по шагам",
+  timelineSub: "Пока вы занимаетесь товаром, мы за два рабочих дня готовим всё для старта.",
+  day1t: "День 1 — открываем компанию",
+  day1d: "Регистрируем ООО, получаем ИНН и юридический адрес, готовим пакет документов.",
+  day2t: "День 2 — счёт, виза, документы",
+  day2d: "Открываем счёт, оформляем разрешение на работу и визу директору и отдаём пакет для WB Partners.",
+  otherTitle: "Не только Wildberries",
+  otherText: "Открытая компания подходит для всех маркетплейсов сразу. Поможем выйти и на Uzum Market, и на Ozon — на том же ООО, без открытия нового бизнеса под каждую площадку.",
+  needTitle: "Что нужно от вас — всего три вещи",
+  needSub: "Никаких поездок и очередей. Присылаете данные — остальное делаем мы, дистанционно.",
+  need: [
+    { ic: "🪪", t: "Паспорт", d: "Скан паспорта учредителя (и директора, если это разные люди)." },
+    { ic: "🏷️", t: "Название и вид деятельности", d: "Как назвать компанию и чем она будет заниматься — подскажем." },
+    { ic: "🛍️", t: "Что планируете продавать", d: "Категория товара — чтобы учесть маркировку и особенности площадки." },
+  ],
   faqTitle: "Частые вопросы",
   faq: [
     { q: "Можно ли продавать без местной компании?", a: "Нет. Кабинет продавца открывают только ИП или юрлицу, зарегистрированному в Узбекистане." },
@@ -94,40 +120,40 @@ const RU: Content = {
     { q: "Нужны ли директору виза и разрешение на работу?", a: "Да, если гендиректор — нерезидент. Это отдельные процедуры, тоже берём на себя." },
     { q: "Можно ли выйти на Uzum и Ozon на той же компании?", a: "Да, одна компания подходит для всех маркетплейсов." },
   ],
-  finalTitle: "Откроем бизнес и счёт под маркетплейс",
+  finalTitle: "Откроем бизнес и счёт под Wildberries",
   finalSub: "Оставьте контакты — подберём форму бизнеса и рассчитаем сроки и стоимость.",
 };
 
 const EN: Content = {
-  eyebrow: "Wildberries · Uzum · Ozon — for foreigners",
+  eyebrow: "Wildberries · Uzbekistan · for foreigners",
   h1a: "Become a seller on ",
-  h1accent: "Uzbekistan's marketplaces",
-  h1b: " — done for you",
-  sub: "A foreigner cannot trade as a private individual — you need a business and a bank account in Uzbekistan. We set up an LLC and prepare documents for the marketplace. Remotely, in 2 days.",
-  cta: "Request a callback",
+  h1accent: "Wildberries",
+  h1b: " in Uzbekistan — done for you",
+  sub: "A foreigner cannot trade on WB as a private individual — you need a business and a bank account in Uzbekistan. We set up an LLC and prepare documents for the marketplace. Remotely.",
+  cta: "Set up a business for WB",
   ctaMore: "How it works",
   note: "We work with non-residents from Russia, Kazakhstan, Turkey and other countries.",
   stats: [
-    { v: "$605M", l: "sales from Uzbekistan on Wildberries in 2024" },
-    { v: "×2", l: "sales growth in 2025" },
-    { v: "2 days", l: "turnkey launch" },
+    { v: "$605M", l: "sales of goods from Uzbekistan on Wildberries in 2024 — more than doubled in 2025" },
+    { v: "100,000 m²", l: "WB warehouse near Tashkent by end of 2026" },
+    { v: "7,500", l: "jobs at the logistics center" },
   ],
   barriersTitle: "Why a non-resident can't just start selling",
   barriers: [
     { ic: "🏢", t: "You need a local business", d: "A seller account is opened only for a sole proprietor or a legal entity registered in Uzbekistan." },
-    { ic: "🏦", t: "You need an Uzbek bank account", d: "The marketplace transfers proceeds to the business account in an Uzbek bank." },
-    { ic: "📄", t: "Documents and status", d: "Certificate, taxpayer ID, adding the platform as a commission agent on soliq.uz. Skip a step and reporting breaks." },
+    { ic: "🏦", t: "You need an Uzbek bank account", d: "Wildberries transfers proceeds to the business account in an Uzbek bank." },
+    { ic: "📄", t: "Documents and status", d: "Certificate, taxpayer ID, adding WB as a commission agent on soliq.uz. Skip a step and reporting breaks." },
   ],
-  stepsTitle: "How to launch on a marketplace — 6 steps",
+  stepsTitle: "How to launch on Wildberries — 6 steps",
   steps: [
-    { t: "Set up an LLC", d: "We recommend an LLC: no residence permit needed, and only a legal entity can import goods from abroad." },
-    { t: "Open a bank account", d: "In an Uzbek bank — the platform sends your proceeds there." },
-    { t: "Register a seller cabinet", d: "On the marketplace portal: WB Partners, Uzum Seller or Ozon." },
+    { t: "Set up an LLC", d: "We recommend an LLC: no residence permit, and only a legal entity can import goods from abroad (Russia, China, etc.)." },
+    { t: "Open a bank account", d: "In an Uzbek bank — Wildberries sends your proceeds there." },
+    { t: "Register on WB Partners", d: "wildberries.uz → 'For business' → 'Become a seller'." },
     { t: "Upload documents", d: "Passport, registration certificate and bank details." },
-    { t: "Add the platform as a commission agent", d: "On my.soliq.uz — mandatory for correct reporting." },
-    { t: "Choose a scheme and sell", d: "Main scheme — platform fulfillment: goods at the warehouse, delivery handled by the marketplace." },
+    { t: "Add WB as a commission agent", d: "On my.soliq.uz — mandatory for correct reporting." },
+    { t: "Choose a scheme and sell", d: "Main scheme — FBW: goods at the WB warehouse, delivery handled by the marketplace." },
   ],
-  taxTitle: "Seller taxes in Uzbekistan",
+  taxTitle: "What comes next: taxes",
   taxSub: "One of the mildest regimes in the region. Below the threshold — a simple turnover tax, not complex VAT.",
   taxHead: ["Tax", "2026 rate", "When"],
   taxRows: [
@@ -149,6 +175,21 @@ const EN: Content = {
   totalLabel: "Total — launch in 2 days",
   totalSum: "25,972,000 soums",
   totalUsd: "≈ $2,078 · 2 days",
+  timelineTitle: "Launch in 2 days — step by step",
+  timelineSub: "While you handle the product, we prepare everything for launch in two business days.",
+  day1t: "Day 1 — set up the company",
+  day1d: "Register the LLC, obtain the taxpayer ID and legal address, prepare the document package.",
+  day2t: "Day 2 — account, visa, documents",
+  day2d: "Open the account, arrange the director's work permit and visa, hand over the package for WB Partners.",
+  otherTitle: "Not only Wildberries",
+  otherText: "One company works for all marketplaces. We'll help you launch on both Uzum Market and Ozon — on the same LLC, without opening a new business per platform.",
+  needTitle: "What we need from you — just three things",
+  needSub: "No trips and no queues. Send the details — we do the rest remotely.",
+  need: [
+    { ic: "🪪", t: "Passport", d: "A scan of the founder's passport (and the director's, if different)." },
+    { ic: "🏷️", t: "Name and activity", d: "The company name and type of activity — we'll advise if unsure." },
+    { ic: "🛍️", t: "What you'll sell", d: "The product category — to account for labeling and platform specifics." },
+  ],
   faqTitle: "FAQ",
   faq: [
     { q: "Can I sell without a local company?", a: "No. A seller account is opened only for a business registered in Uzbekistan." },
@@ -157,40 +198,40 @@ const EN: Content = {
     { q: "Does the director need a visa and work permit?", a: "Yes, if the director is a non-resident. We handle these too." },
     { q: "Can I sell on Uzum and Ozon with the same company?", a: "Yes, one company works for all marketplaces." },
   ],
-  finalTitle: "We'll set up your business and account for the marketplace",
+  finalTitle: "We'll set up your business and account for Wildberries",
   finalSub: "Leave your contacts — we'll pick the business form and estimate timing and cost.",
 };
 
 const UZ: Content = {
-  eyebrow: "Wildberries · Uzum · Ozon — chet elliklar uchun",
-  h1a: "O'zbekiston ",
-  h1accent: "marketpleyslarida",
-  h1b: " sotuvchi bo'lish — kalit topshirish tamoyilida",
-  sub: "Chet ellik jismoniy shaxs sifatida savdo qila olmaydi — O'zbekistonda biznes va hisob raqam kerak. MChJ ochamiz va marketpleys uchun hujjatlarni tayyorlaymiz. Shaxsan kelmasdan, 2 kunda.",
-  cta: "Ariza qoldirish",
+  eyebrow: "Wildberries · O'zbekiston · chet elliklar uchun",
+  h1a: "O'zbekistonda ",
+  h1accent: "Wildberries",
+  h1b: "'da sotuvchi bo'lish — kalit topshirish tamoyilida",
+  sub: "Chet ellik WB'da jismoniy shaxs sifatida savdo qila olmaydi — O'zbekistonda biznes va hisob raqam kerak. MChJ ochamiz va marketpleys uchun hujjatlarni tayyorlaymiz. Shaxsan kelmasdan.",
+  cta: "WB uchun biznes ochish",
   ctaMore: "Bu qanday ishlaydi",
   note: "Rossiya, Qozog'iston, Turkiya va boshqa davlatlardan kelgan norezidentlar bilan ishlaymiz.",
   stats: [
-    { v: "$605 mln", l: "2024-yilda O'zbekistondan Wildberries'dagi savdo" },
-    { v: "×2", l: "2025-yilda savdo o'sishi" },
-    { v: "2 kun", l: "kalit topshirish muddati" },
+    { v: "$605 mln", l: "2024-yilda O'zbekistondan Wildberries'dagi savdo — 2025-yilda ikki baravardan ko'p o'sdi" },
+    { v: "100 000 m²", l: "2026 oxiriga Toshkent yaqinidagi WB ombori" },
+    { v: "7 500", l: "logistika markazidagi ish o'rinlari" },
   ],
   barriersTitle: "Nega norezident shunchaki kirib sota olmaydi",
   barriers: [
     { ic: "🏢", t: "Mahalliy biznes kerak", d: "Sotuvchi kabineti faqat O'zbekistonda ro'yxatdan o'tgan YaTT yoki yuridik shaxsga ochiladi." },
-    { ic: "🏦", t: "O'zbek bankida hisob kerak", d: "Marketpleys tushumni biznesning O'zbek bankidagi hisob raqamiga o'tkazadi." },
-    { ic: "📄", t: "Hujjatlar va maqom", d: "Guvohnoma, STIR, soliq.uz'da platformani komissioner sifatida qo'shish. Qadamni o'tkazib yuborsangiz — hisobot noto'g'ri bo'ladi." },
+    { ic: "🏦", t: "O'zbek bankida hisob kerak", d: "Wildberries tushumni biznesning O'zbek bankidagi hisobiga o'tkazadi." },
+    { ic: "📄", t: "Hujjatlar va maqom", d: "Guvohnoma, STIR, soliq.uz'da WB'ni komissioner sifatida qo'shish. Qadamni o'tkazsangiz — hisobot noto'g'ri bo'ladi." },
   ],
-  stepsTitle: "Marketpleysga chiqish — 6 qadam",
+  stepsTitle: "Wildberries'ga chiqish — 6 qadam",
   steps: [
-    { t: "MChJ ochamiz", d: "MChJ tavsiya etiladi: propiska va yashash guvohnomasi talab qilinmaydi, faqat yuridik shaxs chetdan tovar import qila oladi." },
-    { t: "Hisob raqam ochamiz", d: "O'zbek bankida — platforma tushumni shu yerga o'tkazadi." },
-    { t: "Sotuvchi kabinetini ro'yxatdan o'tkazamiz", d: "Marketpleys portalida: WB Partners, Uzum Seller yoki Ozon." },
+    { t: "MChJ ochamiz", d: "MChJ tavsiya etiladi: propiska va yashash guvohnomasi kerak emas, faqat yuridik shaxs chetdan tovar import qila oladi (Rossiya, Xitoy va b.)." },
+    { t: "Hisob raqam ochamiz", d: "O'zbek bankida — Wildberries tushumni shu yerga o'tkazadi." },
+    { t: "WB Partners'da ro'yxatdan o'tamiz", d: "wildberries.uz → «Biznes uchun» → «Sotuvchi bo'lish»." },
     { t: "Hujjatlarni yuklaymiz", d: "Pasport, ro'yxatdan o'tish guvohnomasi va bank rekvizitlari." },
-    { t: "Platformani komissioner sifatida qo'shamiz", d: "my.soliq.uz'da — to'g'ri hisobot uchun majburiy qadam." },
-    { t: "Sxemani tanlab, sotamiz", d: "Asosiy sxema — platforma fulfilmenti: tovar omborda, yetkazib berish marketpleys zimmasida." },
+    { t: "WB'ni komissioner sifatida qo'shamiz", d: "my.soliq.uz'da — to'g'ri hisobot uchun majburiy qadam." },
+    { t: "Sxemani tanlab, sotamiz", d: "Asosiy sxema — FBW: tovar WB omborida, yetkazib berish marketpleys zimmasida." },
   ],
-  taxTitle: "O'zbekistonda sotuvchi soliqlari",
+  taxTitle: "Keyin nima kutadi: soliqlar",
   taxSub: "Mintaqadagi eng yengil rejimlardan biri. Aylanma chegaradan past bo'lsa — murakkab QQS emas, oddiy aylanma solig'i.",
   taxHead: ["Soliq", "2026 stavka", "Qachon"],
   taxRows: [
@@ -200,9 +241,9 @@ const UZ: Content = {
     ["Foyda solig'i", "15%", "imtiyoz: yangilar uchun birinchi davrda 0%"],
     ["Dividendlar", "10%", "norezidentlarga to'lovlar"],
   ],
-  taxNote: "2026-yil stavkalari. Birinchi davrda foyda solig'idan ozod qilish — birinchi marta o'tganlar uchun (O'zR Soliq kodeksi). soliq.uz'da tekshiring.",
+  taxNote: "2026-yil stavkalari. Birinchi davrda foyda solig'idan ozod qilish — birinchi marta o'tganlar uchun (O'zR SK). soliq.uz'da tekshiring.",
   priceTitle: "Kalit topshirish narxi",
-  priceSub: "Birinchi qator hammaga tegishli, qolgani — direktor norezident bo'lib, ishlash uchun ruxsatnoma va viza kerak bo'lsa.",
+  priceSub: "Birinchi qator hammaga tegishli, qolgani — direktor norezident bo'lib, ruxsatnoma va viza kerak bo'lsa.",
   priceRows: [
     { name: "Biznesni ro'yxatdan o'tkazish (MChJ)", a: "5 000 000 so'm", b: "≈ $400" },
     { name: "Direktor uchun ishlash ruxsatnomasi", a: "4 200 000 so'm", b: "≈ $336" },
@@ -212,49 +253,64 @@ const UZ: Content = {
   totalLabel: "Jami — 2 kunda chiqish",
   totalSum: "25 972 000 so'm",
   totalUsd: "≈ $2 078 · 2 kun",
+  timelineTitle: "2 kunda chiqish — bosqichma-bosqich",
+  timelineSub: "Siz tovar bilan shug'ullanasiz, biz ikki ish kunida start uchun hammasini tayyorlaymiz.",
+  day1t: "1-kun — kompaniya ochamiz",
+  day1d: "MChJ ro'yxatdan o'tkazamiz, STIR va yuridik manzil olamiz, hujjatlar to'plamini tayyorlaymiz.",
+  day2t: "2-kun — hisob, viza, hujjatlar",
+  day2d: "Hisob ochamiz, direktorga ruxsatnoma va viza rasmiylashtiramiz, WB Partners uchun to'plamni beramiz.",
+  otherTitle: "Faqat Wildberries emas",
+  otherText: "Ochilgan kompaniya barcha marketpleyslar uchun mos. Uzum Market va Ozon'ga ham chiqishga yordam beramiz — o'sha MChJ'da, har biri uchun yangi biznes ochmasdan.",
+  needTitle: "Sizdan faqat uch narsa kerak",
+  needSub: "Safar va navbat yo'q. Ma'lumot yuborasiz — qolganini biz masofadan bajaramiz.",
+  need: [
+    { ic: "🪪", t: "Pasport", d: "Ta'sischi (va boshqa bo'lsa, direktor) pasporti nusxasi." },
+    { ic: "🏷️", t: "Nomi va faoliyat turi", d: "Kompaniya nomi va faoliyati — kerak bo'lsa maslahat beramiz." },
+    { ic: "🛍️", t: "Nima sotmoqchisiz", d: "Tovar toifasi — markirovka va platforma xususiyatlarini hisobga olish uchun." },
+  ],
   faqTitle: "Ko'p beriladigan savollar",
   faq: [
     { q: "Mahalliy kompaniyasiz sotish mumkinmi?", a: "Yo'q. Sotuvchi kabineti faqat O'zbekistonda ro'yxatdan o'tgan biznesga ochiladi." },
-    { q: "Nega MChJ, YaTT emas?", a: "MChJ propiska talab qilmaydi, faqat yuridik shaxs tovar import qila oladi — sotuvchilarning tovari deyarli har doim importdan." },
+    { q: "Nega MChJ, YaTT emas?", a: "MChJ propiska talab qilmaydi, faqat yuridik shaxs tovar import qila oladi — sotuvchilar tovari deyarli har doim importdan." },
     { q: "Shaxsan kelish kerakmi?", a: "MChJ uchun — yo'q, vakil orqali masofadan ro'yxatdan o'tkazamiz." },
     { q: "Direktorga viza va ruxsatnoma kerakmi?", a: "Ha, agar direktor norezident bo'lsa. Buni ham o'z zimmamizga olamiz." },
-    { q: "Bir kompaniyada Uzum va Ozon'ga chiqish mumkinmi?", a: "Ha, bitta kompaniya barcha marketpleyslar uchun mos keladi." },
+    { q: "Bir kompaniyada Uzum va Ozon'ga chiqish mumkinmi?", a: "Ha, bitta kompaniya barcha marketpleyslar uchun mos." },
   ],
-  finalTitle: "Marketpleys uchun biznes va hisob ochamiz",
+  finalTitle: "Wildberries uchun biznes va hisob ochamiz",
   finalSub: "Kontaktlaringizni qoldiring — biznes shaklini tanlab, muddat va narxni hisoblaymiz.",
 };
 
 const ZH: Content = {
-  eyebrow: "Wildberries · Uzum · Ozon — 面向外国人",
-  h1a: "在乌兹别克斯坦",
-  h1accent: "电商平台",
-  h1b: "成为卖家 — 全程代办",
-  sub: "外国人无法以个人身份销售——需要在乌兹别克斯坦拥有企业和银行账户。我们注册有限责任公司并准备平台所需文件。无需亲自到场，2 天完成。",
-  cta: "预约咨询",
+  eyebrow: "Wildberries · 乌兹别克斯坦 · 面向外国人",
+  h1a: "在乌兹别克斯坦成为 ",
+  h1accent: "Wildberries",
+  h1b: " 卖家 — 全程代办",
+  sub: "外国人无法以个人身份在 WB 销售——需要在乌兹别克斯坦拥有企业和银行账户。我们注册有限责任公司并准备平台文件。无需亲自到场。",
+  cta: "为 WB 注册企业",
   ctaMore: "如何运作",
   note: "我们服务来自俄罗斯、哈萨克斯坦、土耳其等国的非居民。",
   stats: [
-    { v: "$6.05 亿", l: "2024 年乌兹别克斯坦在 Wildberries 的销售额" },
-    { v: "×2", l: "2025 年销售增长" },
-    { v: "2 天", l: "全程代办" },
+    { v: "$6.05 亿", l: "2024 年乌兹别克斯坦在 Wildberries 的销售额——2025 年增长逾一倍" },
+    { v: "100 000 m²", l: "2026 年底塔什干附近的 WB 仓库" },
+    { v: "7 500", l: "物流中心的工作岗位" },
   ],
-  barriersTitle: "为什么非居民不能直接开店销售",
+  barriersTitle: "为什么非居民不能直接销售",
   barriers: [
     { ic: "🏢", t: "需要本地企业", d: "卖家账户只对在乌兹别克斯坦注册的个体户或法人开放。" },
-    { ic: "🏦", t: "需要乌兹别克银行账户", d: "平台将货款转入企业在乌兹别克银行的账户。" },
-    { ic: "📄", t: "文件与资质", d: "注册证、税号，并在 soliq.uz 上将平台添加为佣金代理。漏一步，报税就会出错。" },
+    { ic: "🏦", t: "需要乌兹别克银行账户", d: "Wildberries 将货款转入企业在乌兹别克银行的账户。" },
+    { ic: "📄", t: "文件与资质", d: "注册证、税号，并在 soliq.uz 上将 WB 添加为佣金代理。漏一步，报税就会出错。" },
   ],
-  stepsTitle: "如何入驻电商平台 — 6 步",
+  stepsTitle: "如何入驻 Wildberries — 6 步",
   steps: [
-    { t: "注册有限责任公司", d: "推荐有限责任公司：无需居留许可，且只有法人才能从境外进口商品。" },
-    { t: "开设银行账户", d: "在乌兹别克银行——平台将货款转入此账户。" },
-    { t: "注册卖家后台", d: "在平台门户：WB Partners、Uzum Seller 或 Ozon。" },
+    { t: "注册有限责任公司", d: "推荐有限责任公司：无需居留许可，且只有法人才能从境外进口商品（俄罗斯、中国等）。" },
+    { t: "开设银行账户", d: "在乌兹别克银行——Wildberries 将货款转入此账户。" },
+    { t: "在 WB Partners 注册", d: "wildberries.uz →「企业」→「成为卖家」。" },
     { t: "上传文件", d: "护照、注册证和银行信息。" },
-    { t: "将平台添加为佣金代理", d: "在 my.soliq.uz 上——正确报税的必要步骤。" },
-    { t: "选择模式并开始销售", d: "主要模式为平台履约：货物存放仓库，配送由平台负责。" },
+    { t: "将 WB 添加为佣金代理", d: "在 my.soliq.uz 上——正确报税的必要步骤。" },
+    { t: "选择模式并销售", d: "主要模式为 FBW：货物存放 WB 仓库，配送由平台负责。" },
   ],
-  taxTitle: "乌兹别克斯坦卖家税务",
-  taxSub: "本地区最宽松的税制之一。营业额低于门槛时，缴纳简单的营业额税，而非复杂的增值税。",
+  taxTitle: "接下来：税务",
+  taxSub: "本地区最宽松的税制之一。营业额低于门槛时，缴纳简单的营业额税，而非复杂增值税。",
   taxHead: ["税种", "2026 税率", "适用情形"],
   taxRows: [
     ["营业额税", "4% 起", "营业额低于增值税门槛（约 50 亿苏姆）"],
@@ -275,6 +331,21 @@ const ZH: Content = {
   totalLabel: "合计 — 2 天完成",
   totalSum: "25 972 000 苏姆",
   totalUsd: "≈ $2 078 · 2 天",
+  timelineTitle: "2 天完成 — 分步进行",
+  timelineSub: "您专注于商品，我们在两个工作日内准备好一切。",
+  day1t: "第 1 天 — 注册公司",
+  day1d: "注册有限责任公司，获取税号和法定地址，准备文件包。",
+  day2t: "第 2 天 — 账户、签证、文件",
+  day2d: "开设账户，办理董事工作许可和签证，交付 WB Partners 所需文件包。",
+  otherTitle: "不止 Wildberries",
+  otherText: "注册的公司适用于所有电商平台。我们还能助您入驻 Uzum Market 和 Ozon——用同一家公司，无需为每个平台单独注册。",
+  needTitle: "只需您提供三样",
+  needSub: "无需奔波和排队。您发来资料——其余由我们远程完成。",
+  need: [
+    { ic: "🪪", t: "护照", d: "创始人（及董事，若不同）的护照扫描件。" },
+    { ic: "🏷️", t: "名称和经营范围", d: "公司名称和经营范围——不确定我们可建议。" },
+    { ic: "🛍️", t: "计划销售什么", d: "商品类别——以便考虑标识和平台要求。" },
+  ],
   faqTitle: "常见问题",
   faq: [
     { q: "没有本地公司能销售吗？", a: "不能。卖家账户只对在乌兹别克斯坦注册的企业开放。" },
@@ -283,7 +354,7 @@ const ZH: Content = {
     { q: "董事需要签证和工作许可吗？", a: "是的，若董事为非居民。我们也一并代办。" },
     { q: "同一家公司能入驻 Uzum 和 Ozon 吗？", a: "可以，一家公司适用于所有电商平台。" },
   ],
-  finalTitle: "为电商平台注册企业并开户",
+  finalTitle: "为 Wildberries 注册企业并开户",
   finalSub: "留下您的联系方式——我们将选定企业形式并估算周期与费用。",
 };
 
@@ -298,15 +369,15 @@ export default function MarketplaceLandingClient() {
     <div className="bg-white text-slate-900">
       {/* Hero */}
       <section className="bg-gradient-to-b from-violet-50 to-white">
-        <div className="container mx-auto px-4 pt-16 pb-14">
+        <div className="container mx-auto px-4 pt-28 sm:pt-32 pb-14">
           <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-10 items-center">
             <div>
-              <span className="inline-block text-xs font-bold uppercase tracking-wider text-violet-700 bg-violet-100 rounded-full px-3 py-1">
+              <span className="inline-block text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-100 rounded-full px-3 py-1">
                 {c.eyebrow}
               </span>
-              <h1 className="mt-4 text-4xl sm:text-5xl font-extrabold leading-tight tracking-tight text-balance">
+              <h1 className="mt-4 text-4xl sm:text-5xl font-extrabold leading-[1.05] tracking-tight text-balance">
                 {c.h1a}
-                <span className="text-violet-700">{c.h1accent}</span>
+                <span className="text-emerald-700">{c.h1accent}</span>
                 {c.h1b}
               </h1>
               <p className="mt-4 text-lg text-slate-600 max-w-xl">{c.sub}</p>
@@ -321,7 +392,7 @@ export default function MarketplaceLandingClient() {
               <p className="mt-4 text-sm text-slate-400">{c.note}</p>
             </div>
             <div className="rounded-3xl bg-white border border-slate-200 p-7 shadow-lg">
-              <div className="text-5xl font-extrabold text-violet-700 tracking-tight">{c.stats[0].v}</div>
+              <div className="text-5xl font-extrabold text-emerald-700 tracking-tight">{c.stats[0].v}</div>
               <div className="mt-2 text-sm text-slate-500">{c.stats[0].l}</div>
               <div className="mt-5 pt-5 border-t border-slate-100 grid grid-cols-2 gap-5">
                 {c.stats.slice(1).map((s, i) => (
@@ -356,7 +427,7 @@ export default function MarketplaceLandingClient() {
         <div className="mt-8 rounded-3xl border border-slate-200 bg-white divide-y divide-slate-100">
           {c.steps.map((s, i) => (
             <div key={i} className="flex gap-5 p-6 items-start">
-              <div className="flex-none w-11 h-11 rounded-xl bg-violet-600 text-white font-bold text-xl flex items-center justify-center">{i + 1}</div>
+              <div className="flex-none w-11 h-11 rounded-xl bg-emerald-600 text-white font-bold text-xl flex items-center justify-center">{i + 1}</div>
               <div>
                 <h3 className="font-bold text-lg">{s.t}</h3>
                 <p className="mt-1 text-slate-600">{s.d}</p>
@@ -381,7 +452,7 @@ export default function MarketplaceLandingClient() {
               {c.taxRows.map((r, i) => (
                 <tr key={i} className="border-b border-slate-100">
                   <td className="py-2.5 pr-4 font-semibold">{r[0]}</td>
-                  <td className="py-2.5 pr-4 font-mono text-violet-700 whitespace-nowrap">{r[1]}</td>
+                  <td className="py-2.5 pr-4 font-mono text-emerald-700 whitespace-nowrap">{r[1]}</td>
                   <td className="py-2.5 pr-4 text-slate-600">{r[2]}</td>
                 </tr>
               ))}
@@ -406,12 +477,50 @@ export default function MarketplaceLandingClient() {
             </div>
           ))}
         </div>
-        <div className="mt-4 rounded-3xl bg-violet-600 text-white p-6 flex flex-wrap justify-between items-center gap-4">
+        <div className="mt-4 rounded-3xl bg-emerald-700 text-white p-6 flex flex-wrap justify-between items-center gap-4">
           <div className="font-bold text-lg">{c.totalLabel}</div>
           <div className="text-right">
             <div className="text-2xl font-extrabold tabular-nums">{c.totalSum}</div>
             <div className="text-sm opacity-90">{c.totalUsd}</div>
           </div>
+        </div>
+      </section>
+
+      {/* Timeline */}
+      <section className="container mx-auto px-4 py-14">
+        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">{c.timelineTitle}</h2>
+        <p className="mt-2 text-slate-600 max-w-2xl">{c.timelineSub}</p>
+        <div className="mt-8 grid md:grid-cols-2 gap-4">
+          {[[c.day1t, c.day1d], [c.day2t, c.day2d]].map(([t, d], i) => (
+            <div key={i} className="rounded-2xl border border-slate-200 bg-white p-6">
+              <span className="inline-block text-xs font-bold uppercase tracking-wide text-emerald-800 bg-emerald-100 rounded px-2 py-0.5">{t.split(" — ")[0]}</span>
+              <h3 className="mt-3 font-bold">{t.split(" — ")[1] ?? t}</h3>
+              <p className="mt-1.5 text-sm text-slate-600">{d}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Other marketplaces */}
+      <section className="container mx-auto px-4 py-8">
+        <div className="rounded-3xl bg-emerald-700 text-white p-8">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">{c.otherTitle}</h2>
+          <p className="mt-3 text-base opacity-95 max-w-3xl">{c.otherText}</p>
+        </div>
+      </section>
+
+      {/* What we need */}
+      <section className="container mx-auto px-4 py-14">
+        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">{c.needTitle}</h2>
+        <p className="mt-2 text-slate-600 max-w-2xl">{c.needSub}</p>
+        <div className="mt-8 grid md:grid-cols-3 gap-4">
+          {c.need.map((n, i) => (
+            <div key={i} className="rounded-2xl border border-slate-200 bg-white p-6">
+              <div className="text-2xl">{n.ic}</div>
+              <h3 className="mt-3 font-bold">{n.t}</h3>
+              <p className="mt-1.5 text-sm text-slate-600">{n.d}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -423,7 +532,7 @@ export default function MarketplaceLandingClient() {
             <details key={i} className="rounded-2xl border border-slate-200 bg-white px-5 py-1 group">
               <summary className="cursor-pointer font-semibold py-4 list-none flex justify-between gap-3 items-center">
                 {f.q}
-                <span className="text-violet-600 text-xl transition group-open:rotate-45">+</span>
+                <span className="text-emerald-600 text-xl transition group-open:rotate-45">+</span>
               </summary>
               <p className="pb-4 text-slate-600">{f.a}</p>
             </details>
@@ -434,7 +543,7 @@ export default function MarketplaceLandingClient() {
       {/* Final CTA */}
       <section className="container mx-auto px-4 pb-20">
         <div className="rounded-3xl bg-slate-900 text-white p-8 sm:p-12 text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-balance">{c.finalTitle}</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-balance text-white">{c.finalTitle}</h2>
           <p className="mt-3 text-slate-300 max-w-xl mx-auto">{c.finalSub}</p>
           <a href={formHref} className="mt-7 inline-flex items-center rounded-xl bg-violet-600 px-8 py-4 font-bold text-white transition hover:bg-violet-700">
             {c.cta} →
