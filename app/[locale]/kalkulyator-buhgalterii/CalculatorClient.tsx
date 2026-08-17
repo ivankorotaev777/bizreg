@@ -622,9 +622,9 @@ export default function CalculatorClient() {
     extraAccounts: 0,
     foreignAccounts: 0,
     loans: 0,
-    paymentOrders: 10,
-    incomings: 10,
-    sales: 10,
+    paymentOrders: 0,
+    incomings: 0,
+    sales: 0,
   });
   const set = <K extends keyof CalcInput>(k: K, v: CalcInput[K]) =>
     setInput((s) => {
