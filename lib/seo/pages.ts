@@ -31,6 +31,8 @@ export const routes: RouteDef[] = [
   { path: "/itpark", locales: ["ru"], priority: 0.8, type: "money" },
   { path: "/thank_you", locales: RU_EN, noindex: true },
 
+  { path: "/kalkulyator-buhgalterii", locales: RU_EN, priority: 0.7, type: "money" },
+
   // НОВЫЕ money/hub страницы добавляются ниже по мере сборки:
   // { path: "/registraciya-ooo-v-uzbekistane", locales: ["ru"], priority: 0.9, type: "money" },
 ];

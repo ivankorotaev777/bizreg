@@ -23,9 +23,13 @@ export function Header() {
 
   const requestFormHref = `/${locale}${queryString ? `?${queryString}` : ""}#request-form`;
 
+  // На рекламных лендингах — минимальная шапка без навигации (меньше «утечек» платного трафика)
+  const isLanding = pathname === "/registratsiya-ooo" || pathname === "/yuridicheskiy-adres";
+
   const navigation = [
     { name: t("home"), href: "/" },
     { name: t("registration"), href: "/registratsiya-ooo" },
+    { name: t("calculator"), href: "/kalkulyator-buhgalterii" },
     { name: t("legalAddress"), href: "/yuridicheskiy-adres" },
     { name: t("itpark"), href: "/itpark" },
     { name: t("marketplace"), href: "/marketplace" },
@@ -37,9 +41,6 @@ export function Header() {
     { name: t("clients"), href: "/clients" },
     { name: t("contacts"), href: "/contacts" },
   ];
-
-  // На рекламных лендингах — минимальная шапка без навигации (меньше «утечек»)
-  const isLanding = pathname === "/registratsiya-ooo" || pathname === "/yuridicheskiy-adres";
 
   const switchLocale = (newLocale: Locale) => {
     router.replace(pathname, { locale: newLocale });
@@ -64,12 +65,12 @@ export function Header() {
 
           {/* Desktop Navigation */}
           {!isLanding && (
-            <div className="hidden lg:flex items-center gap-x-3 xl:gap-x-4">
+            <div className="hidden lg:flex flex-wrap items-center justify-end gap-x-2.5 xl:gap-x-3 gap-y-0.5 max-w-3xl xl:max-w-4xl">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-muted-foreground hover:text-foreground transition-colors text-sm whitespace-nowrap"
+                  className="text-muted-foreground hover:text-foreground transition-colors text-xs xl:text-[13px] whitespace-nowrap"
                 >
                   {item.name}
                 </Link>

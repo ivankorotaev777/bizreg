@@ -12,7 +12,7 @@ const VALID_AUTHORS = ["ivan", "yaroslav", "karima"];
 // Известные маршруты сайта (для проверки внутренних ссылок/CTA)
 const STATIC_ROUTES = new Set([
   "/", "/about", "/contacts", "/payment", "/guarantees", "/clients",
-  "/price_list_full", "/itpark", "/blog", "/thank_you",
+  "/price_list_full", "/itpark", "/blog", "/thank_you", "/marketplace", "/kalkulyator-buhgalterii",
 ]);
 // Авторитетные источники (YMYL)
 const TRUSTED_SRC = ["lex.uz", "soliq.uz", "it-park.uz", "cbu.uz", "gov.uz", "stat.uz", "norma.uz", "nrm.uz", "buxgalter.uz"];
@@ -116,7 +116,7 @@ for (const [slug, vs] of Object.entries(bySlug)) {
 
 // --- тег карточки /blog: cluster обязан давать распознаваемый тег (C1–C13) ---
 // Коды синхронизированы с lib/tags.ts — иначе на /blog карточка будет без тега.
-const KNOWN_TAG_CODES = new Set(["C1", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "C10", "C11", "C12", "C13"]);
+const KNOWN_TAG_CODES = new Set(["C1", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "C10", "C11", "C12", "C13", "C15"]);
 for (const p of posts) {
   const F = `${p.slug}.${p.locale}`;
   const code = String(p.fm.cluster || "").match(/C\d+/i)?.[0]?.toUpperCase();
