@@ -19,6 +19,7 @@ import {
 } from "./repo.js";
 import { runAudit } from "./audit.js";
 import { runAgent, parseSummary, parseTopics, pool } from "./agent.js";
+import { reviewGate, type ReviewResult } from "./review.js";
 import { enrichmentPrompt, writePrompt, planPrompt, fixPrompt, type Topic } from "./prompts.js";
 import { notifyGroup, notifyUser } from "./notify.js";
 import { syncArticles } from "./sync.js";
@@ -41,6 +42,36 @@ async function passGate(model: string): Promise<{ ok: boolean; fixCost: number; 
   return { ok, fixCost, lastOutput: output };
 }
 
+/**
+ * Факт-чек-гейт (после passGate, до push). Возвращает null, если ревью отключено
+ * или прошло; иначе — текст для уведомления о провале (статья НЕ публикуется).
+ */
+async function reviewOrReason(
+  slugs: string[],
+  fixModel: string,
+  addCost: (c: number) => void,
+): Promise<string | null> {
+  if (!config.reviewEnabled || slugs.length === 0) return null;
+  let review: ReviewResult;
+  try {
+    review = await reviewGate(slugs, fixModel);
+  } catch (e) {
+    console.error("reviewGate error", e);
+    return null; // сбой самого ревью не должен блокировать публикацию прошедшего audit:blog
+  }
+  addCost(review.cost);
+  if (review.ok) return null;
+  if (review.unverified) {
+    return "Факты не удалось подтвердить по Tier-1 источникам (verifier не вынес вердикт). Нужна ручная проверка.";
+  }
+  const blocking = review.issues.filter((i) => i.severity === "blocking");
+  const lines = blocking
+    .slice(0, 8)
+    .map((i) => `• ${i.where}: ${i.problem}${i.correct ? ` → ${i.correct}` : ""}`)
+    .join("\n");
+  return `Факт-чек нашёл ошибки, которые не удалось исправить автоматически:\n${lines}`;
+}
+
 async function processEnrichment(job: Job): Promise<void> {
   const { slug, note, manager_id, manager_name } = job.payload;
   await ensureRepo();
@@ -61,6 +92,14 @@ async function processEnrichment(job: Job): Promise<void> {
     await discardChanges();
     await markError(job.id, "Аудит не пройден после исправлений.\n" + gate.lastOutput.slice(-2000));
     await notifyUser(manager_id, `⚠️ Дополнение «${slug}» не прошло аудит. Нужна ручная правка.`);
+    return;
+  }
+
+  const reviewFail = await reviewOrReason([slug], config.enrichModel, (c) => (cost += c));
+  if (reviewFail) {
+    await discardChanges();
+    await markError(job.id, "Факт-чек не пройден.\n" + reviewFail);
+    await notifyUser(manager_id, `⚠️ Дополнение «${slug}» не прошло факт-чек:\n${reviewFail}`);
     return;
   }
 
@@ -130,6 +169,15 @@ async function processGeneration(job: Job): Promise<void> {
     await discardChanges();
     await markError(job.id, "Аудит не пройден после исправлений.\n" + gate.lastOutput.slice(-2000));
     await notifyUser(manager_id, "⚠️ Сгенерированные статьи не прошли аудит. Нужна ручная правка.");
+    return;
+  }
+
+  const okSlugs = writes.filter((w) => w.ok).map((w) => w.topic.slug);
+  const reviewFail = await reviewOrReason(okSlugs, config.genModel, (c) => (cost += c));
+  if (reviewFail) {
+    await discardChanges();
+    await markError(job.id, "Факт-чек не пройден.\n" + reviewFail);
+    await notifyUser(manager_id, `⚠️ Сгенерированные статьи не прошли факт-чек:\n${reviewFail}`);
     return;
   }
 

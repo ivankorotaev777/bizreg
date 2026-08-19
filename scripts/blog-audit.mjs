@@ -18,6 +18,38 @@ const STATIC_ROUTES = new Set([
 const TRUSTED_SRC = ["lex.uz", "soliq.uz", "it-park.uz", "cbu.uz", "gov.uz", "stat.uz", "norma.uz", "nrm.uz", "buxgalter.uz"];
 const PLACEHOLDERS = ["lorem ipsum", "todo", "tbd", "placeholder", "уточняется", "xxx"];
 
+// --- Целевые ключи из финального листа (services/dashboard/data/target_keywords.csv) ---
+// Используются для проверки покрытия семантики кластера и переспама.
+const KW_CSV = path.join(ROOT, "services", "dashboard", "data", "target_keywords.csv");
+const KW_STOP = new Set(["для", "как", "или", "что", "при", "это", "the", "and", "for", "with", "from", "your", "vs"]);
+const KW_GEO = new Set(["узбекистане", "узбекистан", "узбекистана", "ташкенте", "ташкент", "ташкента", "uzbekistan", "tashkent"]);
+const kwRoot = (w) => w.slice(0, Math.max(4, w.length - 2)); // морфология ru: налоги/налогов → «налог»
+// значимые корни фразы (без стоп/гео-слов) — для морфологически терпимого поиска по тексту
+function kwCores(phrase) {
+  return String(phrase).toLowerCase().split(/[\s,]+/)
+    .filter((w) => w.length >= 4 && !KW_STOP.has(w) && !KW_GEO.has(w))
+    .map(kwRoot);
+}
+// нормализованный текст статьи: без тегов/markdown, нижний регистр
+const normText = (content) => content.replace(/<[^>]+>/g, " ").replace(/[#>*_`\[\]()]/g, " ").toLowerCase();
+
+let TARGETS = []; // [{ phrase, lang, cl, cores, freq }]
+if (fs.existsSync(KW_CSV)) {
+  const lines = fs.readFileSync(KW_CSV, "utf-8").split(/\r?\n/).slice(1);
+  for (const line of lines) {
+    if (!line.trim()) continue;
+    const c = line.split(","); // include,phrase,lang,engine,funnel,intent,cluster,freq_yandex,...
+    if (c[0]?.trim() !== "✓" || !c[1]) continue; // только включённые
+    const cl = (c[6] || "").match(/^C\d+/)?.[0] || null; // префикс кластера: "C7 Налоги" → "C7"
+    if (!cl) continue;
+    TARGETS.push({ phrase: c[1].trim(), lang: (c[2] || "").trim(), cl, cores: kwCores(c[1]), freq: Number(c[7]) || 0 });
+  }
+} else {
+  warn("КЛЮЧИ", `не найден ${path.relative(ROOT, KW_CSV)} — проверка покрытия ключей пропущена`);
+}
+// фраза покрыта, если все её значимые корни встречаются в тексте
+const phraseCovered = (cores, body) => cores.length > 0 && cores.every((r) => body.includes(r));
+
 let errors = 0, warns = 0;
 const err = (f, m) => { console.error(`  \x1b[31m✗ ERROR\x1b[0m [${f}] ${m}`); errors++; };
 const warn = (f, m) => { console.warn(`  \x1b[33m⚠ WARN\x1b[0m  [${f}] ${m}`); warns++; };
@@ -142,8 +174,8 @@ for (const p of posts) {
 }
 
 // --- пер-статейный SEO-score (0–100); <70 = на доработку ---
-const SEO_MIN = 70;        // ниже — ERROR (блокирует push)
-const SEO_GOOD = 85;       // ниже — WARN
+const SEO_MIN = 85;        // ниже — ERROR (блокирует push): планка «высокого SEO»
+const SEO_GOOD = 85;       // цель
 function seoScore({ slug, fm, content }) {
   const kw = (fm.keyword || "").toLowerCase().trim();
   const STOP = new Set(["для", "как", "или", "что", "при", "the", "and", "for", "with", "from", "your", "vs"]);
@@ -262,6 +294,33 @@ for (const { slug, locale, fm, content } of posts) {
   scoreList.push({ F, score });
   if (score < SEO_MIN) err(F, `SEO-score ${score}/100 (<${SEO_MIN}) → НА ДОРАБОТКУ: ${miss.join("; ")}`);
   else if (score < SEO_GOOD) warn(F, `SEO-score ${score}/100: ${miss.join("; ")}`);
+
+  // --- покрытие целевых ключей кластера + переспам ---
+  if (TARGETS.length) {
+    const clPrefix = (fm.cluster || "").match(/^C\d+/)?.[0] || null;
+    const targets = clPrefix ? TARGETS.filter((t) => t.cl === clPrefix && t.lang === locale) : [];
+    if (targets.length) {
+      const body = normText(content);
+      const covered = targets.filter((t) => phraseCovered(t.cores, body));
+      const need = Math.min(3, targets.length); // ждём ≥3 ключа кластера (или все, если их меньше)
+      const missingTop = targets.filter((t) => !covered.includes(t))
+        .sort((a, b) => b.freq - a.freq).slice(0, 5).map((t) => `«${t.phrase}»${t.freq ? ` (${t.freq})` : ""}`);
+      if (covered.length === 0 && targets.length >= 3) {
+        err(F, `ключи кластера ${clPrefix}: не использован НИ ОДИН из ${targets.length} целевых ключей — добавь, напр.: ${missingTop.join(", ")}`);
+      } else if (covered.length < need) {
+        warn(F, `ключи кластера ${clPrefix}: покрыто ${covered.length}/${targets.length} (мало) — добавь высокочастотные: ${missingTop.join(", ")}`);
+      }
+      // переспам: точная ключевая фраза повторяется неестественно часто
+      const kwPhrase = (fm.keyword || "").toLowerCase().trim();
+      if (kwPhrase.includes(" ")) {
+        const occ = (body.match(new RegExp(kwPhrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length;
+        const totalWords = body.split(/\s+/).filter(Boolean).length || 1;
+        if (occ >= 5 && occ / totalWords > 0.012) {
+          warn(F, `возможный переспам: точная фраза «${fm.keyword}» повторяется ${occ}× (${(100 * occ / totalWords).toFixed(1)}% от текста) — снизь до естественной плотности`);
+        }
+      }
+    }
+  }
 }
 
 // --- сводка по SEO-score ---
@@ -269,7 +328,7 @@ if (scoreList.length) {
   const avg = Math.round(scoreList.reduce((a, b) => a + b.score, 0) / scoreList.length);
   const bad = scoreList.filter((x) => x.score < SEO_MIN).length;
   const ok = scoreList.filter((x) => x.score >= SEO_GOOD).length;
-  console.log(`\n📈 SEO-score: средний ${avg}/100 · ✅ ≥${SEO_GOOD}: ${ok} · ⚠ ${SEO_MIN}–${SEO_GOOD - 1}: ${scoreList.length - ok - bad} · ❌ <${SEO_MIN}: ${bad}`);
+  console.log(`\n📈 SEO-score: средний ${avg}/100 · ✅ ≥${SEO_GOOD}: ${ok} · ❌ <${SEO_MIN}: ${bad}`);
 }
 
 console.log(`\n— Итог: ${errors} ошибок, ${warns} предупреждений —`);

@@ -34,6 +34,12 @@ export const config = {
   pollIntervalMs: Number(process.env.POLL_INTERVAL_MS ?? 10000),
   maxFixAttempts: Number(process.env.MAX_FIX_ATTEMPTS ?? 2),
 
+  // Факт-чек-ревью (второй гейт после audit:blog): сверка цифр/норм с Tier-1.
+  // Дорогой шаг (Opus + web), поэтому запускается только на статьях, прошедших audit:blog.
+  reviewEnabled: process.env.REVIEW_ENABLED !== "0",
+  reviewModel: process.env.REVIEW_MODEL ?? "claude-opus-4-8",
+  maxReviewAttempts: Number(process.env.MAX_REVIEW_ATTEMPTS ?? 2),
+
   get repoUrl() {
     return `https://x-access-token:${this.githubToken}@github.com/${this.githubRepo}.git`;
   },

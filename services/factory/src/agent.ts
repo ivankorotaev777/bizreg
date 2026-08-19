@@ -2,6 +2,8 @@ import { query } from "@anthropic-ai/claude-agent-sdk";
 import { repoPaths } from "./repo.js";
 
 const ALLOWED_TOOLS = ["Read", "Edit", "Write", "Bash", "Glob", "Grep", "WebSearch", "WebFetch"];
+// Только чтение + веб — для агента-верификатора, который сверяет факты, но НЕ правит файлы.
+export const READONLY_TOOLS = ["Read", "Glob", "Grep", "WebSearch", "WebFetch"];
 
 export interface AgentRun {
   text: string; // финальный текст результата (содержит строку SUMMARY: …)
@@ -18,6 +20,7 @@ export async function runAgent(
   prompt: string,
   maxTurns: number,
   model: string,
+  tools: string[] = ALLOWED_TOOLS,
 ): Promise<AgentRun> {
   let text = "";
   let costUsd = 0;
@@ -29,7 +32,7 @@ export async function runAgent(
       model,
       cwd: repoPaths.root,
       permissionMode: "bypassPermissions",
-      allowedTools: ALLOWED_TOOLS,
+      allowedTools: tools,
       systemPrompt: { type: "preset", preset: "claude_code" },
       maxTurns,
       // stderr процесса Claude Code → в логи завода (для диагностики)
@@ -51,6 +54,53 @@ export async function runAgent(
 export function parseSummary(text: string): string {
   const m = text.match(/SUMMARY:\s*(.+)\s*$/im);
   return m ? m[1].trim() : "";
+}
+
+export interface FactIssue {
+  claim: string; // утверждение из статьи
+  where: string; // где в статье (slug.locale / раздел)
+  problem: string; // что не так
+  correct?: string; // верное значение по источнику (если известно)
+  source?: string; // Tier-1 URL, подтверждающий/опровергающий
+  severity: "blocking" | "advisory";
+}
+export interface Verdict {
+  pass: boolean;
+  issues: FactIssue[];
+}
+
+/**
+ * Вытаскивает финальный вердикт факт-чекера: строка `VERDICT: { ... }` с JSON.
+ * Берём последнее вхождение (агент мог рассуждать выше). null — если не распарсилось.
+ */
+export function parseVerdict(text: string): Verdict | null {
+  // Берём последнее «VERDICT:» (агент мог рассуждать выше) и greedy-объект до последней `}`.
+  // Greedy устойчив к pretty-printed JSON (вложенные `}` не обрывают разбор), т.к. по
+  // промпту VERDICT — последнее в выводе.
+  const idx = text.lastIndexOf("VERDICT:");
+  if (idx === -1) return null;
+  const m = text.slice(idx + 8).match(/\{[\s\S]*\}/);
+  if (!m) return null;
+  try {
+    return normalizeVerdict(JSON.parse(m[0]));
+  } catch {
+    return null;
+  }
+}
+
+function normalizeVerdict(v: any): Verdict {
+  const issues: FactIssue[] = Array.isArray(v?.issues)
+    ? v.issues.map((i: any) => ({
+        claim: String(i?.claim ?? ""),
+        where: String(i?.where ?? ""),
+        problem: String(i?.problem ?? ""),
+        correct: i?.correct ? String(i.correct) : undefined,
+        source: i?.source ? String(i.source) : undefined,
+        severity: i?.severity === "blocking" ? "blocking" : "advisory",
+      }))
+    : [];
+  const hasBlocking = issues.some((i) => i.severity === "blocking");
+  return { pass: v?.pass === true && !hasBlocking, issues };
 }
 
 /** Парсит JSON-массив тем из вывода планировщика (терпим к обрамлению). */

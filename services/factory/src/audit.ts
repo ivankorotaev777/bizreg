@@ -3,7 +3,7 @@ import { repoPaths } from "./repo.js";
 
 /**
  * Прогоняет тот же гейт, что и pre-push хук: `npm run audit:blog`.
- * exit 0 — 0 ERROR и SEO-score ≥70 (публикуем). exit 1 — есть ошибки.
+ * exit 0 — 0 ERROR и SEO-score ≥85 (публикуем). exit 1 — есть ошибки.
  */
 export function runAudit(): Promise<{ ok: boolean; output: string }> {
   return new Promise((resolve) => {
