@@ -8,7 +8,7 @@ import matter from "gray-matter";
 const ROOT = process.cwd();
 const BLOG = path.join(ROOT, "content", "blog");
 const PUBLIC = path.join(ROOT, "public");
-const VALID_AUTHORS = ["ivan", "yaroslav", "karima"];
+const VALID_AUTHORS = ["ivan", "elena", "karima"];
 // Известные маршруты сайта (для проверки внутренних ссылок/CTA)
 const STATIC_ROUTES = new Set([
   "/", "/about", "/contacts", "/payment", "/guarantees", "/clients",

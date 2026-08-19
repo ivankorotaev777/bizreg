@@ -23,9 +23,9 @@ export const AUTHORS: Record<string, Author> = {
     },
     photo: "/authors/ivan.png",
   },
-  yaroslav: {
-    key: "yaroslav",
-    name: { ru: "Ярослав Колесов", en: "Yaroslav Kolesov" },
+  elena: {
+    key: "elena",
+    name: { ru: "Елена Васюкова", en: "Elena Vasyukova" },
     role: {
       ru: "Партнёр учётной и налоговой практики",
       en: "Partner, Accounting & Tax practice",
@@ -34,7 +34,7 @@ export const AUTHORS: Record<string, Author> = {
       ru: "DipIFR, CPA Uz, ACCA Affiliate · главный бухгалтер с 15+ летним опытом в международных компаниях",
       en: "DipIFR, CPA Uz, ACCA Affiliate · chief accountant, 15+ years in international companies",
     },
-    photo: "/authors/yaroslav.png",
+    photo: "/authors/elena.png",
   },
   karima: {
     key: "karima",
