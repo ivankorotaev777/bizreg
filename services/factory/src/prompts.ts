@@ -40,7 +40,7 @@ export function writePrompt(topic: Topic): string {
 
 Шаги:
 1. Убедись, что content/blog/${topic.slug}.ru.mdx ещё не существует; если занят — выбери близкий незанятый латинский slug.
-2. Создай content/blog/<slug>.ru.mdx и content/blog/<slug>.en.mdx по стандарту: 1200+ слов/язык, уникальный дизайн (accent/heroStyle), <Lead>, ≥3 внутренние ссылки, ≥5 FAQ, 2–3 CTA, <KeyTakeaways>, ≥1 H2-вопрос, уникальное hero-фото (не дублируй существующие в /public/blog).
+2. Создай content/blog/<slug>.ru.mdx и content/blog/<slug>.en.mdx по стандарту: 1200+ слов/язык, уникальный дизайн (accent/heroStyle), <Lead>, ≥3 внутренние ссылки, ≥5 FAQ, 2–3 CTA, <KeyTakeaways>, ≥1 H2-вопрос, уникальное hero-фото: скачай бесплатное с images.pexels.com/images.unsplash.com в public/blog (НЕ plus.unsplash.com, НЕ ИИ-генерация — она недоступна) и не дублируй уже используемые.
 3. Факты — только Tier-1, с датами и источниками. datePublished и dateModified: "${today()}".
 4. Запусти \`npm run audit:blog\`; добейся 0 ERROR и SEO-score ≥85 для своей статьи. (build не запускай — это лишние токены.)
 
