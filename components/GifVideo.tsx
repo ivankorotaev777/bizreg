@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 
 export function GifVideo({
@@ -18,6 +18,19 @@ export function GifVideo({
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [soundOn, setSoundOn] = useState(false);
+
+  // React не выписывает атрибут muted в серверную разметку (известный баг),
+  // поэтому iOS Safari блокирует автозапуск как «видео со звуком».
+  // После гидрации явно ставим muted и перезапускаем воспроизведение.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = true;
+    video.setAttribute("muted", "");
+    if (video.paused) {
+      video.play().catch(() => {});
+    }
+  }, []);
 
   const toggleSound = () => {
     const video = videoRef.current;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Star } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -61,6 +61,18 @@ function ExpandableQuote({
 
 export const TestimonialsSection = () => {
   const t = useTranslations("testimonials");
+  // На странице должен жить ровно один <video> на отзыв: iOS Safari плохо
+  // переносит скрытый дубликат и может не запустить видимый экземпляр.
+  // До монтирования (isMobile === null) в обоих слотах статичный постер.
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   return (
     <section className="py-10 lg:py-14 bg-muted/30">
@@ -78,12 +90,20 @@ export const TestimonialsSection = () => {
               {testimonial.video ? (
                 <>
                   <div className="hidden md:block aspect-[4/5] overflow-hidden bg-muted">
-                    <GifVideo
-                      src={testimonial.video}
-                      poster={testimonial.poster}
-                      soundOnLabel={t("videoSoundOn")}
-                      soundOffLabel={t("videoSoundOff")}
-                    />
+                    {isMobile === false ? (
+                      <GifVideo
+                        src={testimonial.video}
+                        poster={testimonial.poster}
+                        soundOnLabel={t("videoSoundOn")}
+                        soundOffLabel={t("videoSoundOff")}
+                      />
+                    ) : (
+                      <img
+                        src={testimonial.poster}
+                        alt={t(testimonial.nameKey)}
+                        className="w-full h-full object-cover object-top"
+                      />
+                    )}
                   </div>
                   <CardContent className="pt-5 md:pt-4">
                     <div className="flex gap-1 mb-3">
@@ -98,12 +118,20 @@ export const TestimonialsSection = () => {
                     />
                     <div className="flex items-center gap-3">
                       <div className="md:hidden shrink-0 w-20 h-20 rounded-full overflow-hidden border-2 border-brand-200 bg-muted">
-                        <GifVideo
-                          src={testimonial.video}
-                          poster={testimonial.poster}
-                          soundOnLabel={t("videoSoundOn")}
-                          soundOffLabel={t("videoSoundOff")}
-                        />
+                        {isMobile === true ? (
+                          <GifVideo
+                            src={testimonial.video}
+                            poster={testimonial.poster}
+                            soundOnLabel={t("videoSoundOn")}
+                            soundOffLabel={t("videoSoundOff")}
+                          />
+                        ) : (
+                          <img
+                            src={testimonial.poster}
+                            alt={t(testimonial.nameKey)}
+                            className="w-full h-full object-cover object-top"
+                          />
+                        )}
                       </div>
                       <div>
                         <p className="font-medium">{t(testimonial.nameKey)}</p>
