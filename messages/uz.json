@@ -84,10 +84,14 @@
     "name2": "Mixail Sokolov",
     "role2": "IT startap asoschisi",
     "location2": "Moskva",
-    "quote3": "YaTT ro'yxatdan o'tish va soliq hisobiga qo'yish — hammasi masofadan. Juda aniq va ortiqcha byurokratiyasiz.",
-    "name3": "Faisal Al-Rashedi",
-    "role3": "Operatsion direktor",
-    "location3": "Dubay"
+    "quote3": "O'zbekistonda biznesimni ochib bergan jamoani tavsiya qilmoqchiman. Bor-yo'g'i ikki kun ketdi. Ikki kun! Ishonasizmi? Bank hisobi bilan birga. Ivan va Yelena ishga juda puxta yondashib, menga ko'p yordam berishdi. Ular bir-ikki kun kifoya deyishganda, men: «Ha, albatta — ikki kunda jarayon boshlanadi-yu, keyin hammasi ikki-uch oyga cho'ziladi», deb o'ylagandim. Lekin ikki kundan kamroq vaqt ichida biznes uchun bank hisobim, elektron imzom va barcha hujjatlarim tayyor bo'ldi — jarayon shu qadar silliq o'tdiki, hali ham ishonolmayman. Rahmat, rahmat, rahmat!",
+    "name3": "Serj Bajenov",
+    "role3": "CEO, Cleverence LLC",
+    "location3": "BAA",
+    "readMore": "To'liq o'qish",
+    "readLess": "Yig'ish",
+    "videoSoundOn": "Video ovozini yoqish",
+    "videoSoundOff": "Video ovozini o'chirish"
   },
   "product": {
     "badge": "Xizmat haqida",

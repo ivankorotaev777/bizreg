@@ -37,7 +37,9 @@
     "desc2": "DipIFR, CPA Uz, ACCA Affiliate. 首席会计师，在国际公司拥有15年以上经验。",
     "name3": "卡里玛·塔济耶娃",
     "role3": "房地产合伙人",
-    "desc3": "CCIM, FIABCI, ex-partner CMWP Uzbekistan, Commonwealth Partnership. 塔什干房地产市场专家，拥有20年以上经验。"
+    "desc3": "CCIM, FIABCI, ex-partner CMWP Uzbekistan, Commonwealth Partnership. 塔什干房地产市场专家，拥有20年以上经验。",
+    "videoSoundOn": "打开视频声音",
+    "videoSoundOff": "关闭视频声音"
   },
   "painPoints": {
     "badge": "听起来熟悉吗？",
@@ -82,10 +84,14 @@
     "name2": "米哈伊尔·索科洛夫",
     "role2": "IT创业公司创始人",
     "location2": "莫斯科",
-    "quote3": "我们在阿联酋有电商业务，需要乌兹别克法定地址来与当地供应商合作。全程远程办理。服务非常清晰透明。",
-    "name3": "法伊萨尔·拉希迪",
-    "role3": "运营总监",
-    "location3": "迪拜"
+    "quote3": "我想推荐这个团队——他们帮我在乌兹别克斯坦开设了公司。整个过程只用了两天。两天！您能相信吗？连银行账户也一起办好了。Ivan 和 Elena 的工作方式非常专业，帮了我很大的忙。当他们说只需要几天时，我心想：当然了——两天启动流程，然后整个过程再拖上两三个月。但不到两天，我就拿到了企业银行账户、电子签名和全部文件——整个过程如此顺利，我至今仍难以置信。所以谢谢，谢谢，谢谢！",
+    "name3": "Serge Bazhenov",
+    "role3": "Cleverence LLC 首席执行官",
+    "location3": "阿联酋",
+    "readMore": "展开全文",
+    "readLess": "收起",
+    "videoSoundOn": "打开视频声音",
+    "videoSoundOff": "关闭视频声音"
   },
   "product": {
     "badge": "关于服务",

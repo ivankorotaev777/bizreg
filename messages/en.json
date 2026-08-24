@@ -84,10 +84,14 @@
     "name2": "Mikhail Sokolov",
     "role2": "IT startup founder",
     "location2": "Moscow",
-    "quote3": "Business setup and tax onboarding — all done remotely. Very clear and no extra hassle.",
-    "name3": "Faisal Al-Rashedi",
-    "role3": "Operations Director",
-    "location3": "Dubai"
+    "quote3": "I want to recommend the guys for opening my business in Uzbekistan. It took just two days. Two days! Can you believe it? Together with the bank account. Ivan and Elena were very instrumental in their approach and helped me a lot. When they told me it would take a couple of days, I thought: sure — two days to initiate the process, and then two or three months for the whole thing. But in under two days I got my business bank account, my digital signature and all the papers — and the whole process was so smooth that I still cannot believe it. So thank you, thank you, thank you!",
+    "name3": "Serge Bazhenov",
+    "role3": "CEO, Cleverence LLC",
+    "location3": "UAE",
+    "readMore": "Read more",
+    "readLess": "Show less",
+    "videoSoundOn": "Unmute video",
+    "videoSoundOff": "Mute video"
   },
   "product": {
     "badge": "About the service",
