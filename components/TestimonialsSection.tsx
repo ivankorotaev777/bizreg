@@ -77,7 +77,7 @@ export const TestimonialsSection = () => {
             <Card key={index} className="relative overflow-hidden">
               {testimonial.video ? (
                 <>
-                  <div className="aspect-[4/5] overflow-hidden bg-muted">
+                  <div className="hidden md:block aspect-[4/5] overflow-hidden bg-muted">
                     <GifVideo
                       src={testimonial.video}
                       poster={testimonial.poster}
@@ -85,7 +85,7 @@ export const TestimonialsSection = () => {
                       soundOffLabel={t("videoSoundOff")}
                     />
                   </div>
-                  <CardContent className="pt-4">
+                  <CardContent className="pt-5 md:pt-4">
                     <div className="flex gap-1 mb-3">
                       {[...Array(5)].map((_, i) => (
                         <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
@@ -96,11 +96,21 @@ export const TestimonialsSection = () => {
                       readMoreLabel={t("readMore")}
                       readLessLabel={t("readLess")}
                     />
-                    <div>
-                      <p className="font-medium">{t(testimonial.nameKey)}</p>
-                      <p className="text-sm text-muted-foreground">
-                        {t(testimonial.roleKey)}, {t(testimonial.locationKey)}
-                      </p>
+                    <div className="flex items-center gap-3">
+                      <div className="md:hidden shrink-0 w-20 h-20 rounded-full overflow-hidden border-2 border-brand-200 bg-muted">
+                        <GifVideo
+                          src={testimonial.video}
+                          poster={testimonial.poster}
+                          soundOnLabel={t("videoSoundOn")}
+                          soundOffLabel={t("videoSoundOff")}
+                        />
+                      </div>
+                      <div>
+                        <p className="font-medium">{t(testimonial.nameKey)}</p>
+                        <p className="text-sm text-muted-foreground">
+                          {t(testimonial.roleKey)}, {t(testimonial.locationKey)}
+                        </p>
+                      </div>
                     </div>
                   </CardContent>
                 </>

@@ -18,8 +18,8 @@ const PARTNERS: Partner[] = [
   { image: "/Ivan.png", nameKey: "name1", roleKey: "role1", descKey: "desc1" },
   {
     image: "/founders/elena.jpg",
-    video: "/founders/elena.mp4",
-    poster: "/founders/elena-poster.jpg",
+    video: "/founders/elena.mp4?v=3",
+    poster: "/founders/elena-poster.jpg?v=3",
     nameKey: "name2",
     roleKey: "role2",
     descKey: "desc2",
