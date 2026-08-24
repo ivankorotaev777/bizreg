@@ -37,7 +37,9 @@
     "desc2": "DipIFR, CPA Uz, ACCA Affiliate. Бас бухгалтер, халықаралық компанияларда 15+ жыл тәжірибесі бар.",
     "name3": "Қарима Тазиева",
     "role3": "Жылжымайтын мүлік серіктесі",
-    "desc3": "CCIM, FIABCI, ex-partner CMWP Uzbekistan, Commonwealth Partnership. Ташкент көтерме нарығының сарапшысы, 20+ жыл тәжірибесі бар."
+    "desc3": "CCIM, FIABCI, ex-partner CMWP Uzbekistan, Commonwealth Partnership. Ташкент көтерме нарығының сарапшысы, 20+ жыл тәжірибесі бар.",
+    "videoSoundOn": "Бейне дыбысын қосу",
+    "videoSoundOff": "Бейне дыбысын өшіру"
   },
   "painPoints": {
     "badge": "Таныс жағдай ма?",

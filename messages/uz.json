@@ -37,7 +37,9 @@
     "desc2": "DipIFR, CPA Uz, ACCA Affiliate. Bosh buxgalter, xalqaro kompaniyalarda 15+ yillik tajribaga ega.",
     "name3": "Karima Tazieva",
     "role3": "Ko'chmas mulk hamkori",
-    "desc3": "CCIM, FIABCI, ex-partner CMWP Uzbekistan, Commonwealth Partnership. Toshkent ko'chmas mulk bozorida 20+ yillik tajribaga ega ekspert."
+    "desc3": "CCIM, FIABCI, ex-partner CMWP Uzbekistan, Commonwealth Partnership. Toshkent ko'chmas mulk bozorida 20+ yillik tajribaga ega ekspert.",
+    "videoSoundOn": "Video ovozini yoqish",
+    "videoSoundOff": "Video ovozini o'chirish"
   },
   "painPoints": {
     "badge": "Tanish holat?",

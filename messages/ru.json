@@ -37,7 +37,9 @@
     "desc2": "DipIFR, CPA Uz, ACCA Affiliate. Главный бухгалтер с 15+ летним опытом в международных компаниях.",
     "name3": "Карима Тазиева",
     "role3": "Партнёр по недвижимости",
-    "desc3": "CCIM, FIABCI, ex-partner CMWP Uzbekistan, Commonwealth Partnership. Эксперт рынка недвижимости Ташкента с 20+ летним опытом."
+    "desc3": "CCIM, FIABCI, ex-partner CMWP Uzbekistan, Commonwealth Partnership. Эксперт рынка недвижимости Ташкента с 20+ летним опытом.",
+    "videoSoundOn": "Включить звук видео",
+    "videoSoundOff": "Выключить звук видео"
   },
   "painPoints": {
     "badge": "Знакомая ситуация?",

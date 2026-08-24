@@ -37,7 +37,9 @@
     "desc2": "DipIFR, CPA Uz, ACCA Affiliate. Chief Accountant with 15+ years of experience in international companies.",
     "name3": "Karima Tazieva",
     "role3": "Real Estate Partner",
-    "desc3": "CCIM, FIABCI, ex-partner CMWP Uzbekistan, Commonwealth Partnership. Real estate market expert in Tashkent with 20+ years of experience."
+    "desc3": "CCIM, FIABCI, ex-partner CMWP Uzbekistan, Commonwealth Partnership. Real estate market expert in Tashkent with 20+ years of experience.",
+    "videoSoundOn": "Unmute video",
+    "videoSoundOff": "Mute video"
   },
   "painPoints": {
     "badge": "Sound familiar?",

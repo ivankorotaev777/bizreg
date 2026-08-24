@@ -34,7 +34,7 @@ export const AUTHORS: Record<string, Author> = {
       ru: "DipIFR, CPA Uz, ACCA Affiliate · главный бухгалтер с 15+ летним опытом в международных компаниях",
       en: "DipIFR, CPA Uz, ACCA Affiliate · chief accountant, 15+ years in international companies",
     },
-    photo: "/authors/elena.png",
+    photo: "/authors/elena.png?v=2",
   },
   karima: {
     key: "karima",
