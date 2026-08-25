@@ -4,7 +4,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { LandingAmoForm } from "@/components/LandingAmoForm";
 import { PartnersSection } from "@/components/PartnersSection";
-import { PricingSection } from "@/components/PricingSection";
+import { RegistrationTariffs } from "@/components/RegistrationTariffs";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { TrustLogos } from "@/components/TrustLogos";
 import { LandingStickyCta } from "@/components/LandingStickyCta";
@@ -207,11 +207,26 @@ export default function RegistrationLandingClient() {
         </div>
       </section>
 
-      {/* Pricing */}
-      <PricingSection requestFormHref="#form" showDiscounts={false} />
+      {/* Тарифы регистрации */}
+      <RegistrationTariffs requestFormHref="#form" />
 
       {/* Отзывы клиентов — на месте команды */}
       <TestimonialsSection />
+
+      {/* Final CTA + form */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div id="form" className="scroll-mt-24 max-w-3xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl font-semibold mb-8 text-center">{tForm("title")}</h2>
+            <LandingAmoForm />
+          </div>
+
+          <p className="mt-10 text-sm text-muted-foreground text-center">
+            {c.homePrefix}{" "}
+            <Link href="/" className="text-brand-600 underline hover:no-underline">{c.homeText}</Link>
+          </p>
+        </div>
+      </section>
 
       {/* FAQ */}
       <section className="py-16 bg-brand-50/40">
@@ -228,21 +243,6 @@ export default function RegistrationLandingClient() {
               </details>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Final CTA + form */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div id="form" className="scroll-mt-24 max-w-3xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-semibold mb-8 text-center">{tForm("title")}</h2>
-            <LandingAmoForm />
-          </div>
-
-          <p className="mt-10 text-sm text-muted-foreground text-center">
-            {c.homePrefix}{" "}
-            <Link href="/" className="text-brand-600 underline hover:no-underline">{c.homeText}</Link>
-          </p>
         </div>
       </section>
 

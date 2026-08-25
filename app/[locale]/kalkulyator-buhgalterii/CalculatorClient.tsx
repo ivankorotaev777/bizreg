@@ -611,7 +611,7 @@ export default function CalculatorClient() {
 
   const [input, setInput] = useState<CalcInput>({
     pkg: "chess",
-    opf: "ooo",
+    opf: "ip",
     sno: "usn",
     employees: 1,
     foreignEmployees: 0,

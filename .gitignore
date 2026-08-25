@@ -43,3 +43,6 @@ next-env.d.ts
 # founders source media (not for web)
 Founders /
 /Testimonials/
+
+# tariff working files
+/Registration tariffs/
