@@ -100,7 +100,7 @@ export const AddressPricingSection = ({ requestFormHref = "#form" }: { requestFo
   const c = content[locale] ?? content.ru;
 
   return (
-    <section id="pricing" className="py-10 lg:py-14 bg-gradient-to-b from-background to-muted/30 relative overflow-hidden">
+    <section id="pricing" className="py-10 lg:py-14 bg-gradient-to-b from-background to-muted/30 relative overflow-hidden scroll-mt-20">
       <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-brand-500/5 rounded-full blur-[100px]" />
       <div className="container mx-auto px-4 relative">
         <div className="text-center mb-10">

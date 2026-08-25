@@ -16,7 +16,7 @@ const SERVICES = [
     priceKey: "svcAddressPrice",
     descKey: "crossAddressDesc",
     features: ["crossAddressF1", "crossAddressF2"],
-    fullPriceHref: "/yuridicheskiy-adres",
+    fullPriceHref: "/yuridicheskiy-adres#pricing",
     highlight: false,
   },
   {
