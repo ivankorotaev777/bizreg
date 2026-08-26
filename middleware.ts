@@ -27,6 +27,12 @@ function localePath(locale: Locale, path: string) {
 }
 
 export default async function middleware(request: NextRequest) {
+  // Служебные маршруты (обработчик ссылки из письма) — мимо языковой маршрутизации,
+  // иначе next-intl уводит их в языковую ветку, где обработчика нет.
+  if (request.nextUrl.pathname.startsWith("/auth/")) {
+    return NextResponse.next();
+  }
+
   const { locale, rest } = splitLocale(request.nextUrl.pathname);
 
   // Обычные страницы сайта — только языковая маршрутизация, без обращения к Supabase.
