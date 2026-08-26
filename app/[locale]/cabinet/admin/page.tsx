@@ -49,8 +49,15 @@ export default async function CabinetAdminPage({
       companyName: (companies ?? []).find((c) => c.user_id === client.user_id)?.name ?? null,
       servicesTotal: own.length,
       servicesActive: own.filter((s) => s.status !== "done" && s.status !== "cancelled").length,
+      servicesNew: own.filter((s) => s.status === "new").length,
       documentsTotal: (documents ?? []).filter((d) => d.user_id === client.user_id).length,
     };
+  });
+
+  // Клиенты с необработанными заявками — наверх: их легко не заметить в общем списке.
+  rows.sort((a, b) => {
+    if (a.servicesNew !== b.servicesNew) return b.servicesNew - a.servicesNew;
+    return b.createdAt.localeCompare(a.createdAt);
   });
 
   return (

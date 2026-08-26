@@ -786,6 +786,7 @@
     "requestSend": "提交申请",
     "requestCancel": "取消",
     "requestDone": "申请已受理，顾问会与您联系",
-    "requestError": "申请提交失败，请重试。"
+    "requestError": "申请提交失败，请重试。",
+    "adminNewRequests": "新申请：{count}"
   }
 }

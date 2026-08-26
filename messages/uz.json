@@ -787,6 +787,7 @@
     "requestSend": "Ariza yuborish",
     "requestCancel": "Bekor qilish",
     "requestDone": "Ariza qabul qilindi, menejer siz bilan bog'lanadi",
-    "requestError": "Arizani yuborib bo'lmadi. Qayta urinib ko'ring."
+    "requestError": "Arizani yuborib bo'lmadi. Qayta urinib ko'ring.",
+    "adminNewRequests": "yangi arizalar: {count}"
   }
 }

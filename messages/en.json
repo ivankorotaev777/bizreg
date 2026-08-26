@@ -803,6 +803,7 @@
     "requestSend": "Send the request",
     "requestCancel": "Cancel",
     "requestDone": "Request received, your manager will be in touch",
-    "requestError": "Could not send the request. Please try again."
+    "requestError": "Could not send the request. Please try again.",
+    "adminNewRequests": "new requests: {count}"
   }
 }

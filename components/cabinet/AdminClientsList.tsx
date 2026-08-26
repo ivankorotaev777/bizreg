@@ -17,6 +17,7 @@ export interface AdminClientRow {
   companyName: string | null;
   servicesTotal: number;
   servicesActive: number;
+  servicesNew: number;
   documentsTotal: number;
 }
 
@@ -67,6 +68,11 @@ export function AdminClientsList({ rows }: { rows: AdminClientRow[] }) {
                   <div className="min-w-0 flex-1">
                     <p className="text-sm text-foreground truncate">
                       {row.fullName || row.email || t("adminNoName")}
+                      {row.servicesNew > 0 && (
+                        <span className="ml-2 align-middle text-xs px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200 whitespace-nowrap">
+                          {t("adminNewRequests", { count: row.servicesNew })}
+                        </span>
+                      )}
                     </p>
                     <p className="text-xs text-muted-foreground truncate">
                       {[row.email, row.phone, row.companyName].filter(Boolean).join(" · ")}
