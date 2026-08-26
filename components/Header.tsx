@@ -126,7 +126,7 @@ export function Header() {
           </div>
 
           {/* Language Switcher & CTA */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3">
             {/* Language Switcher */}
             <div className="relative">
               <button
@@ -185,7 +185,7 @@ export function Header() {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center gap-2">
+          <div className="lg:hidden flex items-center gap-2">
             {/* Mobile Language Switcher */}
             <button
               type="button"
@@ -212,7 +212,7 @@ export function Header() {
 
         {/* Mobile Language Menu */}
         {langMenuOpen && (
-          <div className="md:hidden absolute left-0 right-0 bg-white border-b shadow-lg">
+          <div className="lg:hidden absolute left-0 right-0 bg-white border-b shadow-lg">
             <div className="container mx-auto px-4 py-2">
               <div className="grid grid-cols-5 gap-1">
                 {locales.map((loc) => (
@@ -235,7 +235,7 @@ export function Header() {
 
         {/* Mobile Navigation — сгруппированная */}
         {mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border/50 max-h-[70vh] overflow-y-auto">
+          <div className="lg:hidden py-4 border-t border-border/50 max-h-[70vh] overflow-y-auto">
             <div className="flex flex-col gap-1">
               <p className="text-xs uppercase tracking-wide text-muted-foreground px-1 pt-1 pb-1.5">{t("services")}</p>
               {serviceItems.map((item) => (
@@ -278,6 +278,15 @@ export function Header() {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {t("contacts")}
+              </Link>
+              <Link
+                href="/cabinet"
+                rel="nofollow"
+                className="flex items-center gap-2 text-foreground hover:text-brand-600 transition-colors py-1.5 px-1"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <User className="w-4 h-4" />
+                {t("cabinet")}
               </Link>
               <a
                 href="tel:+998770178978"
