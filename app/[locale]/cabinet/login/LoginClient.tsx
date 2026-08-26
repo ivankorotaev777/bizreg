@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { Mail, MailCheck, ArrowLeft, Loader2 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
@@ -16,6 +16,17 @@ export default function LoginClient() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  // Ошибка возврата из письма приходит в адресе (в том числе после решётки) —
+  // показываем понятное сообщение вместо молчания.
+  useEffect(() => {
+    const query = new URLSearchParams(window.location.search);
+    const hash = new URLSearchParams(window.location.hash.replace(/^#/, ""));
+    const code = hash.get("error_code") || query.get("error");
+    if (!code) return;
+    setError(code.includes("expired") ? t("loginErrorExpired") : t("loginErrorLink"));
+    window.history.replaceState(null, "", window.location.pathname);
+  }, [t]);
 
   const sendLink = async (e: React.FormEvent) => {
     e.preventDefault();

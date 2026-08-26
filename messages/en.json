@@ -731,6 +731,8 @@
     "saveError": "Could not save. Please try again.",
     "loginSentTitle": "Email sent",
     "loginSentSubtitle": "We sent a sign-in link to {email}",
-    "loginSentHint": "Open the email and click “Sign in”. If it's not there, check your spam folder."
+    "loginSentHint": "Open the email and click “Sign in” — in this same browser. If it's not there, check your spam folder.",
+    "loginErrorExpired": "The link has expired or was already used. Request a new one — it stays valid for an hour.",
+    "loginErrorLink": "The link didn't work. Request a new one and open it in the same browser you requested it from."
   }
 }
