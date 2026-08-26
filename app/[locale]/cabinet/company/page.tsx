@@ -1,6 +1,6 @@
 import { redirect } from "@/i18n/navigation";
 import { type Locale } from "@/i18n";
-import { createClient } from "@/lib/supabase/server";
+import { getCabinetUser } from "@/lib/cabinet/access";
 import { CabinetShell } from "@/components/cabinet/CabinetShell";
 import { CompanyForm, type CompanyRecord } from "@/components/cabinet/CompanyForm";
 
@@ -12,10 +12,7 @@ export default async function CabinetCompanyPage({
   params: { locale: string };
 }) {
 
-  const supabase = createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const { supabase, user, isAdmin } = await getCabinetUser();
 
   if (!user) {
     redirect({ href: "/cabinet/login", locale: locale as Locale });
@@ -29,7 +26,7 @@ export default async function CabinetCompanyPage({
     .maybeSingle();
 
   return (
-    <CabinetShell email={user.email ?? ""}>
+    <CabinetShell email={user.email ?? ""} isAdmin={isAdmin}>
       <CompanyForm initial={(data as CompanyRecord) ?? null} />
     </CabinetShell>
   );

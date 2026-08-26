@@ -2,15 +2,16 @@
 
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
-import { User, Building2, LogOut } from "lucide-react";
+import { User, Building2, FileText, Briefcase, Users, LogOut } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
-import { Button } from "@/components/ui/button";
 
 export function CabinetShell({
   email,
+  isAdmin = false,
   children,
 }: {
   email: string;
+  isAdmin?: boolean;
   children: React.ReactNode;
 }) {
   const t = useTranslations("cabinet");
@@ -19,6 +20,8 @@ export function CabinetShell({
   const items = [
     { href: "/cabinet", label: t("navProfile"), icon: User },
     { href: "/cabinet/company", label: t("navCompany"), icon: Building2 },
+    { href: "/cabinet/documents", label: t("navDocuments"), icon: FileText },
+    { href: "/cabinet/services", label: t("navServices"), icon: Briefcase },
   ];
 
   const signOut = async () => {
@@ -27,6 +30,13 @@ export function CabinetShell({
     // Полная перезагрузка — чтобы сервер точно увидел, что сессии больше нет.
     window.location.assign("/cabinet/login");
   };
+
+  const linkClass = (active: boolean) =>
+    `flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-sm transition-colors whitespace-nowrap ${
+      active
+        ? "bg-brand-50 text-brand-700 font-medium"
+        : "text-muted-foreground hover:bg-muted/60 hover:text-foreground"
+    }`;
 
   return (
     <div className="pt-32 pb-16 min-h-screen bg-muted/20">
@@ -38,23 +48,26 @@ export function CabinetShell({
 
         <div className="grid lg:grid-cols-[220px_1fr] gap-6 items-start">
           <nav className="bg-white border border-border rounded-xl p-2 flex lg:flex-col gap-1 overflow-x-auto">
-            {items.map(({ href, label, icon: Icon }) => {
-              const active = pathname === href;
-              return (
+            {items.map(({ href, label, icon: Icon }) => (
+              <Link key={href} href={href} className={linkClass(pathname === href)}>
+                <Icon className="w-4 h-4 shrink-0" />
+                {label}
+              </Link>
+            ))}
+
+            {isAdmin && (
+              <>
+                <div className="hidden lg:block border-t border-border/70 my-1" />
                 <Link
-                  key={href}
-                  href={href}
-                  className={`flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-sm transition-colors whitespace-nowrap ${
-                    active
-                      ? "bg-brand-50 text-brand-700 font-medium"
-                      : "text-muted-foreground hover:bg-muted/60 hover:text-foreground"
-                  }`}
+                  href="/cabinet/admin"
+                  className={linkClass(pathname.startsWith("/cabinet/admin"))}
                 >
-                  <Icon className="w-4 h-4 shrink-0" />
-                  {label}
+                  <Users className="w-4 h-4 shrink-0" />
+                  {t("navAdmin")}
                 </Link>
-              );
-            })}
+              </>
+            )}
+
             <button
               type="button"
               onClick={signOut}
