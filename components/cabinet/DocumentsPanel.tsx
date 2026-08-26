@@ -145,7 +145,7 @@ export function DocumentsPanel({
                   <p className="text-sm text-foreground truncate">{doc.title}</p>
                   <p className="text-xs text-muted-foreground">
                     {formatDate(doc.created_at, locale)}
-                    {doc.size_bytes ? ` · ${formatSize(doc.size_bytes)}` : ""}
+                    {doc.size_bytes ? ` · ${formatSize(doc.size_bytes, locale)}` : ""}
                     {` · ${doc.uploaded_by === "manager" ? t("docsFromManager") : t("docsFromClient")}`}
                   </p>
                 </div>

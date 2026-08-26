@@ -61,12 +61,14 @@ export interface ServiceEventRow {
   created_at: string;
 }
 
-/** «1,4 МБ» вместо «1468006». */
-export function formatSize(bytes: number | null): string {
+/** «1,4 МБ» вместо «1468006». Единицы — на языке страницы. */
+export function formatSize(bytes: number | null, locale = "ru"): string {
   if (!bytes) return "";
-  if (bytes < 1024) return `${bytes} Б`;
-  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} КБ`;
-  return `${(bytes / (1024 * 1024)).toFixed(1)} МБ`;
+  const cyrillic = locale === "ru" || locale === "kk";
+  const units = cyrillic ? ["Б", "КБ", "МБ"] : ["B", "KB", "MB"];
+  if (bytes < 1024) return `${bytes} ${units[0]}`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} ${units[1]}`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} ${units[2]}`;
 }
 
 /** Дата в виде «24.08.2026» — без времени, оно тут не нужно. */

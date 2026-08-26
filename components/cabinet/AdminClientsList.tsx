@@ -75,7 +75,9 @@ export function AdminClientsList({ rows }: { rows: AdminClientRow[] }) {
                       )}
                     </p>
                     <p className="text-xs text-muted-foreground truncate">
-                      {[row.email, row.phone, row.companyName].filter(Boolean).join(" · ")}
+                      {[row.fullName ? row.email : null, row.phone, row.companyName]
+                        .filter(Boolean)
+                        .join(" · ")}
                     </p>
                   </div>
                   <div className="text-xs text-muted-foreground text-right whitespace-nowrap hidden sm:block">
