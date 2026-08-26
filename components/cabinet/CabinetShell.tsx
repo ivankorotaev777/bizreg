@@ -47,7 +47,9 @@ export function CabinetShell({
         </div>
 
         <div className="grid lg:grid-cols-[220px_1fr] gap-6 items-start">
-          <nav className="bg-white border border-border rounded-xl p-2 flex lg:flex-col gap-1 overflow-x-auto">
+          {/* На телефоне разделы переносятся по строкам: полоса с прокруткой вбок
+              прячет половину пунктов, и о ней не догадываются. */}
+          <nav className="bg-white border border-border rounded-xl p-2 flex flex-wrap lg:flex-col lg:flex-nowrap gap-1">
             {items.map(({ href, label, icon: Icon }) => (
               <Link key={href} href={href} className={linkClass(pathname === href)}>
                 <Icon className="w-4 h-4 shrink-0" />
@@ -57,7 +59,7 @@ export function CabinetShell({
 
             {isAdmin && (
               <>
-                <div className="hidden lg:block border-t border-border/70 my-1" />
+                <div className="hidden lg:block border-t border-border/70 my-1 w-full" />
                 <Link
                   href="/cabinet/admin"
                   className={linkClass(pathname.startsWith("/cabinet/admin"))}
