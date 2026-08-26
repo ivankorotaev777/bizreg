@@ -688,7 +688,7 @@
     "companyTitle": "Данные компании",
     "companySubtitle": "Нужны для подготовки документов и ведения учёта.",
     "fieldName": "Имя и фамилия",
-    "fieldNamePlaceholder": "Иван Каратаев",
+    "fieldNamePlaceholder": "Имя Фамилия",
     "fieldEmail": "Электронная почта",
     "fieldEmailNote": "Используется для входа, изменить нельзя.",
     "fieldPhone": "Телефон",
@@ -722,6 +722,7 @@
     "loginResend": "Отправить код ещё раз",
     "loginResendWait": "Отправить ещё раз через {seconds} с",
     "loginResent": "Код отправлен ещё раз",
-    "loginErrorTooOften": "Код можно запрашивать раз в минуту. Проверьте почту — предыдущий код ещё действует."
+    "loginErrorTooOften": "Код можно запрашивать раз в минуту. Проверьте почту — предыдущий код ещё действует.",
+    "fieldPhonePlaceholder": "+998 XX XXX XX XX"
   }
 }

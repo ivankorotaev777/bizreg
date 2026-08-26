@@ -88,7 +88,7 @@ export function ProfileForm({ email, initial }: { email: string; initial: Client
               id="phone"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              placeholder="+998 90 123 45 67"
+              placeholder={t("fieldPhonePlaceholder")}
             />
           </div>
 

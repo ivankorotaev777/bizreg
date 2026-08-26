@@ -705,7 +705,7 @@
     "companyTitle": "Company details",
     "companySubtitle": "Needed to prepare documents and keep your books.",
     "fieldName": "Full name",
-    "fieldNamePlaceholder": "Ivan Karataev",
+    "fieldNamePlaceholder": "Name Surname",
     "fieldEmail": "Email",
     "fieldEmailNote": "Used for signing in, cannot be changed.",
     "fieldPhone": "Phone",
@@ -739,6 +739,7 @@
     "loginResend": "Send the code again",
     "loginResendWait": "You can resend in {seconds} s",
     "loginResent": "The code has been sent again",
-    "loginErrorTooOften": "You can request a code once a minute. Check your inbox — the previous code still works."
+    "loginErrorTooOften": "You can request a code once a minute. Check your inbox — the previous code still works.",
+    "fieldPhonePlaceholder": "+998 XX XXX XX XX"
   }
 }
