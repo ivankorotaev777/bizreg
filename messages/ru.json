@@ -778,6 +778,14 @@
     "adminServiceStatus": "Этап",
     "adminServiceComment": "Комментарий для клиента",
     "adminServiceApply": "Сохранить этап",
-    "adminSaveError": "Не удалось сохранить. Попробуйте ещё раз."
+    "adminSaveError": "Не удалось сохранить. Попробуйте ещё раз.",
+    "requestOpen": "Заказать услугу",
+    "requestKind": "Какая услуга нужна",
+    "requestNote": "Что нужно сделать",
+    "requestNotePlaceholder": "Коротко опишите задачу — необязательно",
+    "requestSend": "Отправить заявку",
+    "requestCancel": "Отмена",
+    "requestDone": "Заявка принята, менеджер свяжется с вами",
+    "requestError": "Не удалось отправить заявку. Попробуйте ещё раз."
   }
 }

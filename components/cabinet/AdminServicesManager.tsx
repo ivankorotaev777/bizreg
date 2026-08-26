@@ -59,13 +59,13 @@ export function AdminServicesManager({
       .single();
 
     if (!insertError && data) {
+      // Первую запись в историю ставит база сама — забираем её, чтобы показать сразу.
       const { data: created } = await supabase
         .from("cabinet_service_events")
-        .insert({ service_id: data.id, status: "new", author_email: managerEmail })
         .select("id, service_id, status, comment, author_email, created_at")
-        .single();
+        .eq("service_id", data.id);
       setServices((prev) => [data as ServiceRow, ...prev]);
-      if (created) setEvents((prev) => [created as ServiceEventRow, ...prev]);
+      if (created) setEvents((prev) => [...(created as ServiceEventRow[]), ...prev]);
       setNewTitle("");
     } else {
       setError(t("adminSaveError"));

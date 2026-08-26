@@ -37,6 +37,7 @@ export default async function CabinetServicesPage({
   return (
     <CabinetShell email={user.email ?? ""} isAdmin={isAdmin}>
       <ServicesList
+        userId={user.id}
         services={(services as ServiceRow[]) ?? []}
         events={(events as ServiceEventRow[]) ?? []}
       />

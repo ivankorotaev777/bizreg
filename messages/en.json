@@ -795,6 +795,14 @@
     "adminServiceStatus": "Stage",
     "adminServiceComment": "Comment for the client",
     "adminServiceApply": "Save stage",
-    "adminSaveError": "Could not save. Please try again."
+    "adminSaveError": "Could not save. Please try again.",
+    "requestOpen": "Request a service",
+    "requestKind": "Which service do you need",
+    "requestNote": "What needs to be done",
+    "requestNotePlaceholder": "Briefly describe the task — optional",
+    "requestSend": "Send the request",
+    "requestCancel": "Cancel",
+    "requestDone": "Request received, your manager will be in touch",
+    "requestError": "Could not send the request. Please try again."
   }
 }

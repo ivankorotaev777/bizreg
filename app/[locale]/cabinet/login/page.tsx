@@ -77,9 +77,9 @@ export default async function CabinetLoginPage({
               <LoginForm action="/auth/verify" submitLabel={t("loginVerify")}>
                 <input type="hidden" name="email" value={email} />
                 <input type="hidden" name="locale" value={locale} />
-                <div className="space-y-1.5">
-                  <Label htmlFor="code">{t("fieldCode")}</Label>
-                  <CodeInput id="code" name="code" />
+                <div className="space-y-2">
+                  <Label>{t("fieldCode")}</Label>
+                  <CodeInput name="code" />
                 </div>
                 {errorText && <p className="text-sm text-destructive">{errorText}</p>}
               </LoginForm>

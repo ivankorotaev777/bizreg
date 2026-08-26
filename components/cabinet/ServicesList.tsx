@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { ChevronDown, History } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { RequestServiceForm } from "@/components/cabinet/RequestServiceForm";
 import {
   STATUS_STYLES,
   formatDate,
@@ -16,9 +17,11 @@ import {
  * История раскрывается по нажатию — в свёрнутом виде она только мешает.
  */
 export function ServicesList({
+  userId,
   services,
   events,
 }: {
+  userId: string;
   services: ServiceRow[];
   events: ServiceEventRow[];
 }) {
@@ -99,6 +102,8 @@ export function ServicesList({
             })}
           </ul>
         )}
+
+        <RequestServiceForm userId={userId} />
       </CardContent>
     </Card>
   );
