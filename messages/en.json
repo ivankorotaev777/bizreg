@@ -804,6 +804,8 @@
     "requestCancel": "Cancel",
     "requestDone": "Request received, your manager will be in touch",
     "requestError": "Could not send the request. Please try again.",
-    "adminNewRequests": "new requests: {count}"
+    "adminNewRequests": "new requests: {count}",
+    "requestCancelService": "Cancel the request",
+    "requestCancelConfirm": "Cancel this request? If you change your mind, just send a new one."
   }
 }

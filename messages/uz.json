@@ -788,6 +788,8 @@
     "requestCancel": "Bekor qilish",
     "requestDone": "Ariza qabul qilindi, menejer siz bilan bog'lanadi",
     "requestError": "Arizani yuborib bo'lmadi. Qayta urinib ko'ring.",
-    "adminNewRequests": "yangi arizalar: {count}"
+    "adminNewRequests": "yangi arizalar: {count}",
+    "requestCancelService": "Arizani bekor qilish",
+    "requestCancelConfirm": "Ariza bekor qilinsinmi? Fikringiz o'zgarsa, yangisini qoldiring."
   }
 }

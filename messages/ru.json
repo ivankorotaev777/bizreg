@@ -787,6 +787,8 @@
     "requestCancel": "Отмена",
     "requestDone": "Заявка принята, менеджер свяжется с вами",
     "requestError": "Не удалось отправить заявку. Попробуйте ещё раз.",
-    "adminNewRequests": "новых заявок: {count}"
+    "adminNewRequests": "новых заявок: {count}",
+    "requestCancelService": "Отменить заявку",
+    "requestCancelConfirm": "Отменить заявку? Если передумаете, оставьте новую."
   }
 }

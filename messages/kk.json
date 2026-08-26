@@ -788,6 +788,8 @@
     "requestCancel": "Болдырмау",
     "requestDone": "Өтініш қабылданды, менеджер сізбен байланысады",
     "requestError": "Өтінішті жіберу мүмкін болмады. Қайталап көріңіз.",
-    "adminNewRequests": "жаңа өтініштер: {count}"
+    "adminNewRequests": "жаңа өтініштер: {count}",
+    "requestCancelService": "Өтінішті болдырмау",
+    "requestCancelConfirm": "Өтініш болдырылмасын ба? Ойыңыз өзгерсе, жаңасын қалдырыңыз."
   }
 }

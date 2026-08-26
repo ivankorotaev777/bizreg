@@ -787,6 +787,8 @@
     "requestCancel": "取消",
     "requestDone": "申请已受理，顾问会与您联系",
     "requestError": "申请提交失败，请重试。",
-    "adminNewRequests": "新申请：{count}"
+    "adminNewRequests": "新申请：{count}",
+    "requestCancelService": "取消申请",
+    "requestCancelConfirm": "确定取消这项申请吗？如果改变主意，可以重新提交。"
   }
 }
