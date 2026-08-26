@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Mail, KeyRound, ArrowLeft, Loader2 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -14,7 +13,7 @@ type Step = "email" | "code";
 
 export default function LoginClient() {
   const t = useTranslations("cabinet");
-  const router = useRouter();
+  const locale = useLocale();
   const [step, setStep] = useState<Step>("email");
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
@@ -63,8 +62,9 @@ export default function LoginClient() {
       setError(t("loginErrorCode"));
       return;
     }
-    router.refresh();
-    router.push("/cabinet");
+    // Полная перезагрузка, а не мягкий переход: так браузер гарантированно
+    // отдаёт свежую сессию серверу, иначе проверка на сервере её не видит.
+    window.location.assign(`/${locale === "ru" ? "" : locale + "/"}cabinet`.replace("//", "/"));
   };
 
   return (

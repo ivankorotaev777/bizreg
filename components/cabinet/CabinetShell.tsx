@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Link, usePathname, useRouter } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { User, Building2, LogOut } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -15,7 +15,6 @@ export function CabinetShell({
 }) {
   const t = useTranslations("cabinet");
   const pathname = usePathname();
-  const router = useRouter();
 
   const items = [
     { href: "/cabinet", label: t("navProfile"), icon: User },
@@ -25,8 +24,8 @@ export function CabinetShell({
   const signOut = async () => {
     const supabase = createClient();
     await supabase.auth.signOut();
-    router.refresh();
-    router.push("/cabinet/login");
+    // Полная перезагрузка — чтобы сервер точно увидел, что сессии больше нет.
+    window.location.assign("/cabinet/login");
   };
 
   return (
