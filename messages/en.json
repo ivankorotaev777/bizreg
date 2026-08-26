@@ -695,8 +695,8 @@
     "navCompany": "Company",
     "navLogout": "Sign out",
     "loginTitle": "Sign in",
-    "loginSubtitle": "Enter your email — we'll send a sign-in link. No password needed.",
-    "loginSend": "Send the link",
+    "loginSubtitle": "Enter your email — we'll send a sign-in code. No password needed.",
+    "loginSend": "Get the code",
     "loginChangeEmail": "Change email",
     "loginErrorSend": "Could not send the code. Check the address and try again.",
     "loginNote": "By signing in you agree to BizReg's terms of service.",
@@ -729,10 +729,12 @@
     "save": "Save",
     "saved": "Saved",
     "saveError": "Could not save. Please try again.",
-    "loginSentTitle": "Email sent",
-    "loginSentSubtitle": "We sent a sign-in link to {email}",
-    "loginSentHint": "Open the email and click “Sign in” — in this same browser. If it's not there, check your spam folder.",
     "loginErrorExpired": "The link has expired or was already used. Request a new one — it stays valid for an hour.",
-    "loginErrorLink": "The link didn't work. Request a new one and open it in the same browser you requested it from."
+    "loginErrorLink": "The link didn't work. Request a new one and open it in the same browser you requested it from.",
+    "loginCodeTitle": "Enter the code",
+    "loginCodeSubtitle": "We sent a six-digit code to {email}",
+    "loginVerify": "Sign in",
+    "loginErrorCode": "Wrong or expired code. Request a new one.",
+    "fieldCode": "Code from the email"
   }
 }
