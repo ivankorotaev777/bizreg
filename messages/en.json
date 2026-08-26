@@ -735,6 +735,10 @@
     "loginCodeSubtitle": "We sent a six-digit code to {email}",
     "loginVerify": "Sign in",
     "loginErrorCode": "Wrong or expired code. Request a new one.",
-    "fieldCode": "Code from the email"
+    "fieldCode": "Code from the email",
+    "loginResend": "Send the code again",
+    "loginResendWait": "You can resend in {seconds} s",
+    "loginResent": "The code has been sent again",
+    "loginErrorTooOften": "You can request a code once a minute. Check your inbox — the previous code still works."
   }
 }

@@ -6,6 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { LoginForm } from "@/components/cabinet/LoginForm";
+import { CodeInput } from "@/components/cabinet/CodeInput";
+import { ResendCode } from "@/components/cabinet/ResendCode";
 
 export const metadata: Metadata = {
   title: "Вход в кабинет | BizReg",
@@ -14,7 +16,10 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
-type Search = { step?: string; email?: string; error?: string };
+type Search = { step?: string; email?: string; error?: string; sent?: string; t?: string };
+
+/** Почтовый сервис принимает не чаще одного письма в минуту на один адрес. */
+const RESEND_DELAY_SECONDS = 60;
 
 export default async function CabinetLoginPage({
   params: { locale },
@@ -27,10 +32,16 @@ export default async function CabinetLoginPage({
   const email = searchParams.email ?? "";
   const codeStep = searchParams.step === "code" && email !== "";
 
+  const sentAt = Number(searchParams.t ?? 0);
+  const elapsed = sentAt > 0 ? Math.floor((Date.now() - sentAt) / 1000) : RESEND_DELAY_SECONDS;
+  const resendLeft = Math.max(0, Math.min(RESEND_DELAY_SECONDS, RESEND_DELAY_SECONDS - elapsed));
+
   const errorText = (() => {
     switch (searchParams.error) {
       case "code":
         return t("loginErrorCode");
+      case "too_often":
+        return t("loginErrorTooOften");
       case "send":
         return t("loginErrorSend");
       case "missing_code":
@@ -68,23 +79,22 @@ export default async function CabinetLoginPage({
                 <input type="hidden" name="locale" value={locale} />
                 <div className="space-y-1.5">
                   <Label htmlFor="code">{t("fieldCode")}</Label>
-                  <Input
-                    id="code"
-                    name="code"
-                    inputMode="numeric"
-                    autoComplete="one-time-code"
-                    required
-                    maxLength={6}
-                    placeholder="123456"
-                    className="text-center text-lg tracking-[0.4em]"
-                    autoFocus
-                  />
+                  <CodeInput id="code" name="code" />
                 </div>
                 {errorText && <p className="text-sm text-destructive">{errorText}</p>}
               </LoginForm>
+              <ResendCode
+                email={email}
+                locale={locale}
+                justSent={searchParams.sent === "1" && !errorText}
+                initialLeft={resendLeft}
+                labelResend={t("loginResend")}
+                labelWait={t.raw("loginResendWait") as string}
+                labelSent={t("loginResent")}
+              />
               <Link
                 href="/cabinet/login"
-                className="mt-4 w-full flex items-center justify-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="mt-3 w-full flex items-center justify-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 <ArrowLeft className="w-4 h-4" />
                 {t("loginChangeEmail")}
