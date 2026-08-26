@@ -29,7 +29,7 @@ export function CabinetShell({
   };
 
   return (
-    <div className="pt-24 pb-16 min-h-screen bg-muted/20">
+    <div className="pt-32 pb-16 min-h-screen bg-muted/20">
       <div className="container mx-auto px-4">
         <div className="mb-6">
           <h1 className="text-2xl sm:text-3xl font-semibold text-foreground">{t("title")}</h1>

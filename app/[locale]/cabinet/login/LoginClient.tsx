@@ -68,7 +68,7 @@ export default function LoginClient() {
   };
 
   return (
-    <div className="min-h-[70vh] flex items-center justify-center px-4 py-16">
+    <div className="min-h-[70vh] flex items-center justify-center px-4 pt-32 pb-20">
       <Card className="w-full max-w-md border-border">
         <CardContent className="p-6 sm:p-8">
           <div className="text-center mb-6">
