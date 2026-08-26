@@ -21,7 +21,14 @@ export interface CompanyRecord {
   registered_on: string | null;
 }
 
-export function CompanyForm({ initial }: { initial: CompanyRecord | null }) {
+export function CompanyForm({
+  initial,
+  userId,
+}: {
+  initial: CompanyRecord | null;
+  /** Чью компанию правим. Пусто — свою; заполнено — компанию клиента (для сотрудника). */
+  userId?: string;
+}) {
   const t = useTranslations("cabinet");
   const [form, setForm] = useState<CompanyRecord>({
     name: initial?.name ?? "",
@@ -47,13 +54,14 @@ export function CompanyForm({ initial }: { initial: CompanyRecord | null }) {
     const {
       data: { user },
     } = await supabase.auth.getUser();
-    if (!user) {
+    const target = userId ?? user?.id;
+    if (!target) {
       setSaving(false);
       setError(t("saveError"));
       return;
     }
     const payload = {
-      user_id: user.id,
+      user_id: target,
       name: form.name || null,
       inn: form.inn || null,
       legal_form: form.legal_form || null,

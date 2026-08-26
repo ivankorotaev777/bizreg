@@ -5,6 +5,8 @@ import { type Locale } from "@/i18n";
 import { getCabinetUser } from "@/lib/cabinet/access";
 import { CabinetShell } from "@/components/cabinet/CabinetShell";
 import { DocumentsPanel } from "@/components/cabinet/DocumentsPanel";
+import { ProfileForm, type ClientProfile } from "@/components/cabinet/ProfileForm";
+import { CompanyForm, type CompanyRecord } from "@/components/cabinet/CompanyForm";
 import { AdminServicesManager } from "@/components/cabinet/AdminServicesManager";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -72,18 +74,6 @@ export default async function AdminClientPage({
     .eq("user_id", userId)
     .order("created_at", { ascending: false });
 
-  const details: [string, string | null][] = [
-    [t("fieldName"), client.full_name],
-    [t("fieldEmail"), client.email],
-    [t("fieldPhone"), client.phone],
-    [t("fieldCompanyName"), company?.name ?? null],
-    [t("fieldInn"), company?.inn ?? null],
-    [t("fieldLegalForm"), company?.legal_form ?? null],
-    [t("fieldTaxRegime"), company?.tax_regime ?? null],
-    [t("fieldLegalAddress"), company?.legal_address ?? null],
-    [t("fieldDirector"), company?.director_name ?? null],
-  ];
-
   return (
     <CabinetShell email={user.email ?? ""} isAdmin={isAdmin}>
       <div className="space-y-6">
@@ -97,22 +87,20 @@ export default async function AdminClientPage({
 
         <Card className="border-border">
           <CardContent className="p-5 sm:p-6">
-            <h2 className="text-lg font-semibold text-foreground mb-1">
+            <h2 className="text-lg font-semibold text-foreground">
               {client.full_name || client.email || t("adminNoName")}
             </h2>
-            <p className="text-sm text-muted-foreground mb-5">{t("adminClientSubtitle")}</p>
-            <dl className="grid sm:grid-cols-2 gap-x-6 gap-y-3">
-              {details.map(([label, value]) => (
-                <div key={label} className="min-w-0">
-                  <dt className="text-xs text-muted-foreground">{label}</dt>
-                  <dd className="text-sm text-foreground truncate">
-                    {value || <span className="text-muted-foreground">—</span>}
-                  </dd>
-                </div>
-              ))}
-            </dl>
+            <p className="text-sm text-muted-foreground mt-1">{t("adminClientSubtitle")}</p>
           </CardContent>
         </Card>
+
+        <ProfileForm
+          email={client.email ?? ""}
+          initial={client as ClientProfile}
+          userId={userId}
+        />
+
+        <CompanyForm initial={(company as CompanyRecord) ?? null} userId={userId} />
 
         <AdminServicesManager
           userId={userId}

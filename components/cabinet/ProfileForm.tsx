@@ -16,7 +16,16 @@ export interface ClientProfile {
   preferred_locale: string | null;
 }
 
-export function ProfileForm({ email, initial }: { email: string; initial: ClientProfile | null }) {
+export function ProfileForm({
+  email,
+  initial,
+  userId,
+}: {
+  email: string;
+  initial: ClientProfile | null;
+  /** Чью карточку правим. Пусто — свою; заполнено — карточку клиента (для сотрудника). */
+  userId?: string;
+}) {
   const t = useTranslations("cabinet");
   const [fullName, setFullName] = useState(initial?.full_name ?? "");
   const [phone, setPhone] = useState(initial?.phone ?? "");
@@ -34,14 +43,15 @@ export function ProfileForm({ email, initial }: { email: string; initial: Client
     const {
       data: { user },
     } = await supabase.auth.getUser();
-    if (!user) {
+    const target = userId ?? user?.id;
+    if (!target) {
       setSaving(false);
       setError(t("saveError"));
       return;
     }
     const { error } = await supabase.from("cabinet_clients").upsert(
       {
-        user_id: user.id,
+        user_id: target,
         email,
         full_name: fullName || null,
         phone: phone || null,
