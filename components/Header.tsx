@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Send, Globe, ChevronDown } from "lucide-react";
+import { Menu, X, Send, Globe, ChevronDown, User } from "lucide-react";
 import { locales, localeNames, type Locale } from "@/i18n";
 
 export function Header() {
@@ -168,6 +168,14 @@ export function Header() {
             >
               +998 77 017 89 78
             </a>
+            <Link
+              href="/cabinet"
+              rel="nofollow"
+              className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors text-sm whitespace-nowrap"
+            >
+              <User className="w-4 h-4" />
+              {t("cabinet")}
+            </Link>
             <Button size="sm" className="bg-gradient-brand" asChild>
               <a href={requestFormHref}>
                 <Send className="w-4 h-4 mr-2" />
