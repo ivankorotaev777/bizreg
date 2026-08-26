@@ -789,6 +789,7 @@
     "requestError": "Не удалось отправить заявку. Попробуйте ещё раз.",
     "adminNewRequests": "новых заявок: {count}",
     "requestCancelService": "Отменить заявку",
-    "requestCancelConfirm": "Отменить заявку? Если передумаете, оставьте новую."
+    "requestCancelConfirm": "Отменить заявку? Если передумаете, оставьте новую.",
+    "docsBadType": "Такой тип файла мы не принимаем. Подойдут PDF, фото, документы Word и Excel, архив ZIP."
   }
 }

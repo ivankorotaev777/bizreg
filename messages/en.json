@@ -806,6 +806,7 @@
     "requestError": "Could not send the request. Please try again.",
     "adminNewRequests": "new requests: {count}",
     "requestCancelService": "Cancel the request",
-    "requestCancelConfirm": "Cancel this request? If you change your mind, just send a new one."
+    "requestCancelConfirm": "Cancel this request? If you change your mind, just send a new one.",
+    "docsBadType": "We don't accept this file type. Use PDF, photos, Word or Excel documents, or a ZIP archive."
   }
 }

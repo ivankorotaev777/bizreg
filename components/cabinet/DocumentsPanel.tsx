@@ -60,7 +60,10 @@ export function DocumentsPanel({
 
     if (uploadError) {
       setBusy(false);
-      setError(t("docsUploadError"));
+      // Хранилище принимает не любой тип файла — об этом надо сказать прямо,
+      // иначе человек будет жать «загрузить» по кругу с общей ошибкой.
+      const badType = /mime|content type/i.test(uploadError.message);
+      setError(badType ? t("docsBadType") : t("docsUploadError"));
       return;
     }
 

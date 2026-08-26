@@ -790,6 +790,7 @@
     "requestError": "Arizani yuborib bo'lmadi. Qayta urinib ko'ring.",
     "adminNewRequests": "yangi arizalar: {count}",
     "requestCancelService": "Arizani bekor qilish",
-    "requestCancelConfirm": "Ariza bekor qilinsinmi? Fikringiz o'zgarsa, yangisini qoldiring."
+    "requestCancelConfirm": "Ariza bekor qilinsinmi? Fikringiz o'zgarsa, yangisini qoldiring.",
+    "docsBadType": "Bu turdagi faylni qabul qilmaymiz. PDF, foto, Word va Excel hujjatlari yoki ZIP arxivi bo'ladi."
   }
 }

@@ -789,6 +789,7 @@
     "requestError": "申请提交失败，请重试。",
     "adminNewRequests": "新申请：{count}",
     "requestCancelService": "取消申请",
-    "requestCancelConfirm": "确定取消这项申请吗？如果改变主意，可以重新提交。"
+    "requestCancelConfirm": "确定取消这项申请吗？如果改变主意，可以重新提交。",
+    "docsBadType": "暂不支持这种文件类型。可以使用 PDF、照片、Word 或 Excel 文档，或 ZIP 压缩包。"
   }
 }
