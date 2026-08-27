@@ -46,3 +46,8 @@ Founders /
 
 # tariff working files
 /Registration tariffs/
+
+# Файлы с доступами — не должны попадать в репозиторий
+keys.docx
+*.key
+secrets*
