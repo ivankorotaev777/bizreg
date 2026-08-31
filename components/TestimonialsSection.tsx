@@ -18,7 +18,14 @@ type Testimonial = {
 };
 
 const testimonials: Testimonial[] = [
-  { quoteKey: "quote1", nameKey: "name1", roleKey: "role1", locationKey: "location1", image: "/asel.png" },
+  {
+    quoteKey: "quote1",
+    nameKey: "name1",
+    roleKey: "role1",
+    locationKey: "location1",
+    video: "/testimonials/anar.mp4",
+    poster: "/testimonials/anar-poster.jpg",
+  },
   { quoteKey: "quote2", nameKey: "name2", roleKey: "role2", locationKey: "location2", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" },
   {
     quoteKey: "quote3",
