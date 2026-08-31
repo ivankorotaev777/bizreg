@@ -18,6 +18,7 @@ const content = {
       {
         title: "ИП",
         price: "1 000 000",
+        deposit: "Депозит 3 000 000 сум",
         features: [
           "Площадь 3 м²",
           "Договор аренды и регистрация в e-ijara",
@@ -29,6 +30,7 @@ const content = {
       {
         title: "ООО на УСН",
         price: "1 272 000",
+        deposit: "Депозит 3 000 000 сум",
         features: [
           "Площадь 5 м²",
           "Всё из пакета ИП",
@@ -40,6 +42,7 @@ const content = {
       {
         title: "ООО на НДС",
         price: "2 544 000",
+        deposit: "Депозит 7 000 000 сум",
         features: [
           "Площадь 18 м² — соответствует требованиям для учёта по НДС",
           "Всё из пакета ООО на УСН",
@@ -61,6 +64,7 @@ const content = {
       {
         title: "Sole proprietor",
         price: "1,000,000",
+        deposit: "Deposit 3,000,000 UZS",
         features: [
           "Area: 3 m²",
           "Lease agreement and e-ijara registration",
@@ -72,6 +76,7 @@ const content = {
       {
         title: "LLC, simplified tax",
         price: "1,272,000",
+        deposit: "Deposit 3,000,000 UZS",
         features: [
           "Area: 5 m²",
           "Everything in the Sole proprietor package",
@@ -83,6 +88,7 @@ const content = {
       {
         title: "LLC with VAT",
         price: "2,544,000",
+        deposit: "Deposit 7,000,000 UZS",
         features: [
           "Area: 18 m² — meets the requirements for VAT registration",
           "Everything in the simplified-tax package",
@@ -132,6 +138,7 @@ export const AddressPricingSection = ({ requestFormHref = "#form" }: { requestFo
                   <span className="text-2xl font-semibold text-foreground tabular-nums">{pkg.price}</span>
                   <span className="text-sm text-muted-foreground">{c.per}</span>
                 </div>
+                <p className="text-sm text-muted-foreground mt-1 tabular-nums">{pkg.deposit}</p>
               </CardHeader>
               <CardContent className="pt-0 flex-1">
                 <ul className="space-y-2.5">
