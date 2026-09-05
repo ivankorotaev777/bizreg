@@ -22,7 +22,7 @@
 
 ## 2. Деплой на Railway
 
-1. В проекте → **New → GitHub Repo → `ivankorotaev777/bizreg`**.
+1. В проекте → **New → GitHub Repo → `bizreg-org/bizreg`**.
 2. Сервис → **Settings → Root Directory** = `services/dashboard`.
 3. **Settings → Networking → Generate Domain** (чтобы получить публичный URL дашборда).
 4. **Variables**:

@@ -51,3 +51,12 @@ Founders /
 keys.docx
 *.key
 secrets*
+
+# Бизнес-файлы расчётов (не для репозитория)
+/Calculator/
+
+# Локальные артефакты инструментов разработки
+.dev-pomogator/
+.claude/launch.json
+.root-artifacts.yaml
+.pre-commit-config.yaml

@@ -34,7 +34,7 @@
 | **Свой Telegram ID** (владелец) | Напиши @userinfobot. |
 | **Anthropic API key** | console.anthropic.com → API keys. |
 | **OpenAI API key** | platform.openai.com → API keys (только для расшифровки голосовых, ~$0.006/мин). |
-| **GitHub token** | GitHub → Settings → Developer settings → Fine-grained PAT с доступом `Contents: Read and write` к репозиторию bizreg. |
+| **GitHub token** | GitHub → Settings → Developer settings → Fine-grained PAT с доступом `Contents: Read and write` к репозиторию `bizreg-org/bizreg` (Resource owner — организация bizreg-org). |
 
 > Postgres отдельно «доставать» не нужно — это сервис внутри Railway (см. ниже).
 > Транскрипция — единственная не-Anthropic зависимость (Claude не умеет STT). По умолчанию OpenAI Whisper; модуль `seo-bot/src/transcribe.ts` изолирован, легко заменить на Yandex SpeechKit.
@@ -78,7 +78,7 @@
 2. Сервис → **Settings → Root Directory = `services/factory`**.
 3. **Variables** (см. `services/factory/.env.example`):
    - `DATABASE_URL` → **Add Reference → Postgres → `DATABASE_URL`**.
-   - `ANTHROPIC_API_KEY`, `MODEL=claude-opus-4-8`, `GITHUB_TOKEN`, `GITHUB_REPO=<owner>/bizreg`, `BOT_TOKEN`, `TELEGRAM_GROUP_ID`, `SITE_URL`.
+   - `ANTHROPIC_API_KEY`, `MODEL=claude-opus-4-8`, `GITHUB_TOKEN`, `GITHUB_REPO=bizreg-org/bizreg`, `BOT_TOKEN`, `TELEGRAM_GROUP_ID`, `SITE_URL`.
 4. Первый запуск: завод склонирует репо, выполнит `npm ci` (разово, несколько минут) и синхронизирует список статей в таблицу `articles` → в боте появится список.
    - Можно прогнать вручную локально (с публичным URL базы): `cd services/factory && npm i && DATABASE_URL="<DATABASE_PUBLIC_URL>" npm run sync`.
 
