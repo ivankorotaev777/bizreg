@@ -22,22 +22,13 @@ import {
   Send,
   ShieldCheck,
 } from "lucide-react";
+import { trackEvent as trackAnalyticsEvent } from "@/lib/analytics";
 
-declare global {
-  interface Window {
-    gtag?: (...args: unknown[]) => void;
-  }
-}
 
 const TELEGRAM = "https://t.me/BizRegUz";
 
 function trackEvent(event: string, location: string) {
-  if (typeof window !== "undefined" && typeof window.gtag === "function") {
-    window.gtag("event", event, {
-      event_category: "legal_address_landing",
-      event_label: location,
-    });
-  }
+  trackAnalyticsEvent(event, location, "legal_address_landing");
 }
 
 // строки таблицы «что входит»: text | значения по пакетам (строка = текст, true = ✓, false = —)

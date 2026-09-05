@@ -25,6 +25,7 @@ import {
   ChevronDown,
   Users,
 } from "lucide-react";
+import { trackEvent as trackAnalyticsEvent } from "@/lib/analytics";
 
 const pressStart = Press_Start_2P({
   subsets: ["latin", "cyrillic"],
@@ -39,11 +40,6 @@ const silk = Silkscreen({
   weight: ["400", "700"],
 });
 
-declare global {
-  interface Window {
-    gtag?: (...args: unknown[]) => void;
-  }
-}
 
 type Activity = {
   id: number;
@@ -488,12 +484,7 @@ const itparkContent = {
 } as const;
 
 function trackEvent(event: string, location: string) {
-  if (typeof window !== "undefined" && typeof window.gtag === "function") {
-    window.gtag("event", event, {
-      event_category: "itpark_landing",
-      event_label: location,
-    });
-  }
+  trackAnalyticsEvent(event, location, "itpark_landing");
 }
 
 export default function ItParkLandingClient() {

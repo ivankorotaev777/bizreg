@@ -2,11 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { trackEvent } from "@/lib/analytics";
 
 function track(event: string) {
-  if (typeof window !== "undefined" && typeof window.gtag === "function") {
-    window.gtag("event", event, { location: "sticky" });
-  }
+  trackEvent(event, "sticky");
 }
 
 type Props = {
